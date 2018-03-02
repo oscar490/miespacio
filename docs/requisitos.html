@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/9f3d18e3/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/caf0ac58/solarized_light.css" rel="stylesheet">
+<link href="./assets/fa0ab1bb/style.css" rel="stylesheet">
+<script src="./assets/88c36e40/jquery.js"></script>
+<script src="./assets/9f3d18e3/js/bootstrap.js"></script>
+<script src="./assets/34f65cc0/jssearch.js"></script>    <title>Guía del proyecto</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w34" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w34-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">Guía del proyecto</a></div><div id="w34-collapse" class="collapse navbar-collapse"><ul id="w35" class="navbar-nav nav"><li><a href="./api/index.html">Class reference</a></li>
+<li><a href="./README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-24" data-toggle="collapse" data-parent="#navigation">Descripción general <b class="caret"></b></a><div id="navigation-24" class="submenu panel-collapse collapse"><a class="list-group-item" href="./descripcion.html#funcionalidad-principal-de-la-aplicacion">Funcionalidad principal de la aplicación</a>
+<a class="list-group-item" href="./descripcion.html#objetivos-generales">Objetivos generales</a>
+<a class="list-group-item" href="./descripcion.html#url-del-repositorio">URL del repositorio</a>
+<a class="list-group-item" href="./descripcion.html#url-de-la-documentacion">URL de la documentación</a></div>
+<a class="list-group-item" href="#navigation-25" data-toggle="collapse" data-parent="#navigation">Instrucciones de instalación y despliegue <b class="caret"></b></a><div id="navigation-25" class="submenu panel-collapse collapse"><a class="list-group-item" href="./instalacion.html#en-local">En local</a>
+<a class="list-group-item" href="./instalacion.html#en-la-nube">En la nube</a></div>
+<a class="list-group-item" href="#navigation-26" data-toggle="collapse" data-parent="#navigation">Catálogo de requisitos <b class="caret"></b></a><div id="navigation-26" class="submenu panel-collapse collapse"><a class="list-group-item" href="./requisitos.html#cuadro-resumen">Cuadro resumen</a></div>
+<a class="list-group-item" href="#navigation-27" data-toggle="collapse" data-parent="#navigation">Manual de usuario <b class="caret"></b></a><div id="navigation-27" class="submenu panel-collapse collapse"><a class="list-group-item" href="./manual.html">Manual de usuario</a></div>
+<a class="list-group-item" href="#navigation-28" data-toggle="collapse" data-parent="#navigation">Decisiones adoptadas <b class="caret"></b></a><div id="navigation-28" class="submenu panel-collapse collapse"><a class="list-group-item" href="./decisiones.html">Decisiones adoptadas</a></div>
+<a class="list-group-item" href="#navigation-29" data-toggle="collapse" data-parent="#navigation">Dificultades encontradas <b class="caret"></b></a><div id="navigation-29" class="submenu panel-collapse collapse"><a class="list-group-item" href="./dificultades.html">Dificultades encontradas</a></div>
+<a class="list-group-item" href="#navigation-30" data-toggle="collapse" data-parent="#navigation">Diagramas <b class="caret"></b></a><div id="navigation-30" class="submenu panel-collapse collapse"><a class="list-group-item" href="./diagramas.html#diagramas-de-clases">Diagramas de clases</a>
+<a class="list-group-item" href="./diagramas.html#diagramas-de-estructura-logica-de-datos">Diagramas de estructura lógica de datos</a></div>
+<a class="list-group-item" href="#navigation-31" data-toggle="collapse" data-parent="#navigation">Glosario de términos <b class="caret"></b></a><div id="navigation-31" class="submenu panel-collapse collapse"><a class="list-group-item" href="./glosario.html">Glosario de términos</a></div>
+<a class="list-group-item" href="#navigation-32" data-toggle="collapse" data-parent="#navigation">Conclusiones <b class="caret"></b></a><div id="navigation-32" class="submenu panel-collapse collapse"><a class="list-group-item" href="./conclusiones.html">Conclusiones</a></div>
+<a class="list-group-item" href="#navigation-33" data-toggle="collapse" data-parent="#navigation">Anexos <b class="caret"></b></a><div id="navigation-33" class="submenu panel-collapse collapse"><a class="list-group-item" href="./anexos.html">Anexos</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Catálogo de requisitos <span id="catalogo-de-requisitos"></span><a href="#catalogo-de-requisitos" class="hashlink">&para;</a></h1><table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R01</strong>     </th><th align="left"><strong>Registro de usuarios.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">La aplicación contendrá un formulario que dicho usuario deberá rellenar indicando su nombre, su contraseña y su correo  electrónico, si el usuario existe, se le notificará con un mensaje.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/1">1</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R02</strong>     </th><th align="left"><strong>Configuración de correo.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Cuando el usuario haya completado  el formulario de registro, sin errores, se le enviará un correo electrónico a su cuenta de correo, si no se confirma, no pordrá iniciar sesión.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/2">2</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R03</strong>     </th><th align="left"><strong>Inicio de sesión.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">La aplicación contendrá un formulario de inicio de sesión, donde el usuario que ya haya sido registrado y confirmado, podrá iniciar sesión en la aplicación, indicando su nombre y su contraseña. Si los datos introducidos son erróneos, se le notificará con un mensaje.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/3">3</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R04</strong>     </th><th align="left"><strong>Cerrar sesión.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Cuando el usuario tenga una sesión inciada, en el menú principal se encontrará un botón que al pulsarlo, provocará el cierre de la sesión.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/4">4</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R05</strong>     </th><th align="left"><strong>Recordar sesión del usuario.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">En el formulario de inicio de sesión, se dispondrá de una selección donde se indicará si desea mantener la sesión iniciada una vez que cierre la aplicación.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/5">5</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R06</strong>     </th><th align="left"><strong>Recuperación de contraseña.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">En el formulario de inicio de sesión, habrá un enlace donde redireccionará a un formulario donde el usuario debe indicar el correo electrónico de la cuenta que desea recuperar la contraseña. Se le enviará un correo electrónico con un enlace que contendrá un formulario para indicar la nueva contraseña.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/6">6</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R07</strong>     </th><th align="left"><strong>Mostrar perfil de usuario.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Cada usuario podrá ver su perfil. En él se mostrará tanto los datos personales como los de la cuenta, su imagen de perfil y los equipos creados.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/7">7</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R08</strong>     </th><th align="left"><strong>Modificar datos de usuario.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se dispondrá de una sección donde los usuario podrán modificar su perfil, tanto los datos personales como los de su cuenta.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/8">8</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R09</strong>     </th><th align="left"><strong>Imágenes de usuarios.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">En la sección donde los usuarios podrán modificar su perfil, habrá un formulario para la subida de imágenes y poder cambiar la imágen de perfil.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/9">9</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R10</strong>     </th><th align="left"><strong>Añadir tableros.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Por medio de un formulario,  los usuarios autenticados podrán añadir tableros indicando el nombre del tablero, y el equipo en donde se va ha añadir, comprobando que no exista otro ya creado con el mismo nombre. Después de crearlo, nos redireccionará a su contenido.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/10">10</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R11</strong>     </th><th align="left"><strong>Modificar tableros.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">El usuario autenticado podrá modificar un tablero, ya creado de antes, accediendo a su contenido. Podrá modificar su nombre, su color de fondo y en que equipo se encuentra.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/11">11</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R12</strong>     </th><th align="left"><strong>Eliminar tableros</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se dispondrá de una selección de un botón para eliminar un tablero, dicha selección se encontrará en el contenido del tablero. Al seleccionarlo, nos preguntará si de verdad deseamos borrarlo, en caso afirmativo, se borrará y nos redireccionará a la página principal.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/12">12</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R13</strong>     </th><th align="left"><strong>Copiar tableros.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se dispondrá de una sección donde permitirá copiar una tablero, y todo su contenido, y añadirlo a un equipo diferenta al equipo donde contiene ese tablero.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Opcional</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/13">13</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R14</strong>     </th><th align="left"><strong>Mostrar tableros.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se mostrarán los tableros creados tanto en el contenido de un equipo, como en la página principal. En la página principal se mostrará dichos tableros junto con sus equipo al que pertenecen.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/14">14</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R15</strong>     </th><th align="left"><strong>Añadir equipos.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Por medio de un formulario, los usuario autenticados podrán crear los distintos equipos para poder guardar en su contenido los diferentes tableros que creen. Se deberá indicar su nombre,  y opcionalmente, una breve descripción. Se comprobará que no exista otro equipo ya creado con el mismo nombre, en caso afirmativo, se le notificará con un mensaje. Al crearlo, nos redireccionará a su contenido.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/15">15</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R16</strong>     </th><th align="left"><strong>Modificar equipos.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Desde el contenido del equipo, se dispondrá de un formulario para modificar los datos del equipo, tanto su nombre, su descripción, y la imágen del equipo.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/16">16</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R17</strong>     </th><th align="left"><strong>Eliminar equipos.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Desde el contenido del equipo, se dispondrá de una selección de un botón para eliminar dicho equipo. Una vez pulsado, se preguntará si desea eliminar el equipo, en caso afirmativo, se eliminará y nos redireccionará a la página principal.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/17">17</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R18</strong>     </th><th align="left"><strong>Mostrar equipos.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se mostrarán los equipos creados en la página principal, junto con los tableros creados en cada equipo.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/18">18</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R19</strong>     </th><th align="left"><strong>Añadir tarjetas.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Dentro de cada tablero, por medio de un formulario, se podrá añadir tarjetas, indicando su nombre y comprobando que no haya ya otro creado con el mismo nombre, en caso que si, se le notificará con un mensaje.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/19">19</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R20</strong>     </th><th align="left"><strong>Modificar tarjetas.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se podrá modificar el nombre de dicha tarjeta, que se encuentra creado en el tablero, por medio de un formulario.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/20">20</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R21</strong>     </th><th align="left"><strong>Eliminar tarjeta.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Desde la misma tarjeta, contendrá a su lado una selección de botón para eliminar dicha tarjeta. Una vez pulsado, se eliminará dicha tarjeta y nos redireccionará al contenido del tablero donde nos encontramos actualmente.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/21">21</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R22</strong>     </th><th align="left"><strong>Mostrar tarjetas.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se mostrarán las diferentes tarjetas creadas en el tablero, una vez que accedamos al tablero.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/22">22</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R23</strong>     </th><th align="left"><strong>Añadir contenido en tarjeta.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se podrá añadir cualquier contenido en una tarjeta, tanto si es texto, enlaces a otras páginas, imágenes, videos, archivos, etc.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/23">23</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R24</strong>     </th><th align="left"><strong>Modificar contenido en tarjeta.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se podrá modificar el contenido de las tarjetas creadas en los tableros, por medio de un formulario.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/24">24</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R25</strong>     </th><th align="left"><strong>Eliminar contenido de tarjeta.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se podrá eliminar el contenido que tenga la tarjeta por medio de una selección de un botón.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/25">25</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R26</strong>     </th><th align="left"><strong>Validación de los campos del formulario.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se validará los campos de los formularios, de manera que se afirme la introducción correcta de los datos.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/26">26</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R27</strong>     </th><th align="left"><strong>Mostrar contenido de la tarjeta.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se mostrará, sobre la tarjeta, el contenido que el usuario haya añadido en ella.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v1</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/27">27</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R28</strong>     </th><th align="left"><strong>Añadir miembros a un tablero.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">En el contenido del tablero, habrá una sección que, por medio de un formulario, se buscará a otro usuario, que esté registrado en la aplicación. Se deberá indicar el nombre de usuario o su dirección de correo electrónico, el mismo que uso para registrarse. Una vez buscado, se añadirá dicho usuario al tablero, de manera que podrá śolo ver su contenido y añadir comentarios en las tarjetas.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/28">28</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R29</strong>     </th><th align="left"><strong>Ver tableros de otros usuarios.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Desde la página principal, se podrá ver los tableros de otros usuarios, que han añadido al usuario como miembro. Se mostrarán junto al equipo al que pertenece.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/29">29</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R30</strong>     </th><th align="left"><strong>Búsqueda de tableros.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Desde la página principal, habrá una sección donde, por medio de un formulario, se podrá buscar los tableros que el usuario tenga creado, indicando su nombre. En el caso de que no se encuentre el tablero a buscar, se le dará la posibilidad de crear un tablero nuevo con el nombre que se ha indicado en la búsqueda.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/30">30</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R31</strong>     </th><th align="left"><strong>Añadir tablero como favorito.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se dará la posibilidad de añadir un tablero como tableros favoritos. Se refiere a los que más se accedan y se marcan como favoritos. Se podrá desde el contenido del tablero.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/31">31</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R32</strong>     </th><th align="left"><strong>Quitar tablero como favorito</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Mediante una selección, se podrá desactivar un tablero como favorito, de manera que no aparecerá como tablero favorito.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/32">32</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R33</strong>     </th><th align="left"><strong>Mostrar tableros favoritos</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se podrá indicar un tablero como favorito, de manera que desde la página principal, a la hora de mostrar todos los tableros creados, se mostrarán los tableros marcados como favoritos, al comienzo de la página.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/33">33</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R34</strong>     </th><th align="left"><strong>Enviar tablero a otro equipo</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se tendrá la disponibilidad de poder enviar tableros a otros equipos y dejando de existir en el equipo actual, por medio de un formulario, indicando al equipo donde se quiere enviar dicho tablero.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/34">34</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R35</strong>     </th><th align="left"><strong>Gestión de ventanas.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Gestión de la apariencia de las ventanas, creación de nuevas ventanas y comunicación entre ventanas.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/35">35</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R36</strong>     </th><th align="left"><strong>Gestión de Eventos.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Interactividad a través de mecanismos de manejo de eventos intuitivos y eficaces.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/36">36</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R37</strong>     </th><th align="left"><strong>Uso y manipulación  del DOM.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Uso y manipulación de las características del modelo de objetos del documento.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/37">37</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R38</strong>     </th><th align="left"><strong>Almacenamiento en el lado del cliente.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Uso de mecanismos de almacenamiento en el lado del cliente.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/38">38</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R39</strong>     </th><th align="left"><strong>JQUERY</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Uso de la librería de JQUERY.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/39">39</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R40</strong>     </th><th align="left"><strong>Plugin de JQUERY</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Incluir al menos un plugin no trabajado en clase.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/40">40</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R41</strong>     </th><th align="left"><strong>AJAX</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Uso de mecanismos de comunicación asíncrona.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/41">41</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R42</strong>     </th><th align="left"><strong>PHP 7.1</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Uso del lenguaje de programación PHP 7.1.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/42">42</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R43</strong>     </th><th align="left"><strong>Framework</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Uso del Framework Yii2 versión 2.0.1.0 ó superior.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/43">43</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R44</strong>     </th><th align="left"><strong>Sistema de Gestión de Bases de datos.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">PostgresSQL versión 9.6 o superior.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/44">44</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R45</strong>     </th><th align="left"><strong>Despliegue</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Despliegue en la plataforma Heroku.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/45">45</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R46</strong>     </th><th align="left"><strong>Pruebas</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Pruebas funcionales con Codeception</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/46">46</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R47</strong>     </th><th align="left"><strong>Estilo y mantenimiento</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Estilo y mantenibilidad del código fuente con CodeClimate.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/47">47</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R48</strong>     </th><th align="left"><strong>Aplicación.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">La aplicación debe ser escalable.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/48">48</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R49</strong>     </th><th align="left"><strong>La aplicación debe hacer uso de la tecnología AJAX en algún momento.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/49">49</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R50</strong>     </th><th align="left"><strong>Contenido.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Uso de etiquetas semánticas de HTML 5.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/50">50</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R51</strong>     </th><th align="left"><strong>Diseño.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Todo lo relacionado con la presentación, se trabajará mediante CSS.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/51">51</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R52</strong>     </th><th align="left"><strong>El diseño será flexible.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/52">52</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R53</strong>     </th><th align="left"><strong>Existirán transacciones, transformaciones, animaciones y contenido multimedia.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/53">53</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R54</strong>     </th><th align="left"><strong>Uso de microdatos.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong></td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/54">54</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R55</strong>     </th><th align="left"><strong>Código</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se deberá comprobar que el código supera el validador para HTML 5, CSS 3, Nivel de accesibilidad AA y prueba del seis.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/55">55</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R56</strong>     </th><th align="left"><strong>Resolución.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Implementar el diseño para resoluciones grandes y pequeñas.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/56">56</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R57</strong>     </th><th align="left"><strong>Navegadores.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">El diseño debe ser correcto en los navegadores Internet Explorer, Chrome, Mozilla Firefox y Opera.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/57">57</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R58</strong>     </th><th align="left"><strong>Realizar el despligue en un host</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Usando un servicio gratuito de hosting e instalar y configurar el software necesario para desplegar el proyecto.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/58">58</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R59</strong>     </th><th align="left"><strong>Realizar el despliegue en un servidor local.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se usarán tres máquinas virtuales.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Mínimo</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Técnico</td></tr>
+<tr><td align="right"><strong>Complejidad</strong></td></tr>
+<tr><td align="right"><strong>Entrega</strong></td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/59">59</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R60</strong>     </th><th align="left"><strong>Gestión de permisos de usuarios </strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se tendrá la posibilidad de dar diferentes tipos de permisos a los usuarios añadidos como miembros del tablero. Dichos permisos son para sólo poder ver el contenido del tablero, modificar el contenido del tablero, eliminar el tablero o su contenido y añadir comentario en tarjetas.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/60">60</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R61</strong>     </th><th align="left"><strong>Búsqueda de usuarios.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Desde la página principal, habrá una sección donde permita, mediante un formulario, buscar un usuario a partir de su nombre o correo electrónico, el mismo que se uso para registrarse. Una ve encontrado, podremos acceder a su perfil y ver sus tableros y sus contenido. En caso de no existir el usuario, se le notificará con un mensaje.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/61">61</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R62</strong>     </th><th align="left"><strong>Gestión de permisos de tableros.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Desde el contenido del tablero, habrá una sección en la cual se podrá añadir una serie de permisos sobre los tableros. Pivado, sólo visible por los miembros y propietario del tablero y  Público, visible por cualquier usuario</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/62">62</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R63</strong>     </th><th align="left"><strong>Mostrar u ocultar tarjetas.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Desde el contenido de las tarjetas de los tableros, se podrá configurar para que esa tarjeta pueda estar oculta y sólo visible por el propietario del tablero. Los miembros del tablero no podrán verla.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Opcional</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Difícil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/63">63</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R64</strong>     </th><th align="left"><strong>Personalizar tableros.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se tendrá la oportunidad de añadir imágen de fondo del tablero, esta imágen se subirá a la aplicación.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Opcional</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/64">64</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R65</strong>     </th><th align="left"><strong>Añadir notificaciones</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">En el contenido del tablero se mostrará notificaciones sobre acciones que se han realizado en el tablero como añadir una tarjeta, modificar una tarjeta, o eliminar tarjeta. Se mostrará el usuario miembro que ha realizado la acción.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/65">65</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R66</strong>     </th><th align="left"><strong>Enviar mensajes privados</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Cada usuario podrá enviar mensajes privados a otros usuarios, indicando el contenido y el nombre o correo electrónico del usuario al que se mandará el mensaje, por medio de un formulario.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/66">66</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R67</strong>     </th><th align="left"><strong>Mostrar mensajes privados</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Habrá una sección donde se muestren los mensajes privados recibidos de otros usuarios registrados en la aplicación.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/67">67</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R68</strong>     </th><th align="left"><strong>Borrar mensajes privados recibidos</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se podrá borrar los mensajes privados recibidos de otros usuarios.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/68">68</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R69</strong>     </th><th align="left"><strong>Añadir comentarios en tarjetas</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">En el contenido de cada tarjeta se podrá añadir comentarios por los usuarios miembros del tablero.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/69">69</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R70</strong>     </th><th align="left"><strong>Eliminar comentarios en tarjeta</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se dará la posibilidad de porder eliminar comentarios, añadidos anteriormente, en las tarjetas. Sólo tendrán permiso de eliminarlo el propietario del tablero o el propietario del comentario.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/70">70</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R71</strong>     </th><th align="left"><strong>Modificar comentarios en tarjeta.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">El usuario miembro podrá modificar un comentario que haya sido añadido a una tarjeta.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/71">71</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R72</strong>     </th><th align="left"><strong>Mostrar comentarios en tarjeta.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">En el contenido de la tarjeta, se mostrarán los comentarios añadidos, junto con información del usuario miembro que ha añadido el comentario. También se mostrará en que instante de fecha y hora se añadió el comentario.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Fácil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/72">72</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R73</strong>     </th><th align="left"><strong>Añadir en tarjeta un mapa de una ubicación de algún lugar.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se dará la posibilidad de añadir, como contenido de una tarjeta, un mapa con una ubicación establecida desde la API de Google Maps.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Difícil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/73">73</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R74</strong>     </th><th align="left"><strong>Compartir tarjetas desde Whatsapp.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá poder compartir el contenido de una tarjetas, desde dispositivos que tengan instalado la aplicación de Whatsapp. Como móviles, tablets, etc.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/74">74</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R75</strong>     </th><th align="left"><strong>Adjuntar enlaces de archivos guardados en Dropbox.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitira la posibilidad de poder adjuntar, en el contenido de la tarjeta, enlaces que referenciarán a archivos guardados en Dropbox.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Opcional</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Difícil</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/75">75</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R76</strong>     </th><th align="left"><strong>Autenticación desde una cuenta de Google.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá acceder a nuestra cuenta de usuario con una cuenta de google.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Opcional</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/76">76</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R77</strong>     </th><th align="left"><strong>Compartir contenidos de tarjetas por redes sociales.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá poder compartir contenidos de tarjetas por redes sociales como Facebook, Twitter, etc.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Opcional</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/77">77</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R78</strong>     </th><th align="left"><strong>Añadir “Me gusta”.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se permitirá a los usuarios miembros del tablero, porder indicar si les gusta o no el contenido de una tarjeta.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Opcional</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/78">78</a></td></tr>
+</tbody>
+</table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R79</strong>     </th><th align="left"><strong>Añadir cita.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Se dará la posibilidad de poder añadir un instante de tiempo en una tarjeta, de manera que cuando llegue ese instante de tiempo, se le avise al usuario con un mensaje de recordatorio. Por ejemplo, avisarte que en pocos días tienes una cita con el médico.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Opcional</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v3</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/79">79</a></td></tr>
+</tbody>
+</table>
+<h2>Cuadro resumen <span id="cuadro-resumen"></span><a href="#cuadro-resumen" class="hashlink">&para;</a></h2><table class="table table-bordered table-striped">
+<thead>
+<tr><th align="left"><strong>Requisito</strong> </th><th align="center"><strong>Prioridad</strong> </th><th align="center"><strong>Tipo</strong> </th><th align="center"><strong>Complejidad</strong> </th><th align="center"><strong>Entrega</strong> </th><th align="center"><strong>Incidencia</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="left">(<strong>R01</strong>) Registro de usuarios. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/1">1</a></td></tr>
+<tr><td align="left">(<strong>R02</strong>) Configuración de correo. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/2">2</a></td></tr>
+<tr><td align="left">(<strong>R03</strong>) Inicio de sesión. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/3">3</a></td></tr>
+<tr><td align="left">(<strong>R04</strong>) Cerrar sesión. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/4">4</a></td></tr>
+<tr><td align="left">(<strong>R05</strong>) Recordar sesión del usuario. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/5">5</a></td></tr>
+<tr><td align="left">(<strong>R06</strong>) Recuperación de contraseña. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/6">6</a></td></tr>
+<tr><td align="left">(<strong>R07</strong>) Mostrar perfil de usuario. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/7">7</a></td></tr>
+<tr><td align="left">(<strong>R08</strong>) Modificar datos de usuario. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/8">8</a></td></tr>
+<tr><td align="left">(<strong>R09</strong>) Imágenes de usuarios. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/9">9</a></td></tr>
+<tr><td align="left">(<strong>R10</strong>) Añadir tableros. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/10">10</a></td></tr>
+<tr><td align="left">(<strong>R11</strong>) Modificar tableros. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/11">11</a></td></tr>
+<tr><td align="left">(<strong>R12</strong>) Eliminar tableros </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/12">12</a></td></tr>
+<tr><td align="left">(<strong>R13</strong>) Copiar tableros. </td><td align="center">Opcional </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/13">13</a></td></tr>
+<tr><td align="left">(<strong>R14</strong>) Mostrar tableros. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/14">14</a></td></tr>
+<tr><td align="left">(<strong>R15</strong>) Añadir equipos. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/15">15</a></td></tr>
+<tr><td align="left">(<strong>R16</strong>) Modificar equipos. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/16">16</a></td></tr>
+<tr><td align="left">(<strong>R17</strong>) Eliminar equipos. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/17">17</a></td></tr>
+<tr><td align="left">(<strong>R18</strong>) Mostrar equipos. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/18">18</a></td></tr>
+<tr><td align="left">(<strong>R19</strong>) Añadir tarjetas. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/19">19</a></td></tr>
+<tr><td align="left">(<strong>R20</strong>) Modificar tarjetas. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/20">20</a></td></tr>
+<tr><td align="left">(<strong>R21</strong>) Eliminar tarjeta. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/21">21</a></td></tr>
+<tr><td align="left">(<strong>R22</strong>) Mostrar tarjetas. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/22">22</a></td></tr>
+<tr><td align="left">(<strong>R23</strong>) Añadir contenido en tarjeta. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/23">23</a></td></tr>
+<tr><td align="left">(<strong>R24</strong>) Modificar contenido en tarjeta. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/24">24</a></td></tr>
+<tr><td align="left">(<strong>R25</strong>) Eliminar contenido de tarjeta. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/25">25</a></td></tr>
+<tr><td align="left">(<strong>R26</strong>) Validación de los campos del formulario. </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/26">26</a></td></tr>
+<tr><td align="left">(<strong>R27</strong>) Mostrar contenido de la tarjeta. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/27">27</a></td></tr>
+<tr><td align="left">(<strong>R28</strong>) Añadir miembros a un tablero. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/28">28</a></td></tr>
+<tr><td align="left">(<strong>R29</strong>) Ver tableros de otros usuarios. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/29">29</a></td></tr>
+<tr><td align="left">(<strong>R30</strong>) Búsqueda de tableros. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/30">30</a></td></tr>
+<tr><td align="left">(<strong>R31</strong>) Añadir tablero como favorito. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/31">31</a></td></tr>
+<tr><td align="left">(<strong>R32</strong>) Quitar tablero como favorito </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/32">32</a></td></tr>
+<tr><td align="left">(<strong>R33</strong>) Mostrar tableros favoritos </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/33">33</a></td></tr>
+<tr><td align="left">(<strong>R34</strong>) Enviar tablero a otro equipo </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/34">34</a></td></tr>
+<tr><td align="left">(<strong>R35</strong>) Gestión de ventanas. </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/35">35</a></td></tr>
+<tr><td align="left">(<strong>R36</strong>) Gestión de Eventos. </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/36">36</a></td></tr>
+<tr><td align="left">(<strong>R37</strong>) Uso y manipulación  del DOM. </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/37">37</a></td></tr>
+<tr><td align="left">(<strong>R38</strong>) Almacenamiento en el lado del cliente. </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/38">38</a></td></tr>
+<tr><td align="left">(<strong>R39</strong>) JQUERY </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/39">39</a></td></tr>
+<tr><td align="left">(<strong>R40</strong>) Plugin de JQUERY </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/40">40</a></td></tr>
+<tr><td align="left">(<strong>R41</strong>) AJAX </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/41">41</a></td></tr>
+<tr><td align="left">(<strong>R42</strong>) PHP 7.1 </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/42">42</a></td></tr>
+<tr><td align="left">(<strong>R43</strong>) Framework </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/43">43</a></td></tr>
+<tr><td align="left">(<strong>R44</strong>) Sistema de Gestión de Bases de datos. </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/44">44</a></td></tr>
+<tr><td align="left">(<strong>R45</strong>) Despliegue </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/45">45</a></td></tr>
+<tr><td align="left">(<strong>R46</strong>) Pruebas </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/46">46</a></td></tr>
+<tr><td align="left">(<strong>R47</strong>) Estilo y mantenimiento </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/47">47</a></td></tr>
+<tr><td align="left">(<strong>R48</strong>) Aplicación. </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/48">48</a></td></tr>
+<tr><td align="left">(<strong>R49</strong>) La aplicación debe hacer uso de la tecnología AJAX en algún momento. </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/49">49</a></td></tr>
+<tr><td align="left">(<strong>R50</strong>) Contenido. </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/50">50</a></td></tr>
+<tr><td align="left">(<strong>R51</strong>) Diseño. </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/51">51</a></td></tr>
+<tr><td align="left">(<strong>R52</strong>) El diseño será flexible. </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/52">52</a></td></tr>
+<tr><td align="left">(<strong>R53</strong>) Existirán transacciones, transformaciones, animaciones y contenido multimedia. </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/53">53</a></td></tr>
+<tr><td align="left">(<strong>R54</strong>) Uso de microdatos. </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/54">54</a></td></tr>
+<tr><td align="left">(<strong>R55</strong>) Código </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/55">55</a></td></tr>
+<tr><td align="left">(<strong>R56</strong>) Resolución. </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/56">56</a></td></tr>
+<tr><td align="left">(<strong>R57</strong>) Navegadores. </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/57">57</a></td></tr>
+<tr><td align="left">(<strong>R58</strong>) Realizar el despligue en un host </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/58">58</a></td></tr>
+<tr><td align="left">(<strong>R59</strong>) Realizar el despliegue en un servidor local. </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center"> </td><td align="center"> </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/59">59</a></td></tr>
+<tr><td align="left">(<strong>R60</strong>) Gestión de permisos de usuarios  </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/60">60</a></td></tr>
+<tr><td align="left">(<strong>R61</strong>) Búsqueda de usuarios. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/61">61</a></td></tr>
+<tr><td align="left">(<strong>R62</strong>) Gestión de permisos de tableros. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/62">62</a></td></tr>
+<tr><td align="left">(<strong>R63</strong>) Mostrar u ocultar tarjetas. </td><td align="center">Opcional </td><td align="center">Funcional </td><td align="center">Difícil </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/63">63</a></td></tr>
+<tr><td align="left">(<strong>R64</strong>) Personalizar tableros. </td><td align="center">Opcional </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/64">64</a></td></tr>
+<tr><td align="left">(<strong>R65</strong>) Añadir notificaciones </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/65">65</a></td></tr>
+<tr><td align="left">(<strong>R66</strong>) Enviar mensajes privados </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/66">66</a></td></tr>
+<tr><td align="left">(<strong>R67</strong>) Mostrar mensajes privados </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/67">67</a></td></tr>
+<tr><td align="left">(<strong>R68</strong>) Borrar mensajes privados recibidos </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/68">68</a></td></tr>
+<tr><td align="left">(<strong>R69</strong>) Añadir comentarios en tarjetas </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v3 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/69">69</a></td></tr>
+<tr><td align="left">(<strong>R70</strong>) Eliminar comentarios en tarjeta </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v3 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/70">70</a></td></tr>
+<tr><td align="left">(<strong>R71</strong>) Modificar comentarios en tarjeta. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v3 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/71">71</a></td></tr>
+<tr><td align="left">(<strong>R72</strong>) Mostrar comentarios en tarjeta. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v3 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/72">72</a></td></tr>
+<tr><td align="left">(<strong>R73</strong>) Añadir en tarjeta un mapa de una ubicación de algún lugar. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Difícil </td><td align="center">v3 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/73">73</a></td></tr>
+<tr><td align="left">(<strong>R74</strong>) Compartir tarjetas desde Whatsapp. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/74">74</a></td></tr>
+<tr><td align="left">(<strong>R75</strong>) Adjuntar enlaces de archivos guardados en Dropbox. </td><td align="center">Opcional </td><td align="center">Funcional </td><td align="center">Difícil </td><td align="center">v3 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/75">75</a></td></tr>
+<tr><td align="left">(<strong>R76</strong>) Autenticación desde una cuenta de Google. </td><td align="center">Opcional </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/76">76</a></td></tr>
+<tr><td align="left">(<strong>R77</strong>) Compartir contenidos de tarjetas por redes sociales. </td><td align="center">Opcional </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/77">77</a></td></tr>
+<tr><td align="left">(<strong>R78</strong>) Añadir “Me gusta”. </td><td align="center">Opcional </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/78">78</a></td></tr>
+<tr><td align="left">(<strong>R79</strong>) Añadir cita. </td><td align="center">Opcional </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/79">79</a></td></tr>
+</tbody>
+</table>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Fri, 02 Mar 2018 15:57:37 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>
