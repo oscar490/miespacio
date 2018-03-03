@@ -1,4 +1,6 @@
-<h1>Miespacio - Proyecto integrado de Desarrollo de Aplicaciones Web</h1>
+<h1>Miespacio - Proyecto integrado de DAW</h1>
+
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/oscar490/miespacio.svg?columns=all)](https://waffle.io/oscar490/miespacio)
 
 <p>
 
