@@ -70,12 +70,39 @@ class UsuariosController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('info', 'Confirme su dirección de correo electrónico: ' . $model->email);
+
+            $model->enviarCorreo($model->email);
             return $this->redirect(['site/login', 'username' => $model->nombre]);
         }
 
         return $this->render('create', [
             'model' => $model,
         ]);
+    }
+
+    public function actionValidarCorreo($token = null)
+    {
+        if ($token === null) {
+            throw new NotFoundHttpException('Parámetro incorrecto');
+        }
+        $usuario = Usuarios::findOne(['token'=>$token]);
+
+        if ($usuario !== null) {
+            $usuario->token = null;
+            $usuario->save();
+            Yii::$app->session->setFlash(
+                'success',
+                'Dirección de correo electrónico confirmada con éxito, ya puede iniciar sesión.'
+            );
+            return $this->redirect(['site/login']);
+
+        } else {
+            Yii::$app->session->setFlash(
+                'danger',
+                'No se puede confirmar la dirección de correo electrónico. Ya ha sido registrado anteriormente.'
+            );
+            return $this->redirect(['site/login']);
+        }
     }
 
     /**
