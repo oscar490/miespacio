@@ -1,7 +1,8 @@
 <?php
 
 namespace app\models;
-
+use yii\helpers\Html;
+use yii\helpers\Url;
 /**
  * This is the model class for table "usuarios".
  *
@@ -59,6 +60,18 @@ class Usuarios extends \yii\db\ActiveRecord
     }
 
     /**
+     * Devuelve un enlace para la validación por correo.
+     * @return [type] [description]
+     */
+    public function getEnlaceValidacion()
+    {
+        return Html::a(
+            'Haz click aquí para confirmar esta dirección de correo electrónico',
+            Url::to(['usuarios/validar-correo', 'token'=>$this->token], true)
+        );
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function attributeLabels()
@@ -78,9 +91,28 @@ class Usuarios extends \yii\db\ActiveRecord
             if ($this->isNewRecord) {
                 $this->password = \Yii::$app
                     ->security->generatePasswordHash($this->password);
+                $this->token = \Yii::$app
+                    ->security->generateRandomString();
             }
             return true;
         }
         return false;
     }
+
+    /**
+     * Envia un correo electrónico a una dirección.
+     * @param  string $direccion Dirección de receptor
+     *                           de correo electrónico.
+     * @return [type]            [description]
+     */
+    public function enviarCorreo($direccion)
+    {
+        \Yii::$app->mailer->compose()
+            ->setFrom(\Yii::$app->params['adminEmail'])
+            ->setTo($direccion)
+            ->setSubject('Nueva dirección de correo electrónico de Miespacio')
+            ->setHtmlBody($this->enlaceValidacion)
+            ->send();
+    }
+
 }
