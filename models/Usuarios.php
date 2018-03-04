@@ -33,6 +33,17 @@ class Usuarios extends \yii\db\ActiveRecord
                 'required',
                 'on' => self::ESCENARIO_CREATE,
             ],
+            [
+                ['password_repeat'],
+                'compare',
+                'compareAttribute'=>'password',
+                'on'=>self::ESCENARIO_CREATE,
+            ],
+            [
+                ['email'],
+                'email',
+                'on'=>self::ESCENARIO_CREATE,
+            ],
             [['nombre', 'password', 'email'], 'string', 'max' => 255],
             [['nombre'], 'unique'],
         ];
@@ -51,8 +62,9 @@ class Usuarios extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nombre' => 'Nombre',
-            'password' => 'Password',
-            'email' => 'Email',
+            'password' => 'Contraseña',
+            'password_repeat'=>'Repetir contraseña',
+            'email' => 'Correo electrónico',
         ];
     }
 }
