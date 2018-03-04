@@ -10,7 +10,7 @@ $config = [
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'language' => 'es-ES',
     'components' => [
@@ -34,7 +34,7 @@ $config = [
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
             'useFileTransport' => true,
-            /*
+
             // comment the following array to send mail using php's mail function:
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
@@ -44,7 +44,6 @@ $config = [
                 'port' => '587',
                 'encryption' => 'tls',
             ],
-            */
         ],
         'log' => $log,
         'db' => $db,
