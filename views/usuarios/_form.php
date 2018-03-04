@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(['id'=>'registro']); ?>
 
         <div class='row'>
-            <div class='col-md-4 col-md-offset-4'>
+            <div class='col-md-5 col-md-offset-3'>
                 <?= $form->field($model, 'nombre')->textInput([
                     'maxlength' => true,
                     'placeholder'=>'p.ej.: manuel',
@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
         </div>
 
         <div class='row'>
-            <div class='col-md-4 col-md-offset-4'>
+            <div class='col-md-5 col-md-offset-3'>
                 <?= $form->field($model, 'password')->passwordInput([
                     'maxlength' => true,
                     'placeholder'=>'p. ej.: ··········',
@@ -30,7 +30,7 @@ use yii\widgets\ActiveForm;
         </div>
 
         <div class='row'>
-            <div class='col-md-4 col-md-offset-4'>
+            <div class='col-md-5 col-md-offset-3'>
                 <?= $form->field($model, 'password_repeat')->passwordInput([
                     'maxlength' => true,
                     'placeholder'=>'p. ej.: ··········',
@@ -39,7 +39,7 @@ use yii\widgets\ActiveForm;
         </div>
 
         <div class='row'>
-            <div class='col-md-4 col-md-offset-4'>
+            <div class='col-md-5 col-md-offset-3'>
                 <?= $form->field($model, 'email')->textInput([
                     'maxlength' => true,
                     'placeholder'=>'p. ej.: manuel@gmail.com',
@@ -48,8 +48,8 @@ use yii\widgets\ActiveForm;
         </div>
 
 
-        <div class="form-group">
-            <div class='col-md-4 col-md-offset-4'>
+        <div class="row">
+            <div class='col-md-5 col-md-offset-3'>
                 <?= Html::submitButton('Crear una cuenta nueva', [
                     'class' => 'btn btn-success btn-block',
                     'id'=>'envio',

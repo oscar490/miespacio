@@ -10,9 +10,15 @@ $this->title = 'Crear una cuenta de Miespacio';
 ?>
 <div class="usuarios-create">
 
-    <div class='col-md-4 col-md-offset-4'>
-        <h2><?= Html::encode($this->title)?></h2>
-        <h3><?= Html::a('o iniciar sesión', ['site/login'])?></h3>
+    <div class='col-md-5 col-md-offset-3'>
+        <h1>
+            <strong>
+                <?= Html::encode($this->title)?>
+                <small>
+                    <?= Html::a('o iniciar sesion', ['site/login']) ?>
+                </small>
+            </strong>
+        </h1>
     </div>
 
     <?= $this->render('_form', [
