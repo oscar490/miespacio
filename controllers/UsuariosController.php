@@ -80,14 +80,27 @@ class UsuariosController extends Controller
         ]);
     }
 
-    public function actionValidarCorreo($token)
+    public function actionValidarCorreo($token = null)
     {
+        if ($token === null) {
+            throw new NotFoundHttpException('Parámetro incorrecto');
+        }
         $usuario = Usuarios::findOne(['token'=>$token]);
 
         if ($usuario !== null) {
             $usuario->token = null;
-            Yii::$app->session->setFlash('info', 'Dirección de correo electrónico confirmada con éxito, ya puede iniciar sesión');
+            $usuario->save();
+            Yii::$app->session->setFlash(
+                'success',
+                'Dirección de correo electrónico confirmada con éxito, ya puede iniciar sesión.'
+            );
+            return $this->redirect(['site/login']);
 
+        } else {
+            Yii::$app->session->setFlash(
+                'danger',
+                'No se puede confirmar la dirección de correo electrónico. Ya ha sido registrado anteriormente.'
+            );
             return $this->redirect(['site/login']);
         }
     }
