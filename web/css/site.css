@@ -126,9 +126,19 @@ a.desc:after {
     font-weight: bold;
 }
 
+.nav-estilo .navbar-brand {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .nav-estilo .navbar-nav > .active > a,
 .nav-estilo .navbar-nav > li > a:hover,
 .nav-estilo .navbar-nav > .active > a:hover,
 .nav-estilo .navbar-nav > li > a:focus {
     background-color: #75a4c1;
+}
+
+.logo {
+    width: 35px;
 }

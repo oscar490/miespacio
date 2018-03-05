@@ -12,6 +12,7 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
     ],
+    'name'=>'MiEspacio',
     'language' => 'es-ES',
     'components' => [
         'request' => [

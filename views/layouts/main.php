@@ -32,8 +32,9 @@ AppAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $items = [
             [
-                'label'=>'Iniciar sesión',
+                'label'=>"<span class='glyphicon glyphicon-log-in' aria-hidden='true'></span>Iniciar sesión",
                 'url'=>['site/login'],
+                'encodeLabels'=>true,
             ],
             [
                 'label'=>'Registrarse',
@@ -46,7 +47,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => '<p><img src="/images/logotipo.png" alt="Logo" title="Logo" class="logo" />MiEspacio</p>',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top nav-estilo',
