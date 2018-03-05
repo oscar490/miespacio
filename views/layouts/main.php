@@ -32,12 +32,22 @@ AppAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $items = [
             [
-                'label'=>'Iniciar sesión',
+                'label'=>Html::tag(
+                    'span',
+                    ' ',
+                    ['class'=>'glyphicon glyphicon-user icono-x2']
+                ) . ' Iniciar sesión',
                 'url'=>['site/login'],
+                'encode'=>false,
             ],
             [
-                'label'=>'Registrarse',
+                'label'=>Html::tag(
+                    'span',
+                    ' ',
+                    ['class'=>'glyphicon glyphicon-log-in icono-x2']
+                ) . ' Registrarse',
                 'url'=>['usuarios/create'],
+                'encode'=>false,
             ]
         ];
     } else {
