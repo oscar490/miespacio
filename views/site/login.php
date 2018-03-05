@@ -7,19 +7,18 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Iniciar sesión en Miespacio';
+$this->title = 'Iniciar sesión en MiEspacio';
+$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 
 <div class="site-login">
 
     <div class='row'>
-        <div class='col-md-5 col-md-offset-3'>
+        <div class='col-md-3 col-md-offset-4'>
             <h1>
                 <strong>
                     <?= Html::encode($this->title) ?>
-                    <small>
-                        <?= Html::a('o registrarse', ['usuarios/create'])?>
-                    </small>
                 </strong>
             </h1>
         </div>

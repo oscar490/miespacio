@@ -32,13 +32,24 @@ AppAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $items = [
             [
-                'label'=>"<span class='glyphicon glyphicon-log-in' aria-hidden='true'></span>Iniciar sesión",
+                'label'=>'Iniciar sesión',
                 'url'=>['site/login'],
-                'encodeLabels'=>true,
             ],
             [
                 'label'=>'Registrarse',
                 'url'=>['usuarios/create'],
+            ]
+        ];
+    } else {
+        $items = [
+            [
+                'label'=>'Inicio',
+                'url'=>['site/index'],
+            ],
+            [
+                'label'=>\Yii::$app->user->identity->nombre,
+                'url'=>['site/logout'],
+                'linkOptions'=>['data-method'=>'POST'],
             ]
         ];
     }

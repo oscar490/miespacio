@@ -142,3 +142,13 @@ a.desc:after {
 .logo {
     width: 35px;
 }
+
+.breadcrumb > li > a {
+    color: #0266a0;
+    font-weight: bold;
+}
+
+.breadcrumb > .active {
+    color: #75a4c1;
+    font-weight: bold;
+}
