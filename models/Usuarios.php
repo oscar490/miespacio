@@ -88,6 +88,13 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         ];
     }
 
+    /**
+     * Cifra la clave del usuario y se guarda ya cifrada en la base de
+     * datos. También genera un token aleatorio para el usuario registrado.
+     * Se realiza antes de insertar el usuario en la base de datos.
+     * @param  bool $insert Confirma si se va a realiar un insert o update.
+     * @return bool         
+     */
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {

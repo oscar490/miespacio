@@ -35,7 +35,7 @@ AppAsset::register($this);
                 'label'=>Html::tag(
                     'span',
                     ' ',
-                    ['class'=>'glyphicon glyphicon-user icono-x2']
+                    ['class'=>'glyphicon glyphicon-log-in icono-x2']
                 ) . ' Iniciar sesión',
                 'url'=>['site/login'],
                 'encode'=>false,
@@ -44,7 +44,7 @@ AppAsset::register($this);
                 'label'=>Html::tag(
                     'span',
                     ' ',
-                    ['class'=>'glyphicon glyphicon-log-in icono-x2']
+                    ['class'=>'glyphicon glyphicon-registration-mark icono-x2']
                 ) . ' Registrarse',
                 'url'=>['usuarios/create'],
                 'encode'=>false,
@@ -53,14 +53,44 @@ AppAsset::register($this);
     } else {
         $items = [
             [
-                'label'=>'Inicio',
+                'label'=> Html::tag(
+                    'span',
+                    ' ',
+                    ['class'=>'glyphicon glyphicon-th-large icono-x2']
+                ) . ' Inicio',
                 'url'=>['site/index'],
+                'encode'=>false,
             ],
             [
-                'label'=>\Yii::$app->user->identity->nombre,
-                'url'=>['site/logout'],
-                'linkOptions'=>['data-method'=>'POST'],
-            ]
+                'label'=>Html::tag(
+                    'span',
+                    ' ',
+                    ['class'=>'glyphicon glyphicon-user icono-x2']
+                ) . ' ' . Yii::$app->user->identity->nombre,
+                'items' => [
+                    [
+                        'label'=>Html::tag(
+                            'span',
+                            ' ',
+                            ['class'=>'glyphicon glyphicon-off icono-x2']
+                        ) . ' Cerrar sesión',
+                        'url'=>['site/logout'],
+                        'linkOptions'=>['data-method'=>'POST'],
+                        'encode'=>false,
+                    ],
+                    [
+                        'label'=>Html::tag(
+                            'span',
+                            ' ',
+                            ['class'=>'glyphicon glyphicon-list icono-x2']
+                        ) . ' Perfil',
+                        'url'=>['usuarios/view', 'id'=>Yii::$app->user->id],
+                        'encode'=>false,
+                    ],
+                ],
+                'encode'=>false,
+
+            ],
         ];
     }
 ?>
@@ -68,7 +98,17 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => '<p><img src="/images/logotipo.png" alt="Logo" title="Logo" class="logo" />MiEspacio</p>',
+        'brandLabel' =>
+            Html::tag(
+                'p',
+                Html::img(
+                    '/images/logotipo.png',
+                    [
+                        'alt'=>'logotipo',
+                        'class'=>'logo',
+                    ]
+                ) .  ' ' . Yii::$app->name
+            ),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top nav-estilo',

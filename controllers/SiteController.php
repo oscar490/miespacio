@@ -7,6 +7,7 @@ use app\models\LoginForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use app\models\Usuarios;
 use yii\web\Controller;
 use yii\web\Response;
 
@@ -76,8 +77,20 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $usuario = Usuarios::findOne(['nombre'=>$model->username]);
+
+            if ($usuario->token === null) {
+                $model->login();
+                return $this->goBack();
+            } else {
+                Yii::$app->session->setFlash(
+                    'error',
+                    'No puede iniciar sesión. Deberá activar su cuenta accidiendo a su correo: ' . $usuario->email
+                );
+                return $this->redirect(['site/login']);
+            }
+
         }
 
         $model->password = '';

@@ -135,7 +135,8 @@ a.desc:after {
 .nav-estilo .navbar-nav > .active > a,
 .nav-estilo .navbar-nav > li > a:hover,
 .nav-estilo .navbar-nav > .active > a:hover,
-.nav-estilo .navbar-nav > li > a:focus {
+.nav-estilo .navbar-nav > li > a:focus,
+.nav-estilo .navbar-nav > li.dropdown > a:focus {
     background-color: #75a4c1;
 }
 

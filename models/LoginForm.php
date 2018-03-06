@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\base\Model;
+use app\models\Usuarios;
 
 /**
  * LoginForm is the model behind the login form.
@@ -29,6 +30,15 @@ class LoginForm extends Model
             [['username', 'password'], 'required'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
+
+            [
+                ['username'],
+                'exist',
+                'targetClass'=>Usuarios::className(),
+                'targetAttribute'=>['username'=>'nombre'],
+                'message'=>'No existe un usuario con ese nombre',
+
+            ],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
         ];
@@ -46,7 +56,7 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, 'Nombre de usuario o contraseña incorrecta');
             }
         }
     }
