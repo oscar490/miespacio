@@ -12,6 +12,7 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
     ],
+    'name' => 'MiEspacio',
     'language' => 'es-ES',
     'components' => [
         'request' => [
@@ -22,7 +23,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\Usuarios',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [

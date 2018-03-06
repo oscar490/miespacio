@@ -1,8 +1,11 @@
 <?php
 
 namespace app\models;
+
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\web\IdentityInterface;
+
 /**
  * This is the model class for table "usuarios".
  *
@@ -11,7 +14,7 @@ use yii\helpers\Url;
  * @property string $password
  * @property string $email
  */
-class Usuarios extends \yii\db\ActiveRecord
+class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 {
     public $password_repeat;
     const ESCENARIO_CREATE = 'create';
@@ -67,7 +70,7 @@ class Usuarios extends \yii\db\ActiveRecord
     {
         return Html::a(
             'Haz click aquí para confirmar esta dirección de correo electrónico',
-            Url::to(['usuarios/validar-correo', 'token'=>$this->token], true)
+            Url::to(['usuarios/validar-correo', 'token' => $this->token], true)
         );
     }
 
@@ -80,11 +83,18 @@ class Usuarios extends \yii\db\ActiveRecord
             'id' => 'ID',
             'nombre' => 'Nombre',
             'password' => 'Contraseña',
-            'password_repeat' => 'Repetir contraseña',
+            'password_repeat' => 'Confirmar contraseña',
             'email' => 'Correo electrónico',
         ];
     }
 
+    /**
+     * Cifra la clave del usuario y se guarda ya cifrada en la base de
+     * datos. También genera un token aleatorio para el usuario registrado.
+     * Se realiza antes de insertar el usuario en la base de datos.
+     * @param  bool $insert Confirma si se va a realiar un insert o update.
+     * @return bool         
+     */
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
@@ -115,4 +125,56 @@ class Usuarios extends \yii\db\ActiveRecord
             ->send();
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public static function findIdentity($id)
+    {
+        return static::findOne($id);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return static::findOne(['access_token' => $token]);
+    }
+
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAuthKey()
+    {
+        //return $this->authKey;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function validateAuthKey($authKey)
+    {
+        //return $this->authKey === $authKey;
+    }
+
+    /**
+     * Validates password.
+     *
+     * @param string $password password to validate
+     * @return bool if password provided is valid for current user
+     */
+    public function validatePassword($password)
+    {
+        return \Yii::$app->security->validatePassword($password, $this->password);
+    }
 }

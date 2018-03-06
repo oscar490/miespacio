@@ -113,3 +113,47 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+/* Mis estilos */
+
+.nav-estilo {
+    background-color:  #0266a0;
+    border-color: #0266a0;
+}
+
+.nav-estilo .navbar-nav > li > a {
+    color: white;
+    font-weight: bold;
+}
+
+.nav-estilo .navbar-brand {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.nav-estilo .navbar-nav > .active > a,
+.nav-estilo .navbar-nav > li > a:hover,
+.nav-estilo .navbar-nav > .active > a:hover,
+.nav-estilo .navbar-nav > li > a:focus,
+.nav-estilo .navbar-nav > li.dropdown > a:focus {
+    background-color: #75a4c1;
+}
+
+.logo {
+    width: 35px;
+}
+
+.breadcrumb > li > a {
+    color: #0266a0;
+    font-weight: bold;
+}
+
+.breadcrumb > .active {
+    color: #75a4c1;
+    font-weight: bold;
+}
+
+.icono-x2 {
+    font-size: 20px;
+}
