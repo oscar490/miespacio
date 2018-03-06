@@ -93,7 +93,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      * datos. También genera un token aleatorio para el usuario registrado.
      * Se realiza antes de insertar el usuario en la base de datos.
      * @param  bool $insert Confirma si se va a realiar un insert o update.
-     * @return bool         
+     * @return bool
      */
     public function beforeSave($insert)
     {
@@ -156,15 +156,15 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function getAuthKey()
     {
-        //return $this->authKey;
+        return $this->auth_key;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function validateAuthKey($authKey)
+    public function validateAuthKey($auth_key)
     {
-        //return $this->authKey === $authKey;
+        return $this->authKey === $auth_key;
     }
 
     /**
