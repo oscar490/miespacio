@@ -8,7 +8,9 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 /**
- * Modelo para gestionar el formulario de Recuperación de contraseña.
+ * Modelo para gestionar el formulario de Recuperación de contraseña. En
+ * dicho formulario se debe indicar el correo a donde se enviará las
+ * instrucciones para cambiar la contraseña del usuario.
  */
 class RecuperarPasswordForm extends Model
 {

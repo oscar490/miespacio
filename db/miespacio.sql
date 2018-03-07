@@ -18,5 +18,5 @@ CREATE TABLE usuarios
     , auth_key    VARCHAR(255)
 );
 
-/* INSERT INTO usuarios (nombre, password, email)
-    VALUES ('oscar', crypt('oscar', gen_salt('bf', 13)), 'oscar@gmail.com'); */
+INSERT INTO usuarios (nombre, password, email)
+    VALUES ('oscar', crypt('oscar', gen_salt('bf', 13)), 'oscar.vega@iesdonana.org');

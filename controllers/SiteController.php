@@ -101,7 +101,8 @@ class SiteController extends Controller
 
     /**
      * Envía un correo con un enlace para cambiar
-     * la contraseña.
+     * la contraseña. MEdiante un formulario se indica
+     * la dirección de correo al que mandar.
      * @return [type] [description]
      * @param null|mixed $email
      */
@@ -112,16 +113,23 @@ class SiteController extends Controller
         ]);
 
         if ($email !== null && $model->validate()) {
-            $model->enviarCorreo();
-            Yii::$app->session->setFlash(
-                'info',
-                'Se ha enviador un correo electrónico a la dirección indicada. Realice el proceso
-                indicado para establecer la contraseña.'
-            );
+            if ($model->enviarCorreo()) {
+                Yii::$app->session->setFlash(
+                    'info',
+                    'Se ha enviado un correo electrónico a la dirección indicada. Realice el proceso
+                    indicado para establecer la contraseña.'
+                );
+            } else {
+                Yii::$app->session->setFlash(
+                    'danger',
+                    'No se ha podido enviar el correo electrónico a la dirección indicada.'
+                );
+            }
         }
 
-        return $this->render('cambiarPasswordCorreo', [
+        return $this->render('gestionPassword', [
             'model' => $model,
+            'accion' => $this->action->id,
         ]);
     }
 
@@ -138,11 +146,14 @@ class SiteController extends Controller
             $usuario = Usuarios::findOne(['token_clave' => $token]);
             $usuario->password = Yii::$app
                 ->security->generatePasswordHash($model->password);
+
+            $usuario->token_clave = null;
             $usuario->save();
         }
 
-        return $this->render('establecerPasswordUsuario.php', [
+        return $this->render('gestionPassword', [
             'model' => $model,
+            'accion' => $this->action->id,
         ]);
     }
 
