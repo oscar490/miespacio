@@ -127,7 +127,7 @@ a.desc:after {
     border-color: #0266a0;
 }
 
-.nav-estilo .navbar-nav > li > a {
+ .nav-estilo .navbar-nav > li > a {
     color: white;
     font-weight: bold;
 }
@@ -138,11 +138,15 @@ a.desc:after {
     font-size: 20px;
 }
 
-.nav-estilo .navbar-nav > .active > a,
+/*
+.nav-estilo .navbar-nav > li > a:hover,
+.nav-estilo .navbar-nav > li > a:focus,
+
+.nav-estilo .navbar-nav > li.dropdown > a:focus, */
 .nav-estilo .navbar-nav > li > a:hover,
 .nav-estilo .navbar-nav > .active > a:hover,
-.nav-estilo .navbar-nav > li > a:focus,
-.nav-estilo .navbar-nav > li.dropdown > a:focus {
+.nav-estilo .navbar-nav > .active > a,
+.nav-estilo .navbar-nav > li.dropdown > a:hover {
     background-color: #75a4c1;
 }
 

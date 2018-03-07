@@ -16,8 +16,11 @@ use yii\web\IdentityInterface;
  */
 class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 {
-    public $password_repeat;
     const ESCENARIO_CREATE = 'create';
+    const ESCENARIO_RECUPERAR = 'recuperar';
+
+    public $password_repeat;
+
     /**
      * {@inheritdoc}
      */
@@ -53,7 +56,8 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 ['nombre'],
                 'unique',
                 'message' => 'Ya existe un usuario con ese nombre.',
-                'on' => self::ESCENARIO_CREATE, ],
+                'on' => self::ESCENARIO_CREATE,
+            ],
         ];
     }
 
@@ -102,6 +106,8 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 $this->password = \Yii::$app
                     ->security->generatePasswordHash($this->password);
                 $this->token = \Yii::$app
+                    ->security->generateRandomString();
+                $this->token_clave = \Yii::$app
                     ->security->generateRandomString();
             }
             return true;
