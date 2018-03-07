@@ -57,7 +57,7 @@ class RecuperarPasswordForm extends Model
 
         return Html::a(
             'Haga click aqui para comenzar el proceso de recuperación de contraseña',
-            Url::to(['site/recuperar', 'token' => $token_email], true)
+            Url::to(['site/establecer-clave', 'token' => $token_email], true)
         );
     }
 
@@ -73,9 +73,15 @@ class RecuperarPasswordForm extends Model
         return '';
     }
 
+    /**
+     * Envia un correo a la dirección indicada
+     * en el formulario para realizar la modificación
+     * de la contraseña.
+     * @return [type] [description]
+     */
     public function enviarCorreo()
     {
-        Yii::$app->mailer->compose()
+        return Yii::$app->mailer->compose()
             ->setFrom(\Yii::$app->params['adminEmail'])
             ->setTo($this->email)
             ->setSubject('Recuperación de contraseña')

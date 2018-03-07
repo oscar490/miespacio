@@ -34,7 +34,7 @@ AppAsset::register($this);
             [
                 'label'=>Html::tag(
                     'span',
-                    ' ',
+                    '',
                     ['class'=>'glyphicon glyphicon-log-in icono-x2']
                 ) . ' Iniciar sesión',
                 'url'=>['site/login'],
@@ -43,7 +43,7 @@ AppAsset::register($this);
             [
                 'label'=>Html::tag(
                     'span',
-                    ' ',
+                    '',
                     ['class'=>'glyphicon glyphicon-registration-mark icono-x2']
                 ) . ' Registrarse',
                 'url'=>['usuarios/create'],

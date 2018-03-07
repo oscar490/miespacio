@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\ContactForm;
+use app\models\EstablecerPasswordForm;
 use app\models\LoginForm;
 use app\models\RecuperarPasswordForm;
 use app\models\Usuarios;
@@ -86,9 +87,9 @@ class SiteController extends Controller
                 return $this->goBack();
             }
             Yii::$app->session->setFlash(
-                    'error',
-                    'No puede iniciar sesión. Deberá activar su cuenta accidiendo a su correo: ' . $usuario->email
-                );
+                'error',
+                'No puede iniciar sesión. Deberá activar su cuenta accidiendo a su correo: ' . $usuario->email
+            );
             return $this->redirect(['site/login']);
         }
 
@@ -112,9 +113,35 @@ class SiteController extends Controller
 
         if ($email !== null && $model->validate()) {
             $model->enviarCorreo();
+            Yii::$app->session->setFlash(
+                'info',
+                'Se ha enviador un correo electrónico a la dirección indicada. Realice el proceso
+                indicado para establecer la contraseña.'
+            );
         }
 
-        return $this->render('cambiarClaveCorreo', [
+        return $this->render('cambiarPasswordCorreo', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Mediante un formulario, permite cambiar la contraseña.
+     * @param  string $token Valor aleatorio del usuario.
+     * @return [type]        [description]
+     */
+    public function actionEstablecerClave($token = null)
+    {
+        $model = new EstablecerPasswordForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $usuario = Usuarios::findOne(['token_clave' => $token]);
+            $usuario->password = Yii::$app
+                ->security->generatePasswordHash($model->password);
+            $usuario->save();
+        }
+
+        return $this->render('establecerPasswordUsuario.php', [
             'model' => $model,
         ]);
     }
