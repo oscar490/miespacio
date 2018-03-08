@@ -4,6 +4,7 @@ namespace app\models;
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use Yii;
 use yii\web\IdentityInterface;
 
 /**
@@ -123,11 +124,9 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function enviarCorreo($direccion)
     {
-        \Yii::$app->mailer->compose()
-            ->setFrom(\Yii::$app->params['adminEmail'])
+        Yii::$app->mailer->compose('contenido-email')
+            ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name])
             ->setTo($direccion)
-            ->setSubject('Nueva dirección de correo electrónico de Miespacio')
-            ->setHtmlBody($this->enlaceValidacion)
             ->send();
     }
 

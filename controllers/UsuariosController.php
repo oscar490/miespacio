@@ -69,7 +69,10 @@ class UsuariosController extends Controller
         ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('info', 'Confirme su dirección de correo electrónico: ' . $model->email);
+            Yii::$app->session->setFlash(
+                'info',
+                'Confirme su dirección de correo electrónico: ' . $model->email
+            );
 
             $model->enviarCorreo($model->email);
             return $this->redirect(['site/login', 'username' => $model->nombre]);

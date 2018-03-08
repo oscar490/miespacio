@@ -13,7 +13,7 @@ $(document).ready(function() {
 function seleccionarMenuUsuario() {
     let elementoActivo = $('ul.dropdown-menu .active');
 
-    if (elementoActivo.length > 0) {
+    if (elementoActivo.length == 1) {
         elementoActivo.parent().prev().css('backgroundColor', '#75a4c1');
     }
 }
