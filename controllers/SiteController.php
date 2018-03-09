@@ -99,6 +99,11 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionPrueba()
+    {
+        return $this->render('contenido-email');
+    }
+
     /**
      * Envía un correo con un enlace para cambiar
      * la contraseña. MEdiante un formulario se indica

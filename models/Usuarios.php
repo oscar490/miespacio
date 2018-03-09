@@ -127,6 +127,9 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         Yii::$app->mailer->compose('contenido-email')
             ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name])
             ->setTo($direccion)
+            ->setSubject(
+                'Nueva direccíon de correo electrónico de ' . Yii::$app->name
+            )
             ->send();
     }
 

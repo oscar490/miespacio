@@ -2,19 +2,8 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use Yii;
 
-$css = <<<EOT
-    
-    .cabecera {
-        background-color: blue;
-        color: white;
-    }
 
-    .cuerpo {
-        background-color: white;
-    }
-EOT;
 
 $this->registerCss($css);
 
@@ -24,14 +13,13 @@ $this->registerCss($css);
     <div class='cabecera'>
         <?=
             Html::tag(
-                'h2',
-                'Confirmar el correo electrónico nuevo
-                 de ' . Yii::$app->name
+                'h3',
+                 Yii::$app->name
             );
 
         ?>
     </div>
-    <div class='cuerpo'>
+    <div>
         <?=
             Html::tag(
                 'p',
