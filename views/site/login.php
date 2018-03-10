@@ -43,7 +43,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'password')->passwordInput([
                     'placeholder'=>'p. ej.: ·········',
                 ]) ?>
-                <?= Html::a('¿Has olvidado la contraseña?', ['site/cambiar-clave']) ?>
+                <?= Html::a(
+                    '¿Has olvidado la contraseña?',
+                    ['site/solicitar-clave'])
+                ?>
             </div>
         </div>
 

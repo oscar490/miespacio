@@ -12,8 +12,12 @@ use yii\helpers\Url;
  * dicho formulario se debe indicar el correo a donde se enviará las
  * instrucciones para cambiar la contraseña del usuario.
  */
-class RecuperarPasswordForm extends Model
+class SolicitarPasswordForm extends Model
 {
+    /**
+     * Dirección de correo.
+     * @var string
+     */
     public $email;
 
     /**

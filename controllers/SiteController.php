@@ -5,7 +5,7 @@ namespace app\controllers;
 use app\models\ContactForm;
 use app\models\EstablecerPasswordForm;
 use app\models\LoginForm;
-use app\models\RecuperarPasswordForm;
+use app\models\SolicitarPasswordForm;
 use app\models\Usuarios;
 use Yii;
 use yii\filters\AccessControl;
@@ -106,14 +106,14 @@ class SiteController extends Controller
 
     /**
      * Envía un correo con un enlace para cambiar
-     * la contraseña. MEdiante un formulario se indica
+     * la contraseña. Mediante un formulario se indica
      * la dirección de correo al que mandar.
      * @return [type] [description]
      * @param null|mixed $email
      */
-    public function actionCambiarClave($email = null)
+    public function actionSolicitarClave($email = null)
     {
-        $model = new RecuperarPasswordForm([
+        $model = new SolicitarPasswordForm([
             'email' => $email,
         ]);
 

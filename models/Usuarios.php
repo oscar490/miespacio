@@ -18,7 +18,6 @@ use yii\web\IdentityInterface;
 class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 {
     const ESCENARIO_CREATE = 'create';
-    const ESCENARIO_RECUPERAR = 'recuperar';
 
     public $password_repeat;
 
@@ -58,6 +57,12 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 'unique',
                 'message' => 'Ya existe un usuario con ese nombre.',
                 'on' => self::ESCENARIO_CREATE,
+            ],
+            [
+                ['email'],
+                'unique',
+                'message'=>'Ya existe un usuario con esa dirección de correo',
+                'on'=>self::ESCENARIO_CREATE,
             ],
         ];
     }
