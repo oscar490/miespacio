@@ -82,15 +82,15 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $usuario = Usuarios::findOne(['nombre' => $model->username]);
 
-            if ($usuario->token === null) {
+            if ($usuario->estaActivado) {
                 $model->login();
                 return $this->goBack();
             }
             Yii::$app->session->setFlash(
                 'error',
-                'No puede iniciar sesión. Deberá activar su cuenta accidiendo a su correo: ' . $usuario->email
+                'No puede iniciar sesión. Deberá activar su cuenta
+                 accidiendo a su correo: ' . $usuario->email
             );
-            return $this->redirect(['site/login']);
         }
 
         $model->password = '';
@@ -101,7 +101,7 @@ class SiteController extends Controller
 
     public function actionPrueba()
     {
-        return $this->render('contenido-email');
+        return $this->render('contenido-correo');
     }
 
     /**

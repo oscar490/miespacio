@@ -68,6 +68,17 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Comprueba si el usuario tiene la cuenta activada
+     * o no
+     * @return bool true si tiene la cuenta activada, false en caso
+     *              contrario.
+     */
+    public function getEstaActivado()
+    {
+        return $this->token_acti === null;
+    }
+
+    /**
      * Devuelve un enlace para la validación por correo.
      * @return [type] [description]
      */
@@ -96,7 +107,8 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * Cifra la clave del usuario y se guarda ya cifrada en la base de
      * datos. También genera un token aleatorio para el usuario registrado.
-     * Se realiza antes de insertar el usuario en la base de datos.
+     * Se realiza antes de insertar el usuario en la base de datos. También
+     * genera token aleatorio para el cambio de contraseña.
      * @param  bool $insert Confirma si se va a realiar un insert o update.
      * @return bool
      */
@@ -106,7 +118,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             if ($this->isNewRecord) {
                 $this->password = \Yii::$app
                     ->security->generatePasswordHash($this->password);
-                $this->token = \Yii::$app
+                $this->token_acti = \Yii::$app
                     ->security->generateRandomString();
                 $this->token_clave = \Yii::$app
                     ->security->generateRandomString();
@@ -124,7 +136,9 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function enviarCorreo($direccion)
     {
-        Yii::$app->mailer->compose('contenido-email')
+        Yii::$app->mailer->compose('contenido-correo', [
+                'token_acti'=>$this->token_acti
+            ])
             ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name])
             ->setTo($direccion)
             ->setSubject(

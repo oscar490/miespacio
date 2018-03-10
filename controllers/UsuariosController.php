@@ -75,7 +75,7 @@ class UsuariosController extends Controller
             );
 
             $model->enviarCorreo($model->email);
-            return $this->redirect(['site/login', 'username' => $model->nombre]);
+            return $this->redirect(['site/login']);
         }
 
         return $this->render('create', [
@@ -83,15 +83,15 @@ class UsuariosController extends Controller
         ]);
     }
 
-    public function actionValidarCorreo($token = null)
+    public function actionValidarCorreo($token_acti = null)
     {
-        if ($token === null) {
+        if ($token_acti === null) {
             throw new NotFoundHttpException('Parámetro incorrecto');
         }
-        $usuario = Usuarios::findOne(['token'=>$token]);
+        $usuario = Usuarios::findOne(['token_acti'=>$token_acti]);
 
-        if ($usuario !== null) {
-            $usuario->token = null;
+        if (!$usuario->estaActivado) {
+            $usuario->token_acti = null;
             $usuario->save();
             Yii::$app->session->setFlash(
                 'success',
