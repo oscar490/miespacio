@@ -11,6 +11,8 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\db\Expression;
 use yii\web\Response;
 
 class SiteController extends Controller
@@ -82,7 +84,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $usuario = Usuarios::findOne(['nombre' => $model->username]);
 
-            if ($usuario->estaActivado) {
+            if ($usuario->token_acti === null) {
                 $model->login();
                 return $this->goBack();
             }
@@ -119,17 +121,20 @@ class SiteController extends Controller
 
         if ($email !== null && $model->validate()) {
             if ($model->enviarCorreo()) {
-                Yii::$app->session->setFlash(
-                    'info',
-                    'Se ha enviado un correo electrónico a la dirección indicada. Realice el proceso
-                    indicado para establecer la contraseña.'
-                );
+                $mensaje['info'] = 'Se ha enviado un correo electrónico a la dirección indicada.
+                Realice el proceso indicado para establecer la contraseña.';
+
             } else {
-                Yii::$app->session->setFlash(
-                    'danger',
-                    'No se ha podido enviar el correo electrónico a la dirección indicada.'
-                );
+                $mensaje['danger'] = 'No se ha podido enviar el correo electrónico
+                a la dirección indicada.';
+
             }
+
+            Yii::$app->session->setFlash(
+                key($mensaje),
+                $mensaje[key($mensaje)]
+            );
+
         }
 
         return $this->render('gestionPassword', [
@@ -143,22 +148,27 @@ class SiteController extends Controller
      * @param  string $token Valor aleatorio del usuario.
      * @return [type]        [description]
      */
-    public function actionEstablecerClave($token = null)
+    public function actionEstablecerClave($token_clave = null)
     {
+        if ($token_clave === null) {
+            throw new NotFoundHttpException('Parámetro incorrecto');
+        }
+
+        $usuario = Usuarios::findOne(['token_clave' => $token_clave]);
         $model = new EstablecerPasswordForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $usuario = Usuarios::findOne(['token_clave' => $token]);
+
             $usuario->password = Yii::$app
                 ->security->generatePasswordHash($model->password);
-
-            $usuario->token_clave = null;
+            $usuario->update_clave_at = new Expression('current_timestamp(0)');
             $usuario->save();
         }
 
         return $this->render('gestionPassword', [
             'model' => $model,
             'accion' => $this->action->id,
+            'usuario'=>$usuario,
         ]);
     }
 

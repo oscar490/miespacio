@@ -72,17 +72,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         return array_merge(parent::attributes(), ['password_repeat']);
     }
 
-    /**
-     * Comprueba si el usuario tiene la cuenta activada
-     * o no
-     * @return bool true si tiene la cuenta activada, false en caso
-     *              contrario.
-     */
-    public function getEstaActivado()
-    {
-        return $this->token_acti === null;
-    }
-
+    
     /**
      * Devuelve un enlace para la validación por correo.
      * @return [type] [description]

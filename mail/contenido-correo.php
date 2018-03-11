@@ -28,7 +28,7 @@ use yii\helpers\Url;
             ) .
             Html::tag(
                 'p',
-                'Ha enviado una solicitud para añadir el Correo
+                'Ha enviado una solicitud para añadir el correo
                 electrónico a su cuenta.'
             ) .
             Html::a(
