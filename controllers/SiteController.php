@@ -145,6 +145,7 @@ class SiteController extends Controller
 
     /**
      * Mediante un formulario, permite cambiar la contraseña.
+     * Sólo permite cambiar la contraseña una vez.
      * @param  string $token Valor aleatorio del usuario.
      * @return [type]        [description]
      */
@@ -163,6 +164,13 @@ class SiteController extends Controller
                 ->security->generatePasswordHash($model->password);
             $usuario->update_clave_at = new Expression('current_timestamp(0)');
             $usuario->save();
+
+            Yii::$app->session->setFlash(
+                'success',
+                'Se ha establecido la nueva contraseña correctamente.'
+            );
+
+            return $this->redirect(['site/login']);
         }
 
         return $this->render('gestionPassword', [
