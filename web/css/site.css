@@ -122,33 +122,34 @@ a.desc:after {
 
 /* Mis estilos */
 
-.nav-estilo {
+.navbar-inverse {
     background-color:  #0266a0;
     border-color: #0266a0;
 }
 
- .nav-estilo .navbar-nav > li > a {
+.navbar-inverse .navbar-nav > li > a {
     color: white;
     font-weight: bold;
 }
 
-.nav-estilo .navbar-brand {
+.navbar-inverse .navbar-brand {
     color: white;
     font-weight: bold;
     font-size: 20px;
 }
 
-/*
-.nav-estilo .navbar-nav > li > a:hover,
-.nav-estilo .navbar-nav > li > a:focus,
-
-.nav-estilo .navbar-nav > li.dropdown > a:focus, */
-.nav-estilo .navbar-nav > li > a:hover,
-.nav-estilo .navbar-nav > .active > a:hover,
-.nav-estilo .navbar-nav > .active > a,
-.nav-estilo .navbar-nav > li.dropdown > a:hover {
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > .open > a.dropdown-toggle,
+.navbar-inverse .navbar-nav > .open > .dropdown-menu > li > a:hover,
+.navbar-inverse .navbar-nav > .dropdown > .dropdown-menu > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover {
     background-color: #75a4c1;
+    color: white;
 }
+
+
+
 
 .logo {
     width: 35px;

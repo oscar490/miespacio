@@ -9,13 +9,14 @@ DROP TABLE IF EXISTS usuarios CASCADE;
 
 CREATE TABLE usuarios
 (
-      id          BIGSERIAL    PRIMARY KEY
-    , nombre      VARCHAR(255) NOT NULL UNIQUE
-    , password    VARCHAR(255) NOT NULL
-    , email       VARCHAR(255) NOT NULL
-    , token       VARCHAR(255)
-    , token_clave VARCHAR(255)
-    , auth_key    VARCHAR(255)
+      id              BIGSERIAL    PRIMARY  KEY
+    , nombre          VARCHAR(255) NOT NULL UNIQUE
+    , password        VARCHAR(255) NOT NULL
+    , email           VARCHAR(255) NOT NULL UNIQUE
+    , token_acti      VARCHAR(255)
+    , token_clave     VARCHAR(255)
+    , auth_key        VARCHAR(255)
+    , update_clave_at TIMESTAMP(0)
 );
 
 INSERT INTO usuarios (nombre, password, email)

@@ -1,0 +1,33 @@
+.flex-container {
+    display: flex;
+
+}
+
+.contenedor {
+    border: solid 5px black;
+    width: 500px;
+    background-color: #0266a0;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.cabecera {
+    background-color: #0266a0;
+    display: flex;
+    justify-content: center;
+    color: white;
+    text-aling: center;
+}
+
+.contenido {
+    background-color: white;
+    justify-content: center;
+}
+
+.envio {
+    background-color: #48a54e;
+}
+
+h4, p, a {
+    margin-left: 10px;
+}

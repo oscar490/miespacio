@@ -69,10 +69,13 @@ class UsuariosController extends Controller
         ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('info', 'Confirme su dirección de correo electrónico: ' . $model->email);
+            Yii::$app->session->setFlash(
+                'info',
+                'Confirme su dirección de correo electrónico: ' . $model->email
+            );
 
             $model->enviarCorreo($model->email);
-            return $this->redirect(['site/login', 'username' => $model->nombre]);
+            return $this->redirect(['site/login']);
         }
 
         return $this->render('create', [
@@ -80,29 +83,34 @@ class UsuariosController extends Controller
         ]);
     }
 
-    public function actionValidarCorreo($token = null)
+    /**
+     * Se encarga de validar el correo electrónico del usuario.
+     * Compruba si ya se ha validado anteriormente, notificando
+     * con un mensaje en caso de que si.
+     * @param  [type] $token_acti Valores aleatorios que pertenecen
+     *                            al usuario que se registra.
+     * @return redirect           Redirección al formulario de inicio
+     *                            de sesión.
+     */
+    public function actionValidarCorreo($token_acti)
     {
-        if ($token === null) {
-            throw new NotFoundHttpException('Parámetro incorrecto');
-        }
-        $usuario = Usuarios::findOne(['token'=>$token]);
-
-        if ($usuario !== null) {
-            $usuario->token = null;
+        if (($usuario = Usuarios::findOne(['token_acti'=>$token_acti])) !== null) {
+            $usuario->token_acti = null;
             $usuario->save();
-            Yii::$app->session->setFlash(
-                'success',
-                'Dirección de correo electrónico confirmada con éxito, ya puede iniciar sesión.'
-            );
-            return $this->redirect(['site/login']);
 
+            $mensaje['success'] = 'Dirección de correo electrónico confirmada
+                                   con éxito, ya puede iniciar sesión.';
         } else {
-            Yii::$app->session->setFlash(
-                'danger',
-                'No se puede confirmar la dirección de correo electrónico. Ya ha sido registrado anteriormente.'
-            );
-            return $this->redirect(['site/login']);
+            $mensaje['danger'] = 'No se puede confirmar la dirección de correo
+                                  electrónico. Ya ha sido registrado anteriormente.';
         }
+
+        Yii::$app->session->setFlash(
+            key($mensaje),
+            $mensaje[key($mensaje)]
+        );
+
+        return $this->redirect(['site/login']);
     }
 
     /**

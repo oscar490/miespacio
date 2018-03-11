@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 
 ?>
 
-    <?php $form = ActiveForm::begin(['id'=>'registro']); ?>
+    <?php $form = ActiveForm::begin(); ?>
 
         <div class='row'>
             <div class='col-md-5 col-md-offset-3'>
@@ -53,7 +53,6 @@ use yii\widgets\ActiveForm;
                 <?= Html::submitButton('Crear una cuenta nueva', [
                     'class' => 'btn btn-success btn-block',
                     'id'=>'envio',
-                    // 'disabled'=>true,
                 ]) ?>
             </div>
         </div>

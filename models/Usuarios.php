@@ -4,6 +4,7 @@ namespace app\models;
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use Yii;
 use yii\web\IdentityInterface;
 
 /**
@@ -17,7 +18,6 @@ use yii\web\IdentityInterface;
 class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 {
     const ESCENARIO_CREATE = 'create';
-    const ESCENARIO_RECUPERAR = 'recuperar';
 
     public $password_repeat;
 
@@ -58,6 +58,12 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 'message' => 'Ya existe un usuario con ese nombre.',
                 'on' => self::ESCENARIO_CREATE,
             ],
+            [
+                ['email'],
+                'unique',
+                'message'=>'Ya existe un usuario con esa dirección de correo',
+                'on'=>self::ESCENARIO_CREATE,
+            ],
         ];
     }
 
@@ -66,6 +72,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         return array_merge(parent::attributes(), ['password_repeat']);
     }
 
+    
     /**
      * Devuelve un enlace para la validación por correo.
      * @return [type] [description]
@@ -95,7 +102,8 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * Cifra la clave del usuario y se guarda ya cifrada en la base de
      * datos. También genera un token aleatorio para el usuario registrado.
-     * Se realiza antes de insertar el usuario en la base de datos.
+     * Se realiza antes de insertar el usuario en la base de datos. También
+     * genera token aleatorio para el cambio de contraseña.
      * @param  bool $insert Confirma si se va a realiar un insert o update.
      * @return bool
      */
@@ -105,7 +113,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             if ($this->isNewRecord) {
                 $this->password = \Yii::$app
                     ->security->generatePasswordHash($this->password);
-                $this->token = \Yii::$app
+                $this->token_acti = \Yii::$app
                     ->security->generateRandomString();
                 $this->token_clave = \Yii::$app
                     ->security->generateRandomString();
@@ -123,11 +131,14 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function enviarCorreo($direccion)
     {
-        \Yii::$app->mailer->compose()
-            ->setFrom(\Yii::$app->params['adminEmail'])
+        Yii::$app->mailer->compose('contenido-correo', [
+                'token_acti'=>$this->token_acti
+            ])
+            ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name])
             ->setTo($direccion)
-            ->setSubject('Nueva dirección de correo electrónico de Miespacio')
-            ->setHtmlBody($this->enlaceValidacion)
+            ->setSubject(
+                'Nueva direccíon de correo electrónico de ' . Yii::$app->name
+            )
             ->send();
     }
 

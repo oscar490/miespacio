@@ -6,14 +6,19 @@ use Yii;
 use yii\base\Model;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use app\models\Usuarios;
 
 /**
  * Modelo para gestionar el formulario de Recuperación de contraseña. En
  * dicho formulario se debe indicar el correo a donde se enviará las
  * instrucciones para cambiar la contraseña del usuario.
  */
-class RecuperarPasswordForm extends Model
+class SolicitarPasswordForm extends Model
 {
+    /**
+     * Dirección de correo.
+     * @var string
+     */
     public $email;
 
     /**
@@ -25,26 +30,14 @@ class RecuperarPasswordForm extends Model
         return [
             [['email'], 'required'],
             [['email'], 'email'],
-            [['email'], 'comprobarExistencia'],
+            [
+                ['email'],
+                'exist',
+                'targetAttribute'=>['email', 'email'],
+                'targetClass'=>Usuarios::className(),
+                'message'=>'Ese correo no existe, no pertenece a ningun usuario.',
+            ],
         ];
-    }
-
-    /**
-     * Comprueba si el correo que se envia al servidor, para
-     * realizar la operación de restablecer contraseña, existe.
-     * @param  string $attribute Atributo que se valida
-     * @param  [type] $params    [description]
-     * @param  [type] $validator Validador
-     * @return [type]            [description]
-     */
-    public function comprobarExistencia($attribute, $params, $validator)
-    {
-        $usuario = Usuarios::find()
-            ->where(['email' => $this->$attribute])->one();
-
-        if ($usuario === null) {
-            $this->addError($attribute, 'Ese correo no existe, no pertenece a ningun usuario.');
-        }
     }
 
     /**
@@ -54,12 +47,12 @@ class RecuperarPasswordForm extends Model
      */
     public function getEnlaceRecuperacion()
     {
-        $token_email = Usuarios::findOne(['email' => $this->email])
+        $token = Usuarios::findOne(['email' => $this->email])
             ->token_clave;
 
         return Html::a(
             'Haga click aqui para comenzar el proceso de recuperación de contraseña',
-            Url::to(['site/establecer-clave', 'token' => $token_email], true)
+            Url::to(['site/establecer-clave', 'token_clave' => $token], true)
         );
     }
 
@@ -70,6 +63,10 @@ class RecuperarPasswordForm extends Model
         ];
     }
 
+    /**
+     * Redefinición del nombre del formulario.
+     * @return string Nombre del formulario.
+     */
     public function formName()
     {
         return '';
@@ -84,7 +81,7 @@ class RecuperarPasswordForm extends Model
     public function enviarCorreo()
     {
         return Yii::$app->mailer->compose()
-            ->setFrom(\Yii::$app->params['adminEmail'])
+            ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name])
             ->setTo($this->email)
             ->setSubject('Recuperación de contraseña')
             ->setHtmlBody($this->enlaceRecuperacion)

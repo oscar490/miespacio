@@ -5,12 +5,14 @@ namespace app\controllers;
 use app\models\ContactForm;
 use app\models\EstablecerPasswordForm;
 use app\models\LoginForm;
-use app\models\RecuperarPasswordForm;
+use app\models\SolicitarPasswordForm;
 use app\models\Usuarios;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\db\Expression;
 use yii\web\Response;
 
 class SiteController extends Controller
@@ -82,15 +84,15 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $usuario = Usuarios::findOne(['nombre' => $model->username]);
 
-            if ($usuario->token === null) {
+            if ($usuario->token_acti === null) {
                 $model->login();
                 return $this->goBack();
             }
             Yii::$app->session->setFlash(
                 'error',
-                'No puede iniciar sesión. Deberá activar su cuenta accidiendo a su correo: ' . $usuario->email
+                'No puede iniciar sesión. Deberá activar su cuenta
+                 accidiendo a su correo: ' . $usuario->email
             );
-            return $this->redirect(['site/login']);
         }
 
         $model->password = '';
@@ -99,32 +101,40 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionPrueba()
+    {
+        return $this->render('contenido-correo');
+    }
+
     /**
      * Envía un correo con un enlace para cambiar
-     * la contraseña. MEdiante un formulario se indica
+     * la contraseña. Mediante un formulario se indica
      * la dirección de correo al que mandar.
      * @return [type] [description]
      * @param null|mixed $email
      */
-    public function actionCambiarClave($email = null)
+    public function actionSolicitarClave($email = null)
     {
-        $model = new RecuperarPasswordForm([
+        $model = new SolicitarPasswordForm([
             'email' => $email,
         ]);
 
         if ($email !== null && $model->validate()) {
             if ($model->enviarCorreo()) {
-                Yii::$app->session->setFlash(
-                    'info',
-                    'Se ha enviado un correo electrónico a la dirección indicada. Realice el proceso
-                    indicado para establecer la contraseña.'
-                );
+                $mensaje['info'] = 'Se ha enviado un correo electrónico a la dirección indicada.
+                Realice el proceso indicado para establecer la contraseña.';
+
             } else {
-                Yii::$app->session->setFlash(
-                    'danger',
-                    'No se ha podido enviar el correo electrónico a la dirección indicada.'
-                );
+                $mensaje['danger'] = 'No se ha podido enviar el correo electrónico
+                a la dirección indicada.';
+
             }
+
+            Yii::$app->session->setFlash(
+                key($mensaje),
+                $mensaje[key($mensaje)]
+            );
+
         }
 
         return $this->render('gestionPassword', [
@@ -138,22 +148,27 @@ class SiteController extends Controller
      * @param  string $token Valor aleatorio del usuario.
      * @return [type]        [description]
      */
-    public function actionEstablecerClave($token = null)
+    public function actionEstablecerClave($token_clave = null)
     {
+        if ($token_clave === null) {
+            throw new NotFoundHttpException('Parámetro incorrecto');
+        }
+
+        $usuario = Usuarios::findOne(['token_clave' => $token_clave]);
         $model = new EstablecerPasswordForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $usuario = Usuarios::findOne(['token_clave' => $token]);
+
             $usuario->password = Yii::$app
                 ->security->generatePasswordHash($model->password);
-
-            $usuario->token_clave = null;
+            $usuario->update_clave_at = new Expression('current_timestamp(0)');
             $usuario->save();
         }
 
         return $this->render('gestionPassword', [
             'model' => $model,
             'accion' => $this->action->id,
+            'usuario'=>$usuario,
         ]);
     }
 
