@@ -151,11 +151,12 @@ class SiteController extends Controller
      */
     public function actionEstablecerClave($token_clave = null)
     {
-        if ($token_clave === null) {
-            throw new NotFoundHttpException('Parámetro incorrecto');
-        }
 
         $usuario = Usuarios::findOne(['token_clave' => $token_clave]);
+
+        if ($usuario === null) {
+            throw new NotFoundHttpException('Parámetro incorrecto');
+        }
         $model = new EstablecerPasswordForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
