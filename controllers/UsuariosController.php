@@ -7,6 +7,8 @@ use app\models\UsuariosSearch;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
+use yii\db\Expression;
+use app\models\DatosUsuarios;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -73,6 +75,14 @@ class UsuariosController extends Controller
                 'info',
                 'Confirme su dirección de correo electrónico: ' . $model->email
             );
+
+            $datos = new DatosUsuarios([
+                'nombre_completo'=>mb_strtoupper($model->nombre),
+                'iniciales'=>mb_strtoupper(mb_substr($model->nombre, 0, 1)),
+                'usuario_id'=>$model->id,
+                'registro'=> new Expression('current_timestamp(0)'),
+            ]);
+            $datos->save();
 
             $model->enviarCorreo($model->email);
             return $this->redirect(['site/login']);

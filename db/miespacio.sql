@@ -19,8 +19,8 @@ CREATE TABLE usuarios
     , update_clave_at TIMESTAMP(0)
 );
 
-INSERT INTO usuarios (nombre, password, email)
-    VALUES ('oscar', crypt('oscar', gen_salt('bf', 13)), 'oscar.vega@iesdonana.org');
+/* INSERT INTO usuarios (nombre, password, email)
+    VALUES ('oscar', crypt('oscar', gen_salt('bf', 13)), 'oscar.vega@iesdonana.org'); */
 
 
 
@@ -31,7 +31,7 @@ CREATE TABLE datos_usuarios
       id              BIGSERIAL    PRIMARY KEY
     , nombre_completo VARCHAR(255)
     , descripcion     VARCHAR(255)
-    , registro        TIMESTAMP(0) NOT NULL DEFAULT localtimestamp
+    , registro        TIMESTAMP(0) 
     , ultimo_acceso   TIMESTAMP(0)
     , iniciales       VARCHAR(4)
     , usuario_id      BIGINT       REFERENCES usuarios (id) ON DELETE

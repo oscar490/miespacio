@@ -84,7 +84,7 @@ AppAsset::register($this);
                             ' ',
                             ['class'=>'glyphicon glyphicon-list icono-x2']
                         ) . ' Perfil',
-                        'url'=>['usuarios/view', 'id'=>Yii::$app->user->id],
+                        'url'=>['datos-usuarios/view', 'id'=>Yii::$app->user->id],
                         'encode'=>false,
                     ],
                 ],

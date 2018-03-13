@@ -4,6 +4,8 @@ namespace app\models;
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use app\models\DatosUsuarios;
+use yii\db\Expression;
 use Yii;
 use yii\web\IdentityInterface;
 
@@ -72,7 +74,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         return array_merge(parent::attributes(), ['password_repeat']);
     }
 
-    
+
     /**
      * Devuelve un enlace para la validación por correo.
      * @return [type] [description]
@@ -92,7 +94,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'nombre' => 'Nombre',
+            'nombre' => 'Nombre de usuario',
             'password' => 'Contraseña',
             'password_repeat' => 'Confirmar contraseña',
             'email' => 'Correo electrónico',
@@ -193,5 +195,13 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     public function validatePassword($password)
     {
         return \Yii::$app->security->validatePassword($password, $this->password);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDatosUsuarios()
+    {
+        return $this->hasMany(DatosUsuarios::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
     }
 }

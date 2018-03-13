@@ -2,40 +2,58 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\DatosUsuarios */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Datos Usuarios', 'url' => ['index']];
+$this->title = 'Perfil | MiEspacio';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="datos-usuarios-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class='row'>
+        <div class='col-md-4 col-md-offset-3'>
+            <h2>
+                <?= Html::encode($model->nombre_completo) ?>
+                <small>
+                    <?= Html::encode('(' . $model->usuario->nombre . ')') ?>
+                </small>
+            </h2>
+        </div>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+    </div>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'nombre_completo',
-            'descripcion',
-            'registro',
-            'ultimo_acceso',
-            'iniciales',
-            'usuario_id',
-        ],
-    ]) ?>
+    <?php $form = ActiveForm::begin() ?>
+
+        <div class='row'>
+            <div class='col-md-4 col-md-offset-3'>
+                <?= $form->field($model, 'nombre_completo') ?>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-md-4 col-md-offset-3'>
+                <?= $form->field($model->usuario,'nombre')?>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-md-4 col-md-offset-3'>
+                <?= $form->field($model, 'iniciales') ?>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-md-7 col-md-offset-3'>
+                <?= $form->field($model, 'descripcion')->textarea([
+                    'rows'=>3,
+                ]) ?>
+            </div>
+        </div>
+
+
+    <?php ActiveForm::end() ?>
+
 
 </div>
