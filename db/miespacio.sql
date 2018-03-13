@@ -21,3 +21,19 @@ CREATE TABLE usuarios
 
 INSERT INTO usuarios (nombre, password, email)
     VALUES ('oscar', crypt('oscar', gen_salt('bf', 13)), 'oscar.vega@iesdonana.org');
+
+
+
+DROP TABLE IF EXISTS datos_usuarios CASCADE;
+
+CREATE TABLE datos_usuarios
+(
+      id              BIGSERIAL    PRIMARY KEY
+    , nombre_completo VARCHAR(255)
+    , descripcion     VARCHAR(255)
+    , registro        TIMESTAMP(0) NOT NULL DEFAULT localtimestamp
+    , ultimo_acceso   TIMESTAMP(0)
+    , iniciales       VARCHAR(4)
+    , usuario_id      BIGINT       REFERENCES usuarios (id) ON DELETE
+                                   CASCADE ON UPDATE CASCADE
+);
