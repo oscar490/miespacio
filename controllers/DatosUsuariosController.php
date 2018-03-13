@@ -85,12 +85,13 @@ class DatosUsuariosController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->usuario->scenario = 'default';
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['update', 'id' => $model->id]);
         }
 
-        return $this->render('update', [
+        return $this->render('view', [
             'model' => $model,
         ]);
     }

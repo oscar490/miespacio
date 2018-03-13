@@ -87,9 +87,6 @@ class SiteController extends Controller
 
             if ($usuario->token_acti === null) {
                 $model->login();
-                $datos = DatosUsuarios::findOne(['usuario_id'=>Yii::$app->user->id]);
-                $datos->ultimo_acceso = new Expression('current_timestamp(0)');
-                $datos->save();
                 return $this->goBack();
             }
             Yii::$app->session->setFlash(

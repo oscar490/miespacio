@@ -19,8 +19,8 @@ CREATE TABLE usuarios
     , update_clave_at TIMESTAMP(0)
 );
 
-/* INSERT INTO usuarios (nombre, password, email)
-    VALUES ('oscar', crypt('oscar', gen_salt('bf', 13)), 'oscar.vega@iesdonana.org'); */
+INSERT INTO usuarios (nombre, password, email)
+    VALUES ('oscar', crypt('oscar', gen_salt('bf', 13)), 'oscar.vega@iesdonana.org');
 
 
 
@@ -29,11 +29,12 @@ DROP TABLE IF EXISTS datos_usuarios CASCADE;
 CREATE TABLE datos_usuarios
 (
       id              BIGSERIAL    PRIMARY KEY
-    , nombre_completo VARCHAR(255)
+    , nombre_completo VARCHAR(255) NOT NULL
     , descripcion     VARCHAR(255)
-    , registro        TIMESTAMP(0) 
-    , ultimo_acceso   TIMESTAMP(0)
-    , iniciales       VARCHAR(4)
+    , iniciales       VARCHAR(4)   NOT NULL
     , usuario_id      BIGINT       REFERENCES usuarios (id) ON DELETE
                                    CASCADE ON UPDATE CASCADE
 );
+
+INSERT INTO datos_usuarios (nombre_completo, iniciales, usuario_id)
+    VALUES ('OSCAR', 'O', 1);

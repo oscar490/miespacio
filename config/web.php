@@ -13,7 +13,7 @@ $config = [
         '@npm' => '@vendor/npm-asset',
     ],
     'name' => 'MiEspacio',
-    'language' => 'es-ES',
+    'language' => 'en-ES',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
