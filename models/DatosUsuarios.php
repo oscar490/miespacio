@@ -54,6 +54,7 @@ class DatosUsuarios extends \yii\db\ActiveRecord
             [['usuario_id'], 'default', 'value' => null],
             [['usuario_id'], 'integer'],
             [['nombre_completo', 'descripcion'], 'string', 'max' => 50],
+            [['nombre_completo'], 'required'],
             [['iniciales'], 'string', 'max' => 4],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
         ];

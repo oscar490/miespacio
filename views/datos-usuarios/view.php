@@ -5,38 +5,44 @@ use yii\widgets\DetailView;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\DatosUsuarios */
+/* @var $datos app\models\DatosUsuarios */
+/* @var $cuenta app\models\Usuarios */
 
 $this->title = 'Perfil | MiEspacio';
 $this->params['breadcrumbs'][] = $this->title;
 
 $css = <<<EOT
-    #datos-usuario {
+    #datos-cuenta {
         display: none;
     }
 EOT;
 
 $js = <<<EOT
-    $('#editar').on('click', function() {
-        $('#datos-usuario').fadeIn();
-        $('.row').first().hide();
-        $('#editar').hide();
-    });
+    $('ul.nav-tabs li a').on('click', function(e) {
+        e.preventDefault();
+        $(this).parent().addClass('active');
+        $(this).parent().siblings().removeClass('active');
+        $("div[id^='datos']").hide();
 
-    $('#cancelar').on('click', function() {
-        $('#datos-usuario').hide();
-        $('.row').first().show();
-        $('#editar').show();
+        switch ($(this).text()) {
+            case 'Perfil':
+                $('#datos-perfil').show();
+                break;
+            case 'Configuración':
+                $('#datos-cuenta').show();
+                break;
+
+        }
     })
+
 EOT;
 
 $this->registerJs($js);
 $this->registerCss($css);
 ?>
 <div class="datos-usuarios-view">
-
     <div class='row'>
-        <div class='col-md-4 col-md-offset-3'>
+        <div class='col-md-4'>
             <h2>
                 <?= Html::encode($datos->nombre_completo) ?>
                 <small>
@@ -48,64 +54,6 @@ $this->registerCss($css);
             </p>
         </div>
     </div>
-
-    <div class='row'>
-        <div class='col-md-4 col-md-offset-3'>
-            <?=
-                Html::button(
-                    Html::tag(
-                        'span',
-                        '',
-                        [
-                            'class'=>'glyphicon glyphicon-pencil',
-                            'aria-hidden'=>true,
-                        ]
-                    ). ' Editar perfil', [
-                        'class'=>'btn btn-default',
-                        'id'=>'editar',
-                    ]
-                )
-            ?>
-        </div>
-    </div>
-
-    <!-- Formulario de modificación de datos de perfil -->
-    <?php $form = ActiveForm::begin(['id'=>'datos-usuario']) ?>
-
-        <div class='row'>
-            <div class='col-md-4 col-md-offset-3'>
-                <?= $form->field($datos, 'nombre_completo') ?>
-            </div>
-        </div>
-
-        <div class='row'>
-            <div class='col-md-4 col-md-offset-3'>
-                <?= $form->field($datos, 'iniciales') ?>
-            </div>
-        </div>
-
-        <div class='row'>
-            <div class='col-md-7 col-md-offset-3'>
-                <?= $form->field($datos, 'descripcion')->textarea([
-                    'rows'=>2,
-                ]) ?>
-            </div>
-        </div>
-
-        <?= Html::hiddeninput('usuario_id', Yii::$app->user->id)?>
-
-        <div class='row'>
-            <div class='col-md-7 col-md-offset-3'>
-                <?= Html::submitButton('Guardar', ['class'=>'btn btn-success'])?>
-                <?= Html::button('Cancelar', [
-                    'class'=>'btn btn-primary',
-                    'id'=>'cancelar',
-                ])?>
-            </div>
-        </div>
-
-
-    <?php ActiveForm::end() ?>
     <br>
     <?=
         Html::tag(
@@ -113,54 +61,80 @@ $this->registerCss($css);
             Html::tag(
                 'li',
                 Html::a(
-                    'Configuración de cuenta',
-                    ['datos-usuarios/update', 'id'=>1]
+                    'Perfil',
+                    ['#']
                 ),
-                ['role'=>'presentation', 'class'=>'active']
+                ['class'=>'active', 'role'=>'presentacion']
+            ) .
+            Html::tag(
+                'li',
+                Html::a(
+                    'Configuración',
+                    ['#']
+                ),
+                ['role'=>'presentacion']
             ),
             ['class'=>'nav nav-tabs']
-        );
+        )
+
     ?>
     <br>
+    <div class='row' id='datos-cuenta'>
+        <div class='col-md-6 col-md-offset-3'>
+            <div class='panel panel-primary'>
+                <div class='panel-heading'>
+                    <?= Html::encode('Datos de cuenta') ?>
+                </div>
+                <div class='panel-body'>
+                    <?php $form = ActiveForm::begin() ?>
 
-    <!-- Formulario de modificación de datos de cuenta -->
-    <?php $form = ActiveForm::begin() ?>
+                        <?= $form->field($cuenta, 'nombre')?>
 
-        <div class='row'>
-            <div class='col-md-5 '>
-                <?= $form->field($cuenta, 'nombre')?>
+                        <?= $form->field($cuenta, 'password')->passwordInput()?>
+
+                        <?= $form->field($cuenta, 'password_repeat')->passwordInput()?>
+
+                        <?= $form->field($cuenta, 'email')?>
+
+                        <?= Html::submitButton('Guardar', [
+                            'class'=>'btn btn-success btn-block'
+                            ])?>
+
+                    <?php ActiveForm::end() ?>
+                </div>
             </div>
         </div>
+    </div>
 
-        <div class='row'>
-            <div class='col-md-5 '>
-                <?= $form->field($cuenta, 'password')
-                    ->passwordInput()?>
+    <div class='row' id='datos-perfil'>
+        <div class='col-md-6 col-md-offset-3'>
+            <div class='panel panel-primary'>
+                <div class='panel-heading'>
+                    <?= Html::encode('Datos de perfil') ?>
+                </div>
+
+                <div class='panel-body'>
+                    <?php $form = ActiveForm::begin([
+                        'action'=>['datos-usuarios/update', 'id'=>$cuenta->id]
+                    ]) ?>
+
+                        <?= $form->field($datos, 'nombre_completo') ?>
+
+                        <?= $form->field($datos, 'iniciales') ?>
+
+                        <?= $form->field($datos, 'descripcion')->textarea([
+                                'rows'=>2,
+                        ]) ?>
+
+                        <?= Html::hiddeninput('usuario_id', Yii::$app->user->id)?>
+
+                        <?= Html::submitButton('Editar perfil', [
+                            'class'=>'btn btn-success btn-block'
+                        ])?>
+
+                    <?php ActiveForm::end() ?>
+                </div>
             </div>
         </div>
-
-        <div class='row'>
-            <div class='col-md-5 '>
-                <?= $form->field($cuenta, 'password_repeat')
-                    ->passwordInput()?>
-            </div>
-        </div>
-
-        <div class='row'>
-            <div class='col-md-5 '>
-                <?= $form->field($cuenta, 'email')?>
-            </div>
-        </div>
-
-        <div class='row'>
-            <div class='col-md-5 '>
-                <?= Html::submitButton('Guardar', ['class'=>'btn btn-success'])?>
-            </div>
-        </div>
-
-
-
-    <?php ActiveForm::end() ?>
-
-
+    </div>
 </div>
