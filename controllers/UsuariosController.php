@@ -76,7 +76,13 @@ class UsuariosController extends Controller
                 'Confirme su dirección de correo electrónico: ' . $model->email
             );
 
+            $datos = new DatosUsuarios([
+                'nombre_completo'=>mb_strtoupper($model->nombre),
+                'iniciales'=>mb_substr($model->nombre, 0, 1),
+                'usuario_id'=>$model->id,
+            ]);
 
+            $datos->save();
             $model->enviarCorreo($model->email);
             return $this->redirect(['site/login']);
         }
