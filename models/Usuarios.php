@@ -4,6 +4,8 @@ namespace app\models;
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use app\models\DatosUsuarios;
+use yii\db\Expression;
 use Yii;
 use yii\web\IdentityInterface;
 
@@ -18,6 +20,7 @@ use yii\web\IdentityInterface;
 class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 {
     const ESCENARIO_CREATE = 'create';
+    const ESCENARIO_UPDATE = 'update';
 
     public $password_repeat;
 
@@ -38,18 +41,24 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             [
                 ['nombre', 'password', 'email', 'password_repeat'],
                 'required',
-                'on' => self::ESCENARIO_CREATE,
+                'on' => self::ESCENARIO_CREATE
             ],
             [
                 ['password_repeat'],
                 'compare',
                 'compareAttribute' => 'password',
-                'on' => self::ESCENARIO_CREATE,
+                'skipOnEmpty'=>false,
+                'on' => [self::ESCENARIO_CREATE, self::ESCENARIO_UPDATE]
+            ],
+            [
+                ['email', 'nombre'],
+                'required',
+                'on'=>self::ESCENARIO_UPDATE,
             ],
             [
                 ['email'],
                 'email',
-                'on' => self::ESCENARIO_CREATE,
+                'on' => [self::ESCENARIO_CREATE, self::ESCENARIO_UPDATE]
             ],
             [['nombre', 'password', 'email'], 'string', 'max' => 255],
             [
@@ -72,7 +81,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         return array_merge(parent::attributes(), ['password_repeat']);
     }
 
-    
+
     /**
      * Devuelve un enlace para la validación por correo.
      * @return [type] [description]
@@ -92,7 +101,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'nombre' => 'Nombre',
+            'nombre' => 'Nombre de usuario',
             'password' => 'Contraseña',
             'password_repeat' => 'Confirmar contraseña',
             'email' => 'Correo electrónico',
@@ -117,6 +126,15 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                     ->security->generateRandomString();
                 $this->token_clave = \Yii::$app
                     ->security->generateRandomString();
+            } else {
+                if ($this->scenario === self::ESCENARIO_UPDATE) {
+                    if ($this->password === '') {
+                        $this->password = $this->getOldAttribute('password');
+                    } else {
+                        $this->password = Yii::$app->security
+                            ->generatePasswordHash($this->password);
+                    }
+                }
             }
             return true;
         }
@@ -193,5 +211,13 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     public function validatePassword($password)
     {
         return \Yii::$app->security->validatePassword($password, $this->password);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDatosUsuarios()
+    {
+        return $this->hasMany(DatosUsuarios::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
     }
 }

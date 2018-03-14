@@ -7,6 +7,8 @@ use app\models\UsuariosSearch;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
+use yii\db\Expression;
+use app\models\DatosUsuarios;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -74,6 +76,7 @@ class UsuariosController extends Controller
                 'Confirme su dirección de correo electrónico: ' . $model->email
             );
 
+
             $model->enviarCorreo($model->email);
             return $this->redirect(['site/login']);
         }
@@ -113,25 +116,6 @@ class UsuariosController extends Controller
         return $this->redirect(['site/login']);
     }
 
-    /**
-     * Updates an existing Usuarios model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
-    }
 
     /**
      * Deletes an existing Usuarios model.

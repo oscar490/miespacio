@@ -84,7 +84,7 @@ AppAsset::register($this);
                             ' ',
                             ['class'=>'glyphicon glyphicon-list icono-x2']
                         ) . ' Perfil',
-                        'url'=>['usuarios/view', 'id'=>Yii::$app->user->id],
+                        'url'=>['datos-usuarios/view', 'id'=>Yii::$app->user->id],
                         'encode'=>false,
                     ],
                 ],
@@ -132,9 +132,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-left">&copy; MiEspacio</p>
     </div>
 </footer>
 
