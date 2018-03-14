@@ -76,7 +76,7 @@ class UsuariosController extends Controller
                 'Confirme su dirección de correo electrónico: ' . $model->email
             );
 
-        
+
             $model->enviarCorreo($model->email);
             return $this->redirect(['site/login']);
         }

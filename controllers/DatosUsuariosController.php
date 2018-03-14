@@ -6,8 +6,10 @@ use Yii;
 use app\models\DatosUsuarios;
 use app\models\DatosUsuariosSearch;
 use yii\web\Controller;
+use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Usuarios;
 
 /**
  * DatosUsuariosController implements the CRUD actions for DatosUsuarios model.
@@ -52,8 +54,22 @@ class DatosUsuariosController extends Controller
      */
     public function actionView($id)
     {
+        $datos = $this->findModel($id);
+        $cuenta = Usuarios::findOne(['id'=>$datos->usuario_id]);
+        $cuenta->scenario = Usuarios::ESCENARIO_UPDATE;
+        $cuenta->password = '';
+
+        if ($datos->load(Yii::$app->request->post()) && $datos->save()) {
+            return $this->redirect(['view', 'id' =>$id]);
+        }
+
+        if ($cuenta->load(Yii::$app->request->post()) && $cuenta->save()) {
+            return $this->redirect(['view', 'id' =>$id]);
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'datos' => $datos,
+            'cuenta'=>$cuenta,
         ]);
     }
 
@@ -75,26 +91,7 @@ class DatosUsuariosController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing DatosUsuarios model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-        $model->usuario->scenario = 'default';
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['update', 'id' => $model->id]);
-        }
-
-        return $this->render('view', [
-            'model' => $model,
-        ]);
-    }
 
     /**
      * Deletes an existing DatosUsuarios model.

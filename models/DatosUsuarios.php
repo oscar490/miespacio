@@ -50,9 +50,10 @@ class DatosUsuarios extends \yii\db\ActiveRecord
     {
         return [
             [['registro', 'ultimo_acceso'], 'safe'],
+            [['iniciales'], 'required'],
             [['usuario_id'], 'default', 'value' => null],
             [['usuario_id'], 'integer'],
-            [['nombre_completo', 'descripcion'], 'string', 'max' => 255],
+            [['nombre_completo', 'descripcion'], 'string', 'max' => 50],
             [['iniciales'], 'string', 'max' => 4],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
         ];
@@ -66,7 +67,7 @@ class DatosUsuarios extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nombre_completo' => 'Nombre completo',
-            'descripcion' => 'Biografía (opcional)',
+            'descripcion' => 'Descripción (opcional)',
             'registro' => 'Registro',
             'ultimo_acceso' => 'Ultimo Acceso',
             'iniciales' => 'Iniciales',

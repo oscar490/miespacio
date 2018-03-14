@@ -30,7 +30,7 @@ CREATE TABLE datos_usuarios
 (
       id              BIGSERIAL    PRIMARY KEY
     , nombre_completo VARCHAR(255) NOT NULL
-    , descripcion     VARCHAR(255)
+    , descripcion     VARCHAR(50)
     , iniciales       VARCHAR(4)   NOT NULL
     , usuario_id      BIGINT       REFERENCES usuarios (id) ON DELETE
                                    CASCADE ON UPDATE CASCADE

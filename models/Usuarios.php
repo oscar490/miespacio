@@ -20,6 +20,7 @@ use yii\web\IdentityInterface;
 class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 {
     const ESCENARIO_CREATE = 'create';
+    const ESCENARIO_UPDATE = 'update';
 
     public $password_repeat;
 
@@ -40,18 +41,24 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             [
                 ['nombre', 'password', 'email', 'password_repeat'],
                 'required',
-                'on' => self::ESCENARIO_CREATE,
+                'on' => self::ESCENARIO_CREATE
             ],
             [
                 ['password_repeat'],
                 'compare',
                 'compareAttribute' => 'password',
-                'on' => self::ESCENARIO_CREATE,
+                'skipOnEmpty'=>false,
+                'on' => [self::ESCENARIO_CREATE, self::ESCENARIO_UPDATE]
+            ],
+            [
+                ['email', 'nombre'],
+                'required',
+                'on'=>self::ESCENARIO_UPDATE,
             ],
             [
                 ['email'],
                 'email',
-                'on' => self::ESCENARIO_CREATE,
+                'on' => [self::ESCENARIO_CREATE, self::ESCENARIO_UPDATE]
             ],
             [['nombre', 'password', 'email'], 'string', 'max' => 255],
             [
@@ -119,6 +126,15 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                     ->security->generateRandomString();
                 $this->token_clave = \Yii::$app
                     ->security->generateRandomString();
+            } else {
+                if ($this->scenario === self::ESCENARIO_UPDATE) {
+                    if ($this->password === '') {
+                        $this->password = $this->getOldAttribute('password');
+                    } else {
+                        $this->password = Yii::$app->security
+                            ->generatePasswordHash($this->password);
+                    }
+                }
             }
             return true;
         }
