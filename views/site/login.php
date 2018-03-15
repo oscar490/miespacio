@@ -14,6 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="site-login">
 
+    <!-- Título principal -->
     <div class='row'>
         <div class='col-md-3 col-md-offset-4'>
             <h1>
@@ -24,50 +25,42 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
+    <!-- Formulario de inicio de sesión -->
+    <div class='row'>
+        <div class='col-md-5 col-md-offset-3'>
+            <?php $form = ActiveForm::begin([
+                'id' => 'login-form',
+            ]); ?>
 
-
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-    ]); ?>
-        <div class='row'>
-            <div class='col-md-5 col-md-offset-3'>
+                <!-- Nombre de usuario -->
                 <?= $form->field($model, 'username')->textInput([
                     'autofocus' => true,
                     'placeholder'=>'p. ej.: alberto',
                 ]) ?>
-            </div>
-        </div>
 
-        <div class='row'>
-            <div class='col-md-5 col-md-offset-3'>
+                <!-- Contraseña -->
                 <?= $form->field($model, 'password')->passwordInput([
                     'placeholder'=>'p. ej.: ·········',
                 ]) ?>
+
+                <!-- Enlace para recuperación de contraseña -->
                 <?= Html::a(
                     '¿Has olvidado la contraseña?',
                     ['site/solicitar-clave'])
                 ?>
-            </div>
-        </div>
 
-
-        <div class='row'>
-            <div class='col-md-5 col-md-offset-3'>
+                <!-- Recordar la sesión -->
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
-            </div>
-        </div>
 
-
-        <div class="row">
-            <div class="col-md-5 col-md-offset-3">
+                <!-- Botón de envio de formulario -->
                 <?= Html::submitButton('Iniciar sesión', [
                     'class' => 'btn btn-primary btn-block',
                     'name' => 'login-button'
                 ]) ?>
-            </div>
+
+
+            <?php ActiveForm::end(); ?>
         </div>
-
-    <?php ActiveForm::end(); ?>
-
-
+    </div>
+    
 </div>

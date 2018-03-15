@@ -5,6 +5,7 @@ use yii\helpers\Html;
 
 ?>
 
+<!-- Información -->
 <div class='row'>
     <div class='col-md-6 col-md-offset-3'>
         <?=
@@ -17,21 +18,21 @@ use yii\helpers\Html;
     </div>
 </div>
 <br>
-<?php $form = ActiveForm::begin([
-    'method'=>'get',
-]) ?>
 
-    <div class='row'>
-        <div class='col-md-6 col-md-offset-3'>
+<!-- Formulario de recuperación de contraseña -->
+<div class='row'>
+    <div class='col-md-6 col-md-offset-3'>
+
+        <?php $form = ActiveForm::begin([
+            'method'=>'get',
+        ]) ?>
+
+            <!-- Dirección de correo electrónico -->
             <?= $form->field($model, 'email') ?>
-        </div>
-    </div>
 
-    <div class='row'>
-        <div class='col-md-6 col-md-offset-3'>
+            <!-- Botón de envio de formulario -->
             <?= Html::submitButton('Enviar', ['class'=>'btn btn-success']) ?>
-        </div>
+
+        <?php ActiveForm::end() ?>
     </div>
-
-
-<?php ActiveForm::end() ?>
+</div>

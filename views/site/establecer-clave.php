@@ -5,26 +5,20 @@ use yii\helpers\Html;
 
 ?>
 
+<!-- Formulario para restablecer nueva contraseña -->
+<div class='row'>
+    <div class='col-md-6 col-md-offset-3'>
+        <?php $form = ActiveForm::begin() ?>
 
-<?php $form = ActiveForm::begin() ?>
-
-    <div class='row'>
-        <div class='col-md-6 col-md-offset-3'>
+            <!-- Contraseña -->
             <?= $form->field($model, 'password')->passwordInput() ?>
-        </div>
-    </div>
 
-    <div class='row'>
-        <div class='col-md-6 col-md-offset-3'>
+            <!-- Contraseña a repetir -->
             <?= $form->field($model, 'password_repeat')->passwordInput() ?>
-        </div>
-    </div>
 
-    <div class='row'>
-        <div class='col-md-6 col-md-offset-3'>
+            <!-- Botón de envio de formulario -->
             <?= Html::submitButton('Enviar', ['class'=>'btn btn-success'])?>
-        </div>
+
+        <?php ActiveForm::end() ?>
     </div>
-
-
-<?php ActiveForm::end() ?>
+</div>
