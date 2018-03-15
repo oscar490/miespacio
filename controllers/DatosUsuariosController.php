@@ -53,9 +53,9 @@ class DatosUsuariosController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView()
     {
-        $datos = $this->findModel($id);
+        $datos = $this->findModel(Yii::$app->user->id);
         $cuenta = Usuarios::findOne(['id'=>$datos->usuario_id]);
         $cuenta->scenario = Usuarios::ESCENARIO_UPDATE;
 
@@ -64,7 +64,7 @@ class DatosUsuariosController extends Controller
                 'success',
                 'Se han modificado los datos de la cuenta correctamente'
             );
-            return $this->redirect(['view', 'id'=>$id]);
+            return $this->redirect(['view']);
         }
 
         $cuenta->password = '';
@@ -110,7 +110,7 @@ class DatosUsuariosController extends Controller
                 'success',
                 'Se han modificado los datos de perfil correctamente'
             );
-            return $this->redirect(['view', 'id' =>$id]);
+            return $this->redirect(['view']);
         }
 
         return $this->render('view', [

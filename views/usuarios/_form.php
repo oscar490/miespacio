@@ -9,52 +9,41 @@ use yii\widgets\ActiveForm;
 
 ?>
 
-    <?php $form = ActiveForm::begin(); ?>
+<!-- Formulario de registro de usuario nuevo -->
+<div class='row'>
+    <div class='col-md-5 col-md-offset-3'>
+        <?php $form = ActiveForm::begin(); ?>
 
-        <div class='row'>
-            <div class='col-md-5 col-md-offset-3'>
-                <?= $form->field($model, 'nombre')->textInput([
-                    'maxlength' => true,
-                    'placeholder'=>'p.ej.: manuel',
-                ]) ?>
-            </div>
-        </div>
+            <!-- Nombre de usuario -->
+            <?= $form->field($model, 'nombre')->textInput([
+                'maxlength' => true,
+                'placeholder'=>'p.ej.: manuel',
+            ]) ?>
 
-        <div class='row'>
-            <div class='col-md-5 col-md-offset-3'>
-                <?= $form->field($model, 'password')->passwordInput([
-                    'maxlength' => true,
-                    'placeholder'=>'p. ej.: ··········',
-                ]) ?>
-            </div>
-        </div>
+            <!-- Contraseña -->
+            <?= $form->field($model, 'password')->passwordInput([
+                'maxlength' => true,
+                'placeholder'=>'p. ej.: ··········',
+            ]) ?>
 
-        <div class='row'>
-            <div class='col-md-5 col-md-offset-3'>
-                <?= $form->field($model, 'password_repeat')->passwordInput([
-                    'maxlength' => true,
-                    'placeholder'=>'p. ej.: ··········',
-                ]) ?>
-            </div>
-        </div>
+            <!-- Contraseña confirmar -->
+            <?= $form->field($model, 'password_repeat')->passwordInput([
+                'maxlength' => true,
+                'placeholder'=>'p. ej.: ··········',
+            ]) ?>
 
-        <div class='row'>
-            <div class='col-md-5 col-md-offset-3'>
-                <?= $form->field($model, 'email')->textInput([
-                    'maxlength' => true,
-                    'placeholder'=>'p. ej.: manuel@gmail.com',
-                ]) ?>
-            </div>
-        </div>
+            <!-- Dirección de correo electrónico -->
+            <?= $form->field($model, 'email')->textInput([
+                'maxlength' => true,
+                'placeholder'=>'p. ej.: manuel@gmail.com',
+            ]) ?>
 
+            <!-- Botón de envio de formulario -->
+            <?= Html::submitButton('Crear una cuenta nueva', [
+                'class' => 'btn btn-success btn-block',
+                'id'=>'envio',
+            ]) ?>
 
-        <div class="row">
-            <div class='col-md-5 col-md-offset-3'>
-                <?= Html::submitButton('Crear una cuenta nueva', [
-                    'class' => 'btn btn-success btn-block',
-                    'id'=>'envio',
-                ]) ?>
-            </div>
-        </div>
-
-    <?php ActiveForm::end(); ?>
+        <?php ActiveForm::end(); ?>
+    </div>
+</div>
