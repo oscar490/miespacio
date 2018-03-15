@@ -15,6 +15,7 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
+use yii\web\UploadedFile;
 
 class SiteController extends Controller
 {
@@ -68,6 +69,19 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    /**
+     * Sube una imagen al servidor.
+     * @return [type] [description]
+     */
+    public function actionUpload()
+    {
+        $model = new Usuarios();
+
+        if (Yii::$app->request->isPost) {
+            $model->imagen = UploadedFile::getInstance($model, 'imagen');
+        }
     }
 
     /**
