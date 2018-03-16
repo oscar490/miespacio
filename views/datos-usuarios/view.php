@@ -23,12 +23,7 @@ $css = <<<EOT
         flex-direction: column;
         align-items: center;
     }
-    #foto {
-        background-color: #D8D8D8;
-        border-radius: 250px;
-        width: 100px;
-        height: 100px;
-    }
+
 
 
 EOT;
