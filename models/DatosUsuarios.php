@@ -102,7 +102,7 @@ class DatosUsuarios extends \yii\db\ActiveRecord
         $res = $this->imagen->saveAs($nombre);
 
         if ($res) {
-            Image::thumbnail($nombre, null, 120)->save($nombre);
+            Image::thumbnail($nombre, null, 150)->save($nombre);
         }
 
         return $res;
