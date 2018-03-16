@@ -60,8 +60,6 @@ class DatosUsuariosSearch extends DatosUsuarios
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'registro' => $this->registro,
-            'ultimo_acceso' => $this->ultimo_acceso,
             'usuario_id' => $this->usuario_id,
         ]);
 

@@ -8,6 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+use app\models\DatosUsuarios;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
@@ -28,6 +29,9 @@ AppAsset::register($this);
 
 <?php
     $items = [];
+    $datosUsuario = DatosUsuarios::findOne([
+        'usuario_id'=>Yii::$app->user->id,
+    ]);
 
     if (Yii::$app->user->isGuest) {
         $items = [
@@ -66,8 +70,28 @@ AppAsset::register($this);
                     'span',
                     ' ',
                     ['class'=>'glyphicon glyphicon-user icono-x2']
-                ) . ' ' . Yii::$app->user->identity->nombre,
+                ),
                 'items' => [
+                    Html::tag(
+                        'li',
+                        $datosUsuario->nombre_completo
+                        . ' (' . Yii::$app->user->identity->nombre . ')',
+                        ['class'=>'dropdown-header icono-x1']
+                    ),
+                    Html::tag(
+                        'li',
+                        '',
+                        ['class'=>'divider']
+                    ),
+                    [
+                        'label'=>Html::tag(
+                            'span',
+                            ' ',
+                            ['class'=>'glyphicon glyphicon-list icono-x2']
+                        ) . ' Perfil',
+                        'url'=>['datos-usuarios/view'],
+                        'encode'=>false,
+                    ],
                     [
                         'label'=>Html::tag(
                             'span',
@@ -78,15 +102,7 @@ AppAsset::register($this);
                         'linkOptions'=>['data-method'=>'POST'],
                         'encode'=>false,
                     ],
-                    [
-                        'label'=>Html::tag(
-                            'span',
-                            ' ',
-                            ['class'=>'glyphicon glyphicon-list icono-x2']
-                        ) . ' Perfil',
-                        'url'=>['datos-usuarios/view'],
-                        'encode'=>false,
-                    ],
+
                 ],
                 'encode'=>false,
 

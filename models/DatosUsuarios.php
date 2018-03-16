@@ -6,6 +6,7 @@ use Yii;
 use yii\web\User;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
+use yii\imagine\Image;
 
 /**
  * This is the model class for table "datos_usuarios".
@@ -13,8 +14,6 @@ use yii\behaviors\TimestampBehavior;
  * @property int $id
  * @property string $nombre_completo
  * @property string $descripcion
- * @property string $registro
- * @property string $ultimo_acceso
  * @property string $iniciales
  * @property int $usuario_id
  *
@@ -22,6 +21,12 @@ use yii\behaviors\TimestampBehavior;
  */
 class DatosUsuarios extends \yii\db\ActiveRecord
 {
+    const ESCENARIO_IMAGEN = 'imagen';
+    /**
+     * Imagen de perfil del usuario.
+     * @var [type]
+     */
+    public $imagen;
     /**
      * {@inheritdoc}
      */
@@ -43,19 +48,29 @@ class DatosUsuarios extends \yii\db\ActiveRecord
         ];
     }
 
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), [
+            'imagen',
+        ]);
+    }
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['registro', 'ultimo_acceso'], 'safe'],
             [['iniciales'], 'required'],
-            [['usuario_id'], 'default', 'value' => null],
             [['usuario_id'], 'integer'],
             [['nombre_completo', 'descripcion'], 'string', 'max' => 50],
             [['nombre_completo'], 'required'],
             [['iniciales'], 'string', 'max' => 4],
+            [
+                ['imagen'],
+                'file',
+                'extensions'=>'jpg',
+            ],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
         ];
     }
@@ -73,7 +88,24 @@ class DatosUsuarios extends \yii\db\ActiveRecord
             'ultimo_acceso' => 'Ultimo Acceso',
             'iniciales' => 'Iniciales',
             'usuario_id' => 'Usuario ID',
+            'imagen'=>'Imagen de ávatar',
         ];
+    }
+
+    public function upload()
+    {
+        if ($this->imagen === null) {
+            return true;
+        }
+
+        $nombre = Yii::getAlias('@uploads/') . $this->usuario_id . '.jpg';
+        $res = $this->imagen->saveAs($nombre);
+
+        if ($res) {
+            Image::thumbnail($nombre, null, 120)->save($nombre);
+        }
+
+        return $res;
     }
 
     /**

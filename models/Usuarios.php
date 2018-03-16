@@ -22,6 +22,10 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     const ESCENARIO_CREATE = 'create';
     const ESCENARIO_UPDATE = 'update';
 
+    /**
+     * Constraseña a ingresar por segunda vez.
+     * @var [type]
+     */
     public $password_repeat;
 
     /**
@@ -78,9 +82,10 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 
     public function attributes()
     {
-        return array_merge(parent::attributes(), ['password_repeat']);
+        return array_merge(parent::attributes(), [
+            'password_repeat',
+        ]);
     }
-
 
     /**
      * Devuelve un enlace para la validación por correo.

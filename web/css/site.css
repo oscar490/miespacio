@@ -109,6 +109,12 @@ a.desc:after {
         width: 100%;
         padding: 10px 15px;
     }
+
+    .open .dropdown-menu > li {
+        color: white;
+    }
+
+
 }
 
 .nav > li > form > button.logout:focus,
@@ -149,8 +155,6 @@ a.desc:after {
 }
 
 
-
-
 .logo {
     width: 35px;
 }
@@ -165,6 +169,14 @@ a.desc:after {
     font-weight: bold;
 }
 
+.icono-x1 {
+    font-size: 15px;
+}
+
 .icono-x2 {
     font-size: 20px;
+}
+
+.icono-x3 {
+    font-size: 40px;
 }

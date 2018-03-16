@@ -28,8 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'nombre_completo',
             'descripcion',
-            'registro',
-            'ultimo_acceso',
+            'imagen',
             //'iniciales',
             //'usuario_id',
 

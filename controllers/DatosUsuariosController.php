@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 use app\models\Usuarios;
 
 /**
@@ -105,7 +106,10 @@ class DatosUsuariosController extends Controller
     {
         $datos = $this->findModel($id);
 
-        if ($datos->load(Yii::$app->request->post()) && $datos->save()) {
+        if ($datos->load(Yii::$app->request->post())) {
+            $datos->imagen = UploadedFile::getInstance($datos, 'imagen');
+            $datos->save();
+            $datos->upload();
             Yii::$app->session->setFlash(
                 'success',
                 'Se han modificado los datos de perfil correctamente'
