@@ -62,7 +62,7 @@ AppAsset::register($this);
                     ' ',
                     ['class'=>'glyphicon glyphicon-th-large icono-x2']
                 ) . ' Inicio',
-                'url'=>['site/index'],
+                'url'=>['equipos/index'],
                 'encode'=>false,
             ],
             [
