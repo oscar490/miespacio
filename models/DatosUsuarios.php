@@ -6,6 +6,7 @@ use Yii;
 use yii\web\User;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
+use yii\imagine\Image;
 
 /**
  * This is the model class for table "datos_usuarios".
@@ -66,10 +67,9 @@ class DatosUsuarios extends \yii\db\ActiveRecord
             [['nombre_completo'], 'required'],
             [['iniciales'], 'string', 'max' => 4],
             [
-                ['foto'],
+                ['imagen'],
                 'file',
-                'extensions'=>'jpg, png',
-                'on'=>self::ESCENARIO_IMAGEN,
+                'extensions'=>'jpg',
             ],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
         ];
@@ -88,21 +88,24 @@ class DatosUsuarios extends \yii\db\ActiveRecord
             'ultimo_acceso' => 'Ultimo Acceso',
             'iniciales' => 'Iniciales',
             'usuario_id' => 'Usuario ID',
+            'imagen'=>'Imagen de ávatar',
         ];
     }
 
     public function upload()
     {
-        if ($this->validate()) {
-            $this->imagen->saveAs(
-                Yii::getAlias('@app/web/uploads/') . $this->id
-                . '.' . $this->imagen->extension
-            );
+        if ($this->imagen === null) {
             return true;
-
-        } else {
-            return false;
         }
+
+        $nombre = Yii::getAlias('@uploads/') . $this->usuario_id . '.jpg';
+        $res = $this->imagen->saveAs($nombre);
+
+        if ($res) {
+            Image::thumbnail($nombre, null, 120)->save($nombre);
+        }
+
+        return $res;
     }
 
     /**

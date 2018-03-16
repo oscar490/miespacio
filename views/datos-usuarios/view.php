@@ -30,10 +30,6 @@ $css = <<<EOT
         height: 100px;
     }
 
-    img {
-        width: 80px;
-        height: 80px:
-    }
 
 EOT;
  // Código JavaScript.
@@ -59,13 +55,21 @@ EOT;
 
 $this->registerJs($js);
 $this->registerCss($css);
+$imagen = Yii::getAlias('@uploads/') . $datos->usuario_id . '.jpg';
 ?>
 <div class="datos-usuarios-view">
+
+    <!-- Nombre de usuario e imagen de perfil -->
     <div class='row'>
         <div class='col-md-6 col-md-offset-3'>
             <div class='contenedor'>
-                <?php if (file_exists(Url::to(Yii::getAlias('@app/web/uploads/' . $datos->id . '.png')))): ?>
-                    <img src="<?= Url::to('/uploads/' . $datos->id . '.png')?>">
+                <?php if (file_exists($imagen)): ?>
+                    <?=
+                        Html::img(
+                            '/uploads/' . $datos->id . '.jpg',
+                            ['class'=>'img-rounded']
+                        );
+                    ?>
                 <?php else: ?>
                     <h2>
                         <span class='label label-primary icono-x3'>
@@ -89,6 +93,8 @@ $this->registerCss($css);
         </div>
     </div>
     <br>
+
+    <!-- Seleccionador de pestañas -->
     <?=
         Html::tag(
             'ul',
@@ -113,6 +119,8 @@ $this->registerCss($css);
 
     ?>
     <br>
+
+    <!-- Formulario de datos de cuenta -->
     <div class='row' id='datos-cuenta'>
         <div class='col-md-6 col-md-offset-3'>
             <div class='panel panel-primary'>
@@ -140,6 +148,7 @@ $this->registerCss($css);
         </div>
     </div>
 
+    <!-- Formulario de datos de perfil -->
     <div class='row' id='datos-perfil'>
         <div class='col-md-6 col-md-offset-3'>
             <div class='panel panel-primary'>
@@ -173,4 +182,5 @@ $this->registerCss($css);
             </div>
         </div>
     </div>
+
 </div>
