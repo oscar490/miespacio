@@ -21,6 +21,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= ListView::widget([
         'dataProvider'=>$dataProvider,
         'itemView'=>'_equipo',
+        'viewParams'=>[
+            'tablero'=>$tablero,
+        ],
         'summary'=>'',
     ])?>
 </div>

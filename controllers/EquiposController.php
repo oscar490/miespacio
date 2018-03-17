@@ -40,13 +40,12 @@ class EquiposController extends Controller
     {
         $searchModel = new EquiposSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        $equipo = new Equipos();
+        $tablero = new Tableros();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'equipo'=>$equipo,
+            'tablero'=>$tablero,
         ]);
     }
 

@@ -12,6 +12,23 @@ $tableros = new ActiveDataProvider([
     'query'=>Tableros::find()
         ->where(['equipo_id'=>$model->id]),
 ]);
+
+$css = <<<EOT
+    .crear-tablero {
+        display: none;
+    }
+EOT;
+
+$js = <<<EOT
+    $('#boton-crear').on('click', function(e) {
+        e.preventDefault();
+    })
+
+
+EOT;
+
+$this->registerCss($css);
+$this->registerJs($js);
 ?>
 
 <?=
@@ -36,13 +53,16 @@ $tableros = new ActiveDataProvider([
         <?= ListView::widget([
             'dataProvider'=>$tableros,
             'itemView'=>'_tablero',
+            'viewParams'=>[
+                'tablero'=>$tablero,
+            ],
             'summary'=>'',
         ]) ?>
     </div>
-<?php else:  ?>
-    <?= Html::a('Crear nuevo tablero', ['tableros/create'], [
-        'class'=>'btn btn-success',
-    ]) ?>
 <?php endif; ?>
 
+<?= Html::a('Crear nuevo tablero', ['tableros/create'], [
+    'class'=>'btn-sm btn-success',
+    'id'=>'boton-crear',
+]) ?>
 <hr>

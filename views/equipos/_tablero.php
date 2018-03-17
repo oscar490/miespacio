@@ -3,6 +3,7 @@
 /* @var $model app\models\Tableros */
 
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 $css = <<<EOT
     div.panel-tablero {
@@ -11,10 +12,25 @@ $css = <<<EOT
         border-radius: 5px;
     }
 
+    .crear-tablero {
+        display: none;
+    }
+
     a:link {
         text-decoration:none;
     }
 EOT;
+
+$js = <<<EOT
+    $('#boton-crear').on('click', function(e) {
+        e.preventDefault();
+    })
+
+
+EOT;
+
+$this->registerCss($css);
+$this->registerJs($js);
 
 $this->registerCss($css);
 ?>
@@ -47,3 +63,12 @@ $this->registerCss($css);
         ['class'=>'col-md-3']
     )
 ?>
+
+<div class='crear-tablero'>
+    <?php $form = ActiveForm::begin() ?>
+
+        <?= $form->field($tablero, 'denominacion') ?>
+        <?= Html::hiddenInput('equipo_id', $model->id) ?>
+
+    <?php ActiveForm::end() ?>
+</div>
