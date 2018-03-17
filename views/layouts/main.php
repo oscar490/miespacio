@@ -60,8 +60,8 @@ AppAsset::register($this);
                 'label'=> Html::tag(
                     'span',
                     ' ',
-                    ['class'=>'glyphicon glyphicon-th-large icono-x2']
-                ) . ' Inicio',
+                    ['class'=>'glyphicon glyphicon-align-justify icono-x2']
+                ),
                 'url'=>['equipos/index'],
                 'encode'=>false,
             ],

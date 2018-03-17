@@ -101,7 +101,7 @@ class SiteController extends Controller
 
             if ($usuario->token_acti === null) {
                 $model->login();
-                return $this->goBack();
+                return $this->redirect(['equipos/index']);
             }
             Yii::$app->session->setFlash(
                 'error',

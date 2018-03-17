@@ -40,7 +40,6 @@ class EquiposController extends Controller
         $searchModel = new EquiposSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
