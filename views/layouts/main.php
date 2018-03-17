@@ -56,7 +56,24 @@ AppAsset::register($this);
         ];
     } else {
         $items = [
-            
+            [
+                'label'=>Html::tag(
+                    'span',
+                    '',
+                    ['class'=>'glyphicon glyphicon-plus icono-x2']
+                ),
+                'items'=>[
+                    [
+                        'label'=>'Crear equipo...',
+                        'url'=>['equipos/create']
+                    ],
+                    [
+                        'label'=>'Crear tablero...',
+                        'url'=>['tableros/create'],
+                    ]
+                ],
+                'encode'=>false,
+            ],
             [
                 'label'=> Html::tag(
                     'span',

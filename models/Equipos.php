@@ -35,6 +35,7 @@ class Equipos extends \yii\db\ActiveRecord
             [['usuario_id'], 'default', 'value' => null],
             [['usuario_id'], 'integer'],
             [['denominacion', 'descripcion'], 'string', 'max' => 255],
+            [['denominacion', 'usuario_id'], 'unique', 'targetAttribute' => ['denominacion', 'usuario_id']],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
         ];
     }

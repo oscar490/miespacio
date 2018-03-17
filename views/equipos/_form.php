@@ -9,19 +9,32 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="equipos-form">
+    <div class='row'>
+        <div class='col-md-6 col-md-offset-3'>
+            <div class='panel panel-primary'>
+                <div class='panel-heading'>
+                    <?= Html::encode('Crear nuevo equipo') ?>
+                </div>
+                <div class='panel-body'>
+                    <?php $form = ActiveForm::begin(); ?>
 
-    <?php $form = ActiveForm::begin(); ?>
+                    <?= $form->field($model, 'denominacion')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'denominacion')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'descripcion')->textarea([
+                        'row'=>4,
+                    ]) ?>
 
-    <?= $form->field($model, 'descripcion')->textInput(['maxlength' => true]) ?>
+                    <?= Html::hiddenInput('usuario_id', Yii::$app->user->id) ?>
 
-    <?= $form->field($model, 'usuario_id')->textInput() ?>
+                    <div class="form-group">
+                        <?= Html::submitButton('Crear equipo', ['class' => 'btn btn-success btn-block']) ?>
+                    </div>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+                    <?php ActiveForm::end(); ?>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <?php ActiveForm::end(); ?>
-
 </div>

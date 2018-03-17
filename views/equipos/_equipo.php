@@ -39,6 +39,10 @@ $tableros = new ActiveDataProvider([
             'summary'=>'',
         ]) ?>
     </div>
+<?php else:  ?>
+    <?= Html::a('Crear nuevo tablero', ['tableros/create'], [
+        'class'=>'btn btn-success',
+    ]) ?>
 <?php endif; ?>
 
 <hr>

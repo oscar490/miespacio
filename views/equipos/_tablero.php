@@ -10,25 +10,40 @@ $css = <<<EOT
         color: white;
         border-radius: 5px;
     }
+
+    a:link {
+        text-decoration:none;
+    }
 EOT;
 
 $this->registerCss($css);
 ?>
-<div class='col-md-3'>
-    <div class='panel-tablero'>
-        <div class='panel-heading'>
-            <?=
+<?=
+    Html::tag(
+        'div',
+        Html::a(
+            Html::tag(
+                'div',
                 Html::tag(
-                    'p',
+                    'div',
                     Html::tag(
-                        'strong',
-                        $model->denominacion
-                    )
-                );
-            ?>
-        </div>
-        <div class='panel-body'>
-
-        </div>
-    </div>
-</div>
+                        'p',
+                        Html::tag(
+                            'strong',
+                            $model->denominacion
+                        )
+                    ),
+                    ['class'=>'panel-heading']
+                ) .
+                Html::tag(
+                    'div',
+                    '',
+                    ['class'=>'panel-body']
+                ),
+                ['class'=>'panel panel-primary']
+            ),
+            ['tableros/view', 'id'=>$model->id]
+        ),
+        ['class'=>'col-md-3']
+    )
+?>

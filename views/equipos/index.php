@@ -13,6 +13,8 @@ use yii\widgets\ActiveForm;
 
 $this->title = 'Tableros | MiEspacio';
 $this->params['breadcrumbs'][] = $this->title;
+
+
 ?>
 <div class="equipos-index">
 
@@ -21,31 +23,4 @@ $this->params['breadcrumbs'][] = $this->title;
         'itemView'=>'_equipo',
         'summary'=>'',
     ])?>
-</div>
-
-<div class='row'>
-    <div class='col-md-4'>
-        <div class='panel panel-primary'>
-            <div class='panel-heading'>
-                <?= Html::encode('Crear nuevo equipo') ?>
-            </div>
-            <div class='panel-body'>
-                <?php $form = ActiveForm::begin([
-                    'action'=>['equipos/create'],
-                ]) ?>
-
-                    <?= $form->field($equipo, 'denominacion') ?>
-
-                    <?= $form->field($equipo, 'descripcion')->textarea([
-                        'rows'=>3,
-                    ])?>
-
-                    <?= Html::hiddenInput('usuario_id', Yii::$app->user->id) ?>
-
-                    <?= Html::submitButton('Crear nuevo equipo', ['class'=>'btn btn-success'])?>
-
-                <?php ActiveForm::end() ?>
-            </div>
-        </div>
-    </div>
 </div>
