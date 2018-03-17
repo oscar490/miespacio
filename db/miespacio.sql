@@ -49,7 +49,7 @@ CREATE TABLE equipos
 (
       id           BIGSERIAL    PRIMARY KEY
     , denominacion VARCHAR(255) NOT NULL
-    , descipcion   VARCHAR(255)
+    , descripcion   VARCHAR(255)
     , usuario_id   BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
                                 CASCADE ON UPDATE CASCADE
     , UNIQUE (denominacion, usuario_id)

@@ -31,8 +31,19 @@ class Tableros extends \yii\db\ActiveRecord
         return [
             [['denominacion', 'equipo_id'], 'required'],
             [['equipo_id'], 'default', 'value' => null],
+            [
+                ['equipo_id'],
+                'filter',
+                'filter'=>'intval',
+            ],
             [['equipo_id'], 'integer'],
             [['denominacion'], 'string', 'max' => 255],
+            [
+                ['denominacion', 'equipo_id'],
+                'unique',
+                'targetAttribute' => ['denominacion', 'equipo_id'],
+                'message'=>'Ya existe un tablero con ese nombre.',
+            ],
             [['equipo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Equipos::className(), 'targetAttribute' => ['equipo_id' => 'id']],
         ];
     }
@@ -45,8 +56,13 @@ class Tableros extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'denominacion' => 'Denominacion',
-            'equipo_id' => 'Equipo ID',
+            'equipo_id' => 'Equipo',
         ];
+    }
+
+    public function formName()
+    {
+        return '';
     }
 
     /**

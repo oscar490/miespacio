@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $denominacion
- * @property string $descipcion
+ * @property string $descripcion
  * @property int $usuario_id
  *
  * @property Usuarios $usuario
@@ -34,7 +34,7 @@ class Equipos extends \yii\db\ActiveRecord
             [['denominacion', 'usuario_id'], 'required'],
             [['usuario_id'], 'default', 'value' => null],
             [['usuario_id'], 'integer'],
-            [['denominacion', 'descipcion'], 'string', 'max' => 255],
+            [['denominacion', 'descripcion'], 'string', 'max' => 255],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
         ];
     }
@@ -47,9 +47,18 @@ class Equipos extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'denominacion' => 'Denominacion',
-            'descipcion' => 'Descipcion',
+            'descripcion' => 'Descripcion',
             'usuario_id' => 'Usuario ID',
         ];
+    }
+
+    /**
+     * Nombre del formulario.
+     * @return [type] [description]
+     */
+    public function formName()
+    {
+        return '';
     }
 
     /**

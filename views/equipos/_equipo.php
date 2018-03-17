@@ -6,13 +6,12 @@ use yii\helpers\Html;
 use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
 use app\models\Tableros;
+use yii\widgets\ActiveForm;
 
 $tableros = new ActiveDataProvider([
     'query'=>Tableros::find()
         ->where(['equipo_id'=>$model->id]),
 ]);
-
-
 ?>
 
 <?=
@@ -29,12 +28,17 @@ $tableros = new ActiveDataProvider([
         )
     );
 ?>
+<br>
 
-<div class='row'>
-    <?= ListView::widget([
-        'dataProvider'=>$tableros,
-        'itemView'=>'_tablero',
-        'summary'=>'',
-    ]) ?>
-</div>
+<!-- Tableros -->
+<?php if (!empty($tableros->query->all())): ?>
+    <div class='row'>
+        <?= ListView::widget([
+            'dataProvider'=>$tableros,
+            'itemView'=>'_tablero',
+            'summary'=>'',
+        ]) ?>
+    </div>
+<?php endif; ?>
+
 <hr>

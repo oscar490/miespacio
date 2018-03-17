@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Equipos;
+use app\models\Tableros;
 
 /**
- * EquiposSearch represents the model behind the search form of `app\models\Equipos`.
+ * TablerosSearch represents the model behind the search form of `app\models\Tableros`.
  */
-class EquiposSearch extends Equipos
+class TablerosSearch extends Tableros
 {
     /**
      * {@inheritdoc}
@@ -18,8 +18,8 @@ class EquiposSearch extends Equipos
     public function rules()
     {
         return [
-            [['id', 'usuario_id'], 'integer'],
-            [['denominacion', 'descipcion'], 'safe'],
+            [['id', 'equipo_id'], 'integer'],
+            [['denominacion'], 'safe'],
         ];
     }
 
@@ -41,8 +41,7 @@ class EquiposSearch extends Equipos
      */
     public function search($params)
     {
-        $query = Equipos::find()
-            ->where(['usuario_id'=>Yii::$app->user->id]);
+        $query = Tableros::find();
 
         // add conditions that should always apply here
 
@@ -61,11 +60,10 @@ class EquiposSearch extends Equipos
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'usuario_id' => $this->usuario_id,
+            'equipo_id' => $this->equipo_id,
         ]);
 
-        $query->andFilterWhere(['ilike', 'denominacion', $this->denominacion])
-            ->andFilterWhere(['ilike', 'descripcion', $this->descripcion]);
+        $query->andFilterWhere(['ilike', 'denominacion', $this->denominacion]);
 
         return $dataProvider;
     }

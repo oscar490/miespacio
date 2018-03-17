@@ -3,18 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Equipos;
-use app\models\EquiposSearch;
+use app\models\Tableros;
+use app\models\TablerosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\data\ActiveDataProvider;
-use app\models\Tableros;
 
 /**
- * EquiposController implements the CRUD actions for Equipos model.
+ * TablerosController implements the CRUD actions for Tableros model.
  */
-class EquiposController extends Controller
+class TablerosController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -32,26 +30,22 @@ class EquiposController extends Controller
     }
 
     /**
-     * Se muestra los equipos del usuario. También se muestra los Tableros
-     * creados en ese equipo y permite crear tableros nuevos.
+     * Lists all Tableros models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new EquiposSearch();
+        $searchModel = new TablerosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        $equipo = new Equipos();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'equipo'=>$equipo,
         ]);
     }
 
     /**
-     * Displays a single Equipos model.
+     * Displays a single Tableros model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -64,13 +58,13 @@ class EquiposController extends Controller
     }
 
     /**
-     * Creates a new Equipos model.
+     * Creates a new Tableros model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Equipos();
+        $model = new Tableros();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -82,7 +76,7 @@ class EquiposController extends Controller
     }
 
     /**
-     * Updates an existing Equipos model.
+     * Updates an existing Tableros model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -102,7 +96,7 @@ class EquiposController extends Controller
     }
 
     /**
-     * Deletes an existing Equipos model.
+     * Deletes an existing Tableros model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -116,15 +110,15 @@ class EquiposController extends Controller
     }
 
     /**
-     * Finds the Equipos model based on its primary key value.
+     * Finds the Tableros model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Equipos the loaded model
+     * @return Tableros the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Equipos::findOne($id)) !== null) {
+        if (($model = Tableros::findOne($id)) !== null) {
             return $model;
         }
 
