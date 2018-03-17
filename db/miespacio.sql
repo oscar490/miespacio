@@ -48,10 +48,11 @@ DROP TABLE IF EXISTS equipos CASCADE;
 CREATE TABLE equipos
 (
       id           BIGSERIAL    PRIMARY KEY
-    , denominacion VARCHAR(255) NOT NULL UNIQUE
+    , denominacion VARCHAR(255) NOT NULL
     , descipcion   VARCHAR(255)
     , usuario_id   BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
                                 CASCADE ON UPDATE CASCADE
+    , UNIQUE (denominacion, usuario_id)
 );
 
 
@@ -71,7 +72,7 @@ CREATE TABLE tableros
     , equipo_id    BIGINT        NOT NULL REFERENCES equipos (id) ON DELETE
                                  CASCADE ON UPDATE CASCADE
 
-    , UNIQUE (denominacion, equipo_id)  
+    , UNIQUE (denominacion, equipo_id)
 
 );
 

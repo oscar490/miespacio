@@ -41,7 +41,8 @@ class EquiposSearch extends Equipos
      */
     public function search($params)
     {
-        $query = Equipos::find();
+        $query = Equipos::find()
+            ->where(['usuario_id'=>Yii::$app->user->id]);
 
         // add conditions that should always apply here
 
