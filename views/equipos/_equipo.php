@@ -7,28 +7,12 @@ use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
 use app\models\Tableros;
 use yii\widgets\ActiveForm;
+use yii\bootstrap\Modal;
 
 $tableros = new ActiveDataProvider([
     'query'=>Tableros::find()
         ->where(['equipo_id'=>$model->id]),
 ]);
-
-$css = <<<EOT
-    .crear-tablero {
-        display: none;
-    }
-EOT;
-
-$js = <<<EOT
-    $('#boton-crear').on('click', function(e) {
-        e.preventDefault();
-    })
-
-
-EOT;
-
-$this->registerCss($css);
-$this->registerJs($js);
 ?>
 
 <?=
@@ -53,16 +37,22 @@ $this->registerJs($js);
         <?= ListView::widget([
             'dataProvider'=>$tableros,
             'itemView'=>'_tablero',
-            'viewParams'=>[
-                'tablero'=>$tablero,
-            ],
             'summary'=>'',
         ]) ?>
     </div>
 <?php endif; ?>
 
-<?= Html::a('Crear nuevo tablero', ['tableros/create'], [
-    'class'=>'btn-sm btn-success',
-    'id'=>'boton-crear',
+<?php $form = ActiveForm::begin([
+    'options'=>['class'=>'form-inline'],
+    'action'=>['equipos/index', 'id_equipo'=>$model->id],
 ]) ?>
+
+    <?= $form->field($tableroCrear, 'denominacion')->textInput([
+            'placeholder'=>'Añadir título del tablero',
+        ])
+        ->label(false)
+    ?>
+    <?= Html::submitButton('Crear tablero', ['class'=>'btn-xs btn-success']) ?>
+
+<?php ActiveForm::end() ?>
 <hr>

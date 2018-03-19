@@ -63,12 +63,3 @@ $this->registerCss($css);
         ['class'=>'col-md-3']
     )
 ?>
-
-<div class='crear-tablero'>
-    <?php $form = ActiveForm::begin() ?>
-
-        <?= $form->field($tablero, 'denominacion') ?>
-        <?= Html::hiddenInput('equipo_id', $model->id) ?>
-
-    <?php ActiveForm::end() ?>
-</div>

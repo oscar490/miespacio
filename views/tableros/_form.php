@@ -14,7 +14,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'denominacion')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'equipo_id')->textInput() ?>
+    <?= $form->field($model, 'equipo_id')->dropDownList([
+            'Equipos'=>$equipos,
+        ],
+        ['selected'=>2]
+    ) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

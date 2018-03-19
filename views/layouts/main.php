@@ -79,7 +79,7 @@ AppAsset::register($this);
                     'span',
                     ' ',
                     ['class'=>'glyphicon glyphicon-align-justify icono-x2']
-                ),
+                ) . ' Mis tableros',
                 'url'=>['equipos/index'],
                 'encode'=>false,
             ],

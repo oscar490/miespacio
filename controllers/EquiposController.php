@@ -33,19 +33,26 @@ class EquiposController extends Controller
 
     /**
      * Se muestra los equipos del usuario. También se muestra los Tableros
-     * creados en ese equipo y permite crear tableros nuevos.
+     * creados en ese equipo.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($id_equipo = null)
     {
-        $searchModel = new EquiposSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $tablero = new Tableros();
+        $equipos = new ActiveDataProvider([
+            'query'=>Equipos::find(),
+        ]);
+
+        $tableroCrear = new Tableros([
+            'equipo_id'=>$id_equipo,
+        ]);
+
+        if ($tableroCrear->load(Yii::$app->request->post()) && $tableroCrear->save()) {
+            return $this->redirect(['index']);
+        }
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'tablero'=>$tablero,
+            'equipos' => $equipos,
+            'tableroCrear'=>$tableroCrear,
         ]);
     }
 

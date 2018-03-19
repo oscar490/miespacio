@@ -19,10 +19,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="equipos-index">
 
     <?= ListView::widget([
-        'dataProvider'=>$dataProvider,
+        'dataProvider'=>$equipos,
         'itemView'=>'_equipo',
         'viewParams'=>[
-            'tablero'=>$tablero,
+            'tableroCrear'=>$tableroCrear,
         ],
         'summary'=>'',
     ])?>
