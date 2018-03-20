@@ -80,7 +80,7 @@ AppAsset::register($this);
                     ' ',
                     ['class'=>'glyphicon glyphicon-align-justify icono-x2']
                 ) . ' Mis tableros',
-                'url'=>['equipos/index'],
+                'url'=>['equipos/gestionar-tableros'],
                 'encode'=>false,
             ],
             [

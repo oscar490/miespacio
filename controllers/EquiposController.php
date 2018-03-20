@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
+use yii\widgets\ActiveForm;
+use yii\web\Response;
 use app\models\Tableros;
 
 /**
@@ -32,11 +34,12 @@ class EquiposController extends Controller
     }
 
     /**
-     * Se muestra los equipos del usuario. También se muestra los Tableros
-     * creados en ese equipo.
+     * Se muestran los tableros creados en cada equipo. Se permite poder crear
+     * un tablero nuevo o un nuevo equipo.
+     * @param integer $id_equipo El identificador del equipo.
      * @return mixed
      */
-    public function actionIndex($id_equipo = null)
+    public function actionGestionarTableros($id_equipo = null)
     {
         $equipos = new ActiveDataProvider([
             'query'=>Equipos::find(),
@@ -46,13 +49,21 @@ class EquiposController extends Controller
             'equipo_id'=>$id_equipo,
         ]);
 
+        $equipoCrear = new Equipos();
+
+        if (Yii::$app->request->isAjax && $tableroCrear->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($tableroCrear);
+        }
+
         if ($tableroCrear->load(Yii::$app->request->post()) && $tableroCrear->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['tableros/view', 'id'=>$tableroCrear->id]);
         }
 
         return $this->render('index', [
             'equipos' => $equipos,
             'tableroCrear'=>$tableroCrear,
+            'equipoCrear'=>$equipoCrear,
         ]);
     }
 
@@ -76,14 +87,30 @@ class EquiposController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Equipos();
+        $equipo = new Equipos([
+            'usuario_id'=>Yii::$app->user->id,
+        ]);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $tablero = new Tableros();
+
+        $equipos = Equipos::find()
+            ->select(['denominacion'])
+            ->indexBy('id')
+            ->column();
+
+        if (Yii::$app->request->isAjax && $equipo->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($equipo);
+        }
+
+        if ($equipo->load(Yii::$app->request->post()) && $equipo->save()) {
+            return $this->redirect(['view', 'id' => $equipo->id]);
         }
 
         return $this->render('create', [
-            'model' => $model,
+            'equipo' => $equipo,
+            'equipos'=>$equipos,
+            'tablero'=>$tablero,
         ]);
     }
 

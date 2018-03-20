@@ -42,17 +42,31 @@ $tableros = new ActiveDataProvider([
     </div>
 <?php endif; ?>
 
-<?php $form = ActiveForm::begin([
-    'options'=>['class'=>'form-inline'],
-    'action'=>['equipos/index', 'id_equipo'=>$model->id],
+<!-- Formulario para crear tableros en un equipo -->
+<?php Modal::begin([
+    'header'=>'<h4>Crear un nuevo tablero</h4>',
+    'toggleButton'=>[
+        'label'=>'Crear un nuevo tablero',
+        'class'=>'btn-md btn-success',
+    ],
+    'size'=>Modal::SIZE_SMALL,
 ]) ?>
 
-    <?= $form->field($tableroCrear, 'denominacion')->textInput([
-            'placeholder'=>'Añadir título del tablero',
-        ])
-        ->label(false)
-    ?>
-    <?= Html::submitButton('Crear tablero', ['class'=>'btn-xs btn-success']) ?>
+    <?php $form = ActiveForm::begin([
+        'action'=>['equipos/gestionar-tableros', 'id_equipo'=>$model->id],
+        'enableAjaxValidation' => true,
+    ]) ?>
 
-<?php ActiveForm::end() ?>
+        <?= $form->field($tableroCrear, 'denominacion', ['enableAjaxValidation' => true])->textInput([
+                'placeholder'=>'Añadir título del tablero',
+            ])
+            ->label(false)
+        ?>
+        <?= Html::submitButton('Crear tablero', [
+            'class'=>'btn-xs btn-success',
+        ]) ?>
+
+    <?php ActiveForm::end() ?>
+
+<?php Modal::end() ?>
 <hr>

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Equipos */
+/* @var $equipo app\models\Equipos */
 
 $this->title = 'Crear un nuevo equipo';
 $this->params['breadcrumbs'][] = $this->title;
@@ -12,7 +12,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="equipos-create">
 
     <?= $this->render('_form', [
-        'model' => $model,
+        'equipo' => $equipo,
+        'tablero'=>$tablero,
+        'equipos'=>$equipos,
     ]) ?>
 
 </div>

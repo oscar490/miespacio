@@ -6,31 +6,10 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 $css = <<<EOT
-    div.panel-tablero {
-        background-color: #0266a0;
-        color: white;
-        border-radius: 5px;
-    }
-
-    .crear-tablero {
-        display: none;
-    }
-
     a:link {
         text-decoration:none;
     }
 EOT;
-
-$js = <<<EOT
-    $('#boton-crear').on('click', function(e) {
-        e.preventDefault();
-    })
-
-
-EOT;
-
-$this->registerCss($css);
-$this->registerJs($js);
 
 $this->registerCss($css);
 ?>

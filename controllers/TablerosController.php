@@ -63,14 +63,9 @@ class TablerosController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($id_equipo = null)
+    public function actionCreate()
     {
         $model = new Tableros();
-
-        $equipos = Equipos::find()
-            ->select(['denominacion'])
-            ->indexBy('id')
-            ->column();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -78,7 +73,6 @@ class TablerosController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            'equipos'=>$equipos,
         ]);
     }
 
