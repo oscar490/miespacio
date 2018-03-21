@@ -49,8 +49,6 @@ class EquiposController extends Controller
             'equipo_id'=>$id_equipo,
         ]);
 
-        $equipoCrear = new Equipos();
-
         if (Yii::$app->request->isAjax && $tableroCrear->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($tableroCrear);
@@ -60,10 +58,10 @@ class EquiposController extends Controller
             return $this->redirect(['tableros/view', 'id'=>$tableroCrear->id]);
         }
 
-        return $this->render('index', [
+        return $this->render('gestionar', [
             'equipos' => $equipos,
-            'tableroCrear'=>$tableroCrear,
-            'equipoCrear'=>$equipoCrear,
+            'tableroCrear'=> $tableroCrear,
+            'equipoCrear'=> new Equipos(),
         ]);
     }
 

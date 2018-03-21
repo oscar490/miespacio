@@ -58,7 +58,7 @@ class Equipos extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'denominacion' => 'Nombre',
+            'denominacion' => 'Nombre del equipo',
             'descripcion' => 'Descripción (opcional)',
             'usuario_id' => 'Usuario ID',
         ];

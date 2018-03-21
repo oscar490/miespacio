@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $equipo app\models\Equipos */
 
-$this->title = 'Crear un nuevo equipo';
+$this->title = 'Crear | MiEspacio';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="equipos-create">

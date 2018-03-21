@@ -55,7 +55,7 @@ class Tableros extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'denominacion' => 'Denominacion',
+            'denominacion' => 'Nombre del tablero',
             'equipo_id' => 'Equipo',
         ];
     }

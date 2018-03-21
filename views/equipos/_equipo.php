@@ -1,6 +1,7 @@
 <?php
 
 /* @var $model app\models\Equipos */
+/* @var $tableroCrear app\models\Tableros */
 
 use yii\helpers\Html;
 use yii\widgets\ListView;
@@ -15,6 +16,7 @@ $tableros = new ActiveDataProvider([
 ]);
 ?>
 
+<!-- Nombre del equipo -->
 <?=
     Html::tag(
         'h4',
@@ -31,7 +33,7 @@ $tableros = new ActiveDataProvider([
 ?>
 <br>
 
-<!-- Tableros -->
+<!-- Tableros pertenecientes al equipo -->
 <?php if (!empty($tableros->query->all())): ?>
     <div class='row'>
         <?= ListView::widget([
@@ -53,15 +55,19 @@ $tableros = new ActiveDataProvider([
 ]) ?>
 
     <?php $form = ActiveForm::begin([
-        'action'=>['equipos/gestionar-tableros', 'id_equipo'=>$model->id],
+        'action'=>[
+            'equipos/gestionar-tableros',
+            'id_equipo'=>$model->id
+        ],
         'enableAjaxValidation' => true,
     ]) ?>
 
-        <?= $form->field($tableroCrear, 'denominacion', ['enableAjaxValidation' => true])->textInput([
-                'placeholder'=>'Añadir título del tablero',
-            ])
-            ->label(false)
+        <?= $form->field($tableroCrear, 'denominacion', [
+            'enableAjaxValidation' => true
+            ])->textInput(['placeholder'=>'Añadir título del tablero',])
+                ->label(false)
         ?>
+        
         <?= Html::submitButton('Crear tablero', [
             'class'=>'btn-xs btn-success',
         ]) ?>

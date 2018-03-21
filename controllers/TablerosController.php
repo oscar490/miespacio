@@ -8,7 +8,11 @@ use app\models\Equipos;
 use app\models\TablerosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
+use yii\widgets\ActiveForm;
+use yii\grid\GridView;
+use yii\web\Response;
 
 /**
  * TablerosController implements the CRUD actions for Tableros model.
@@ -59,6 +63,29 @@ class TablerosController extends Controller
     }
 
     /**
+     * Devuelve una tabla con los nombres de los tableros que
+     * pertenecen a un equipo.
+     * @param  integer $id_equipo Identificador del equipo.
+     * @return [type]            [description]
+     */
+    public function actionDevolverTableros($id_equipo)
+    {
+        return  GridView::widget([
+            'dataProvider'=>new ActiveDataProvider([
+                'query'=>Tableros::find()
+                    ->where(['equipo_id'=>$id_equipo]),
+            ]),
+            'columns'=>[
+                [
+                    'attribute'=>'denominacion',
+                    'header'=>'Tableros',
+                ],
+            ],
+            'summary'=>'',
+        ]);
+    }
+
+    /**
      * Creates a new Tableros model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -67,13 +94,15 @@ class TablerosController extends Controller
     {
         $model = new Tableros();
 
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**
