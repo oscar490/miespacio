@@ -1,5 +1,6 @@
 <?php
-
+/* Se muestra un listado de los tableros que pertenecen a un equipo. */
+/* Se permite crear nuevos tableros. */
 /* @var $model app\models\Equipos */
 /* @var $tableroCrear app\models\Tableros */
 
@@ -46,7 +47,7 @@ $tableros = new ActiveDataProvider([
 
 <!-- Formulario para crear tableros en un equipo -->
 <?php Modal::begin([
-    'header'=>'<h4>Crear un nuevo tablero</h4>',
+    'header'=>"<h4>Crear un nuevo tablero en $model->denominacion</h4>",
     'toggleButton'=>[
         'label'=>'Crear un nuevo tablero',
         'class'=>'btn-md btn-success',
@@ -67,7 +68,7 @@ $tableros = new ActiveDataProvider([
             ])->textInput(['placeholder'=>'Añadir título del tablero',])
                 ->label(false)
         ?>
-        
+
         <?= Html::submitButton('Crear tablero', [
             'class'=>'btn-xs btn-success',
         ]) ?>

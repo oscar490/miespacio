@@ -1,4 +1,11 @@
 <?php
+/* Se muestra los equios y los tableros que pertenecen a cada equipo. */
+/* Se permite crear nuevos equipos. */
+
+/* @var $this yii\web\View */
+/* @var $equipos yii\data\ActiveDataProvider */
+/* @var $equipoCrear app\models\Equipos */
+/* @var $tableroCrear app\models\Tableros */
 
 use yii\helpers\Html;
 use yii\widgets\ListView;
@@ -6,17 +13,12 @@ use yii\grid\GridView;
 use yii\widgets\ActiveForm;
 use kartik\popover\PopoverX;
 
-/* @var $this yii\web\View */
-/* @var $equipos yii\data\ActiveDataProvider */
-/* @var $equipoCrear app\models\Equipos */
-/* @var $tableroCrear app\models\Tableros */
-
 $this->title = 'Tableros | MiEspacio';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
+<!-- Listado de los equipos creados por el usuario -->
 <div class="equipos-index">
-
     <?= ListView::widget([
         'dataProvider'=>$equipos,
         'itemView'=>'_equipo',

@@ -1,5 +1,5 @@
 <?php
-
+/* Diseño del tablero, al seleccionarlo, nos redirecciona a su contenido. */
 /* @var $model app\models\Tableros */
 
 use yii\helpers\Html;

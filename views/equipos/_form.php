@@ -8,10 +8,15 @@ use kartik\tabs\TabsX;
 use app\models\Tableros;
 use yii\helpers\Url;
 /* @var $this yii\web\View */
-/* @var $model app\models\Equipos */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $this yii\web\View */
+/* @var $equipo app\models\Equipos */
+/* @var $equipos app\models\Equipos */
+/* @var $tablero app\models\Tableros */
+/* @var $tablerosLista app\models\Tableros */
 
 $url = Url::to(['tableros/devolver-tableros']);
+$nombre_equipo = $tablerosLista->query->one()->equipo->denominacion;
+//  Código JavaScript.
 $js = <<<EOT
     $('select').on('change', function() {
         $.ajax({
@@ -28,14 +33,10 @@ $js = <<<EOT
     })
 EOT;
 
-$tablerosLista = new ActiveDataProvider([
-    'query'=>Tableros::find()
-        ->where(['equipo_id'=>1]),
-]);
-
 $this->registerJs($js);
 
 $items = [
+    //  Formulario para crear un nuevo equipo.
     [
         'label'=>'<span class="glyphicon glyphicon-list-alt icono-x2"></span>'
             . ' Equipo',
@@ -45,6 +46,7 @@ $items = [
         'active'=>true,
         'encode'=>false,
     ],
+    //  Formulario para crer un nuevo tablero.
     [
         'label'=>'<span class="glyphicon glyphicon-align-justify icono-x2"></span>'
             . ' Tablero',
@@ -56,17 +58,15 @@ $items = [
     ]
 ];
 ?>
-<!-- Formularios -->
 <div class="equipos-form">
-
     <div class='row'>
+        <!-- Panel para crear tablero o equipo -->
         <div class='col-md-6'>
             <div class='panel panel-primary'>
                 <div class='panel-heading'>
                     <?= Html::encode('Crear') ?>
                 </div>
                 <div class='panel-body'>
-
                     <?= TabsX::widget([
                         'items'=>$items,
                          'position'=>TabsX::POS_LEFT,
@@ -75,27 +75,20 @@ $items = [
             </div>
         </div>
 
+        <!-- Panel donde se muestra los tableros de un equipo -->
         <div class='col-md-6'>
             <div class='panel panel-primary'>
                 <div class='panel-heading'>
-                    <?= Html::encode('Ver tableros de un equipo') ?>
+                    <?= Html::encode('Lista de tableros de un equipo') ?>
                 </div>
                 <div class='panel-body'>
-                    <?php $form = ActiveForm::begin() ?>
-
-                        <?= $form->field($tablero, 'equipo_id')->dropdownList([
-                            'Equipos'=>$equipos,
-                        ]) ?>
-
-                    <?php ActiveForm::end() ?>
-                    <hr>
                     <div class='contenedor'>
                         <?= GridView::widget([
                             'dataProvider'=>$tablerosLista,
                             'columns'=>[
                                 [
                                     'attribute'=>'denominacion',
-                                    'header'=>'Tableros',
+                                    'header'=>"Tableros de $nombre_equipo",
                                 ],
                             ],
                             'summary'=>'',
@@ -104,5 +97,6 @@ $items = [
                 </div>
             </div>
         </div>
+
     </div>
 </div>

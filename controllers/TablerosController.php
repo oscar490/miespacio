@@ -63,25 +63,18 @@ class TablerosController extends Controller
     }
 
     /**
-     * Devuelve una tabla con los nombres de los tableros que
+     * Renderiza una vista de los tableros de un equipo.
      * pertenecen a un equipo.
      * @param  integer $id_equipo Identificador del equipo.
      * @return [type]            [description]
      */
     public function actionDevolverTableros($id_equipo)
     {
-        return  GridView::widget([
-            'dataProvider'=>new ActiveDataProvider([
-                'query'=>Tableros::find()
-                    ->where(['equipo_id'=>$id_equipo]),
-            ]),
-            'columns'=>[
-                [
-                    'attribute'=>'denominacion',
-                    'header'=>'Tableros',
-                ],
-            ],
-            'summary'=>'',
+        $tableros = Tableros::find()
+            ->where(['equipo_id'=>$id_equipo]);
+
+        return $this->renderAjax('tableros', [
+            'tableros'=>$tableros,
         ]);
     }
 

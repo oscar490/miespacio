@@ -42,7 +42,8 @@ class EquiposController extends Controller
     public function actionGestionarTableros($id_equipo = null)
     {
         $equipos = new ActiveDataProvider([
-            'query'=>Equipos::find(),
+            'query'=>Equipos::find()
+                ->where(['usuario_id'=>Yii::$app->user->id]),
         ]);
 
         $tableroCrear = new Tableros([
@@ -79,21 +80,30 @@ class EquiposController extends Controller
     }
 
     /**
-     * Creates a new Equipos model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Crea tanto un nuevo equipo como un nuevo tablero. En caso de que se cree,
+     * se redireccionar a la vista de ellos.
      * @return mixed
      */
     public function actionCreate()
     {
+        //  Modelo para craar un nuevo equipo.
         $equipo = new Equipos([
             'usuario_id'=>Yii::$app->user->id,
         ]);
 
-        $tablero = new Tableros();
+        //  Mostrar tableros de un equipo.
+        $tablerosLista = new ActiveDataProvider([
+            'query'=>Tableros::find()
+                ->where(['equipo_id'=>Equipos::find()
+                    ->where(['usuario_id'=>Yii::$app->user->id])
+                    ->scalar()]),
+        ]);
 
+        //  Mostrar lista desplegable de equipos creados.
         $equipos = Equipos::find()
             ->select(['denominacion'])
             ->indexBy('id')
+            ->where(['usuario_id'=>Yii::$app->user->id])
             ->column();
 
         if (Yii::$app->request->isAjax && $equipo->load(Yii::$app->request->post())) {
@@ -108,7 +118,9 @@ class EquiposController extends Controller
         return $this->render('create', [
             'equipo' => $equipo,
             'equipos'=>$equipos,
-            'tablero'=>$tablero,
+            'tablerosLista'=>$tablerosLista,
+            //  Modelo para crear un nuevo tablero.
+            'tablero'=> new Tableros(),
         ]);
     }
 
