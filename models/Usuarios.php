@@ -225,4 +225,27 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->hasMany(DatosUsuarios::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
     }
+
+    /**
+     * Despues de registrarse el usuario, se crea un equipo por
+     * defecto y un tablero en ese equipo.
+     * @param  [type] $insert [description]
+     * @return [type]         [description]
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        if ($insert) {
+            $equipo = new Equipos([
+                'denominacion'=>'Tableros personales',
+                'usuario_id'=>$this->id,
+            ]);
+            $equipo->save();
+
+            $tablero = new Tableros([
+                'denominacion'=>'Tablero de bienvenida',
+                'equipo_id'=>$equipo->id,
+            ]);
+            $tablero->save();
+        }
+    }
 }

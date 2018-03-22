@@ -40,7 +40,7 @@ AppAsset::register($this);
                     'span',
                     '',
                     ['class'=>'glyphicon glyphicon-log-in icono-x2']
-                ) . ' Iniciar sesión',
+                ) . '  Iniciar sesión',
                 'url'=>['site/login'],
                 'encode'=>false,
             ],
@@ -49,7 +49,7 @@ AppAsset::register($this);
                     'span',
                     '',
                     ['class'=>'glyphicon glyphicon-registration-mark icono-x2']
-                ) . ' Registrarse',
+                ) . '  Registrarse',
                 'url'=>['usuarios/create'],
                 'encode'=>false,
             ]
@@ -57,12 +57,21 @@ AppAsset::register($this);
     } else {
         $items = [
             [
+                'label'=>Html::tag(
+                    'span',
+                    ' ',
+                    ['class'=>'glyphicon glyphicon-plus icono-x2']
+                ) . ' Crear',
+                'url'=>['equipos/create'],
+                'encode'=>false,
+            ],
+            [
                 'label'=> Html::tag(
                     'span',
                     ' ',
-                    ['class'=>'glyphicon glyphicon-th-large icono-x2']
-                ) . ' Inicio',
-                'url'=>['site/index'],
+                    ['class'=>'glyphicon glyphicon-align-justify icono-x2']
+                ) . ' Mis tableros',
+                'url'=>['equipos/gestionar-tableros'],
                 'encode'=>false,
             ],
             [
@@ -70,7 +79,7 @@ AppAsset::register($this);
                     'span',
                     ' ',
                     ['class'=>'glyphicon glyphicon-user icono-x2']
-                ),
+                ) . ' Usuario',
                 'items' => [
                     Html::tag(
                         'li',

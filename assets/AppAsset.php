@@ -24,6 +24,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/iteracion.js',
+        'https://code.jquery.com/ui/1.12.1/jquery-ui.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
