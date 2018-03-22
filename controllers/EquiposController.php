@@ -44,6 +44,9 @@ class EquiposController extends Controller
         $equipos = new ActiveDataProvider([
             'query'=>Equipos::find()
                 ->where(['usuario_id'=>Yii::$app->user->id]),
+            'sort'=>[
+                'defaultOrder'=>['created_at'=>SORT_ASC],
+            ],
         ]);
 
         $tableroCrear = new Tableros([
