@@ -7,8 +7,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Iniciar sesión en MiEspacio';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Iniciar sesión';
 
 ?>
 
@@ -16,25 +15,25 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <!-- Título principal -->
     <div class='row'>
-        <div class='col-md-3 col-md-offset-4'>
-            <h1>
+        <div class='col-md-7 col-md-offset-1'>
+            <h2>
                 <strong>
                     <?= Html::encode($this->title) ?>
                 </strong>
-            </h1>
+            </h2>
         </div>
     </div>
-
+    <br>
     <!-- Formulario de inicio de sesión -->
     <div class='row'>
-        <div class='col-md-5 col-md-offset-3'>
+        <div class='col-md-10 col-md-offset-1'>
             <?php $form = ActiveForm::begin([
                 'id' => 'login-form',
+                'action'=>['site/login'],
             ]); ?>
 
                 <!-- Nombre de usuario -->
                 <?= $form->field($model, 'username')->textInput([
-                    'autofocus' => true,
                     'placeholder'=>'p. ej.: alberto',
                 ]) ?>
 
@@ -62,5 +61,5 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php ActiveForm::end(); ?>
         </div>
     </div>
-    
+
 </div>

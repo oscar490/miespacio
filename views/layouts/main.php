@@ -134,10 +134,11 @@ AppAsset::register($this);
                     ]
                 ) .  ' ' . Yii::$app->name
             ),
-        'brandUrl' => Yii::$app->homeUrl,
+        'brandUrl' => ['equipos/gestionar-tableros'],
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top nav-estilo',
+            'class' => 'navbar-inverse navbar-fixed-top',
         ],
+
     ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right item-estilo'],

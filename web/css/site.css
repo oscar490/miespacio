@@ -159,6 +159,14 @@ a.desc:after {
     width: 35px;
 }
 
+.logo-x2 {
+    width: 70px;
+}
+
+.logo-x3 {
+    width: 200px;
+}
+
 .breadcrumb > li > a {
     color: #0266a0;
     font-weight: bold;

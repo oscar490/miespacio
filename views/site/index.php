@@ -1,53 +1,110 @@
 <?php
 
 /* @var $this yii\web\View */
+use kartik\tabs\TabsX;
+use yii\helpers\Html;
+
+$css = <<<EOT
+    .panel-heading {
+        display: flex;
+        justify-content: center;
+    }
+    .well {
+        background-color: #0266a0;
+        color: white;
+    }
+
+
+EOT;
+
+$this->registerCss($css);
 
 $this->title = 'MiEspacio';
+
+$items = [
+    [
+        'label'=>'Iniciar sesion',
+        'content'=>$this->render('login', [
+            'model'=>$model,
+        ]),
+    ],
+    [
+        'label'=>'Registrarse',
+        'content'=>'registrando',
+    ],
+];
 ?>
 <div class="site-index">
+    <br><br><br>
+    <div class='row'>
+        <div class='col-md-5 col-md-offset-4'>
+                <?=
+                    Html::tag(
+                        'h1',
+                        Html::img(
+                            'images/logotipo.png',
+                            [
+                                'alt'=>'logotipo',
+                                'class'=>'logo-x3'
+                            ]
+                        ) .
+                        Html::tag(
+                            'p',
+                            Html::tag(
+                                'strong',
+                                Yii::$app->name
+                            )
+                        )
+                    )
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+                ?>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        </div>
     </div>
+    <div class='row'>
+        <div class='col-md-5'>
 
-    <div class="body-content">
+                    Es una aplicación perfecta para crear tus espacios de
+                    trabajo, que son tableros virtuales.
+                    En ellos puedes añadir muchos tipos de contenidos, desde
+                    anotaciones hasta incluso datos multimedia.
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-md-6'>
+            <div class='panel panel-primary'>
+                <div class='panel-heading'>
+                    <?=
+                        Html::tag(
+                            'h3',
+                            Html::tag(
+                                'p',
+                                Html::img(
+                                    'images/logotipo.png',
+                                    [
+                                        'alt'=>'logotipo',
+                                        'class'=>'logo-x2',
+                                    ]
+                                ) . ' ' .
+                                Html::tag(
+                                    'strong',
+                                    Yii::$app->name
+                                )
+                            )
+                        )
+                    ?>
+                </div>
+                <div class='panel-body'>
+                    <?= TabsX::widget([
+                        'items'=>$items,
+                        'position'=>TabsX::POS_ABOVE,
+                        'encodeLabels'=>false,
+                    ]) ?>
+                </div>
             </div>
         </div>
-
     </div>
+
+
 </div>
