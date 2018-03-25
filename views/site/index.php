@@ -5,106 +5,86 @@ use kartik\tabs\TabsX;
 use yii\helpers\Html;
 
 $css = <<<EOT
-    .panel-heading {
-        display: flex;
-        justify-content: center;
-    }
     .well {
         background-color: #0266a0;
         color: white;
+        font-weight: bold;
     }
 
 
 EOT;
-
 $this->registerCss($css);
 
-$this->title = 'MiEspacio';
-
-$items = [
-    [
-        'label'=>'Iniciar sesion',
-        'content'=>$this->render('login', [
-            'model'=>$model,
-        ]),
-    ],
-    [
-        'label'=>'Registrarse',
-        'content'=>'registrando',
-    ],
-];
 ?>
 <div class="site-index">
-    <br><br><br>
+    <!-- Contenido de cabecera -->
     <div class='row'>
-        <div class='col-md-5 col-md-offset-4'>
-                <?=
+        <div class='col-md-4 col-md-offset-4'>
+            <?=
+                Html::tag(
+                    'h2',
+                    Html::img(
+                        'images/logotipo.png',
+                        ['class'=>'logo-x2', 'alt'=>'logotipo']
+                    ) .
                     Html::tag(
-                        'h1',
-                        Html::img(
-                            'images/logotipo.png',
-                            [
-                                'alt'=>'logotipo',
-                                'class'=>'logo-x3'
-                            ]
-                        ) .
-                        Html::tag(
-                            'p',
-                            Html::tag(
-                                'strong',
-                                Yii::$app->name
-                            )
-                        )
+                        'strong',
+                        Yii::$app->name
                     )
-
-                ?>
-
+                );
+            ?>
+        </div>
+        <div class='col-xs-7 col-xs-offset-2'>
+            <?=
+                Html::tag(
+                    'strong',
+                    Html::tag(
+                        'p',
+                        'Bienvenidos al la web oficial de MiEspacio, donde
+                        teneis la posibilidad de almacenar todo vuestro
+                        contenido posible, empezando desde texto hasta archivos,
+                        y contenido multimedia.'
+                    )
+                )
+            ?>
         </div>
     </div>
+    <hr>
     <div class='row'>
-        <div class='col-md-5'>
-
-                    Es una aplicación perfecta para crear tus espacios de
-                    trabajo, que son tableros virtuales.
-                    En ellos puedes añadir muchos tipos de contenidos, desde
-                    anotaciones hasta incluso datos multimedia.
-
-        </div>
-    </div>
-    <div class='row'>
-        <div class='col-md-6'>
-            <div class='panel panel-primary'>
-                <div class='panel-heading'>
-                    <?=
-                        Html::tag(
-                            'h3',
-                            Html::tag(
-                                'p',
-                                Html::img(
-                                    'images/logotipo.png',
-                                    [
-                                        'alt'=>'logotipo',
-                                        'class'=>'logo-x2',
-                                    ]
-                                ) . ' ' .
-                                Html::tag(
-                                    'strong',
-                                    Yii::$app->name
-                                )
-                            )
-                        )
-                    ?>
+        <div class='col-md-offset-1'>
+            <div class='col-md-5'>
+                <div class='well well-lg'>
+                    <p>
+                        Se pueden crear espacios de trabajo, que son tableros
+                        digitales. En ellos se puede añadir contenido.
+                    </p>
+                    <p>
+                        Permite tener una organización de tareas a realizar en lo
+                        largo del tiempo.
+                    </p>
+                    <p>
+                        Te ayuda a tener una planificación correcta de forma
+                        cómoda y eficiente.
+                    </p>
                 </div>
-                <div class='panel-body'>
-                    <?= TabsX::widget([
-                        'items'=>$items,
-                        'position'=>TabsX::POS_ABOVE,
-                        'encodeLabels'=>false,
-                    ]) ?>
+            </div>
+
+            <div class='col-md-5'>
+                <div class='well well-lg'>
+                    <p>
+                        Se pueden crear espacios de trabajo, que son tableros
+                        digitales. En ellos se puede añadir contenido.
+                    </p>
+                    <p>
+                        Permite tener una organización de tareas a realizar en lo
+                        largo del tiempo.
+                    </p>
+                    <p>
+                        Te ayuda a tener una planificación correcta de forma
+                        cómoda y eficiente.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
-
-
 </div>

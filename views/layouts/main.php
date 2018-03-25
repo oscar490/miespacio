@@ -39,6 +39,15 @@ AppAsset::register($this);
                 'label'=>Html::tag(
                     'span',
                     '',
+                    ['class'=>'glyphicon glyphicon-th icono-x2']
+                ) . ' Inicio',
+                'url'=>['site/index'],
+                'encode'=>false,
+            ],
+            [
+                'label'=>Html::tag(
+                    'span',
+                    '',
                     ['class'=>'glyphicon glyphicon-log-in icono-x2']
                 ) . '  Iniciar sesión',
                 'url'=>['site/login'],

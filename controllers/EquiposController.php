@@ -12,6 +12,7 @@ use yii\data\ActiveDataProvider;
 use yii\widgets\ActiveForm;
 use yii\web\Response;
 use app\models\Tableros;
+use yii\filters\AccessControl;
 
 /**
  * EquiposController implements the CRUD actions for Equipos model.
@@ -28,6 +29,17 @@ class EquiposController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access'=>[
+                'class'=>AccessControl::className(),
+                'only'=>['gestionar-tableros'],
+                'rules'=>[
+                    [
+                        'allow'=>true,
+                        'actions'=>['gestionar-tableros'],
+                        'roles'=>['@'],
+                    ],
                 ],
             ],
         ];
