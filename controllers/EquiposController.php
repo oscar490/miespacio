@@ -89,8 +89,14 @@ class EquiposController extends Controller
      */
     public function actionView($id)
     {
+        $tableros = new ActiveDataProvider([
+            'query'=>Tableros::find()
+                ->where(['equipo_id'=>$id]),
+        ]);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'tableros'=>$tableros,
         ]);
     }
 

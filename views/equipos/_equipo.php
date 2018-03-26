@@ -32,6 +32,7 @@ $tableros = new ActiveDataProvider([
         )
     );
 ?>
+
 <br>
 
 <!-- Tableros pertenecientes al equipo -->
@@ -49,7 +50,8 @@ $tableros = new ActiveDataProvider([
 <?php Modal::begin([
     'header'=>"<h4>Crear un nuevo tablero en $model->denominacion</h4>",
     'toggleButton'=>[
-        'label'=>'Crear un nuevo tablero',
+        'label'=>"<span class='glyphicon glyphicon-plus'></span>
+                  Crear un nuevo tablero",
         'class'=>'btn-md btn-success',
     ],
     'size'=>Modal::SIZE_SMALL,
@@ -69,11 +71,22 @@ $tableros = new ActiveDataProvider([
                 ->label(false)
         ?>
 
-        <?= Html::submitButton('Crear tablero', [
-            'class'=>'btn-xs btn-success',
-        ]) ?>
+        <?=
+            Html::submitButton(
+                'Crear tablero',
+                ['class'=>'btn-xs btn-success',]
+            )
+        ?>
 
     <?php ActiveForm::end() ?>
 
 <?php Modal::end() ?>
+&nbsp;
+<?=
+    Html::a(
+    "<span class='glyphicon glyphicon-menu-hamburger'></span> Tableros",
+    ['equipos/view', 'id'=>$model->id],
+    ['class'=>'btn-sm btn-info']
+    )
+?>
 <hr>
