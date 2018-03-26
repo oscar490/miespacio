@@ -39,6 +39,15 @@ AppAsset::register($this);
                 'label'=>Html::tag(
                     'span',
                     '',
+                    ['class'=>'glyphicon glyphicon-th icono-x2']
+                ) . ' Inicio',
+                'url'=>['site/index'],
+                'encode'=>false,
+            ],
+            [
+                'label'=>Html::tag(
+                    'span',
+                    '',
                     ['class'=>'glyphicon glyphicon-log-in icono-x2']
                 ) . '  Iniciar sesión',
                 'url'=>['site/login'],
@@ -134,10 +143,11 @@ AppAsset::register($this);
                     ]
                 ) .  ' ' . Yii::$app->name
             ),
-        'brandUrl' => Yii::$app->homeUrl,
+        'brandUrl' => ['equipos/gestionar-tableros'],
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top nav-estilo',
+            'class' => 'navbar-inverse navbar-fixed-top',
         ],
+
     ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right item-estilo'],

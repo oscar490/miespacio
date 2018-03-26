@@ -114,7 +114,10 @@ a.desc:after {
         color: white;
     }
 
-
+    .navbar-inverse .navbar-header .navbar-toggle:hover,
+    .navbar-inverse .navbar-header .navbar-toggle:focus {
+        background-color: #75a4c1;
+    }
 }
 
 .nav > li > form > button.logout:focus,
@@ -159,6 +162,14 @@ a.desc:after {
     width: 35px;
 }
 
+.logo-x2 {
+    width: 70px;
+}
+
+.logo-x3 {
+    width: 200px;
+}
+
 .breadcrumb > li > a {
     color: #0266a0;
     font-weight: bold;
@@ -179,4 +190,9 @@ a.desc:after {
 
 .icono-x3 {
     font-size: 40px;
+}
+
+.panel-heading {
+    display: flex;
+    justify-content: center;
 }
