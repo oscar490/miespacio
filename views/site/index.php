@@ -11,15 +11,30 @@ $css = <<<EOT
         font-weight: bold;
     }
 
+    a:link {
+        text-decoration: none;
+    }
+
+    .site-index {
+        display: none;
+    }
 
 EOT;
+
+$js = <<<EOT
+    $('.site-index').fadeIn('slow');
+EOT;
+
 $this->registerCss($css);
+$this->registerJs($js);
+$this->title = Yii::$app->name;
 
 ?>
+<br><br>
 <div class="site-index">
     <!-- Contenido de cabecera -->
     <div class='row'>
-        <div class='col-md-4 col-md-offset-4'>
+        <div class='col-md-4 col-lg-offset-4'>
             <?=
                 Html::tag(
                     'h2',
@@ -50,6 +65,7 @@ $this->registerCss($css);
         </div>
     </div>
     <hr>
+    <br>
     <div class='row'>
         <div class='col-md-offset-1'>
             <div class='col-md-5'>
@@ -72,19 +88,39 @@ $this->registerCss($css);
             <div class='col-md-5'>
                 <div class='well well-lg'>
                     <p>
-                        Se pueden crear espacios de trabajo, que son tableros
-                        digitales. En ellos se puede añadir contenido.
+                        Puedes compartir tus descripciones con los demás y
+                        opinar sober ellas.
                     </p>
                     <p>
-                        Permite tener una organización de tareas a realizar en lo
-                        largo del tiempo.
+                        Añade amigos a tus tableros y así poder trabajar
+                        en el mismp espacio.
                     </p>
                     <p>
-                        Te ayuda a tener una planificación correcta de forma
-                        cómoda y eficiente.
+                        Podrás tener toda la información posible guardada
+                        en tu espacio de trabajo.
                     </p>
                 </div>
             </div>
+        </div>
+    </div>
+    <br>
+    <div class='row'>
+        <div class='col-md-4 col-md-offset-4'>
+            <?=
+                Html::a(
+                    'Iniciar sesión',
+                    ['site/login'],
+                    ['class'=>'btn-lg btn-success']
+                )
+            ?>
+            &nbsp;
+            <?=
+                Html::a(
+                    'Registrarse',
+                    ['usuarios/create'],
+                    ['class'=>'btn-lg btn-success']
+                )
+            ?>
         </div>
     </div>
 </div>
