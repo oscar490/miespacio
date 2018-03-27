@@ -1,21 +1,36 @@
 <?php
 
 use yii\helpers\Html;
+/* Configuración del equipo */
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Equipos */
+/* @var $equipo app\models\Equipos */
 
-$this->title = 'Update Equipos: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Equipos', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+
 ?>
-<div class="equipos-update">
+<br>
+<div class="row">
+    <div class='col-md-6 col-md-offset-3'>
+        <div class='panel panel-primary'>
+            <div class='panel-heading'>
+                <?=
+                    Html::tag(
+                        'p',
+                        Html::tag(
+                            'span',
+                            '',
+                            ['class'=>'glyphicon glyphicon-wrench']
+                        ) . ' Configuración'
+                    );
+                ?>
+            </div>
+            <div class='panel-body'>
+                <?= $this->render('form-crear-equipo', [
+                    'equipo'=>$equipo,
+                ]) ?>
+            </div>
+        </div>
+    </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
 
 </div>

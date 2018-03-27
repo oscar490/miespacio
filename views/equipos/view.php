@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = [
 
 $items = [
     [
+        //  Lista de tableros del equipo.
         'label'=>"<span class='glyphicon glyphicon-align-justify'></span>
                 Tableros",
         'content'=> $this->render('tableros_equipo', [
@@ -26,9 +27,10 @@ $items = [
         ]),
     ],
     [
+        //  Modificación del equipo.
         'label'=>"<span class='glyphicon glyphicon-wrench'></span>
                 Configuración",
-        'content'=> $this->render('form-crear-equipo', [
+        'content'=> $this->render('update', [
             'equipo'=>$model,
         ]),
     ]

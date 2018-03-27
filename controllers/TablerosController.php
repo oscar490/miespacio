@@ -73,7 +73,7 @@ class TablerosController extends Controller
         $tableros = Tableros::find()
             ->where(['equipo_id'=>$id_equipo]);
 
-        return $this->renderAjax('tableros', [
+        return $this->renderAjax('tableros_lista', [
             'tableros'=>$tableros,
         ]);
     }

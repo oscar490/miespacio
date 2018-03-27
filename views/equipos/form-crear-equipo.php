@@ -12,20 +12,27 @@ if ($equipo->id === null) {
     $action_form = ['equipos/update', 'id'=>$equipo->id];
     $label_boton = 'Guardar configuración';
 }
+
 ?>
 
-<?php $form = ActiveForm::begin(['action'=>$action_form]); ?>
+<div class='form'>
+    <?php $form = ActiveForm::begin([
+        'action'=>$action_form,
+        'enableAjaxValidation' => true,
+    ]); ?>
 
-    <?= $form->field($equipo, 'denominacion')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($equipo, 'denominacion', ['enableAjaxValidation' => true])
+            ->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($equipo, 'descripcion')->textarea([
-        'row'=>4,
-    ]) ?>
+        <?= $form->field($equipo, 'descripcion')->textarea([
+            'row'=>4,
+        ]) ?>
 
-    <?= Html::hiddenInput('usuario_id', Yii::$app->user->id) ?>
+        <?= Html::hiddenInput('usuario_id', Yii::$app->user->id) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton( $label_boton, ['class' => 'btn btn-success btn-block']) ?>
-    </div>
+        <div class="form-group">
+            <?= Html::submitButton( $label_boton, ['class' => 'btn btn-success btn-block']) ?>
+        </div>
 
-<?php ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
+</div>

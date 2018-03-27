@@ -94,6 +94,10 @@ class EquiposController extends Controller
      */
     public function actionView($id)
     {
+        if (!ctype_digit($id)) {
+            throw new NotFoundHttpException('Parámetro incorrecto.');
+        }
+
         $tableros = new ActiveDataProvider([
             'query'=>Tableros::find()
                 ->where(['equipo_id'=>$id]),
@@ -121,18 +125,17 @@ class EquiposController extends Controller
         ]);
 
         //  Mostrar tableros de un equipo.
-        $tablerosLista = new ActiveDataProvider([
-            'query'=>Tableros::find()
-                ->where(['equipo_id'=>Equipos::find()
-                    ->where(['usuario_id'=>Yii::$app->user->id])
-                    ->scalar()]),
-        ]);
+        $tablerosLista = Tableros::find()
+            ->where(['equipo_id'=>Equipos::find()
+                ->where(['usuario_id'=>Yii::$app->user->id])
+                ->scalar()]);
 
         //  Mostrar lista desplegable de equipos creados.
         $equipos = Equipos::find()
             ->select(['denominacion'])
             ->indexBy('id')
             ->where(['usuario_id'=>Yii::$app->user->id])
+            ->orderBy(['created_at'=>SORT_ASC])
             ->column();
 
         if (Yii::$app->request->isAjax && $equipo->load(Yii::$app->request->post())) {
@@ -162,15 +165,24 @@ class EquiposController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (!ctype_digit($id)) {
+            throw new NotFoundHttpException('Parámetro incorrecto.');
+        }
         $model = $this->findModel($id);
 
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash(
+                'success',
+                'Se ha guardado la última modificación correctamente.'
+            );
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
     /**
