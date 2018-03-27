@@ -53,6 +53,7 @@ class EquiposController extends Controller
      */
     public function actionGestionarTableros($id_equipo = null)
     {
+        //  Equipos creados por el usuario logeado.
         $equipos = new ActiveDataProvider([
             'query'=>Equipos::find()
                 ->where(['usuario_id'=>Yii::$app->user->id]),
@@ -61,23 +62,27 @@ class EquiposController extends Controller
             ],
         ]);
 
-        $tableroCrear = new Tableros([
+        //  Modelo para crear un nuevo tablero.
+        $tablero_crear = new Tableros([
             'equipo_id'=>$id_equipo,
         ]);
 
-        if (Yii::$app->request->isAjax && $tableroCrear->load(Yii::$app->request->post())) {
+        //  Validación del modelo del tablero, por ajax.
+        if (Yii::$app->request->isAjax && $tablero_crear->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($tableroCrear);
+            return ActiveForm::validate($tablero_crear);
         }
 
-        if ($tableroCrear->load(Yii::$app->request->post()) && $tableroCrear->save()) {
-            return $this->redirect(['tableros/view', 'id'=>$tableroCrear->id]);
+        //  Validación y guardado del modelo tablero. Sin ajax.
+        if ($tablero_crear->load(Yii::$app->request->post()) && $tablero_crear->save()) {
+            return $this->redirect(['tableros/view', 'id'=>$tablero_crear->id]);
         }
 
         return $this->render('gestionar', [
             'equipos' => $equipos,
-            'tableroCrear'=> $tableroCrear,
-            'equipoCrear'=> new Equipos(),
+            'tablero_crear'=> $tablero_crear,
+            //  Modelo para crear un nuevo equipo.
+            'equipo_crear'=> new Equipos(),
         ]);
     }
 
@@ -94,9 +99,12 @@ class EquiposController extends Controller
                 ->where(['equipo_id'=>$id]),
         ]);
 
+        $tablero_crear = new Tableros();
+
         return $this->render('view', [
             'model' => $this->findModel($id),
             'tableros'=>$tableros,
+            'tablero_crear'=>$tablero_crear,
         ]);
     }
 

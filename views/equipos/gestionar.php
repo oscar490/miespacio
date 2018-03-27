@@ -4,8 +4,8 @@
 
 /* @var $this yii\web\View */
 /* @var $equipos yii\data\ActiveDataProvider */
-/* @var $equipoCrear app\models\Equipos */
-/* @var $tableroCrear app\models\Tableros */
+/* @var $equipo_crear app\models\Equipos */
+/* @var $tablero_crear app\models\Tableros */
 
 use yii\helpers\Html;
 use yii\widgets\ListView;
@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider'=>$equipos,
         'itemView'=>'_equipo',
         'viewParams'=>[
-            'tableroCrear'=>$tableroCrear,
+            'tablero_crear'=>$tablero_crear,
         ],
         'summary'=>'',
     ])?>
@@ -45,13 +45,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'enableAjaxValidation' => true,
             'id'=>'form-crear-equipo',
         ]) ?>
+            <!-- Nombre del equipo. -->
+            <?= $form->field($equipo_crear, 'denominacion', ['enableAjaxValidation' => true]) ?>
 
-            <?= $form->field($equipoCrear, 'denominacion', ['enableAjaxValidation' => true]) ?>
-
-            <?= $form->field($equipoCrear, 'descripcion')->textarea([
+            <!-- Descripción del equipo. -->
+            <?= $form->field($equipo_crear, 'descripcion')->textarea([
                 'row'=>5,
             ]) ?>
 
+            <!-- Botón de envio de formulario -->
             <?= Html::submitButton('Crear equipo', ['class'=>'btn btn-success btn-block'])?>
 
         <?php ActiveForm::end() ?>

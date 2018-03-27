@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use kartik\tabs\TabsX;
 use yii\widgets\ListView;
+use yii\data\ActiveDataProvider;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Equipos */
@@ -18,10 +19,10 @@ $items = [
     [
         'label'=>"<span class='glyphicon glyphicon-align-justify'></span>
                 Tableros",
-        'content'=> Html::tag('br') . ListView::widget([
-            'dataProvider'=>$tableros,
-            'itemView'=>'_tablero',
-            'summary'=>'',
+        'content'=> $this->render('tableros_equipo', [
+            'tableros'=>$tableros,
+            'tablero_crear'=>$tablero_crear,
+            'equipo'=>$model,
         ]),
     ],
     [
@@ -34,6 +35,13 @@ $css = <<<EOT
     .contenido {
         display: flex;
         justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cabecera {
+        display: flex;
+        justify-content: center;
     }
 EOT;
 
@@ -44,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="equipos-view">
     <div class='row'>
         <div class='contenido'>
-            <div class='conenido'>
+            <div class='cabecera'>
                 <h2>
                     <span class='label label-primary icono-x3'>
                         <span class='glyphicon glyphicon-list-alt'></span>
@@ -55,11 +63,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     </strong>
                 </h2>
             </div>
-
+            <br>
             <p><?= Html::encode($model->descripcion) ?></p>
         </div>
     </div>
-    <br><br>
+    <br>
     <?=
         TabsX::widget([
             'items'=>$items,

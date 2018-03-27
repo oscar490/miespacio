@@ -2,15 +2,14 @@
 /* Se muestra un listado de los tableros que pertenecen a un equipo. */
 /* Se permite crear nuevos tableros. */
 /* @var $model app\models\Equipos */
-/* @var $tableroCrear app\models\Tableros */
+/* @var $tablero_crear app\models\Tableros */
 
 use yii\helpers\Html;
 use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
 use app\models\Tableros;
-use yii\widgets\ActiveForm;
-use yii\bootstrap\Modal;
 
+//  Tableros que pertenecen al equipo actual.
 $tableros = new ActiveDataProvider([
     'query'=>Tableros::find()
         ->where(['equipo_id'=>$model->id]),
@@ -33,60 +32,21 @@ $tableros = new ActiveDataProvider([
     );
 ?>
 
-<br>
-
-<!-- Tableros pertenecientes al equipo -->
-<?php if (!empty($tableros->query->all())): ?>
-    <div class='row'>
-        <?= ListView::widget([
-            'dataProvider'=>$tableros,
-            'itemView'=>'_tablero',
-            'summary'=>'',
-        ]) ?>
-    </div>
-<?php endif; ?>
-
-<!-- Formulario para crear tableros en un equipo -->
-<?php Modal::begin([
-    'header'=>"<h4>Crear un nuevo tablero en $model->denominacion</h4>",
-    'toggleButton'=>[
-        'label'=>"<span class='glyphicon glyphicon-plus'></span>
-                  Crear un nuevo tablero",
-        'class'=>'btn-md btn-success',
-    ],
-    'size'=>Modal::SIZE_SMALL,
+<!-- Tableros de cada equipo -->
+<?= $this->render('tableros_equipo', [
+    'tableros'=>$tableros,
+    'equipo'=>$model,
+    'tablero_crear'=>$tablero_crear,
 ]) ?>
 
-    <?php $form = ActiveForm::begin([
-        'action'=>[
-            'equipos/gestionar-tableros',
-            'id_equipo'=>$model->id
-        ],
-        'enableAjaxValidation' => true,
-    ]) ?>
-
-        <?= $form->field($tableroCrear, 'denominacion', [
-            'enableAjaxValidation' => true
-            ])->textInput(['placeholder'=>'Añadir título del tablero',])
-                ->label(false)
-        ?>
-
-        <?=
-            Html::submitButton(
-                'Crear tablero',
-                ['class'=>'btn-xs btn-success',]
-            )
-        ?>
-
-    <?php ActiveForm::end() ?>
-
-<?php Modal::end() ?>
 &nbsp;
+
+<!-- Enlace a los tableros del equipo actual -->
 <?=
     Html::a(
-    "<span class='glyphicon glyphicon-menu-hamburger'></span> Tableros",
-    ['equipos/view', 'id'=>$model->id],
-    ['class'=>'btn-sm btn-info']
+        "<span class='glyphicon glyphicon-menu-hamburger'></span> Tableros",
+        ['equipos/view', 'id'=>$model->id],
+        ['class'=>'btn-sm btn-info']
     )
 ?>
 <hr>
