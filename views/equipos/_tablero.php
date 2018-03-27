@@ -13,7 +13,6 @@ EOT;
 
 $this->registerCss($css);
 ?>
-
 <?=
     Html::tag(
         'div',
@@ -42,4 +41,5 @@ $this->registerCss($css);
         ),
         ['class'=>'col-md-3']
     )
+
 ?>
