@@ -4,10 +4,17 @@
 
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+
+if ($equipo->id === null) {
+    $action_form = ['equipos/create'];
+    $label_boton = 'Crear equipo';
+} else {
+    $action_form = ['equipos/update', 'id'=>$equipo->id];
+    $label_boton = 'Guardar configuración';
+}
 ?>
 
-
-<?php $form = ActiveForm::begin(); ?>
+<?php $form = ActiveForm::begin(['action'=>$action_form]); ?>
 
     <?= $form->field($equipo, 'denominacion')->textInput(['maxlength' => true]) ?>
 
@@ -18,7 +25,7 @@ use yii\helpers\Html;
     <?= Html::hiddenInput('usuario_id', Yii::$app->user->id) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Crear equipo', ['class' => 'btn btn-success btn-block']) ?>
+        <?= Html::submitButton( $label_boton, ['class' => 'btn btn-success btn-block']) ?>
     </div>
 
 <?php ActiveForm::end(); ?>

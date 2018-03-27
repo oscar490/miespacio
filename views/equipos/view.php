@@ -28,7 +28,9 @@ $items = [
     [
         'label'=>"<span class='glyphicon glyphicon-wrench'></span>
                 Configuración",
-        'content'=>'Configura...'
+        'content'=> $this->render('form-crear-equipo', [
+            'equipo'=>$model,
+        ]),
     ]
 ];
 $css = <<<EOT
