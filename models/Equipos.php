@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use Spatie\Dropbox\Exceptions\BadRequest;
 
 /**
  * This is the model class for table "equipos".
@@ -79,9 +80,16 @@ class Equipos extends \yii\db\ActiveRecord
      * Subida de imágenes
      * @return [type] [description]
      */
-    public function upload()
+    public function getUrlImagen()
     {
+        $cliente = new \Spatie\Dropbox\Client(getenv('DROPBOX_TOKEN'));
 
+        $res = $cliente->createSharedLinkWithSettings(
+            $this->denominacion . Yii::$app->user->id . '.jpg',
+            ['requested_visibility'=>'public']
+        );
+
+        return $res;
     }
 
     /**

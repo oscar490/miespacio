@@ -7,7 +7,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-
+var_dump($equipo->urlImagen); die();
 ?>
 <br>
 <div class="row">
@@ -42,9 +42,13 @@ use yii\widgets\ActiveForm;
             </div>
             <div class='panel-body'>
                 <?php $form = ActiveForm::begin([
-                    'action'=>['site/upload', 'alias_nombre'=>$nombre_imagen],
+                    'action'=>[
+                        'site/upload',
+                        'nombre_imagen'=>
+                            $equipo->denominacion . Yii::$app->user->id . '.jpg'
+                    ],
                 ]) ?>
-                    <?= $form->field($imagen, 'imagen')->fileInput() ?>
+                    <?= $form->field($archivo_subir, 'contenido')->fileInput() ?>
                     <?= Html::submitButton('Subir', ['class'=>'btn btn-success'])?>
                 <?php ActiveForm::end() ?>
             </div>

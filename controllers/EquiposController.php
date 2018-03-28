@@ -101,7 +101,7 @@ class EquiposController extends Controller
         }
 
         //  Modelo de subida de archivos.
-        $imagen = new UploadForm;
+        $archivo_subir = new UploadForm;
 
         //  Tableros del equipo.
         $tableros = new ActiveDataProvider([
@@ -116,8 +116,7 @@ class EquiposController extends Controller
             'model' => $this->findModel($id),
             'tableros'=>$tableros,
             'tablero_crear'=>$tablero_crear,
-            'imagen'=>$imagen,
-            'nombre_imagen'=>$this->id,
+            'archivo_subir'=>$archivo_subir,
         ]);
     }
 

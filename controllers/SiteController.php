@@ -78,17 +78,18 @@ class SiteController extends Controller
     }
 
     /**
-     * Sube una imagen al servidor.
-     * @return [type] [description]
+     * Sube un archivo al servidor.
+     * @param  string $nombre_imagen nombre de la imagen
+     * @return [type]                [description]
      */
-    public function actionUpload($alias_nombre)
+    public function actionUpload($nombre_imagen)
     {
         $imagen = new UploadForm([
-            'nombre_imagen'=>$alias_nombre,
+            'nombre'=>$nombre_imagen,
         ]);
 
         if (Yii::$app->request->isPost) {
-            $imagen->imagen = UploadedFile::getInstance($imagen, 'imagen');
+            $imagen->contenido = UploadedFile::getInstance($imagen, 'contenido');
             $imagen->upload();
         }
 

@@ -6,31 +6,41 @@ use yii\base\Model;
 use Spatie\Dropbox\Exceptions\BadRequest;
 use Yii;
 
+/**
+ * Modelo de subida de archivos.
+ */
 class UploadForm extends Model
 {
     /**
-     * Imágen a subir
+     * Contenido del archivo.
      */
-    public $imagen;
-    public $nombre_imagen;
+    public $contenido;
+    /**
+     * Nombre del archivo
+     * @var [type]
+     */
+    public $nombre;
 
     public function rules()
     {
         return [
-            [['imagen'], 'file', 'extensions'=>'jpg'],
+            [['contenido'], 'file', 'extensions'=>'jpg'],
         ];
     }
 
+    /**
+     * Subida de archivo.
+     * @return [type] [description]
+     */
     public function upload()
     {
         if ($this->validate()) {
             $cliente = new \Spatie\Dropbox\Client(getenv('DROPBOX_TOKEN'));
-            $nombre = $this->nombre_imagen . Yii::$app->user->id . '.jpg';
-            $this->imagen->saveAs(Yii::getAlias("@uploads/$nombre"));
+            $this->contenido->saveAs(Yii::getAlias("@uploads/$this->nombre"));
 
-            $cliente->upload(
-                $nombre,
-                file_get_contents(Yii::getAlias("@uploads/$nombre")),
+            return $cliente->upload(
+                $this->nombre,
+                file_get_contents(Yii::getAlias("@uploads/$this->nombre")),
                 'overwrite'
             );
         }

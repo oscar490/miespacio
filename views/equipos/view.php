@@ -36,8 +36,7 @@ $items = [
                 Configuración",
         'content'=> $this->render('update', [
             'equipo'=>$model,
-            'imagen'=>$imagen,
-            'nombre_imagen'=>$nombre_imagen,
+            'archivo_subir'=>$archivo_subir,
         ]),
     ]
 ];
