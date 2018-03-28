@@ -8,6 +8,9 @@ use yii\data\ActiveDataProvider;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Equipos */
+/* @var $tableros app\models\Tableros */
+/* @var $tablero_crear app\models\Tableros */
+
 
 $this->title = $model->denominacion;
 $this->params['breadcrumbs'][] = [
@@ -15,6 +18,7 @@ $this->params['breadcrumbs'][] = [
     'url' => ['equipos/gestionar-tableros']
 ];
 
+//  Contenido de pestañas
 $items = [
     [
         //  Lista de tableros del equipo.
@@ -33,6 +37,7 @@ $items = [
         'content'=> $this->render('update', [
             'equipo'=>$model,
             'imagen'=>$imagen,
+            'nombre_imagen'=>$nombre_imagen,
         ]),
     ]
 ];
@@ -55,6 +60,7 @@ $this->registerCss($css);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="equipos-view">
+    <!-- Nombre del equipo e imagen -->
     <div class='row'>
         <div class='contenido'>
             <div class='cabecera'>
@@ -73,6 +79,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <br>
+
+    <!-- Pestañas de selección -->
     <?=
         TabsX::widget([
             'items'=>$items,

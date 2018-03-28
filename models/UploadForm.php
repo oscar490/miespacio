@@ -12,6 +12,7 @@ class UploadForm extends Model
      * Imágen a subir
      */
     public $imagen;
+    public $nombre_imagen;
 
     public function rules()
     {
@@ -24,7 +25,7 @@ class UploadForm extends Model
     {
         if ($this->validate()) {
             $cliente = new \Spatie\Dropbox\Client(getenv('DROPBOX_TOKEN'));
-            $nombre = Yii::$app->user->id . '.jpg';
+            $nombre = $this->nombre_imagen . Yii::$app->user->id . '.jpg';
             $this->imagen->saveAs(Yii::getAlias("@uploads/$nombre"));
 
             $cliente->upload(

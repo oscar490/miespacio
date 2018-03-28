@@ -17,11 +17,7 @@ use Yii;
  */
 class Equipos extends \yii\db\ActiveRecord
 {
-    /**
-     * Imagen del equipo.
-     * @var [type]
-     */
-    public $imagen_equipo;
+
     /**
      * {@inheritdoc}
      */
@@ -30,12 +26,6 @@ class Equipos extends \yii\db\ActiveRecord
         return 'equipos';
     }
 
-    public function attributes()
-    {
-        return array_merge(parent::attributes(), [
-            'imagen_equipo',
-        ]);
-    }
 
     /**
      * {@inheritdoc}
@@ -59,11 +49,6 @@ class Equipos extends \yii\db\ActiveRecord
                 'skipOnError' => true,
                 'targetClass' => Usuarios::className(),
                 'targetAttribute' => ['usuario_id' => 'id'],
-            ],
-            [
-                ['imagen_equipo'],
-                'file',
-                'extensions'=>'jpg',
             ],
         ];
     }

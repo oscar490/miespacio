@@ -42,7 +42,7 @@ use yii\widgets\ActiveForm;
             </div>
             <div class='panel-body'>
                 <?php $form = ActiveForm::begin([
-                    'action'=>['site/upload'],
+                    'action'=>['site/upload', 'alias_nombre'=>$nombre_imagen],
                 ]) ?>
                     <?= $form->field($imagen, 'imagen')->fileInput() ?>
                     <?= Html::submitButton('Subir', ['class'=>'btn btn-success'])?>

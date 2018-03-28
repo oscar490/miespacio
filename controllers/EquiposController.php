@@ -88,8 +88,9 @@ class EquiposController extends Controller
     }
 
     /**
-     * Displays a single Equipos model.
-     * @param integer $id
+     * Muestra el contenido de un equipo pasándole el
+     * id del equipo por parámetro.
+     * @param integer $id ID del Equipo.
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -99,13 +100,16 @@ class EquiposController extends Controller
             throw new NotFoundHttpException('Parámetro incorrecto.');
         }
 
+        //  Modelo de subida de archivos.
         $imagen = new UploadForm;
 
+        //  Tableros del equipo.
         $tableros = new ActiveDataProvider([
             'query'=>Tableros::find()
                 ->where(['equipo_id'=>$id]),
         ]);
 
+        //  Modelo de tablero.
         $tablero_crear = new Tableros();
 
         return $this->render('view', [
@@ -113,6 +117,7 @@ class EquiposController extends Controller
             'tableros'=>$tableros,
             'tablero_crear'=>$tablero_crear,
             'imagen'=>$imagen,
+            'nombre_imagen'=>$this->id,
         ]);
     }
 
