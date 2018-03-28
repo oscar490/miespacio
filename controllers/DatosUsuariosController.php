@@ -108,6 +108,7 @@ class DatosUsuariosController extends Controller
 
         if ($datos->load(Yii::$app->request->post())) {
             $datos->imagen = UploadedFile::getInstance($datos, 'imagen');
+
             $datos->save();
             $datos->upload();
             Yii::$app->session->setFlash(

@@ -13,6 +13,7 @@ use yii\widgets\ActiveForm;
 use yii\web\Response;
 use app\models\Tableros;
 use yii\filters\AccessControl;
+use app\models\UploadForm;
 
 /**
  * EquiposController implements the CRUD actions for Equipos model.
@@ -98,6 +99,8 @@ class EquiposController extends Controller
             throw new NotFoundHttpException('Parámetro incorrecto.');
         }
 
+        $imagen = new UploadForm;
+
         $tableros = new ActiveDataProvider([
             'query'=>Tableros::find()
                 ->where(['equipo_id'=>$id]),
@@ -109,6 +112,7 @@ class EquiposController extends Controller
             'model' => $this->findModel($id),
             'tableros'=>$tableros,
             'tablero_crear'=>$tablero_crear,
+            'imagen'=>$imagen,
         ]);
     }
 

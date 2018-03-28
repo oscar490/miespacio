@@ -1,16 +1,17 @@
 <?php
-
-use yii\helpers\Html;
 /* Configuración del equipo */
 
 /* @var $this yii\web\View */
 /* @var $equipo app\models\Equipos */
 
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
 
 ?>
 <br>
 <div class="row">
-    <div class='col-md-6 col-md-offset-3'>
+    <div class='col-md-6'>
         <div class='panel panel-primary'>
             <div class='panel-heading'>
                 <?=
@@ -31,6 +32,25 @@ use yii\helpers\Html;
             </div>
         </div>
     </div>
+
+    <div class='col-md-6'>
+        <div class='panel panel-primary'>
+            <div class='panel-heading'>
+                <?=
+                    Html::encode('imagen');
+                ?>
+            </div>
+            <div class='panel-body'>
+                <?php $form = ActiveForm::begin([
+                    'action'=>['site/upload'],
+                ]) ?>
+                    <?= $form->field($imagen, 'imagen')->fileInput() ?>
+                    <?= Html::submitButton('Subir', ['class'=>'btn btn-success'])?>
+                <?php ActiveForm::end() ?>
+            </div>
+        </div>
+    </div>
+
 
 
 </div>
