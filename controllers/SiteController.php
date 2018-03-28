@@ -16,6 +16,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\web\UploadedFile;
+use Spatie\Dropbox\Exceptions\BadRequest;
 
 class SiteController extends Controller
 {
@@ -86,6 +87,21 @@ class SiteController extends Controller
         if (Yii::$app->request->isPost) {
             $model->imagen = UploadedFile::getInstance($model, 'imagen');
         }
+    }
+
+    public function actionDropbox()
+    {
+        $nombre = Yii::$app->user->id . '.jpg';
+        $cliente = new \Spatie\Dropbox\Client(getenv('DROPBOX_TOKEN'));
+
+        $cliente->upload(
+            $nombre,
+            file_get_contents(Yii::getAlias("@uploads/$nombre")),
+            'overwrite'
+        );
+
+
+
     }
 
     /**
