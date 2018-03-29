@@ -50,6 +50,7 @@ CREATE TABLE equipos
       id           BIGSERIAL    PRIMARY KEY
     , denominacion VARCHAR(255) NOT NULL
     , descripcion  VARCHAR(255)
+    , url_imagen   VARCHAR(255)
     , created_at   TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
     , usuario_id   BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
                                 CASCADE ON UPDATE CASCADE

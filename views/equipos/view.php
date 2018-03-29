@@ -36,7 +36,6 @@ $items = [
                 Configuración",
         'content'=> $this->render('update', [
             'equipo'=>$model,
-            'archivo_subir'=>$archivo_subir,
         ]),
     ]
 ];
@@ -64,9 +63,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class='contenido'>
             <div class='cabecera'>
                 <h2>
-                    <span class='label label-primary icono-x3'>
-                        <span class='glyphicon glyphicon-list-alt'></span>
-                    </span>
+                    <?php if ($model->url_imagen === null): ?>
+                        <span class='label label-primary icono-x3'>
+                            <span class='glyphicon glyphicon-list-alt'></span>
+                        </span>
+                    <?php else: ?>
+                        <img src="<?= $model->url_imagen ?>">
+                    <?php endif; ?>
                     &nbsp;
                     <strong>
                         <?= Html::encode($this->title) ?>

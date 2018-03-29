@@ -12,12 +12,18 @@ use Spatie\Dropbox\Exceptions\BadRequest;
  * @property string $denominacion
  * @property string $descripcion
  * @property int $usuario_id
+ * @property string $url_imagen
  *
  * @property Usuarios $usuario
  * @property Tableros[] $tableros
  */
 class Equipos extends \yii\db\ActiveRecord
 {
+    /**
+     * Imágen del equipo.
+     * @var [type]
+     */
+    public $imagen;
 
     /**
      * {@inheritdoc}
@@ -51,7 +57,15 @@ class Equipos extends \yii\db\ActiveRecord
                 'targetClass' => Usuarios::className(),
                 'targetAttribute' => ['usuario_id' => 'id'],
             ],
+            [['imagen'], 'file', 'extensions' => 'jpg'],
         ];
+    }
+
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), [
+            'imagen'
+        ]);
     }
 
     /**
@@ -76,21 +90,7 @@ class Equipos extends \yii\db\ActiveRecord
         return '';
     }
 
-    /**
-     * Subida de imágenes
-     * @return [type] [description]
-     */
-    public function getUrlImagen()
-    {
-        $cliente = new \Spatie\Dropbox\Client(getenv('DROPBOX_TOKEN'));
 
-        $res = $cliente->createSharedLinkWithSettings(
-            $this->denominacion . Yii::$app->user->id . '.jpg',
-            ['requested_visibility'=>'public']
-        );
-
-        return $res;
-    }
 
     /**
      * @return \yii\db\ActiveQuery

@@ -28,6 +28,8 @@ if ($equipo->id === null) {
             'row'=>4,
         ]) ?>
 
+        <?= $form->field($equipo, 'imagen')->fileinput() ?>
+
         <?= Html::hiddenInput('usuario_id', Yii::$app->user->id) ?>
 
         <div class="form-group">

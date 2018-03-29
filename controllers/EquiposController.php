@@ -13,7 +13,8 @@ use yii\widgets\ActiveForm;
 use yii\web\Response;
 use app\models\Tableros;
 use yii\filters\AccessControl;
-use app\models\UploadForm;
+use yii\web\UploadedFile;
+use app\models\UploadFiles;
 
 /**
  * EquiposController implements the CRUD actions for Equipos model.
@@ -100,9 +101,6 @@ class EquiposController extends Controller
             throw new NotFoundHttpException('Parámetro incorrecto.');
         }
 
-        //  Modelo de subida de archivos.
-        $archivo_subir = new UploadForm;
-
         //  Tableros del equipo.
         $tableros = new ActiveDataProvider([
             'query'=>Tableros::find()
@@ -116,7 +114,6 @@ class EquiposController extends Controller
             'model' => $this->findModel($id),
             'tableros'=>$tableros,
             'tablero_crear'=>$tablero_crear,
-            'archivo_subir'=>$archivo_subir,
         ]);
     }
 
@@ -184,6 +181,14 @@ class EquiposController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            //  Subir y modificar la imagen del equipo.
+            $model->imagen = UploadedFile::getInstance($model, 'imagen');
+            $subir_archivo = new UploadFiles([
+                'archivo'=>$model->imagen,
+            ]);
+            $model->url_imagen = $subir_archivo
+                ->upload($model->denominacion . Yii::$app->user->id . '.jpg');
+            $model->save(false);
             Yii::$app->session->setFlash(
                 'success',
                 'Se ha guardado la última modificación correctamente.'
