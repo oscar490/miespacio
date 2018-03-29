@@ -25,7 +25,7 @@ class UploadFiles extends Model
     }
 
     /**
-     * Subida de archivo.
+     * Subida de archivo a Dropbox.
      * @return [type] [description]
      */
     public function upload($nombre)

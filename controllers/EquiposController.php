@@ -183,12 +183,15 @@ class EquiposController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             //  Subir y modificar la imagen del equipo.
             $model->imagen = UploadedFile::getInstance($model, 'imagen');
-            $subir_archivo = new UploadFiles([
-                'archivo'=>$model->imagen,
-            ]);
-            $model->url_imagen = $subir_archivo
-                ->upload($model->denominacion . Yii::$app->user->id . '.jpg');
-            $model->save(false);
+
+            if ($model->imagen !== null) {
+                $subir_archivo = new UploadFiles([
+                    'archivo'=>$model->imagen,
+                ]);
+                $model->url_imagen = $subir_archivo
+                    ->upload($model->id . Yii::$app->user->id . '.jpg');
+                $model->save(false);
+            }
             Yii::$app->session->setFlash(
                 'success',
                 'Se ha guardado la última modificación correctamente.'

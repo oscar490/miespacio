@@ -47,9 +47,9 @@ $css = <<<EOT
         align-items: center;
     }
 
-    .cabecera {
-        display: flex;
-        justify-content: center;
+    .contenido > img {
+        width: 300px;
+        height: 200px;
     }
 EOT;
 
@@ -61,21 +61,23 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- Nombre del equipo e imagen -->
     <div class='row'>
         <div class='contenido'>
-            <div class='cabecera'>
+                <?php if ($model->url_imagen === null): ?>
+                    <span class='label label-primary icono-x3'>
+                        <span class='glyphicon glyphicon-list-alt'></span>
+                    </span>
+                <?php else: ?>
+                    <?=
+                        Html::img(
+                            $model->url_imagen,
+                            ['class'=>'img-rounded']
+                        );
+                    ?>
+                <?php endif; ?>
                 <h2>
-                    <?php if ($model->url_imagen === null): ?>
-                        <span class='label label-primary icono-x3'>
-                            <span class='glyphicon glyphicon-list-alt'></span>
-                        </span>
-                    <?php else: ?>
-                        <img src="<?= $model->url_imagen ?>">
-                    <?php endif; ?>
-                    &nbsp;
                     <strong>
                         <?= Html::encode($this->title) ?>
                     </strong>
                 </h2>
-            </div>
             <br>
             <p><?= Html::encode($model->descripcion) ?></p>
         </div>

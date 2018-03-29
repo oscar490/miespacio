@@ -78,39 +78,6 @@ class SiteController extends Controller
     }
 
     /**
-     * Sube un archivo al servidor.
-     * @param  string $nombre_imagen nombre de la imagen
-     * @return [type]                [description]
-     */
-    public function actionUpload($nombre_imagen)
-    {
-        $imagen = new UploadForm([
-            'nombre'=>$nombre_imagen,
-        ]);
-
-        if (Yii::$app->request->isPost) {
-            $imagen->contenido = UploadedFile::getInstance($imagen, 'contenido');
-            $imagen->upload();
-        }
-
-    }
-
-    public function actionDropbox()
-    {
-        $nombre = Yii::$app->user->id . '.jpg';
-        $cliente = new \Spatie\Dropbox\Client(getenv('DROPBOX_TOKEN'));
-
-        $cliente->upload(
-            $nombre,
-            file_get_contents(Yii::getAlias("@uploads/$nombre")),
-            'overwrite'
-        );
-
-
-
-    }
-
-    /**
      * Login action.
      *
      * @return Response|string

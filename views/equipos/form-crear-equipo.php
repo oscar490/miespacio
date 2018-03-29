@@ -11,6 +11,7 @@ if ($equipo->id === null) {
 } else {
     $action_form = ['equipos/update', 'id'=>$equipo->id];
     $label_boton = 'Guardar configuración';
+    $mostrar = true;
 }
 
 ?>
@@ -28,7 +29,9 @@ if ($equipo->id === null) {
             'row'=>4,
         ]) ?>
 
-        <?= $form->field($equipo, 'imagen')->fileinput() ?>
+        <?php if (isset($mostrar)): ?>
+            <?= $form->field($equipo, 'imagen')->fileinput() ?>
+        <?php endif; ?>
 
         <?= Html::hiddenInput('usuario_id', Yii::$app->user->id) ?>
 

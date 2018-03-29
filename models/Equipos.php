@@ -78,6 +78,7 @@ class Equipos extends \yii\db\ActiveRecord
             'denominacion' => 'Nombre del equipo',
             'descripcion' => 'Descripción (opcional)',
             'usuario_id' => 'Usuario ID',
+            'imagen'=>'Imágen de equipo'
         ];
     }
 
