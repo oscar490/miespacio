@@ -13,6 +13,8 @@ use yii\widgets\ActiveForm;
 use yii\web\Response;
 use app\models\Tableros;
 use yii\filters\AccessControl;
+use yii\web\UploadedFile;
+use app\models\UploadFiles;
 
 /**
  * EquiposController implements the CRUD actions for Equipos model.
@@ -87,18 +89,25 @@ class EquiposController extends Controller
     }
 
     /**
-     * Displays a single Equipos model.
-     * @param integer $id
+     * Muestra el contenido de un equipo pasándole el
+     * id del equipo por parámetro.
+     * @param integer $id ID del Equipo.
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
+        if (!ctype_digit($id)) {
+            throw new NotFoundHttpException('Parámetro incorrecto.');
+        }
+
+        //  Tableros del equipo.
         $tableros = new ActiveDataProvider([
             'query'=>Tableros::find()
                 ->where(['equipo_id'=>$id]),
         ]);
 
+        //  Modelo de tablero.
         $tablero_crear = new Tableros();
 
         return $this->render('view', [
@@ -121,18 +130,17 @@ class EquiposController extends Controller
         ]);
 
         //  Mostrar tableros de un equipo.
-        $tablerosLista = new ActiveDataProvider([
-            'query'=>Tableros::find()
-                ->where(['equipo_id'=>Equipos::find()
-                    ->where(['usuario_id'=>Yii::$app->user->id])
-                    ->scalar()]),
-        ]);
+        $tablerosLista = Tableros::find()
+            ->where(['equipo_id'=>Equipos::find()
+                ->where(['usuario_id'=>Yii::$app->user->id])
+                ->scalar()]);
 
         //  Mostrar lista desplegable de equipos creados.
         $equipos = Equipos::find()
             ->select(['denominacion'])
             ->indexBy('id')
             ->where(['usuario_id'=>Yii::$app->user->id])
+            ->orderBy(['created_at'=>SORT_ASC])
             ->column();
 
         if (Yii::$app->request->isAjax && $equipo->load(Yii::$app->request->post())) {
@@ -162,15 +170,35 @@ class EquiposController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (!ctype_digit($id)) {
+            throw new NotFoundHttpException('Parámetro incorrecto.');
+        }
         $model = $this->findModel($id);
 
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            //  Subir y modificar la imagen del equipo.
+            $model->imagen = UploadedFile::getInstance($model, 'imagen');
+
+            if ($model->imagen !== null) {
+                $subir_archivo = new UploadFiles([
+                    'archivo'=>$model->imagen,
+                ]);
+                $model->url_imagen = $subir_archivo
+                    ->upload($model->id . Yii::$app->user->id . '.jpg');
+                $model->save(false);
+            }
+            Yii::$app->session->setFlash(
+                'success',
+                'Se ha guardado la última modificación correctamente.'
+            );
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
     /**

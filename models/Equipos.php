@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use Spatie\Dropbox\Exceptions\BadRequest;
 
 /**
  * This is the model class for table "equipos".
@@ -11,6 +12,7 @@ use Yii;
  * @property string $denominacion
  * @property string $descripcion
  * @property int $usuario_id
+ * @property string $url_imagen
  *
  * @property Usuarios $usuario
  * @property Tableros[] $tableros
@@ -18,12 +20,19 @@ use Yii;
 class Equipos extends \yii\db\ActiveRecord
 {
     /**
+     * Imágen del equipo.
+     * @var [type]
+     */
+    public $imagen;
+
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
         return 'equipos';
     }
+
 
     /**
      * {@inheritdoc}
@@ -48,7 +57,15 @@ class Equipos extends \yii\db\ActiveRecord
                 'targetClass' => Usuarios::className(),
                 'targetAttribute' => ['usuario_id' => 'id'],
             ],
+            [['imagen'], 'file', 'extensions' => 'jpg'],
         ];
+    }
+
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), [
+            'imagen'
+        ]);
     }
 
     /**
@@ -61,6 +78,7 @@ class Equipos extends \yii\db\ActiveRecord
             'denominacion' => 'Nombre del equipo',
             'descripcion' => 'Descripción (opcional)',
             'usuario_id' => 'Usuario ID',
+            'imagen'=>'Imágen de equipo'
         ];
     }
 
@@ -72,6 +90,8 @@ class Equipos extends \yii\db\ActiveRecord
     {
         return '';
     }
+
+
 
     /**
      * @return \yii\db\ActiveQuery

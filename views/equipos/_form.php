@@ -15,7 +15,7 @@ use yii\helpers\Url;
 /* @var $tablerosLista app\models\Tableros */
 
 $url = Url::to(['tableros/devolver-tableros']);
-$nombre_equipo = $tablerosLista->query->one()->equipo->denominacion;
+
 //  Código JavaScript.
 $js = <<<EOT
     $('select').on('change', function() {
@@ -83,16 +83,11 @@ $items = [
                 </div>
                 <div class='panel-body'>
                     <div class='contenedor'>
-                        <?= GridView::widget([
-                            'dataProvider'=>$tablerosLista,
-                            'columns'=>[
-                                [
-                                    'attribute'=>'denominacion',
-                                    'header'=>"Tableros de $nombre_equipo",
-                                ],
-                            ],
-                            'summary'=>'',
-                        ]) ?>
+                        <?=
+                            $this->render('/tableros/tableros_lista', [
+                                'tableros'=>$tablerosLista,
+                            ]);
+                        ?>
                     </div>
                 </div>
             </div>

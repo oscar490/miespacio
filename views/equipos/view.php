@@ -8,6 +8,9 @@ use yii\data\ActiveDataProvider;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Equipos */
+/* @var $tableros app\models\Tableros */
+/* @var $tablero_crear app\models\Tableros */
+
 
 $this->title = $model->denominacion;
 $this->params['breadcrumbs'][] = [
@@ -15,8 +18,10 @@ $this->params['breadcrumbs'][] = [
     'url' => ['equipos/gestionar-tableros']
 ];
 
+//  Contenido de pestañas
 $items = [
     [
+        //  Lista de tableros del equipo.
         'label'=>"<span class='glyphicon glyphicon-align-justify'></span>
                 Tableros",
         'content'=> $this->render('tableros_equipo', [
@@ -26,9 +31,12 @@ $items = [
         ]),
     ],
     [
+        //  Modificación del equipo.
         'label'=>"<span class='glyphicon glyphicon-wrench'></span>
                 Configuración",
-        'content'=>'Configura...'
+        'content'=> $this->render('update', [
+            'equipo'=>$model,
+        ]),
     ]
 ];
 $css = <<<EOT
@@ -39,9 +47,9 @@ $css = <<<EOT
         align-items: center;
     }
 
-    .cabecera {
-        display: flex;
-        justify-content: center;
+    .contenido > img {
+        width: 300px;
+        height: 200px;
     }
 EOT;
 
@@ -50,24 +58,33 @@ $this->registerCss($css);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="equipos-view">
+    <!-- Nombre del equipo e imagen -->
     <div class='row'>
         <div class='contenido'>
-            <div class='cabecera'>
-                <h2>
+                <?php if ($model->url_imagen === null): ?>
                     <span class='label label-primary icono-x3'>
                         <span class='glyphicon glyphicon-list-alt'></span>
                     </span>
-                    &nbsp;
+                <?php else: ?>
+                    <?=
+                        Html::img(
+                            $model->url_imagen,
+                            ['class'=>'img-rounded']
+                        );
+                    ?>
+                <?php endif; ?>
+                <h2>
                     <strong>
                         <?= Html::encode($this->title) ?>
                     </strong>
                 </h2>
-            </div>
             <br>
             <p><?= Html::encode($model->descripcion) ?></p>
         </div>
     </div>
     <br>
+
+    <!-- Pestañas de selección -->
     <?=
         TabsX::widget([
             'items'=>$items,
