@@ -212,7 +212,11 @@ class EquiposController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        Yii::$app->session->setFlash(
+            'success',
+            'Se ha eliminado el equipo correctamente.'
+        );
+        return $this->redirect(['gestionar-tableros']);
     }
 
     /**
