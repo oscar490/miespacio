@@ -91,6 +91,22 @@ class Equipos extends \yii\db\ActiveRecord
         return '';
     }
 
+    /**
+     * Después de eliminarse el equipo, se elimina la imágen
+     * del equipo.
+     * @return [type] [description]
+     */
+    public function afterDelete()
+    {
+        $cliente = new \Spatie\Dropbox\Client(getenv('DROPBOX_TOKEN'));
+
+        try {
+            $cliente->delete(
+                $this->id . Yii::$app->user->id . '.jpg'
+            );
+        } catch (BadRequest $e) {
+        }
+    }
 
 
     /**
