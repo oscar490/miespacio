@@ -68,7 +68,8 @@ $imagen = Yii::getAlias('@uploads/') . $datos->usuario_id . '.jpg';
                 <?php else: ?>
                     <h2>
                         <span class='label label-primary icono-x3'>
-                            <?= Html::encode($datos->iniciales) ?>
+                            <span class='glyphicon glyphicon-user'>
+                            </span>
                         </span>
 
                     </h2>
@@ -158,7 +159,7 @@ $imagen = Yii::getAlias('@uploads/') . $datos->usuario_id . '.jpg';
 
                         <?= $form->field($datos, 'nombre_completo') ?>
 
-                        <?= $form->field($datos, 'iniciales') ?>
+                        <?= $form->field($datos, 'apellidos') ?>
 
                         <?= $form->field($datos, 'descripcion')->textarea([
                                 'rows'=>2,

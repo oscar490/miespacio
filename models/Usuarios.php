@@ -99,6 +99,11 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         );
     }
 
+    public function getCuentaActivada()
+    {
+        return $this->token_acti === null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -146,25 +151,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         return false;
     }
 
-    /**
-     * Envia un correo electrónico a una dirección.
-     * @param  string $direccion Dirección de receptor
-     *                           de correo electrónico.
-     * @return [type]            [description]
-     */
-    public function enviarCorreo($direccion)
-    {
-        Yii::$app->mailer->compose('contenido-correo', [
-                'token_acti'=>$this->token_acti
-            ])
-            ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name])
-            ->setTo($direccion)
-            ->setSubject(
-                'Nueva direccíon de correo electrónico de ' . Yii::$app->name
-            )
-            ->send();
-    }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -227,25 +214,20 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Despues de registrarse el usuario, se crea un equipo por
-     * defecto y un tablero en ese equipo.
-     * @param  [type] $insert [description]
-     * @return [type]         [description]
+     * Despues de registrarse el usuario, se añaden los datos del
+     * usuario en la base de datos.
+     * @param  boolean $insert true si se va a realizar un insert,
+     *                         false en caso contrario.
+     * @param  array   $changedAttributes valores antiguos antes de
+     *                          guardar el modelo.
      */
     public function afterSave($insert, $changedAttributes)
     {
         if ($insert) {
-            $equipo = new Equipos([
-                'denominacion'=>'Tableros personales',
+            (new DatosUsuarios([
+                'nombre_completo'=>mb_strtoupper($this->nombre),
                 'usuario_id'=>$this->id,
-            ]);
-            $equipo->save();
-
-            $tablero = new Tableros([
-                'denominacion'=>'Tablero de bienvenida',
-                'equipo_id'=>$equipo->id,
-            ]);
-            $tablero->save();
+            ]))->save();
         }
     }
 }
