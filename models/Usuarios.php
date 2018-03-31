@@ -16,6 +16,13 @@ use yii\web\IdentityInterface;
  * @property string $nombre
  * @property string $password
  * @property string $email
+ * @property string $token_acti
+ * @property string $token_clave
+ * @property string $auth_key
+ * @property string $update_password_at
+ *
+ * @property DatosUsuarios[] $datosUsuarios
+ * @property Equipos[] $equipos
  */
 class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -137,15 +144,13 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Devuelve un enlace para la validación por correo.
+     * Devuelve true o false en caso de que el usuario
+     * haya modificado ya su contraseña por recuperación.
      * @return [type] [description]
      */
-    public function getEnlaceValidacion()
+    public function getUpdatePassword()
     {
-        return Html::a(
-            'Haz click aquí para confirmar esta dirección de correo electrónico',
-            Url::to(['usuarios/validar-correo', 'token' => $this->token], true)
-        );
+        return $this->update_password_at !== null;
     }
 
     public function formName()
@@ -153,6 +158,11 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         return '';
     }
 
+    /**
+     * Devuelve true o false en caso de que la cuenta
+     * del usuario esté activada.
+     * @return [type] [description]
+     */
     public function getCuentaActivada()
     {
         return $this->token_acti === null;
@@ -265,6 +275,14 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     public function getDatosUsuarios()
     {
         return $this->hasMany(DatosUsuarios::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEquipos()
+    {
+        return $this->hasMany(Equipos::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
     }
 
     /**

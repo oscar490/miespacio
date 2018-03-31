@@ -206,10 +206,9 @@ class SiteController extends Controller
         ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-
             $usuario->password = Yii::$app
                 ->security->generatePasswordHash($model->password);
-            $usuario->update_clave_at = new Expression('current_timestamp(0)');
+            $usuario->update_password_at = new Expression('current_timestamp(0)');
             $usuario->save();
 
             Yii::$app->session->setFlash(
@@ -217,13 +216,13 @@ class SiteController extends Controller
                 'Se ha establecido la nueva contraseña correctamente.'
             );
 
-            return $this->redirect(['site/login', 'nombre'=>$usuario->nombre]);
+            return $this->redirect(['site/login']);
         }
 
         return $this->render('gestion-password', [
             'model' => $model,
             'accion' => $this->action->id,
-            'usuario'=>$usuario,
+            'usuario'=> $usuario,
         ]);
     }
 
