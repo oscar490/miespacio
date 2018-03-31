@@ -86,21 +86,37 @@ class SiteController extends Controller
     {
         $usuario = Usuarios::findOne($id_user);
 
-        Yii::$app->mailer->compose('contenido-correo', [
-                'token_acti'=>$usuario->token_acti
+        if ($usuario->cuentaActivada) {
+            $direccion = ['site/solicitar-password'];
+            $vista_correo = 'recuperar-password';
+            $asunto = 'Recuperación de contraseña de ';
+        } else {
+            $direccion = ['site/login'];
+            $vista_correo = 'contenido-correo';
+            $asunto = 'Activación de cuenta de ';
+        }
+
+        $send = Yii::$app->mailer->compose($vista_correo, [
+                'usuario'=>$usuario,
             ])
             ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name])
             ->setTo($usuario->email)
-            ->setSubject(
-                'Nueva direccíon de correo electrónico de ' . Yii::$app->name
-            )
+            ->setSubject($asunto . Yii::$app->name)
             ->send();
 
-        return $this->redirect(['site/login']);
+        if (!$send) {
+            Yii::$app->session->setFlash(
+                'danger',
+                'No se ha podido enviar el correo electrónico a la dirección indicada.'
+            );
+        }
+
+        return $this->redirect($direccion);
     }
 
     /**
-     * Login action.
+     * Inicia la sesión de usuario. Se comprueba si tiene la cuenta
+     * activada.
      *
      * @return Response|string
      */
@@ -114,7 +130,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $usuario = Usuarios::findOne(['nombre' => $model->username]);
 
-            if ($usuario->token_acti === null) {
+            if ($usuario->cuentaActivada) {
                 $model->login();
                 return $this->redirect(['equipos/gestionar-tableros']);
             }
@@ -131,11 +147,6 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionPrueba()
-    {
-        return $this->render('contenido-correo');
-    }
-
     /**
      * Envía un correo con un enlace para cambiar
      * la contraseña. Mediante un formulario se indica
@@ -143,31 +154,35 @@ class SiteController extends Controller
      * @return [type] [description]
      * @param null|mixed $email
      */
-    public function actionSolicitarClave($email = null)
+    public function actionSolicitarPassword($email = null)
     {
-        $model = new SolicitarPasswordForm([
-            'email' => $email,
+        $model = new Usuarios([
+            'email'=>$email,
+            'scenario'=>Usuarios::ESCENARIO_CORREO_PASSWORD,
         ]);
 
         if ($email !== null && $model->validate()) {
-            if ($model->enviarCorreo()) {
-                $mensaje['info'] = 'Se ha enviado un correo electrónico a la dirección indicada.
-                Realice el proceso indicado para establecer la contraseña.';
-
-            } else {
-                $mensaje['danger'] = 'No se ha podido enviar el correo electrónico
-                a la dirección indicada.';
-
-            }
-
+            $usuario = Usuarios::findOne(['email'=>$model->email]);
+            // if ($model->enviarCorreo()) {
+            //     $mensaje['info'] = 'Se ha enviado un correo electrónico a la dirección indicada.
+            //     Realice el proceso indicado para establecer la contraseña.';
+            //
+            // } else {
+            //     $mensaje['danger'] = 'No se ha podido enviar el correo electrónico
+            //     a la dirección indicada.';
+            //
+            // }
+            $mensaje['info'] = 'Se ha enviado un correo electrónico a la dirección indicada.
+                 Realice el proceso indicado para establecer la contraseña.';
             Yii::$app->session->setFlash(
                 key($mensaje),
                 $mensaje[key($mensaje)]
             );
+            return $this->redirect(['site/send-email', 'id_user'=>$usuario->id]);
 
         }
 
-        return $this->render('gestionPassword', [
+        return $this->render('gestion-password', [
             'model' => $model,
             'accion' => $this->action->id,
         ]);
@@ -179,15 +194,16 @@ class SiteController extends Controller
      * @param  string $token Valor aleatorio del usuario.
      * @return [type]        [description]
      */
-    public function actionEstablecerClave($token_clave = null)
+    public function actionEstablecerPassword($token_clave = null)
     {
-
         $usuario = Usuarios::findOne(['token_clave' => $token_clave]);
 
         if ($usuario === null) {
             throw new NotFoundHttpException('Parámetro incorrecto');
         }
-        $model = new EstablecerPasswordForm();
+        $model = new Usuarios([
+            'scenario'=>Usuarios::ESCENARIO_ESTABLECER_PASSWORD,
+        ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 
@@ -201,10 +217,10 @@ class SiteController extends Controller
                 'Se ha establecido la nueva contraseña correctamente.'
             );
 
-            return $this->redirect(['site/login']);
+            return $this->redirect(['site/login', 'nombre'=>$usuario->nombre]);
         }
 
-        return $this->render('gestionPassword', [
+        return $this->render('gestion-password', [
             'model' => $model,
             'accion' => $this->action->id,
             'usuario'=>$usuario,

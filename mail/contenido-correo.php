@@ -34,7 +34,7 @@ use yii\helpers\Url;
             Html::a(
                 'Haz click aquí para confirmar esta dirección de
                 correo electrónico',
-                Url::to(['usuarios/validar-correo', 'token_acti'=>$token_acti], true)
+                Url::to(['usuarios/validar-correo', 'token_acti'=>$usuario->token_acti], true)
             ),
             ['class'=>'contenido']
         ),

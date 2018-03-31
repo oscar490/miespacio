@@ -19,8 +19,29 @@ use yii\web\IdentityInterface;
  */
 class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 {
+    /**
+     * Validación para el registro de nuevo usuario.
+     * @var string
+     */
     const ESCENARIO_CREATE = 'create';
+
+    /**
+     * Validación para el modificado del usuario.
+     * @var string
+     */
     const ESCENARIO_UPDATE = 'update';
+
+    /**
+     * Validación para el correo de envio para recuperación de password.
+     * @var string
+     */
+    const ESCENARIO_CORREO_PASSWORD = 'correo-password';
+
+    /**
+     * Validación para establecer el password por recuperación.
+     * @var string
+     */
+    const ESCENARIO_ESTABLECER_PASSWORD = 'establecer-password';
 
     /**
      * Constraseña a ingresar por segunda vez.
@@ -62,7 +83,24 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             [
                 ['email'],
                 'email',
-                'on' => [self::ESCENARIO_CREATE, self::ESCENARIO_UPDATE]
+                'on' => [
+                    self::ESCENARIO_CREATE,
+                    self::ESCENARIO_UPDATE,
+                    self::ESCENARIO_CORREO_PASSWORD,
+                ]
+            ],
+            [
+                ['email'],
+                'required',
+                'on'=>self::ESCENARIO_CORREO_PASSWORD,
+            ],
+            [
+                ['email'],
+                'exist',
+                'targetAttribute'=>['email', 'email'],
+                'targetClass'=>Usuarios::className(),
+                'message'=>'Ese correo no existe, no pertenece a ningun usuario.',
+                'on'=>self::ESCENARIO_CORREO_PASSWORD,
             ],
             [['nombre', 'password', 'email'], 'string', 'max' => 255],
             [
@@ -77,6 +115,17 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 'message'=>'Ya existe un usuario con esa dirección de correo',
                 'on'=>self::ESCENARIO_CREATE,
             ],
+            [
+                ['password', 'password_repeat'],
+                'required',
+                'on'=>self::ESCENARIO_ESTABLECER_PASSWORD,
+            ],
+            [
+                ['password_repeat'],
+                'compare',
+                'compareAttribute'=>'password',
+                'on'=>self::ESCENARIO_ESTABLECER_PASSWORD,
+            ]
         ];
     }
 
@@ -97,6 +146,11 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             'Haz click aquí para confirmar esta dirección de correo electrónico',
             Url::to(['usuarios/validar-correo', 'token' => $this->token], true)
         );
+    }
+
+    public function formName()
+    {
+        return '';
     }
 
     public function getCuentaActivada()
@@ -151,7 +205,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         return false;
     }
 
-    
+
     /**
      * {@inheritdoc}
      */
