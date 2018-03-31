@@ -78,6 +78,28 @@ class SiteController extends Controller
     }
 
     /**
+     * Envia un correo electrónico a la Dirección
+     * de un usuario.
+     * @param  integer $id_user ID del Usuario.
+     */
+    public function actionSendEmail($id_user)
+    {
+        $usuario = Usuarios::findOne($id_user);
+
+        Yii::$app->mailer->compose('contenido-correo', [
+                'token_acti'=>$usuario->token_acti
+            ])
+            ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name])
+            ->setTo($usuario->email)
+            ->setSubject(
+                'Nueva direccíon de correo electrónico de ' . Yii::$app->name
+            )
+            ->send();
+
+        return $this->redirect(['site/login']);
+    }
+
+    /**
      * Login action.
      *
      * @return Response|string

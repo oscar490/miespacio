@@ -13,8 +13,8 @@ use yii\imagine\Image;
  *
  * @property int $id
  * @property string $nombre_completo
+ * @property string $apellidos
  * @property string $descripcion
- * @property string $iniciales
  * @property int $usuario_id
  *
  * @property Usuarios $usuario
@@ -61,11 +61,9 @@ class DatosUsuarios extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['iniciales'], 'required'],
             [['usuario_id'], 'integer'],
             [['nombre_completo', 'descripcion'], 'string', 'max' => 50],
             [['nombre_completo'], 'required'],
-            [['iniciales'], 'string', 'max' => 4],
             [
                 ['imagen'],
                 'file',
@@ -86,7 +84,7 @@ class DatosUsuarios extends \yii\db\ActiveRecord
             'descripcion' => 'Descripción (opcional)',
             'registro' => 'Registro',
             'ultimo_acceso' => 'Ultimo Acceso',
-            'iniciales' => 'Iniciales',
+            'apellidos'=>'Apellidos',
             'usuario_id' => 'Usuario ID',
             'imagen'=>'Imagen de ávatar',
         ];
@@ -114,5 +112,30 @@ class DatosUsuarios extends \yii\db\ActiveRecord
     public function getUsuario()
     {
         return $this->hasOne(Usuarios::className(), ['id' => 'usuario_id'])->inverseOf('datosUsuarios');
+    }
+
+
+    /**
+     * Despues guardar los datos de usuario en la base de datos, se crea
+     * un equipo y un tablero por defecto.
+     * @param  boolean $insert true si se va a realizar un insert,
+     *                         false en caso contrario.
+     * @param  array   $changedAttributes valores antiguos antes de
+     *                          guardar el modelo.
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        if ($insert) {
+            $equipo = new Equipos([
+                'denominacion'=>'Tableros personales',
+                'usuario_id'=>$this->usuario_id
+            ]);
+            $equipo->save();
+
+            (new Tableros([
+                'denominacion'=>'Tablero de Bienvenida',
+                'equipo_id'=>$equipo->id,
+            ]))->save();
+        }
     }
 }
