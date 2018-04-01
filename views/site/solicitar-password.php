@@ -1,4 +1,8 @@
 <?php
+/* Formulario para correo electrónico donde enviar el correo
+   de recuperación de contraseña */
+
+/* @var $model app\models\Usuarios */
 
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
@@ -26,6 +30,8 @@ use yii\helpers\Html;
     <?= $form->field($model, 'email') ?>
 
     <!-- Botón de envio de formulario -->
-    <?= Html::submitButton('Enviar', ['class'=>'btn btn-success btn-block']) ?>
+    <?= Html::submitButton('Enviar', [
+        'class'=>'btn btn-success btn-block'
+    ]) ?>
 
 <?php ActiveForm::end() ?>

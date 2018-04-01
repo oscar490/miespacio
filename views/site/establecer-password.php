@@ -1,11 +1,13 @@
 <?php
+/* Formulario para establecer la nueva contraseña */
 
+/* @var $model app\models\Usuarios */
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 
 ?>
 
-<!-- Formulario para restablecer nueva contraseña -->
+<!-- Formulario para establecer nueva contraseña -->
 <?php $form = ActiveForm::begin() ?>
 
     <!-- Contraseña -->
@@ -21,6 +23,8 @@ use yii\helpers\Html;
     ?>
 
     <!-- Botón de envio de formulario -->
-    <?= Html::submitButton('Enviar', ['class'=>'btn btn-success btn-block'])?>
+    <?= Html::submitButton('Enviar', [
+        'class'=>'btn btn-success btn-block'
+    ])?>
 
 <?php ActiveForm::end() ?>

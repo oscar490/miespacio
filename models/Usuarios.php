@@ -80,7 +80,11 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 'compare',
                 'compareAttribute' => 'password',
                 'skipOnEmpty'=>false,
-                'on' => [self::ESCENARIO_CREATE, self::ESCENARIO_UPDATE]
+                'on' => [
+                    self::ESCENARIO_CREATE,
+                    self::ESCENARIO_UPDATE,
+                    self::ESCENARIO_ESTABLECER_PASSWORD
+                ]
             ],
             [
                 ['email', 'nombre'],
@@ -127,12 +131,6 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 'required',
                 'on'=>self::ESCENARIO_ESTABLECER_PASSWORD,
             ],
-            [
-                ['password_repeat'],
-                'compare',
-                'compareAttribute'=>'password',
-                'on'=>self::ESCENARIO_ESTABLECER_PASSWORD,
-            ]
         ];
     }
 
@@ -232,8 +230,6 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         return static::findOne(['access_token' => $token]);
     }
 
-
-
     /**
      * {@inheritdoc}
      */
@@ -300,6 +296,10 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 'nombre_completo'=>mb_strtoupper($this->nombre),
                 'usuario_id'=>$this->id,
             ]))->save();
+        } else {
+            if (!$this->updatePassword) {
+                $this->update_password_at = new Expression('current_timestamp(0)');
+            }
         }
     }
 }
