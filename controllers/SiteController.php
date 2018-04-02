@@ -140,18 +140,9 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $usuario = Usuarios::findOne(['nombre' => $model->username]);
-
-            if ($usuario->cuentaActivada) {
-                $model->login();
-                return $this->redirect(['equipos/gestionar-tableros']);
-            }
-            Yii::$app->session->setFlash(
-                'error',
-                'No puede iniciar sesión. Deberá activar su cuenta
-                 accidiendo a su correo: ' . $usuario->email
-            );
+        
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->redirect(['equipos/gestionar-tableros']);
         }
 
         $model->password = '';
