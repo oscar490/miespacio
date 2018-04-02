@@ -94,7 +94,7 @@ class SiteController extends Controller
             $asunto = 'Recuperación de contraseña de ';
         } else {
             $direccion = ['site/login'];
-            $vista_correo = 'contenido-correo';
+            $vista_correo = 'activacion-cuenta';
             $asunto = 'Activación de cuenta de ';
         }
 
@@ -166,11 +166,10 @@ class SiteController extends Controller
         if ($email !== null && $model->validate()) {
             $usuario = Usuarios::findOne(['email'=>$model->email]);
 
-            $mensaje['info'] = 'Se ha enviado un correo electrónico a la dirección indicada.
-                 Realice el proceso indicado para establecer la contraseña.';
             Yii::$app->session->setFlash(
-                key($mensaje),
-                $mensaje[key($mensaje)]
+                'info',
+                'Se ha enviado un correo electrónico a la dirección indicada.
+                 Realice el proceso indicado para establecer la contraseña.'
             );
             return $this->redirect(['site/send-email', 'id_user'=>$usuario->id]);
         }
@@ -189,30 +188,23 @@ class SiteController extends Controller
      */
     public function actionEstablecerPassword($token_clave = null)
     {
-
-        if (($usuario = Usuarios::findOne(['token_clave' => $token_clave])) === null) {
+        if (($model = Usuarios::findOne(['token_clave' => $token_clave])) === null) {
             throw new NotFoundHttpException('Parámetro incorrecto');
         }
-        $model = new Usuarios([
-            'scenario'=>Usuarios::ESCENARIO_ESTABLECER_PASSWORD,
-        ]);
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $usuario->password = Yii::$app
-                ->security->generatePasswordHash($model->password);
-            $usuario->save();
-
+        $model->scenario = Usuarios::ESCENARIO_ESTABLECER_PASSWORD;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash(
                 'success',
                 'Se ha establecido la nueva contraseña correctamente.'
             );
             return $this->redirect(['site/login']);
         }
-
+        
+        $model->password = '';
         return $this->render('gestion-password', [
             'model' => $model,
             'accion' => $this->action->id,
-            'usuario'=> $usuario,
         ]);
     }
 

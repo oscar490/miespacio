@@ -32,21 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 ?>
             </div>
             <div class='panel-body'>
-                <!-- Contenido -->
-                <?php if (isset($usuario) && $usuario->updatePassword): ?>
-                    <?=
-                        Html::tag(
-                            'p',
-                            'Parece que este enlace de restablecimiento de contraseña
-                             ya no se puede utilizar. Significa que nos has enviado
-                             otra solicitud de restablecimiento de contraseña'
-                        );
-                    ?>
-                <?php else: ?>
-                    <?= $this->render($accion, [
-                        'model'=>$model,
-                    ])?>
-                <?php endif; ?>
+                <!-- Contenido -->    
+                <?= $this->render($accion, [
+                    'model'=>$model,
+                ])?>
             </div>
         </div>
     </div>

@@ -19,7 +19,6 @@ use yii\web\IdentityInterface;
  * @property string $token_acti
  * @property string $token_clave
  * @property string $auth_key
- * @property string $update_password_at
  *
  * @property DatosUsuarios[] $datosUsuarios
  * @property Equipos[] $equipos
@@ -142,14 +141,19 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Devuelve true o false en caso de que el usuario
-     * haya modificado ya su contraseña por recuperación.
-     * @return [type] [description]
+     * Modifica la contraseña del usuario y también la cifra.
+     * @param [type] $password [description]
      */
-    public function getUpdatePassword()
+    public function setPassword($password)
     {
-        return $this->update_password_at !== null;
+        if ($password === '') {
+            $this->password = $this->getOldAttribute('password');
+        } else {
+            $this->password = Yii::$app->security
+                ->generatePasswordHash($password);
+        }
     }
+
 
     public function formName()
     {
@@ -191,23 +195,17 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-            if ($this->isNewRecord) {
-                $this->password = \Yii::$app
-                    ->security->generatePasswordHash($this->password);
-                $this->token_acti = \Yii::$app
-                    ->security->generateRandomString();
-                $this->token_clave = \Yii::$app
-                    ->security->generateRandomString();
-            } else {
-                if ($this->scenario === self::ESCENARIO_UPDATE) {
-                    if ($this->password === '') {
-                        $this->password = $this->getOldAttribute('password');
-                    } else {
-                        $this->password = Yii::$app->security
-                            ->generatePasswordHash($this->password);
-                    }
+                if ($this->isNewRecord || $this->scenario !== 'default') {
+                    $this->setPassword($this->password);
                 }
-            }
+
+                if ($this->scenario === Usuarios::ESCENARIO_CREATE) {
+                    $this->token_acti = \Yii::$app
+                        ->security->generateRandomString();
+                    $this->token_clave = \Yii::$app
+                        ->security->generateRandomString();
+                }
+
             return true;
         }
         return false;
@@ -296,10 +294,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 'nombre_completo'=>mb_strtoupper($this->nombre),
                 'usuario_id'=>$this->id,
             ]))->save();
-        } else {
-            if (!$this->updatePassword) {
-                $this->update_password_at = new Expression('current_timestamp(0)');
-            }
         }
+
     }
 }

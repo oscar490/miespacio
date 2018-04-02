@@ -16,7 +16,6 @@ CREATE TABLE usuarios
     , token_acti         VARCHAR(255)
     , token_clave        VARCHAR(255)
     , auth_key           VARCHAR(255)
-    , update_password_at TIMESTAMP(0)
 );
 
 INSERT INTO usuarios (nombre, password, email)
