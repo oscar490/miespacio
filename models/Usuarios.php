@@ -114,16 +114,10 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             ],
             [['nombre', 'password', 'email'], 'string', 'max' => 255],
             [
-                ['nombre'],
+                ['nombre', 'email'],
                 'unique',
-                'message' => 'Ya existe un usuario con ese nombre.',
+                'message' => 'Ya existe un usuario con esa cuenta',
                 'on' => self::ESCENARIO_CREATE,
-            ],
-            [
-                ['email'],
-                'unique',
-                'message'=>'Ya existe un usuario con esa dirección de correo',
-                'on'=>self::ESCENARIO_CREATE,
             ],
             [
                 ['password', 'password_repeat'],
