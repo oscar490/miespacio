@@ -41,6 +41,8 @@ class LoginForm extends Model
             ],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
+
+            ['username', 'validateCuenta'],
         ];
     }
 
@@ -58,6 +60,24 @@ class LoginForm extends Model
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError($attribute, 'Nombre de usuario o contraseña incorrecta');
             }
+        }
+    }
+
+    /**
+     * Valida si la cuenta del usuario está activada o no.
+     * @param  string $attribute  El atributo que se está validando.
+     * @param  array  $params     the additional name-value pairs given in the rule
+     */
+    public function validateCuenta($attribute, $params)
+    {
+        $usuario = Usuarios::findOne(['nombre'=>$this->username]);
+
+        if (!$usuario->cuentaActivada) {
+            $this->addError(
+                $attribute,
+                'No puede iniciar sesión, deberá activar su cuenta por correo: '
+                . $usuario->email
+            );
         }
     }
 

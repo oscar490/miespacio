@@ -40,7 +40,7 @@ AppAsset::register($this);
                     'span',
                     '',
                     ['class'=>'glyphicon glyphicon-th icono-x2']
-                ) . ' Inicio',
+                ) . 'Inicio',
                 'url'=>['site/index'],
                 'encode'=>false,
             ],

@@ -15,13 +15,20 @@ use yii\widgets\ActiveForm;
         <div class='col-md-6 col-md-offset-3'>
             <div class='panel panel-primary'>
                 <div class='panel-heading'>
-                    <h4>
-                        <span class='glyphicon glyphicon-registration-mark'>
-                        </span>
-                        <strong>
-                            <?= Html::encode($this->title)?>
-                        </strong>
-                    </h4>
+                    <?=
+                        Html::tag(
+                            'h3',
+                            Html::tag(
+                                'span',
+                                '',
+                                ['class'=>'glyphicon glyphicon-registration-mark']
+                            ) . ' ' .
+                            Html::tag(
+                                'strong',
+                                $this->title
+                            )
+                        );
+                    ?>
                 </div>
                 <div class='panel-body'>
                     <?php $form = ActiveForm::begin(); ?>
