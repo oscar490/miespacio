@@ -38,6 +38,17 @@ class SiteController extends Controller
                     ],
                 ],
             ],
+            'acces'=> [
+                'class'=> AccessControl::className(),
+                'only'=>['establecer-password'],
+                'rules'=> [
+                    [
+                        'actions'=> ['establecer-password'],
+                        'allow'=> true,
+                        'roles' => ['?']
+                    ]
+                ]
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -200,7 +211,7 @@ class SiteController extends Controller
             );
             return $this->redirect(['site/login']);
         }
-        
+
         $model->password = '';
         return $this->render('gestion-password', [
             'model' => $model,
