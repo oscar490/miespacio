@@ -14,11 +14,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nombre_completo')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'apellidos')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'descripcion')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'iniciales')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'usuario_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

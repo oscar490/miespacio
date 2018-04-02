@@ -56,11 +56,11 @@ class DatosUsuariosController extends Controller
      */
     public function actionView()
     {
-        $datos = $this->findModel(Yii::$app->user->id);
-        $cuenta = Usuarios::findOne(['id'=>$datos->usuario_id]);
-        $cuenta->scenario = Usuarios::ESCENARIO_UPDATE;
+        $model = $this->findModel([
+            'usuario_id'=>Yii::$app->user->id,
+        ]);
 
-        if ($cuenta->load(Yii::$app->request->post()) && $cuenta->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash(
                 'success',
                 'Se han modificado los datos de la cuenta correctamente'
@@ -68,10 +68,8 @@ class DatosUsuariosController extends Controller
             return $this->redirect(['view']);
         }
 
-        $cuenta->password = '';
         return $this->render('view', [
-            'datos' => $datos,
-            'cuenta'=>$cuenta,
+            'model' => $model,
         ]);
     }
 

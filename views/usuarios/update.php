@@ -3,11 +3,11 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\DatosUsuarios */
+/* @var $model app\models\Usuarios */
 
-$this->title = 'Datos de perfil';
+$this->title = 'Datos de cuenta';
 ?>
-<div class="datos-usuarios-update">
+<div class="usuarios-update">
 
     <div class='panel panel-primary'>
         <div class='panel-heading'>
