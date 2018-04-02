@@ -102,7 +102,7 @@ class UsuariosController extends Controller
                                    con éxito, ya puede iniciar sesión.';
         } else {
             $mensaje['danger'] = 'No se puede confirmar la dirección de correo
-                                  electrónico. Ya ha sido registrado anteriormente.';
+                                  electrónico. Ya ha sido confirmado anteriormente.';
         }
 
         Yii::$app->session->setFlash(

@@ -16,11 +16,38 @@ use yii\web\IdentityInterface;
  * @property string $nombre
  * @property string $password
  * @property string $email
+ * @property string $token_acti
+ * @property string $token_clave
+ * @property string $auth_key
+ *
+ * @property DatosUsuarios[] $datosUsuarios
+ * @property Equipos[] $equipos
  */
 class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 {
+    /**
+     * Validación para el registro de nuevo usuario.
+     * @var string
+     */
     const ESCENARIO_CREATE = 'create';
+
+    /**
+     * Validación para el modificado del usuario.
+     * @var string
+     */
     const ESCENARIO_UPDATE = 'update';
+
+    /**
+     * Validación para el correo de envio para recuperación de password.
+     * @var string
+     */
+    const ESCENARIO_CORREO_PASSWORD = 'correo-password';
+
+    /**
+     * Validación para establecer el password por recuperación.
+     * @var string
+     */
+    const ESCENARIO_ESTABLECER_PASSWORD = 'establecer-password';
 
     /**
      * Constraseña a ingresar por segunda vez.
@@ -52,7 +79,11 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 'compare',
                 'compareAttribute' => 'password',
                 'skipOnEmpty'=>false,
-                'on' => [self::ESCENARIO_CREATE, self::ESCENARIO_UPDATE]
+                'on' => [
+                    self::ESCENARIO_CREATE,
+                    self::ESCENARIO_UPDATE,
+                    self::ESCENARIO_ESTABLECER_PASSWORD
+                ]
             ],
             [
                 ['email', 'nombre'],
@@ -62,7 +93,24 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             [
                 ['email'],
                 'email',
-                'on' => [self::ESCENARIO_CREATE, self::ESCENARIO_UPDATE]
+                'on' => [
+                    self::ESCENARIO_CREATE,
+                    self::ESCENARIO_UPDATE,
+                    self::ESCENARIO_CORREO_PASSWORD,
+                ]
+            ],
+            [
+                ['email'],
+                'required',
+                'on'=>self::ESCENARIO_CORREO_PASSWORD,
+            ],
+            [
+                ['email'],
+                'exist',
+                'targetAttribute'=>['email', 'email'],
+                'targetClass'=>Usuarios::className(),
+                'message'=>'Ese correo no existe, no pertenece a ningun usuario.',
+                'on'=>self::ESCENARIO_CORREO_PASSWORD,
             ],
             [['nombre', 'password', 'email'], 'string', 'max' => 255],
             [
@@ -77,6 +125,11 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 'message'=>'Ya existe un usuario con esa dirección de correo',
                 'on'=>self::ESCENARIO_CREATE,
             ],
+            [
+                ['password', 'password_repeat'],
+                'required',
+                'on'=>self::ESCENARIO_ESTABLECER_PASSWORD,
+            ],
         ];
     }
 
@@ -88,17 +141,30 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Devuelve un enlace para la validación por correo.
-     * @return [type] [description]
+     * Modifica la contraseña del usuario y también la cifra.
+     * @param [type] $password [description]
      */
-    public function getEnlaceValidacion()
+    public function setPassword($password)
     {
-        return Html::a(
-            'Haz click aquí para confirmar esta dirección de correo electrónico',
-            Url::to(['usuarios/validar-correo', 'token' => $this->token], true)
-        );
+        if ($password === '') {
+            $this->password = $this->getOldAttribute('password');
+        } else {
+            $this->password = Yii::$app->security
+                ->generatePasswordHash($password);
+        }
     }
 
+
+    public function formName()
+    {
+        return '';
+    }
+
+    /**
+     * Devuelve true o false en caso de que la cuenta
+     * del usuario esté activada.
+     * @return [type] [description]
+     */
     public function getCuentaActivada()
     {
         return $this->token_acti === null;
@@ -129,29 +195,23 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-            if ($this->isNewRecord) {
-                $this->password = \Yii::$app
-                    ->security->generatePasswordHash($this->password);
-                $this->token_acti = \Yii::$app
-                    ->security->generateRandomString();
-                $this->token_clave = \Yii::$app
-                    ->security->generateRandomString();
-            } else {
-                if ($this->scenario === self::ESCENARIO_UPDATE) {
-                    if ($this->password === '') {
-                        $this->password = $this->getOldAttribute('password');
-                    } else {
-                        $this->password = Yii::$app->security
-                            ->generatePasswordHash($this->password);
-                    }
+                if ($this->isNewRecord || $this->scenario !== 'default') {
+                    $this->setPassword($this->password);
                 }
-            }
+
+                if ($this->scenario === Usuarios::ESCENARIO_CREATE) {
+                    $this->token_acti = \Yii::$app
+                        ->security->generateRandomString();
+                    $this->token_clave = \Yii::$app
+                        ->security->generateRandomString();
+                }
+
             return true;
         }
         return false;
     }
 
-    
+
     /**
      * {@inheritdoc}
      */
@@ -167,8 +227,6 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return static::findOne(['access_token' => $token]);
     }
-
-
 
     /**
      * {@inheritdoc}
@@ -214,6 +272,14 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEquipos()
+    {
+        return $this->hasMany(Equipos::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
+    }
+
+    /**
      * Despues de registrarse el usuario, se añaden los datos del
      * usuario en la base de datos.
      * @param  boolean $insert true si se va a realizar un insert,
@@ -229,5 +295,6 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
                 'usuario_id'=>$this->id,
             ]))->save();
         }
+
     }
 }

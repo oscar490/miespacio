@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <!-- Enlace para recuperación de contraseña -->
                         <?= Html::a(
                             '¿Has olvidado la contraseña?',
-                            ['site/solicitar-clave'])
+                            ['site/solicitar-password'])
                         ?>
 
                         <!-- Recordar la sesión -->
