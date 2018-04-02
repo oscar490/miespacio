@@ -19,17 +19,19 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class='col-md-6 col-md-offset-3'>
             <div class='panel panel-primary'>
                 <div class='panel-heading'>
-                    <h4>
-                        <?=
+                    <?=
+                        Html::tag(
+                            'h3',
                             Html::img(
                                 'images/logotipo.png',
                                 ['class'=>'logo', 'alt'=>'logotipo']
+                            ) .
+                            Html::tag(
+                                'strong',
+                                $this->title
                             )
-                        ?>
-                        <strong>
-                            <?= Html::encode($this->title) ?>
-                        </strong>
-                    </h4>
+                        );
+                    ?>
                 </div>
                 <div class='panel-body'>
                     <?php $form = ActiveForm::begin([
