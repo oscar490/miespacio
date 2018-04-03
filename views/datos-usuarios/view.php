@@ -1,28 +1,22 @@
 <?php
 /* Datos de perfil de usuario y de cuenta */
 
+/* @var $this yii\web\View */
+/* @var $model app\models\DatosUsuarios */
+
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\ActiveForm;
 use app\components\MyHelpers;
 use yii\helpers\Url;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\DatosUsuarios */
-/* @var $cuenta app\models\Usuarios */
-$css = <<<EOT
-    .contenedor {
-        display: flex;
-        flex-direction: column;
-    }
-EOT;
 
-$this->registerCss($css);
 $this->title = 'Perfil | MiEspacio';
 $this->params['breadcrumbs'][] = $this->title;
 
 $items = [
     [
+        //  Modificación de datos de perfil.
         'label'=>"<span class='glyphicon glyphicon-edit'></span> Datos de perfil",
         'content'=>$this->render('update', [
             'model'=>$model,
@@ -30,6 +24,7 @@ $items = [
         'active'=>true,
     ],
     [
+        //  Modificación de datos de cuenta.
         'label'=>"<span class='glyphicon glyphicon-user'></span> Datos de cuenta",
         'content'=>$this->render('/usuarios/update', [
             'model'=>$model->usuario,
@@ -39,8 +34,8 @@ $items = [
 ?>
 <!-- Nombre de usuario e imagen de perfil -->
 <div class="datos-usuarios-view">
-    <div class='cabecera-flex-box'>
-        <div class='contenedor'>
+    <div class='cabecera-flex-row'>
+        <div class='cabecera-flex-column'>
             <!-- Imágen de perfil-->
             <?=
                 Html::tag(
@@ -61,7 +56,7 @@ $items = [
             <?=
                 Html::tag(
                     'h2',
-                    $model->nombre_completo .
+                    $model->nombre_completo . ' ' .
                     $model->apellidos . ' ' .
                     Html::tag(
                         'small',
@@ -82,4 +77,5 @@ $items = [
 </div>
 <br>
 
+<!-- Pestañas de selección -->
 <?= MyHelpers::tabs($items) ?>

@@ -62,7 +62,7 @@ class DatosUsuarios extends \yii\db\ActiveRecord
     {
         return [
             [['usuario_id'], 'integer'],
-            [['nombre_completo', 'descripcion'], 'string', 'max' => 50],
+            [['nombre_completo', 'descripcion', 'apellidos'], 'string', 'max' => 255],
             [['nombre_completo'], 'required'],
             [
                 ['imagen'],
@@ -84,7 +84,7 @@ class DatosUsuarios extends \yii\db\ActiveRecord
             'descripcion' => 'Descripción (opcional)',
             'registro' => 'Registro',
             'ultimo_acceso' => 'Ultimo Acceso',
-            'apellidos'=>'Apellidos',
+            'apellidos'=>'Apellidos (opcional)',
             'usuario_id' => 'Usuario ID',
             'imagen'=>'Imagen de ávatar',
         ];

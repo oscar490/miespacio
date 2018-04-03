@@ -10,6 +10,8 @@ use yii\web\Controller;
 use yii\db\Expression;
 use app\models\DatosUsuarios;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 /**
  * UsuariosController implements the CRUD actions for Usuarios model.
@@ -70,6 +72,11 @@ class UsuariosController extends Controller
             'scenario' => Usuarios::ESCENARIO_CREATE,
         ]);
 
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash(
                 'info',
@@ -82,6 +89,32 @@ class UsuariosController extends Controller
             'model' => $model,
         ]);
     }
+
+    /**
+    * Updates an existing Usuarios model.
+    * If update is successful, the browser will be redirected to the 'view' page.
+    * @param integer $id
+    * @return mixed
+    * @throws NotFoundHttpException if the model cannot be found
+    */
+   public function actionUpdate($id)
+   {
+       $model = $this->findModel($id);
+       $model->scenario = Usuarios::ESCENARIO_UPDATE;
+
+       if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+           Yii::$app->response->format = Response::FORMAT_JSON;
+           return ActiveForm::validate($model);
+        }
+
+       if ($model->load(Yii::$app->request->post()) && $model->save()) {
+           Yii::$app->session->setFlash(
+               'success',
+               'Se han modificado los datos de la cuenta correctamente'
+           );
+           return $this->redirect(['datos-usuarios/view']);
+       }
+   }
 
     /**
      * Se encarga de validar el correo electrónico del usuario.

@@ -36,8 +36,8 @@ CREATE TABLE datos_usuarios
                                    CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO datos_usuarios (nombre_completo, usuario_id)
-    VALUES ('OSCAR', 1);
+INSERT INTO datos_usuarios (nombre_completo, apellidos, usuario_id)
+    VALUES ('OSCAR', 'Vega Herrera', 1);
 
 
 -- Tabla equipos --

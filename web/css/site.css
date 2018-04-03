@@ -197,7 +197,13 @@ a.desc:after {
     justify-content: center;
 }
 
-.cabecera-flex-box {
+.cabecera-flex-row {
     display: flex;
     justify-content: center;
+}
+
+.cabecera-flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
