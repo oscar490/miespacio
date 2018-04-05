@@ -38,7 +38,7 @@ $items = [
         <?=
             Html::img(
                 $model->url_imagen,
-                ['class'=>'logo-x2 img-circle']
+                ['class'=>'logo-x3 img-circle']
             );
         ?>
         <?=
@@ -59,8 +59,7 @@ $items = [
             );
         ?>
     </div>
+
+    <!-- Pestañas de selección -->
+    <?= MyHelpers::tabs($items) ?>
 </div>
-
-
-<!-- Pestañas de selección -->
-<?= MyHelpers::tabs($items) ?>

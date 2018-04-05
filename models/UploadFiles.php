@@ -4,6 +4,7 @@ namespace app\models;
 
 use yii\base\Model;
 use Spatie\Dropbox\Exceptions\BadRequest;
+use yii\imagine\Image;
 use Yii;
 
 /**
@@ -23,13 +24,29 @@ class UploadFiles extends Model
      */
     public $archivo;
     /**
-     * Subida de archivo a Dropbox.
+     * Subida de archivo al servidor.
      * @return [type] [description]
      */
     public function upload()
     {
+        $nombre = Yii::getAlias("@uploads/$this->nombre_archivo");
+        $res = $this->archivo->saveAs($nombre);
+
+        if ($res) {
+            Image::thumbnail($nombre, 250, null)->save($nombre);
+        }
+
+        return $this->uploadDropbox();
+    }
+
+    /**
+     * Subida de archivo a Dropbox.
+     * @return [type] [description]
+     */
+    public function uploadDropbox()
+    {
         $cliente = new \Spatie\Dropbox\Client(getenv('DROPBOX_TOKEN'));
-        $this->archivo->saveAs(Yii::getAlias("@uploads/$this->nombre_archivo"));
+        $archivo = Yii::getAlias("@uploads/$this->nombre_archivo");
 
         try {
             $cliente->delete($this->nombre_archivo);
@@ -38,9 +55,7 @@ class UploadFiles extends Model
 
         $cliente->upload(
             $this->nombre_archivo,
-            file_get_contents(
-                Yii::getAlias("@uploads/$this->nombre_archivo")
-            ),
+            file_get_contents($archivo),
             'overwrite'
         );
 
@@ -50,6 +65,7 @@ class UploadFiles extends Model
         );
 
         return  substr($resultado['url'], 0, -1) . '1';
+
 
     }
 }

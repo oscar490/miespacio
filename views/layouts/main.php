@@ -84,11 +84,16 @@ AppAsset::register($this);
                 'encode'=>false,
             ],
             [
-                'label'=>'Usuario',
+                'label'=>Html::tag(
+                    'span',
+                    '',
+                    ['class'=>'glyphicon glyphicon-user icono-x2']
+                ) . ' ' . Yii::$app->user->identity->nombre,
                 'items' => [
                     Html::tag(
                         'li',
                         $datosUsuario->nombre_completo
+                        . ' ' . $datosUsuario->apellidos
                         . ' (' . Yii::$app->user->identity->nombre . ')',
                         ['class'=>'dropdown-header icono-x1']
                     ),
