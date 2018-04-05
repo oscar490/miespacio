@@ -13,6 +13,7 @@ EOT;
 
 $this->registerCss($css);
 ?>
+
 <?=
     Html::tag(
         'div',

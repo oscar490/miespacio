@@ -60,7 +60,7 @@ class EquiposController extends Controller
             'query'=>Equipos::find()
                 ->where(['usuario_id'=>Yii::$app->user->id]),
             'sort'=>[
-                'defaultOrder'=>['created_at'=>SORT_ASC],
+                'defaultOrder'=>['created_at'=>SORT_DESC],
             ],
         ]);
 
@@ -130,18 +130,18 @@ class EquiposController extends Controller
         ]);
 
         //  Mostrar tableros de un equipo.
-        $tablerosLista = Tableros::find()
-            ->where(['equipo_id'=>Equipos::find()
-                ->where(['usuario_id'=>Yii::$app->user->id])
-                ->scalar()]);
+        // $tablerosLista = Tableros::find()
+        //     ->where(['equipo_id'=>Equipos::find()
+        //         ->where(['usuario_id'=>Yii::$app->user->id])
+        //         ->scalar()]);
 
         //  Mostrar lista desplegable de equipos creados.
-        $equipos = Equipos::find()
-            ->select(['denominacion'])
-            ->indexBy('id')
-            ->where(['usuario_id'=>Yii::$app->user->id])
-            ->orderBy(['created_at'=>SORT_ASC])
-            ->column();
+        // $equipos = Equipos::find()
+        //     ->select(['denominacion'])
+        //     ->indexBy('id')
+        //     ->where(['usuario_id'=>Yii::$app->user->id])
+        //     ->orderBy(['created_at'=>SORT_ASC])
+        //     ->column();
 
         if (Yii::$app->request->isAjax && $equipo->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -152,13 +152,13 @@ class EquiposController extends Controller
             return $this->redirect(['view', 'id' => $equipo->id]);
         }
 
-        return $this->render('create', [
-            'equipo' => $equipo,
-            'equipos'=>$equipos,
-            'tablerosLista'=>$tablerosLista,
-            //  Modelo para crear un nuevo tablero.
-            'tablero'=> new Tableros(),
-        ]);
+        // return $this->render('create', [
+        //     'equipo' => $equipo,
+        //     'equipos'=>$equipos,
+        //     'tablerosLista'=>$tablerosLista,
+        //     //  Modelo para crear un nuevo tablero.
+        //     'tablero'=> new Tableros(),
+        // ]);
     }
 
     /**

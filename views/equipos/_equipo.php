@@ -17,20 +17,25 @@ $tableros = new ActiveDataProvider([
 ?>
 
 <!-- Nombre del equipo -->
-<?=
-    Html::tag(
-        'h4',
-        Html::tag(
-            'span',
-            '',
-            ['class'=>'glyphicon glyphicon-list-alt']
-        ) . ' ' .
-        Html::tag(
-            'strong',
-            $model->denominacion
-        )
-    );
-?>
+<div class='row'>
+    <div class='col-md-4'>
+        <?=
+            Html::tag(
+                'h4',
+                Html::tag(
+                    'span',
+                    '',
+                    ['class'=>'glyphicon glyphicon-list-alt']
+                ) . ' ' .
+                Html::tag(
+                    'strong',
+                    $model->denominacion
+                )
+            );
+        ?>
+    </div>
+</div>
+
 
 <!-- Tableros de cada equipo -->
 <?= $this->render('tableros_equipo', [

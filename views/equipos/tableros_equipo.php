@@ -54,7 +54,7 @@ use yii\helpers\Html;
         <?=
             Html::submitButton(
                 'Crear tablero',
-                ['class'=>'btn-xs btn-success',]
+                ['class'=>'btn-md btn-success',]
             )
         ?>
 
