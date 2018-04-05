@@ -44,7 +44,7 @@ $this->registerJs($js);
             <div class='panel-heading'>
                 <?=
                     Html::tag(
-                        'p',
+                        'h4',
                         Html::tag(
                             'span',
                             '',

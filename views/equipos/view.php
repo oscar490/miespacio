@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use kartik\tabs\TabsX;
+use app\components\MyHelpers;
 use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
 
@@ -85,13 +85,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <br>
 
     <!-- Pestañas de selección -->
-    <?=
-        TabsX::widget([
-            'items'=>$items,
-            'position'=>TabsX::POS_ABOVE,
-            'align'=>TabsX::ALIGN_CENTER,
-            'encodeLabels'=>false,
-        ])
-    ?>
+    <?= MyHelpers::tabs($items) ?>
 
 </div>

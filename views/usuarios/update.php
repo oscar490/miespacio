@@ -1,32 +1,26 @@
 <?php
-
-use yii\helpers\Html;
-
+/* Modificacion de usuario */
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
 
-$this->title = 'Registrarse';
-$this->params['breadcrumbs'][] = $this->title;
+use yii\helpers\Html;
 
 ?>
-<div class='usuarios-create'>
+<br>
+<div class="usuarios-update">
     <div class='row'>
         <div class='col-md-6 col-md-offset-3'>
             <div class='panel panel-primary'>
                 <div class='panel-heading'>
                     <?=
                         Html::tag(
-                            'h3',
+                            'p',
                             Html::tag(
                                 'span',
                                 '',
-                                ['class'=>'glyphicon glyphicon-registration-mark']
-                            ) . ' ' .
-                            Html::tag(
-                                'strong',
-                                $this->title
-                            )
+                                ['class'=>'glyphicon glyphicon-edit']
+                            ) . ' ' . 'Datos de cuenta'
                         );
                     ?>
                 </div>

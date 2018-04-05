@@ -9,7 +9,7 @@ use yii\web\Controller;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
+use app\models\UploadFiles;
 use app\models\Usuarios;
 
 /**
@@ -49,29 +49,22 @@ class DatosUsuariosController extends Controller
 
     /**
      * Muestra los datos de la cuenta y perfil del usuario. También
-     * permite modificar los datos de la cuenta del usuario.
+     * permite modificar los datos de la cuenta del usuario y de su perfil.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView()
     {
-        $datos = $this->findModel(Yii::$app->user->id);
-        $cuenta = Usuarios::findOne(['id'=>$datos->usuario_id]);
-        $cuenta->scenario = Usuarios::ESCENARIO_UPDATE;
+        $model = $this->findModel([
+            'usuario_id'=>Yii::$app->user->id,
+        ]);
 
-        if ($cuenta->load(Yii::$app->request->post()) && $cuenta->save()) {
-            Yii::$app->session->setFlash(
-                'success',
-                'Se han modificado los datos de la cuenta correctamente'
-            );
-            return $this->redirect(['view']);
-        }
+        $model->usuario->password = '';
+        $model->usuario->scenario = Usuarios::ESCENARIO_UPDATE;
 
-        $cuenta->password = '';
         return $this->render('view', [
-            'datos' => $datos,
-            'cuenta'=>$cuenta,
+            'model' => $model,
         ]);
     }
 
@@ -104,23 +97,18 @@ class DatosUsuariosController extends Controller
     */
     public function actionUpdate($id)
     {
-        $datos = $this->findModel($id);
+        $model = $this->findModel($id);
 
-        if ($datos->load(Yii::$app->request->post())) {
-            $datos->imagen = UploadedFile::getInstance($datos, 'imagen');
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
-            $datos->save();
-            $datos->upload();
             Yii::$app->session->setFlash(
                 'success',
-                'Se han modificado los datos de perfil correctamente'
+                'Se han modificado los datos de perfil correctamente.'
             );
             return $this->redirect(['view']);
         }
 
-        return $this->render('view', [
-            'datos' => $datos,
-        ]);
+
     }
 
 

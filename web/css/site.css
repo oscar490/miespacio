@@ -160,14 +160,22 @@ a.desc:after {
 
 .logo {
     width: 35px;
+    height: 25px;
 }
 
 .logo-x2 {
-    width: 70px;
+    width: 100px;
+    height: 100px;
 }
 
 .logo-x3 {
-    width: 200px;
+    width: 202px;
+    height: 187px;
+}
+
+.logo-nav {
+    width: 33px;
+    height: 25px;
 }
 
 .breadcrumb > li > a {
@@ -189,7 +197,7 @@ a.desc:after {
 }
 
 .icono-x3 {
-    font-size: 80px;
+    font-size: 60px;
 }
 
 .panel-heading {
