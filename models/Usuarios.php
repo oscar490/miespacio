@@ -286,6 +286,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         if ($insert) {
             (new DatosUsuarios([
                 'nombre_completo'=>mb_strtoupper($this->nombre),
+                'url_imagen'=>'images/usuario.png',
                 'usuario_id'=>$this->id,
             ]))->save();
         }

@@ -4,13 +4,14 @@
 /* @var $this yii\web\View */
 /* @var $model app\models\DatosUsuarios */
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 ?>
 <br>
 <div class="datos-usuarios-update">
     <div class='row'>
         <div class='col-md-6 col-md-offset-3'>
-
+            <!-- Formulario de datos de usuario -->
             <div class='panel panel-primary'>
                 <div class='panel-heading'>
                     <?=
@@ -30,7 +31,6 @@ use yii\helpers\Html;
                     ]) ?>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

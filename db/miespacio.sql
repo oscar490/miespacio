@@ -31,13 +31,14 @@ CREATE TABLE datos_usuarios
       id              BIGSERIAL    PRIMARY KEY
     , nombre_completo VARCHAR(255) NOT NULL
     , apellidos       VARCHAR(255)
+    , url_imagen      VARCHAR(255)
     , descripcion     VARCHAR(50)
     , usuario_id      BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
                                    CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO datos_usuarios (nombre_completo, apellidos, usuario_id)
-    VALUES ('OSCAR', 'Vega Herrera', 1);
+INSERT INTO datos_usuarios (nombre_completo, apellidos, url_imagen, usuario_id)
+    VALUES ('OSCAR', 'Vega Herrera','images/usuario.png', 1);
 
 
 -- Tabla equipos --

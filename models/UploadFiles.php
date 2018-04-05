@@ -12,45 +12,44 @@ use Yii;
 class UploadFiles extends Model
 {
     /**
-     * Contenido del archivo a subir.
+     * Nombre del archivo a subir
+     * @return [type] [description]
+     */
+    public $nombre_archivo;
+
+    /**
+     * Archivo que se va a subir.
      * @var [type]
      */
     public $archivo;
-
-    public function rules()
-    {
-        return [
-            [['archivo'], 'file', 'extensions'=>'jpg'],
-        ];
-    }
-
     /**
      * Subida de archivo a Dropbox.
      * @return [type] [description]
      */
-    public function upload($nombre)
+    public function upload()
     {
-        if ($this->validate()) {
-            $cliente = new \Spatie\Dropbox\Client(getenv('DROPBOX_TOKEN'));
-            $this->archivo->saveAs(Yii::getAlias("@uploads/$nombre"));
+        $cliente = new \Spatie\Dropbox\Client(getenv('DROPBOX_TOKEN'));
+        $this->archivo->saveAs(Yii::getAlias("@uploads/$this->nombre_archivo"));
 
-            try {
-                $cliente->delete($nombre);
-            } catch (BadRequest $e) {
-
-            }
-            $cliente->upload(
-                $nombre,
-                file_get_contents(Yii::getAlias("@uploads/$nombre")),
-                'overwrite'
-            );
-
-            $resultado = $cliente->createSharedLinkWithSettings(
-                $nombre,
-                ['requested_visibility'=>'public']
-            );
-
-            return  substr($resultado['url'], 0, -1) . '1';
+        try {
+            $cliente->delete($this->nombre_archivo);
+        } catch (BadRequest $e) {
         }
+
+        $cliente->upload(
+            $this->nombre_archivo,
+            file_get_contents(
+                Yii::getAlias("@uploads/$this->nombre_archivo")
+            ),
+            'overwrite'
+        );
+
+        $resultado = $cliente->createSharedLinkWithSettings(
+            $this->nombre_archivo,
+            ['requested_visibility'=>'public']
+        );
+
+        return  substr($resultado['url'], 0, -1) . '1';
+
     }
 }

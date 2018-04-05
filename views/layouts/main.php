@@ -84,11 +84,7 @@ AppAsset::register($this);
                 'encode'=>false,
             ],
             [
-                'label'=>Html::tag(
-                    'span',
-                    ' ',
-                    ['class'=>'glyphicon glyphicon-user icono-x2']
-                ) . ' Usuario',
+                'label'=>'Usuario',
                 'items' => [
                     Html::tag(
                         'li',

@@ -7,6 +7,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\file\FileInput;
 
 ?>
 
@@ -23,6 +24,15 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'descripcion')->textarea([
             'rows'=>5,
         ]) ?>
+
+        <?= $form->field($model, 'avatar')->widget(FileInput::className(), [
+            'options'=>['accept'=>'image/*'],
+            'pluginOptions'=>[
+                'showUpload'=>false,
+                'browseIcon'=> '<i class="glyphicon glyphicon-picture"></i>',
+            ],
+        ]);
+        ?>
 
         <div class="form-group">
             <?= Html::submitButton('Guardar perfil', [

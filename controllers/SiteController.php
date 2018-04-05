@@ -17,7 +17,7 @@ use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\web\UploadedFile;
 use Spatie\Dropbox\Exceptions\BadRequest;
-use app\models\UploadForm;
+use app\models\UploadFiles;
 
 class SiteController extends Controller
 {
@@ -140,7 +140,7 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-        
+
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->redirect(['equipos/gestionar-tableros']);
         }

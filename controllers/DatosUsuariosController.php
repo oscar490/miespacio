@@ -9,7 +9,7 @@ use yii\web\Controller;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
+use app\models\UploadFiles;
 use app\models\Usuarios;
 
 /**
@@ -62,7 +62,7 @@ class DatosUsuariosController extends Controller
 
         $model->usuario->password = '';
         $model->usuario->scenario = Usuarios::ESCENARIO_UPDATE;
-        
+
         return $this->render('view', [
             'model' => $model,
         ]);
@@ -100,6 +100,7 @@ class DatosUsuariosController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
             Yii::$app->session->setFlash(
                 'success',
                 'Se han modificado los datos de perfil correctamente.'
@@ -107,9 +108,7 @@ class DatosUsuariosController extends Controller
             return $this->redirect(['view']);
         }
 
-        return $this->render('view', [
-            'model' => $model,
-        ]);
+
     }
 
 

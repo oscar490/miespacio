@@ -7,6 +7,7 @@ use yii\web\User;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
 use yii\imagine\Image;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "datos_usuarios".
@@ -26,7 +27,7 @@ class DatosUsuarios extends \yii\db\ActiveRecord
      * Imagen de perfil del usuario.
      * @var [type]
      */
-    public $imagen;
+    public $avatar;
     /**
      * {@inheritdoc}
      */
@@ -65,7 +66,7 @@ class DatosUsuarios extends \yii\db\ActiveRecord
             [['nombre_completo', 'descripcion', 'apellidos'], 'string', 'max' => 255],
             [['nombre_completo'], 'required'],
             [
-                ['imagen'],
+                ['avatar'],
                 'file',
                 'extensions'=>'jpg',
             ],
@@ -86,7 +87,7 @@ class DatosUsuarios extends \yii\db\ActiveRecord
             'ultimo_acceso' => 'Ultimo Acceso',
             'apellidos'=>'Apellidos (opcional)',
             'usuario_id' => 'Usuario ID',
-            'imagen'=>'Imagen de ávatar',
+            'avatar'=>'Imágen de ávatar',
         ];
     }
 
@@ -137,5 +138,29 @@ class DatosUsuarios extends \yii\db\ActiveRecord
                 'equipo_id'=>$equipo->id,
             ]))->save();
         }
+    }
+
+    /**
+     * Se cambia la imagen de perfil y se sube a Dropbox.
+     * Sólo en caso de que el usuario haya indicado la imágen
+     * que desea subir.
+     * @param  [type] $insert [description]
+     * @return [type]         [description]
+     */
+    public function beforeSave($insert)
+    {
+        if (!$insert) {
+            $this->avatar = UploadedFile::getInstance($this, 'avatar');
+
+            if ($this->avatar !== null) {
+                $subida = new UploadFiles([
+                    'nombre_archivo'=>$this->usuario->id . '.jpg',
+                    'archivo'=>$this->avatar,
+                ]);
+                $this->url_imagen = $subida->upload();
+            }
+            return true;
+        }
+        return true;
     }
 }

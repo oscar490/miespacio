@@ -34,48 +34,33 @@ $items = [
 ?>
 <!-- Nombre de usuario e imagen de perfil -->
 <div class="datos-usuarios-view">
-    <div class='cabecera-flex-row'>
-        <div class='cabecera-flex-column'>
-            <!-- Imágen de perfil-->
-            <?=
+    <div class='jumbotron'>
+        <?=
+            Html::img(
+                $model->url_imagen,
+                ['class'=>'logo-x2 img-circle']
+            );
+        ?>
+        <?=
+            Html::tag(
+                'h2',
+                $model->nombre_completo . ' ' .
+                $model->apellidos . ' ' .
                 Html::tag(
-                    'h2',
-                    Html::tag(
-                        'span',
-                        Html::tag(
-                            'span',
-                            '',
-                            ['class'=>'glyphicon glyphicon-user']
-                        ),
-                        ['class'=>'label label-primary icono-x3']
-                    )
-                );
-            ?>
-            <br>
-            <!-- Nombre completo y apellidos -->
-            <?=
-                Html::tag(
-                    'h2',
-                    $model->nombre_completo . ' ' .
-                    $model->apellidos . ' ' .
-                    Html::tag(
-                        'small',
-                        '(' . $model->usuario->nombre . ')'
-                    )
-                );
-            ?>
-            <br>
-            <!-- Descripción -->
-            <?=
-                Html::tag(
-                    'p',
-                    $model->descripcion
-                );
-            ?>
-        </div>
+                    'small',
+                    ' (' . $model->usuario->nombre . ') '
+                )
+            );
+        ?>
+        <?=
+            Html::tag(
+                'span',
+                $model->descripcion
+            );
+        ?>
     </div>
 </div>
-<br>
+
 
 <!-- Pestañas de selección -->
 <?= MyHelpers::tabs($items) ?>
