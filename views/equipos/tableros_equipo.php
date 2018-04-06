@@ -16,48 +16,48 @@ use yii\helpers\Html;
 ?>
 <br>
 <!-- Tableros pertenecientes al equipo -->
-<?php if (!empty($tableros->query->all())): ?>
-    <div class='row'>
+<div class='row'>
+    <?php if (!empty($tableros->query->all())): ?>
         <?= ListView::widget([
             'dataProvider'=>$tableros,
             'itemView'=>'_tablero',
             'summary'=>'',
         ]) ?>
+    <?php endif; ?>
+
+    <!-- Formulario para crear tableros en un equipo -->
+    <div class='col-md-3'>
+        <div class='panel panel-primary'>
+            <div class='panel-heading'>
+                <?php Modal::begin([
+                    'toggleButton'=>[
+                        'label'=>"<span class='glyphicon glyphicon-plus'></span>
+                                  Crear un nuevo tablero",
+                        'class'=>'btn-md btn-info',
+                    ],
+                    'size'=>Modal::SIZE_SMALL,
+                ]) ?>
+
+                    <?= $this->render('form-crear-tablero', [
+                        'tablero'=>$tablero_crear,
+                        'equipo'=>$equipo,
+                    ]) ?>
+                <?php Modal::end() ?>
+                <br>
+            </div>
+            <div class='panel-body'>
+            </div>
+        </div>
     </div>
-<?php endif; ?>
+</div>
 
-<!-- Formulario para crear tableros en un equipo -->
-<?php Modal::begin([
-    'header'=>"<h4>Crear un nuevo tablero en $equipo->denominacion</h4>",
-    'toggleButton'=>[
-        'label'=>"<span class='glyphicon glyphicon-plus'></span>
-                  Crear un nuevo tablero",
-        'class'=>'btn-md btn-success',
-    ],
-    'size'=>Modal::SIZE_SMALL,
-]) ?>
+&nbsp;
 
-    <?php $form = ActiveForm::begin([
-        'action'=>[
-            'equipos/gestionar-tableros',
-            'id_equipo'=>$equipo->id,
-        ],
-        'enableAjaxValidation' => true,
-    ]) ?>
-
-        <?= $form->field($tablero_crear, 'denominacion', [
-            'enableAjaxValidation' => true
-            ])->textInput(['placeholder'=>'Añadir título del tablero',])
-                ->label(false)
-        ?>
-
-        <?=
-            Html::submitButton(
-                'Crear tablero',
-                ['class'=>'btn-md btn-success',]
-            )
-        ?>
-
-    <?php ActiveForm::end() ?>
-
-<?php Modal::end() ?>
+<!-- Enlace a los tableros del equipo actual -->
+<?=
+    Html::a(
+        "<span class='glyphicon glyphicon-menu-hamburger'></span> Tableros",
+        ['equipos/view', 'id'=>$equipo->id],
+        ['class'=>'btn btn-info']
+    )
+?>

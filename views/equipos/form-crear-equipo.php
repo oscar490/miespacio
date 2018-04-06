@@ -15,29 +15,24 @@ if ($equipo->id === null) {
 }
 
 ?>
+<div class='row'>
+    <div class='col-xs-12'>
+        <?php $form = ActiveForm::begin([
+            'action'=>$action_form,
+            'enableAjaxValidation' => true,
+        ]); ?>
 
-<div class='form'>
-    <?php $form = ActiveForm::begin([
-        'action'=>$action_form,
-        'enableAjaxValidation' => true,
-    ]); ?>
+            <?= $form->field($equipo, 'denominacion', ['enableAjaxValidation' => true])
+                ->textInput(['maxlength' => true, 'autofocus'=>true]) ?>
 
-        <?= $form->field($equipo, 'denominacion', ['enableAjaxValidation' => true])
-            ->textInput(['maxlength' => true]) ?>
+            <?= $form->field($equipo, 'descripcion')->textarea([
+                'rows'=>7,
+            ]) ?>
 
-        <?= $form->field($equipo, 'descripcion')->textarea([
-            'row'=>4,
-        ]) ?>
+            <div class="form-group">
+                <?= Html::submitButton( $label_boton, ['class' => 'btn btn-success btn-block']) ?>
+            </div>
 
-        <?php if (isset($mostrar)): ?>
-            <?= $form->field($equipo, 'imagen')->fileinput() ?>
-        <?php endif; ?>
-
-        <?= Html::hiddenInput('usuario_id', Yii::$app->user->id) ?>
-
-        <div class="form-group">
-            <?= Html::submitButton( $label_boton, ['class' => 'btn btn-success btn-block']) ?>
-        </div>
-
-    <?php ActiveForm::end(); ?>
+        <?php ActiveForm::end(); ?>
+    </div>
 </div>
