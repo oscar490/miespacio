@@ -37,7 +37,14 @@ $items = [
         'content'=> $this->render('update', [
             'equipo'=>$model,
         ]),
-    ]
+    ],
+    [
+        'label'=>"<span class='glyphicon glyphicon-picture'></span>
+                Imágen",
+        'content'=> $this->render('form_imagen', [
+            'equipo'=>$model,
+        ])
+    ],
 ];
 $css = <<<EOT
     .contenido {

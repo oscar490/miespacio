@@ -23,7 +23,7 @@ if ($equipo->id === null) {
         ]); ?>
 
             <?= $form->field($equipo, 'denominacion', ['enableAjaxValidation' => true])
-                ->textInput(['maxlength' => true, 'autofocus'=>true]) ?>
+                ->textInput(['maxlength' => true]) ?>
 
             <?= $form->field($equipo, 'descripcion')->textarea([
                 'rows'=>7,
