@@ -58,8 +58,8 @@ CREATE TABLE equipos
 );
 
 
-INSERT INTO equipos (denominacion, usuario_id)
-    VALUES ('2º DAW', 1), ('1º SMR', 1);
+INSERT INTO equipos (denominacion, usuario_id, url_imagen)
+    VALUES ('2º DAW', 1, 'images/equipo.png'), ('1º SMR', 1, 'images/equipo.png');
 
 
 

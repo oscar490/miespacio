@@ -54,7 +54,7 @@ $this->registerJs($js);
                 ?>
             </div>
             <div class='panel-body'>
-                <?= $this->render('form-crear-equipo', [
+                <?= $this->render('_form', [
                     'equipo'=>$equipo,
                 ]) ?>
             </div>

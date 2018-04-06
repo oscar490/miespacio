@@ -69,9 +69,9 @@ AppAsset::register($this);
                 'label'=>Html::tag(
                     'span',
                     ' ',
-                    ['class'=>'glyphicon glyphicon-plus icono-x2']
-                ) . ' Crear',
-                'url'=>['equipos/create'],
+                    ['class'=>'glyphicon glyphicon-home icono-x2']
+                ) . ' Inicio',
+                'url'=>['site/index'],
                 'encode'=>false,
             ],
             [

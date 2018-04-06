@@ -48,42 +48,24 @@ class EquiposController extends Controller
     }
 
     /**
-     * Se muestran los tableros creados en cada equipo. Se permite poder crear
-     * un tablero nuevo o un nuevo equipo.
+     * Se muestran los equipos junto con sus tableros creados.
      * @param integer $id_equipo El identificador del equipo.
      * @return mixed
      */
-    public function actionGestionarTableros($id_equipo = null)
+    public function actionGestionarTableros()
     {
         //  Equipos creados por el usuario logeado.
         $equipos = new ActiveDataProvider([
             'query'=>Equipos::find()
                 ->where(['usuario_id'=>Yii::$app->user->id]),
             'sort'=>[
-                'defaultOrder'=>['created_at'=>SORT_ASC],
+                'defaultOrder'=>['created_at'=>SORT_DESC],
             ],
         ]);
 
-        //  Modelo para crear un nuevo tablero.
-        $tablero_crear = new Tableros([
-            'equipo_id'=>$id_equipo,
-        ]);
-
-        //  Validación del modelo del tablero, por ajax.
-        if (Yii::$app->request->isAjax && $tablero_crear->load(Yii::$app->request->post())) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($tablero_crear);
-        }
-
-        //  Validación y guardado del modelo tablero. Sin ajax.
-        if ($tablero_crear->load(Yii::$app->request->post()) && $tablero_crear->save()) {
-            return $this->redirect(['tableros/view', 'id'=>$tablero_crear->id]);
-        }
-
         return $this->render('gestionar', [
             'equipos' => $equipos,
-            'tablero_crear'=> $tablero_crear,
-            //  Modelo para crear un nuevo equipo.
+            'tablero_crear'=> new Tableros(),
             'equipo_crear'=> new Equipos(),
         ]);
     }
@@ -127,21 +109,8 @@ class EquiposController extends Controller
         //  Modelo para craar un nuevo equipo.
         $equipo = new Equipos([
             'usuario_id'=>Yii::$app->user->id,
+            'url_imagen'=>'images/equipo.png'
         ]);
-
-        //  Mostrar tableros de un equipo.
-        $tablerosLista = Tableros::find()
-            ->where(['equipo_id'=>Equipos::find()
-                ->where(['usuario_id'=>Yii::$app->user->id])
-                ->scalar()]);
-
-        //  Mostrar lista desplegable de equipos creados.
-        $equipos = Equipos::find()
-            ->select(['denominacion'])
-            ->indexBy('id')
-            ->where(['usuario_id'=>Yii::$app->user->id])
-            ->orderBy(['created_at'=>SORT_ASC])
-            ->column();
 
         if (Yii::$app->request->isAjax && $equipo->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -152,13 +121,6 @@ class EquiposController extends Controller
             return $this->redirect(['view', 'id' => $equipo->id]);
         }
 
-        return $this->render('create', [
-            'equipo' => $equipo,
-            'equipos'=>$equipos,
-            'tablerosLista'=>$tablerosLista,
-            //  Modelo para crear un nuevo tablero.
-            'tablero'=> new Tableros(),
-        ]);
     }
 
     /**

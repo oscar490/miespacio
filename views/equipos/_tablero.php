@@ -1,4 +1,5 @@
 <?php
+/* Vista parcial de un tablero */
 /* Diseño del tablero, al seleccionarlo, nos redirecciona a su contenido. */
 /* @var $model app\models\Tableros */
 
@@ -13,6 +14,7 @@ EOT;
 
 $this->registerCss($css);
 ?>
+
 <?=
     Html::tag(
         'div',
