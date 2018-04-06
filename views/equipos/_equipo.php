@@ -10,6 +10,14 @@ use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
 use app\models\Tableros;
 
+$css = <<<EOT
+    .logo-equipo {
+        width: 56px;
+        height: 47px;
+    }
+EOT;
+
+$this->registerCss($css);
 ?>
 
 <!-- Nombre del equipo -->
@@ -18,10 +26,9 @@ use app\models\Tableros;
         <?=
             Html::tag(
                 'h4',
-                Html::tag(
-                    'span',
-                    '',
-                    ['class'=>'glyphicon glyphicon-list-alt']
+                Html::img(
+                    $model->url_imagen,
+                    ['class'=>'img-circle logo-equipo']
                 ) . ' ' .
                 Html::tag(
                     'strong',

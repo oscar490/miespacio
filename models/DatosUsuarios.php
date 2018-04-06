@@ -129,6 +129,7 @@ class DatosUsuarios extends \yii\db\ActiveRecord
         if ($insert) {
             $equipo = new Equipos([
                 'denominacion'=>'Tableros personales',
+                'url_imagen'=>'images/equipo.png',
                 'usuario_id'=>$this->usuario_id
             ]);
             $equipo->save();

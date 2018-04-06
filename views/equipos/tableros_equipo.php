@@ -38,7 +38,7 @@ use yii\helpers\Html;
                     'size'=>Modal::SIZE_SMALL,
                 ]) ?>
 
-                    <?= $this->render('form-crear-tablero', [
+                    <?= $this->render('/tableros/_form', [
                         'tablero'=>$tablero_crear,
                         'equipo'=>$equipo,
                     ]) ?>

@@ -109,6 +109,7 @@ class EquiposController extends Controller
         //  Modelo para craar un nuevo equipo.
         $equipo = new Equipos([
             'usuario_id'=>Yii::$app->user->id,
+            'url_imagen'=>'images/equipo.png'
         ]);
 
         if (Yii::$app->request->isAjax && $equipo->load(Yii::$app->request->post())) {

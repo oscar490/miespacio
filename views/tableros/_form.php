@@ -1,29 +1,31 @@
 <?php
+/* Formulario para la creación de un tablero */
+/* @var $equipos app\models\Equipos */
+/* @var $tablero app\models\Tableros */
 
-use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Tableros */
-/* @var $form yii\widgets\ActiveForm */
+
 ?>
 
-<div class="tableros-form">
+<?php $form = ActiveForm::begin([
+    'action'=>['tableros/create'],
+    'enableAjaxValidation' => true,
+]); ?>
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?= $form->field(
+            $tablero,
+            'denominacion',
+            ['enableAjaxValidation' => true]
+        )->textInput(['maxlength' => true, 'placeholder'=>'Nombre del tablero'])
+        ->label(false);
+    ?>
 
-    <?= $form->field($model, 'denominacion')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'equipo_id')->dropDownList([
-            'Equipos'=>$equipos,
-        ],
-        ['selected'=>2]
-    ) ?>
+    <?= Html::hiddenInput('equipo_id', $equipo->id) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Crear tablero', ['class' => 'btn btn-success btn-block']) ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
-
-</div>
+<?php ActiveForm::end(); ?>

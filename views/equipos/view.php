@@ -48,8 +48,8 @@ $css = <<<EOT
     }
 
     .contenido > img {
-        width: 300px;
-        height: 200px;
+        width: 233px;
+        height: 189px;
     }
 EOT;
 
@@ -61,18 +61,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- Nombre del equipo e imagen -->
     <div class='row'>
         <div class='contenido'>
-                <?php if ($model->url_imagen === null): ?>
-                    <span class='label label-primary icono-x3'>
-                        <span class='glyphicon glyphicon-list-alt'></span>
-                    </span>
-                <?php else: ?>
-                    <?=
-                        Html::img(
-                            $model->url_imagen,
-                            ['class'=>'img-rounded']
-                        );
-                    ?>
-                <?php endif; ?>
+                <?=
+                    Html::img(
+                        $model->url_imagen,
+                        ['class'=>'img-circle']
+                    );
+                ?>
                 <h2>
                     <strong>
                         <?= Html::encode($this->title) ?>

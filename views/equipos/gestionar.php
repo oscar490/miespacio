@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'type' => PopoverX::TYPE_INFO,
             'header'=>'Crear un nuevo equipo',
             'size'=>'md',
-            'content'=>$this->render('form-crear-equipo', [
+            'content'=>$this->render('_form', [
                 'equipo'=>$equipo_crear,
             ]),
 
