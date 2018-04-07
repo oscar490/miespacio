@@ -163,6 +163,30 @@ class EquiposController extends Controller
 
     }
 
+    public function actionUpdateImagen($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->imagen_equipo = UploadedFile::getInstance($model, 'imagen_equipo');
+
+        }
+
+
+        $subida = new UploadFiles([
+            'nombre_archivo'=> $model->id . $model->usuario->id . '.jpg',
+            'archivo' => $model->imagen_equipo,
+        ]);
+
+        $url = $subida->upload();
+        $model->url_imagen = $url;
+        $model->save(false);
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        return $url;
+    }
+
     /**
      * Deletes an existing Equipos model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

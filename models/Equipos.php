@@ -23,7 +23,7 @@ class Equipos extends \yii\db\ActiveRecord
      * Imágen del equipo.
      * @var [type]
      */
-    public $imagen;
+    public $imagen_equipo;
 
     /**
      * {@inheritdoc}
@@ -43,7 +43,7 @@ class Equipos extends \yii\db\ActiveRecord
             [['denominacion', 'usuario_id'], 'required'],
             [['usuario_id'], 'default', 'value' => null],
             [['usuario_id'], 'integer'],
-            [['denominacion', 'descripcion'], 'string', 'max' => 255],
+            [['denominacion', 'descripcion'], 'string', 'max' => 40],
             [
                 ['denominacion', 'usuario_id'],
                 'unique',
@@ -57,14 +57,14 @@ class Equipos extends \yii\db\ActiveRecord
                 'targetClass' => Usuarios::className(),
                 'targetAttribute' => ['usuario_id' => 'id'],
             ],
-            [['imagen'], 'file', 'extensions' => 'jpg'],
+            [['imagen_equipo'], 'file', 'extensions' => 'jpg'],
         ];
     }
 
     public function attributes()
     {
         return array_merge(parent::attributes(), [
-            'imagen'
+            'imagen_equipo'
         ]);
     }
 
@@ -78,7 +78,7 @@ class Equipos extends \yii\db\ActiveRecord
             'denominacion' => 'Nombre del equipo',
             'descripcion' => 'Descripción (opcional)',
             'usuario_id' => 'Usuario ID',
-            'imagen'=>'Imágen de equipo'
+            'imagen_equipo'=>'Imágen de equipo'
         ];
     }
 
