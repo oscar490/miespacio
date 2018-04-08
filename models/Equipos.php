@@ -57,7 +57,6 @@ class Equipos extends \yii\db\ActiveRecord
                 'targetClass' => Usuarios::className(),
                 'targetAttribute' => ['usuario_id' => 'id'],
             ],
-            [['imagen_equipo'], 'file', 'extensions' => 'jpg'],
         ];
     }
 

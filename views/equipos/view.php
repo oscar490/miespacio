@@ -61,7 +61,19 @@ $css = <<<EOT
     }
 
     #titulo {
-        padding-left: 42px;
+        padding-left: 50px;
+    }
+
+    #titulo.col-md-11 {
+        padding-left: 75px;
+    }
+
+    #titulo.col-sm-11 {
+        padding-left: 100px;
+    }
+
+    #titulo.col-lg-11 {
+        padding-left: 60px;
     }
 EOT;
 
