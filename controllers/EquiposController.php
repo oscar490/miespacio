@@ -143,17 +143,6 @@ class EquiposController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //  Subir y modificar la imagen del equipo.
-            $model->imagen = UploadedFile::getInstance($model, 'imagen');
-
-            if ($model->imagen !== null) {
-                $subir_archivo = new UploadFiles([
-                    'archivo'=>$model->imagen,
-                ]);
-                $model->url_imagen = $subir_archivo
-                    ->upload($model->id . Yii::$app->user->id . '.jpg');
-                $model->save(false);
-            }
             Yii::$app->session->setFlash(
                 'success',
                 'Se ha guardado la última modificación correctamente.'
@@ -163,15 +152,18 @@ class EquiposController extends Controller
 
     }
 
+    /**
+     * Cambia la imágen del equipo usando ajax.
+     * @param  integer $id ID del equipo.
+     * @return string      Direccíon de enlace de la imágen.
+     */
     public function actionUpdateImagen($id)
     {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $model->imagen_equipo = UploadedFile::getInstance($model, 'imagen_equipo');
-
         }
-
 
         $subida = new UploadFiles([
             'nombre_archivo'=> $model->id . $model->usuario->id . '.jpg',
@@ -183,7 +175,6 @@ class EquiposController extends Controller
         $model->save(false);
 
         Yii::$app->response->format = Response::FORMAT_JSON;
-
         return $url;
     }
 
