@@ -103,7 +103,6 @@ $this->registerCss($css);
                             'showUpload'=>false,
                             'showPreview' => false,
                             'browseIcon'=> '<i class="glyphicon glyphicon-picture"></i>',
-                            'browseLabel'=>'Selecciona',
                         ],
                     ]);
                     ?>
