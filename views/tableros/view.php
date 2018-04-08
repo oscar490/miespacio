@@ -2,36 +2,81 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tableros */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Tableros', 'url' => ['index']];
+$this->title = $model->denominacion . ' | MiEspacio';
+$this->params['breadcrumbs'][] = [
+    'label' => 'Tableros | MiEspacio',
+    'url' => ['equipos/gestionar-tableros']
+];
+$this->params['breadcrumbs'][] = [
+    'label'=>$model->equipo->denominacion,
+    'url'=>['equipos/view', 'id'=>$model->equipo->id],
+];
+
+$css = <<<EOT
+    .rojo {
+        background-color: red;
+    }
+EOT;
+
+$this->registerCss($css);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="tableros-view">
+<div class="container">
+    <div class='row'>
+        <div class='col-md-6'>
+            <h4>
+                <strong>
+                    <?=
+                        Html::encode($model->denominacion)
+                    ?>
+                </strong>
+            </h4>
+        </div>
+        <div class='col-md-3 col-md-offset-9'>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <strong>
+                        <?= Html::encode('Propiedades') ?>
+                    </strong>
+                </div>
+                <div class='panel-body'>
+                    <?php $form = ActiveForm::begin([
+                        'action'=>['tableros/update', 'id'=>$model->id],
+                    ]) ?>
+                        <?= $form->field($model, 'denominacion') ?>
+                        <?=
+                            $form->field($model, 'equipo_id')->dropdownList([
+                                'Equipos'=>$equipos
+                            ]);
+                        ?>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+                        <?=
+                            Html::submitButton('Modificar', [
+                                'class'=>'btn btn-success btn-block'
+                            ])
+                        ?>
+                    <?php ActiveForm::end() ?>
+                </div>
+            </div>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <?= Html::encode('Color') ?>
+                </div>
+                <div class='panel-body'>
+                    <div class='rojo'>
+                        hola
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'denominacion',
-            'equipo_id',
-        ],
-    ]) ?>
+
+
 
 </div>
