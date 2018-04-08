@@ -37,7 +37,15 @@ $items = [
         'content'=> $this->render('update', [
             'equipo'=>$model,
         ]),
-    ]
+    ],
+    [
+        //  Modificación de imágen.
+        'label'=>"<span class='glyphicon glyphicon-picture'></span>
+                Imágen",
+        'content'=> $this->render('form_imagen', [
+            'equipo'=>$model,
+        ])
+    ],
 ];
 $css = <<<EOT
     .contenido {
@@ -47,9 +55,25 @@ $css = <<<EOT
         align-items: center;
     }
 
-    .contenido > img {
-        width: 233px;
-        height: 189px;
+    #img_equipo > img {
+        width: 120px;
+        height: 120px;
+    }
+
+    #titulo {
+        padding-left: 50px;
+    }
+
+    #titulo.col-md-11 {
+        padding-left: 75px;
+    }
+
+    #titulo.col-sm-11 {
+        padding-left: 100px;
+    }
+
+    #titulo.col-lg-11 {
+        padding-left: 60px;
     }
 EOT;
 
@@ -57,23 +81,32 @@ $this->registerCss($css);
 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="equipos-view">
+
     <!-- Nombre del equipo e imagen -->
-    <div class='row'>
-        <div class='contenido'>
+    <div class='container'>
+        <div class='row centrado'>
+            <div id='img_equipo' class='col-xs-4 col-sm-1 col-md-1 col-lg-1'>
                 <?=
                     Html::img(
                         $model->url_imagen,
                         ['class'=>'img-circle']
                     );
                 ?>
-                <h2>
+            </div>
+            <div id='titulo' class='col-xs-8 col-sm-11 col-md-11 col-lg-11'>
+                <h3>
                     <strong>
                         <?= Html::encode($this->title) ?>
                     </strong>
-                </h2>
-            <br>
-            <p><?= Html::encode($model->descripcion) ?></p>
+                </h3>
+                <div class='row'>
+                    <div class='col-md-4'>
+                        <p>
+                            <?= Html::encode($model->descripcion) ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <br>

@@ -15,6 +15,15 @@ $css = <<<EOT
         width: 56px;
         height: 47px;
     }
+
+    #imagen_equipo {
+        padding-right: 0px;
+        width: 75px;
+    }
+
+    #texto_equipo {
+        padding-left: 0px;
+    }
 EOT;
 
 $this->registerCss($css);
@@ -22,21 +31,24 @@ $this->registerCss($css);
 
 <!-- Nombre del equipo -->
 <div class='row'>
-    <div class='col-md-4'>
+    <div id='imagen_equipo' class='col-xs-1 col-md-1 col-lg-1'>
         <?=
-            Html::tag(
-                'h4',
-                Html::img(
-                    $model->url_imagen,
-                    ['class'=>'img-circle logo-equipo']
-                ) . ' ' .
-                Html::tag(
-                    'strong',
-                    $model->denominacion
-                )
-            );
+            Html::img(
+                $model->url_imagen,
+                ['class'=>'img-circle logo-equipo']
+            )
         ?>
     </div>
+    <div id='texto_equipo' class='col-xs-8 col-md-11 col-lg-11'>
+
+        <h4>
+            <strong>
+                <?= Html::encode($model->denominacion) ?>
+            </strong>
+        </h4>
+
+    </div>
+
 </div>
 
 

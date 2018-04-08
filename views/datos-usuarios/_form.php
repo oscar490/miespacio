@@ -16,15 +16,18 @@ use kartik\file\FileInput;
     <?php $form = ActiveForm::begin([
         'action'=>['datos-usuarios/update', 'id'=>$model->id],
     ]); ?>
-
+        <!-- Nombre completo -->
         <?= $form->field($model, 'nombre_completo')->textInput(['maxlength' => true]) ?>
 
+        <!-- Apellidos -->
         <?= $form->field($model, 'apellidos')->textInput(['maxlength' => true]) ?>
 
+        <!-- Descripción -->
         <?= $form->field($model, 'descripcion')->textarea([
             'rows'=>5,
         ]) ?>
 
+        <!-- Imágen de ávatar -->
         <?= $form->field($model, 'avatar')->widget(FileInput::className(), [
             'options'=>['accept'=>'image/*'],
             'pluginOptions'=>[
