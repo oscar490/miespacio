@@ -2,36 +2,171 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use yii\widgets\ActiveForm;
+use yii\helpers\Url;
+use app\components\MyHelpers;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tableros */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Tableros', 'url' => ['index']];
+$this->title = $model->denominacion . ' | MiEspacio';
+$this->params['breadcrumbs'][] = [
+    'label' => 'Tableros | MiEspacio',
+    'url' => ['equipos/gestionar-tableros']
+];
+$this->params['breadcrumbs'][] = [
+    'label'=>$model->equipo->denominacion,
+    'url'=>['equipos/view', 'id'=>$model->equipo->id],
+];
+
+$css = <<<EOT
+    a:link {
+        text-decoration: none;
+    }
+EOT;
+
+echo MyHelpers::confirmacion('Eliminar tablero');
+
+$url_update = Url::to(['tableros/update', 'id'=>$model->id]);
+$url_delete = Url::to(['tableros/delete', 'id'=>$model->id]);
+
+$js = <<<EOT
+    let contenedor = $('div.wrap');
+    let titulo = $('#nombre_tablero');
+    let boton = $('#btn_eliminar');
+
+    eliminarElemento(boton, '$url_delete');
+    contenedor.css('backgroundColor', '$model->color');
+    cambiarColorTitulo('$model->color');
+
+    $('#btn_color').on('click', function() {
+        let color_seleccion = $('#color').val();
+
+        titulo.css('color', 'black');
+        cambiarColorTitulo(color_seleccion);
+        contenedor.css('backgroundColor', color_seleccion);
+        cambiar_color_ajax(color_seleccion);
+    })
+
+    function cambiarColorTitulo(color) {
+        if (color !== "#ffffffff") {
+            titulo.css('color', 'white');
+        }
+    }
+
+    function cambiar_color_ajax(color) {
+        $.ajax({
+            url: '$url_update',
+            type: 'POST',
+            data: {
+                color: color,
+            }
+        });
+    }
+
+
+EOT;
+
+$this->registerJS($js);
+$this->registerCss($css);
+
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="tableros-view">
+<div class="container">
+    <div class='row'>
+        <!-- Nombre del tablero y enlace de su equipo -->
+        <div id='nombre_tablero' class='col-md-6'>
+            <h4>
+                <strong>
+                    <?=
+                        Html::encode($model->denominacion)
+                    ?>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+                    <?=
+                        Html::a(
+                            $model->equipo->denominacion,
+                            ['equipos/view', 'id' => $model->equipo->id],
+                            ['class'=>'btn-sm btn-primary']
+                        );
+                    ?>
+                </strong>
+            </h4>
+        </div>
+        <div class='col-md-3 col-md-offset-9'>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+            <!-- Formulario de propiedades del tablero -->
+            <div class='panel panel-primary'>
+                <div class='panel-heading'>
+                    <strong>
+                        <?= Html::encode('Propiedades') ?>
+                    </strong>
+                </div>
+                <div class='panel-body'>
+                    <!-- Modificar -->
+                    <?php $form = ActiveForm::begin([
+                        'action'=>['tableros/update', 'id'=>$model->id],
+                    ]) ?>
+                        <?= $form->field($model, 'denominacion') ?>
+                        <?=
+                            $form->field($model, 'equipo_id')->dropdownList([
+                                'Equipos'=>$equipos
+                            ]);
+                        ?>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'denominacion',
-            'equipo_id',
-        ],
-    ]) ?>
+                        <?=
+                            Html::submitButton('Modificar', [
+                                'class'=>'btn btn-success btn-block'
+                            ])
+                        ?>
+                    <?php ActiveForm::end() ?>
+                    <br>
+                    <!-- Eliminar -->
+                    <?=
+                        Html::button(
+                            'Eliminar',
+                            [
+                                'class'=>'btn btn-danger btn-block',
+                                'id'=>'btn_eliminar',
+                            ]
+                        );
+                    ?>
+                </div>
+            </div>
+
+            <!-- Cambiar el color del tablero -->
+            <div class='panel panel-primary'>
+                <div class='panel-heading'>
+                    <strong>
+                        <?= Html::encode('Color') ?>
+                    </strong>
+                </div>
+                <div class='panel-body'>
+                    <?php $form = ActiveForm::begin([
+                        'action'=>['tableros/update', 'id'=>$model->id],
+                    ]) ?>
+
+                        <?=
+                            $form->field($model, 'color')->dropdownList([
+                                'Colores'=>$colores
+                            ]);
+                        ?>
+
+                        <?=
+                            Html::button(
+                                'Cambiar',
+                                [
+                                    'class'=>'btn btn-success btn-block',
+                                    'id'=>'btn_color',
+                                ]
+                            )
+                        ?>
+
+                    <?php ActiveForm::end() ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 
 </div>

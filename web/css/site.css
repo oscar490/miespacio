@@ -17,7 +17,7 @@ body {
 .footer {
     height: 60px;
     background-color: #0266a0;
-    border-top: 1px solid #ddd;
+    /* border-top: 1px solid #ddd; */
     padding-top: 20px;
     color: white;
     font-weight: bold;
