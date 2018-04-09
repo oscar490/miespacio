@@ -1,0 +1,22 @@
+.azul-1 {
+    background-color: #0008ff82;
+}
+
+.azul-2 {
+    background-color: #004eff87;
+}
+
+.azul-3 {
+    background-color: #0089ffd9;
+}
+
+.blanco {
+    background-color: white;
+    border: solid 1px black;
+}
+
+.cuadro {
+    width: 100px;
+    height: 100px;
+    border-radius: 250px;
+}
