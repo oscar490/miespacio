@@ -7,32 +7,17 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-use kartik\dialog\Dialog;
+use app\components\MyHelpers;
 
 
-echo Dialog::widget([
-    'dialogDefaults'=>[
-        Dialog::DIALOG_CONFIRM => [
-            'type'=>Dialog::TYPE_DANGER,
-            'title'=>'Eliminar equipo',
-            'btnOKLabel'=>'Si',
-            'btnCancelLabel'=>'No',
-            'btnOKClass'=>'btn-danger',
-        ]
-    ]
-]);
+echo MyHelpers::confirmacion('Eliminar equipo');
+
 $urlEliminarEquipo = Url::to(['equipos/delete', 'id'=>$equipo->id]);
 $js = <<<EOT
-    $('#btn-eliminar').on('click', function() {
-        krajeeDialog.confirm("¿Deseas de verdad eliminarlo?", function (result) {
-        if (result) {
-            $.ajax({
-                type: 'POST',
-                url: "$urlEliminarEquipo",
-            });
-        }
-    });
-    })
+    let boton = $('#btn-eliminar');
+
+    eliminarElemento(boton, '$urlEliminarEquipo');
+
 EOT;
 
 $this->registerJs($js);

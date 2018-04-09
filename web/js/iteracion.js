@@ -17,3 +17,21 @@ function seleccionarMenuUsuario() {
         elementoActivo.parent().prev().css('backgroundColor', '#75a4c1');
     }
 }
+
+/**
+ * Se eliminar un elemento mediante ajax.
+ * @param  {[type]} elem_boton elemento que inicia el borrado.
+ * @param  {[type]} direccion  URL donde se envía la petición ajax.
+ */
+function eliminarElemento(elem_boton, direccion) {
+    elem_boton.on('click', function() {
+        krajeeDialog.confirm("¿Deseas de verdad eliminarlo?", function (result) {
+            if (result) {
+                $.ajax({
+                    type: 'POST',
+                    url: direccion
+                });
+            }
+        });
+    })
+}

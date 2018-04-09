@@ -71,6 +71,7 @@ CREATE TABLE tableros
 (
       id           BIGSERIAL     PRIMARY KEY
     , denominacion VARCHAR(255)  NOT NULL
+    , color        VARCHAR(255)
     , equipo_id    BIGINT        NOT NULL REFERENCES equipos (id) ON DELETE
                                  CASCADE ON UPDATE CASCADE
 
