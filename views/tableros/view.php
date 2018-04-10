@@ -89,7 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </strong>
             </h4>
         </div>
-        <div class='col-md-3 col-md-offset-9'>
+        <div class='col-md-3 col-md-offset-3'>
 
             <!-- Formulario de propiedades del tablero -->
             <div class='panel panel-primary'>
