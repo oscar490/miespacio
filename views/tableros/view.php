@@ -77,9 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div id='nombre_tablero' class='col-md-6'>
             <h4>
                 <strong>
-                    <?=
-                        Html::encode($model->denominacion)
-                    ?>
+                    <?= Html::encode($model->denominacion) ?>
 
                     <?=
                         Html::a(
@@ -101,25 +99,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     </strong>
                 </div>
                 <div class='panel-body'>
-                    <!-- Modificar -->
-                    <?php $form = ActiveForm::begin([
-                        'action'=>['tableros/update', 'id'=>$model->id],
-                    ]) ?>
-                        <?= $form->field($model, 'denominacion') ?>
-                        <?=
-                            $form->field($model, 'equipo_id')->dropdownList([
-                                'Equipos'=>$equipos
-                            ]);
-                        ?>
 
-                        <?=
-                            Html::submitButton('Modificar', [
-                                'class'=>'btn btn-success btn-block'
-                            ])
-                        ?>
-                    <?php ActiveForm::end() ?>
-                    <br>
-                    <!-- Eliminar -->
+                    <!-- Modificar el tablero -->
+                    <?= $this->render('update', [
+                        'model'=>$model,
+                        'equipos'=>$equipos,
+                    ]) ?>
+
+                    <!-- Eliminar el tablero -->
                     <?=
                         Html::button(
                             'Eliminar',
@@ -131,42 +118,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ?>
                 </div>
             </div>
-
-            <!-- Cambiar el color del tablero -->
-            <div class='panel panel-primary'>
-                <div class='panel-heading'>
-                    <strong>
-                        <?= Html::encode('Color') ?>
-                    </strong>
-                </div>
-                <div class='panel-body'>
-                    <?php $form = ActiveForm::begin([
-                        'action'=>['tableros/update', 'id'=>$model->id],
-                    ]) ?>
-
-                        <?=
-                            $form->field($model, 'color')->dropdownList([
-                                'Colores'=>$colores
-                            ]);
-                        ?>
-
-                        <?=
-                            Html::button(
-                                'Cambiar',
-                                [
-                                    'class'=>'btn btn-success btn-block',
-                                    'id'=>'btn_color',
-                                ]
-                            )
-                        ?>
-
-                    <?php ActiveForm::end() ?>
-                </div>
-            </div>
         </div>
     </div>
-
-
-
-
 </div>

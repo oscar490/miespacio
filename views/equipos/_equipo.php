@@ -60,4 +60,15 @@ $this->registerCss($css);
     'equipo'=>$model,
     'tablero_crear'=>$tablero_crear,
 ]) ?>
+
+
+<!-- Enlace a los tableros del equipo actual -->
+<?=
+    Html::a(
+        "<span class='glyphicon glyphicon-menu-hamburger'></span> Tableros",
+        ['equipos/view', 'id'=>$model->id],
+        ['class'=>'btn btn-info']
+    )
+?>
+
 <hr>

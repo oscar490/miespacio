@@ -50,14 +50,3 @@ use yii\helpers\Html;
         </div>
     </div>
 </div>
-
-&nbsp;
-
-<!-- Enlace a los tableros del equipo actual -->
-<?=
-    Html::a(
-        "<span class='glyphicon glyphicon-menu-hamburger'></span> Tableros",
-        ['equipos/view', 'id'=>$equipo->id],
-        ['class'=>'btn btn-info']
-    )
-?>
