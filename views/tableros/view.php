@@ -4,7 +4,10 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
+use yii\widgets\ListView;
+use yii\data\ActiveDataProvider;
 use app\components\MyHelpers;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Tableros */
 
@@ -36,7 +39,7 @@ $js = <<<EOT
 
     eliminarElemento(boton, '$url_delete');
     contenedor.css('backgroundColor', '$model->color');
-    cambiarColorTitulo('$model->color');
+
 
     $('#btn_color').on('click', function() {
         let color_seleccion = $('#color').val();
@@ -74,28 +77,81 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="container">
     <div class='row'>
         <!-- Nombre del tablero y enlace de su equipo -->
-        <div id='nombre_tablero' class='col-md-6'>
-            <h4>
-                <strong>
-                    <?= Html::encode($model->denominacion) ?>
+        <div id='nombre_tablero' class='col-md-9'>
+            <h3>
+                <span class='label label-primary'>
+                    <strong>
+                        <?= Html::encode($model->denominacion) ?>
+                    </strong>
+                </span>
+            </h3>
+            <br>
+            <!-- Tarjetas del tablero -->
+            <div class='panel panel-primary'>
+                <div class='panel-heading'>
+                    <strong>
+                        <?=
+                            Html::tag(
+                                'span',
+                                '',
+                                ['class'=>'glyphicon glyphicon-credit-card']
+                            ) . ' ' .
+                            Html::encode('Tarjetas')
+                        ?>
+                    </strong>
+                </div>
+                <div class='panel-body'>
+                    <?php if ($model->contieneTarjetas): ?>
+                        <?= ListView::widget([
+                            'dataProvider'=> new ActiveDataProvider([
+                                'query'=>$model->getTarjetas(),
+                            ]),
+                            'itemView'=>'_tarjeta',
+                            'summary'=>'',
+                        ]); ?>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
 
+        <div class='col-md-3'>
+
+            <!-- Equipo del tablero -->
+            <div class='panel panel-primary'>
+                <div class='panel-heading'>
+                    <strong>
+                        <?=
+                            Html::tag(
+                                'span',
+                                '',
+                                ['class'=>'glyphicon glyphicon-list-alt']
+                            ) . ' ' .
+                            Html::encode('Equipo')
+                        ?>
+                    </strong>
+                </div>
+                <div class='panel-body'>
                     <?=
                         Html::a(
                             $model->equipo->denominacion,
                             ['equipos/view', 'id' => $model->equipo->id],
-                            ['class'=>'btn-sm btn-primary']
+                            ['class'=>'btn btn-primary btn-block']
                         );
                     ?>
-                </strong>
-            </h4>
-        </div>
-        <div class='col-md-3 col-md-offset-9'>
-
+                </div>
+            </div>
             <!-- Formulario de propiedades del tablero -->
             <div class='panel panel-primary'>
                 <div class='panel-heading'>
                     <strong>
-                        <?= Html::encode('Propiedades') ?>
+                        <?=
+                            Html::tag(
+                                'span',
+                                '',
+                                ['class'=>'glyphicon glyphicon-edit']
+                            ) . ' ' .
+                            Html::encode('Propiedades')
+                        ?>
                     </strong>
                 </div>
                 <div class='panel-body'>
@@ -109,6 +165,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     <!-- Eliminar el tablero -->
                     <?=
                         Html::button(
+                            Html::tag(
+                                'span',
+                                '',
+                                ['class'=>'glyphicon glyphicon-remove-sign']
+                            ) . ' ' .
                             'Eliminar',
                             [
                                 'class'=>'btn btn-danger btn-block',
@@ -118,6 +179,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     ?>
                 </div>
             </div>
+            <div id='crear_tarjeta'>
+                <?= $this->render('/tarjetas/create', [
+                    'model'=>$tarjeta,
+                    'tablero'=>$model,
+                ]) ?>
+            </div>
+
         </div>
+
     </div>
 </div>

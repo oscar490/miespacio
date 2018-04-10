@@ -3,22 +3,18 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Tableros;
-use app\models\Equipos;
 use app\models\Tarjetas;
-use app\models\TablerosSearch;
+use app\models\TarjetasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
-use yii\widgets\ActiveForm;
-use yii\grid\GridView;
 use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 /**
- * TablerosController implements the CRUD actions for Tableros model.
+ * TarjetasController implements the CRUD actions for Tarjetas model.
  */
-class TablerosController extends Controller
+class TarjetasController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -36,12 +32,12 @@ class TablerosController extends Controller
     }
 
     /**
-     * Lists all Tableros models.
+     * Lists all Tarjetas models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TablerosSearch();
+        $searchModel = new TarjetasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -51,52 +47,26 @@ class TablerosController extends Controller
     }
 
     /**
-     * Displays a single Tableros model.
+     * Displays a single Tarjetas model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
-
-        $equipos = Equipos::find()
-            ->select(['denominacion'])
-            ->indexBy('id')
-            ->column();
-
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'equipos'=>$equipos,
-            'tarjeta' => new Tarjetas(),
         ]);
     }
 
     /**
-     * Renderiza una vista de los tableros de un equipo.
-     * pertenecen a un equipo.
-     * @param  integer $id_equipo Identificador del equipo.
-     * @return [type]            [description]
-     */
-    public function actionDevolverTableros($id_equipo)
-    {
-        $tableros = Tableros::find()
-            ->where(['equipo_id'=>$id_equipo]);
-
-        return $this->renderAjax('tableros_lista', [
-            'tableros'=>$tableros,
-        ]);
-    }
-
-    /**
-     * Creates a new Tableros model.
+     * Creates a new Tarjetas model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Tableros([
-            'color'=>'#ffffffff',
-        ]);
+        $model = new Tarjetas();
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -104,13 +74,13 @@ class TablerosController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['tableros/view', 'id' => $model->tablero->id]);
         }
 
     }
 
     /**
-     * Updates an existing Tableros model.
+     * Updates an existing Tarjetas model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -120,19 +90,17 @@ class TablerosController extends Controller
     {
         $model = $this->findModel($id);
 
-        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**
-     * Deletes an existing Tableros model.
+     * Deletes an existing Tarjetas model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -141,24 +109,20 @@ class TablerosController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-        Yii::$app->session->setFlash(
-            'success',
-            'Se ha eliminado el tablero correctamente'
-        );
 
-        return $this->redirect(['equipos/gestionar-tableros']);
+        return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Tableros model based on its primary key value.
+     * Finds the Tarjetas model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Tableros the loaded model
+     * @return Tarjetas the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Tableros::findOne($id)) !== null) {
+        if (($model = Tarjetas::findOne($id)) !== null) {
             return $model;
         }
 
