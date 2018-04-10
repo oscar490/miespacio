@@ -66,11 +66,24 @@ class Tableros extends \yii\db\ActiveRecord
         return '';
     }
 
+    public function getContieneTarjetas()
+    {
+        return !empty($this->tarjetas);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getEquipo()
     {
         return $this->hasOne(Equipos::className(), ['id' => 'equipo_id'])->inverseOf('tableros');
+    }
+
+    /**
+    * @return \yii\db\ActiveQuery
+    */
+    public function getTarjetas()
+    {
+       return $this->hasMany(Tarjetas::className(), ['tablero_id' => 'id'])->inverseOf('tablero');
     }
 }

@@ -33,7 +33,12 @@ class Tarjetas extends \yii\db\ActiveRecord
             [['tablero_id'], 'default', 'value' => null],
             [['tablero_id'], 'integer'],
             [['denominacion'], 'string', 'max' => 255],
-            [['denominacion', 'tablero_id'], 'unique', 'targetAttribute' => ['denominacion', 'tablero_id']],
+            [
+                ['denominacion', 'tablero_id'],
+                'unique',
+                'targetAttribute' => ['denominacion', 'tablero_id'],
+                'message'=>'Ya existe una tarjeta con ese nombre.',
+            ],
             [['tablero_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tableros::className(), 'targetAttribute' => ['tablero_id' => 'id']],
         ];
     }
@@ -45,9 +50,14 @@ class Tarjetas extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'denominacion' => 'Denominacion',
+            'denominacion' => 'Nombre de la tarjeta',
             'tablero_id' => 'Tablero ID',
         ];
+    }
+
+    public function formName()
+    {
+        return '';
     }
 
     /**

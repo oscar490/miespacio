@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Tableros;
 use app\models\Equipos;
+use app\models\Tarjetas;
 use app\models\TablerosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -57,12 +58,6 @@ class TablerosController extends Controller
      */
     public function actionView($id)
     {
-        $colores = [
-            '#0008ff82' => 'Color 1',
-            '#004eff87' => 'Color 2',
-            '#0089ffd9' => 'Color 3',
-            '#ffffffff' => 'Color 4',
-        ];
 
         $equipos = Equipos::find()
             ->select(['denominacion'])
@@ -72,7 +67,7 @@ class TablerosController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
             'equipos'=>$equipos,
-            'colores'=>$colores,
+            'tarjeta' => new Tarjetas(),
         ]);
     }
 

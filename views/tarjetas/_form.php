@@ -10,14 +10,20 @@ use yii\widgets\ActiveForm;
 
 <div class="tarjetas-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'action'=>['tarjetas/create'],
+        'enableAjaxValidation' => true,
+    ]); ?>
 
-    <?= $form->field($model, 'denominacion')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'denominacion', ['enableAjaxValidation' => true,])
+        ->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tablero_id')->textInput() ?>
+    <?= Html::hiddenInput('tablero_id', $tablero->id) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Crear', [
+            'class' => 'btn btn-success btn-block'
+        ]) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

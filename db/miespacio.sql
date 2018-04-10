@@ -100,4 +100,4 @@ CREATE TABLE tarjetas
 
 INSERT INTO tarjetas (denominacion, tablero_id)
     VALUES ('Desarrollo web', 2), ('Git', 2), ('JavaScript', 1),
-            ('Estilos CSS', 4);
+            ('Estilos CSS', 4), ('Introducción a PHP', 2);

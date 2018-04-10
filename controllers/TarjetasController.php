@@ -8,6 +8,8 @@ use app\models\TarjetasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 /**
  * TarjetasController implements the CRUD actions for Tarjetas model.
@@ -66,13 +68,15 @@ class TarjetasController extends Controller
     {
         $model = new Tarjetas();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['tableros/view', 'id' => $model->tablero->id]);
+        }
+
     }
 
     /**

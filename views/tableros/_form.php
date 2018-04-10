@@ -6,13 +6,18 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 
+$label = Html::tag(
+    'span',
+    '',
+    ['class'=>'glyphicon glyphicon-ok-sign']
+) . ' ';
 
 if ($tablero->isNewRecord) {
-    $label = 'Crear';
+    $label .= 'Crear';
     $mostrar = true;
     $action = ['tableros/create'];
 } else {
-    $label = 'Modificar';
+    $label .= 'Modificar';
     $mostrar = false;
     $action = ['tableros/update', 'id'=>$tablero->id];
 }
