@@ -74,7 +74,7 @@ class TarjetasController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['tableros/view', 'id' => $model->tablero->id]);
+            return $this->redirect(['tableros/view', 'id'=>$model->tablero->id]);
         }
 
     }

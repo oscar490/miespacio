@@ -4,6 +4,7 @@ namespace app\components;
 
 use kartik\tabs\TabsX;
 use kartik\dialog\Dialog;
+use yii\helpers\Html;
 
 class MyHelpers
 {
@@ -35,5 +36,20 @@ class MyHelpers
                 ]
             ]
         ]);
+    }
+
+    public static function submit($nombre= '', $options = [])
+    {
+        if (!array_key_exists('class', $options)) {
+            $options['class'] = 'btn btn-success btn-block';
+        }
+
+        $label = Html::tag(
+            'span',
+            '',
+            ['class'=> 'glyphicon glyphicon-ok-sign']
+        ) . ' ' . $nombre;
+
+        return Html::submitButton($label, $options);
     }
 }

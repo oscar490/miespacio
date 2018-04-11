@@ -58,7 +58,6 @@ class TablerosController extends Controller
      */
     public function actionView($id)
     {
-
         $equipos = Equipos::find()
             ->select(['denominacion'])
             ->indexBy('id')

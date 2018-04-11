@@ -25,48 +25,22 @@ $css = <<<EOT
     a:link {
         text-decoration: none;
     }
+
+    .container {
+        padding-left: 0px;
+    }
 EOT;
 
 echo MyHelpers::confirmacion('Eliminar tablero');
-
-$url_update = Url::to(['tableros/update', 'id'=>$model->id]);
-$url_delete = Url::to(['tableros/delete', 'id'=>$model->id]);
+echo MyHelpers::confirmacion('Eliminar tarjeta');
+$url_tarjeta = Url::to(['tarjetas/create']);
+$url_delete_tablero = Url::to(['tableros/delete', 'id'=>$model->id]);
 
 $js = <<<EOT
-    let contenedor = $('div.wrap');
-    let titulo = $('#nombre_tablero');
-    let boton = $('#btn_eliminar');
 
-    eliminarElemento(boton, '$url_delete');
-    contenedor.css('backgroundColor', '$model->color');
+    eliminarElemento($('#btn_eliminar'), '$url_delete_tablero');
 
-
-    $('#btn_color').on('click', function() {
-        let color_seleccion = $('#color').val();
-
-        titulo.css('color', 'black');
-        cambiarColorTitulo(color_seleccion);
-        contenedor.css('backgroundColor', color_seleccion);
-        cambiar_color_ajax(color_seleccion);
-    })
-
-    function cambiarColorTitulo(color) {
-        if (color !== "#ffffffff") {
-            titulo.css('color', 'white');
-        }
-    }
-
-    function cambiar_color_ajax(color) {
-        $.ajax({
-            url: '$url_update',
-            type: 'POST',
-            data: {
-                color: color,
-            }
-        });
-    }
-
-
+    eliminarElemento($('#btn_delete'), '$url_delete_tablero');
 EOT;
 
 $this->registerJS($js);
@@ -76,8 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
     <div class='row'>
-        <!-- Nombre del tablero y enlace de su equipo -->
-        <div id='nombre_tablero' class='col-md-9'>
+        <div class='col-xs-12 col-md-12'>
             <h3>
                 <span class='label label-primary'>
                     <strong>
@@ -85,7 +58,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     </strong>
                 </span>
             </h3>
-            <br>
+        </div>
+    </div>
+    <br>
+    <div class='row'>
+        <div id='nombre_tablero' class='col-md-9'>
+
             <!-- Tarjetas del tablero -->
             <div class='panel panel-primary'>
                 <div class='panel-heading'>

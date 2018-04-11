@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\components\MyHelpers;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Tarjetas */
@@ -13,6 +14,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin([
         'action'=>['tarjetas/create'],
         'enableAjaxValidation' => true,
+        'id'=>'create_tarjeta',
     ]); ?>
 
     <?= $form->field($model, 'denominacion', ['enableAjaxValidation' => true,])
@@ -21,9 +23,7 @@ use yii\widgets\ActiveForm;
     <?= Html::hiddenInput('tablero_id', $tablero->id) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Crear', [
-            'class' => 'btn btn-success btn-block'
-        ]) ?>
+        <?= MyHelpers::submit('Crear', ['id'=>'btn_tarjeta']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

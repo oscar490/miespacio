@@ -82,6 +82,18 @@ class Equipos extends \yii\db\ActiveRecord
     }
 
     /**
+     * Devuelve un enlace a una vista del Equipo.
+     * @return [type] [description]
+     */
+    public function getEnlace()
+    {
+        return Html::a(
+            $this->denominacion,
+            ['equipos/view', 'id'=>$this->id]
+        );
+    }
+
+    /**
      * Nombre del formulario.
      * @return [type] [description]
      */
