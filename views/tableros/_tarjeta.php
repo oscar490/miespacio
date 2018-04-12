@@ -50,7 +50,8 @@ $this->registerJs($js);
                             '',
                             ['class'=>'glyphicon glyphicon-credit-card']
                         ) . ' ' .
-                        Html::encode($model->denominacion)
+                        Html::encode($model->denominacion) .
+                        ' del tablero ' . Html::encode($model->tablero->denominacion)
                     ),
                 'toggleButton'=>[
                     'label'=>Html::tag(
@@ -63,8 +64,9 @@ $this->registerJs($js);
                 'size'=>Modal::SIZE_LARGE,
             ]) ?>
                 <!-- Vista de la tarjeta -->
-                <?= $this->render('/tarjetas/view', [
+                <?= $this->render('/tarjetas/contenido', [
                     'model'=>$model,
+                    'tableros'=>$tableros,
                 ]) ?>
             <?php Modal::end() ?>
 

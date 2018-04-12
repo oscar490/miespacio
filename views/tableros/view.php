@@ -89,6 +89,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'query'=>$model->getTarjetas(),
                             ]),
                             'itemView'=>'_tarjeta',
+                            'viewParams'=> [
+                                'tableros'=>$tableros,
+                            ],
                             'summary'=>'',
                         ]); ?>
                     <?php endif; ?>
@@ -97,31 +100,13 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
         <div class='col-md-3'>
-            <!-- Enlace al equipo del tablero -->
-            <div class='panel panel-primary'>
-                <div class='panel-heading'>
-                    <strong>
-                        <?=
-                            Html::tag(
-                                'span',
-                                '',
-                                ['class'=>'glyphicon glyphicon-list-alt']
-                            ) . ' ' .
-                            Html::encode('Equipo')
-                        ?>
-                    </strong>
-                </div>
-                <div class='panel-body'>
-                    <?=
-                        Html::a(
-                            $model->equipo->denominacion,
-                            ['equipos/view', 'id' => $model->equipo->id],
-                            ['class'=>'btn btn-primary btn-block']
-                        );
-                    ?>
-                </div>
+            <!-- Formulario de creación de tarjeta -->
+            <div id='crear_tarjeta'>
+                <?= $this->render('/tarjetas/create', [
+                    'model'=>$tarjeta,
+                    'tablero'=>$model,
+                ]) ?>
             </div>
-
             <!-- Formulario de propiedades del tablero -->
             <div class='panel panel-primary'>
                 <div class='panel-heading'>
@@ -161,13 +146,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ?>
                 </div>
             </div>
-            <!-- Formulario de creación de tarjeta -->
-            <div id='crear_tarjeta'>
-                <?= $this->render('/tarjetas/create', [
-                    'model'=>$tarjeta,
-                    'tablero'=>$model,
-                ]) ?>
-            </div>
+
         </div>
     </div>
 </div>

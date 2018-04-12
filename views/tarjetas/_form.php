@@ -12,7 +12,7 @@ use app\components\MyHelpers;
 <div class="tarjetas-form">
 
     <?php $form = ActiveForm::begin([
-        'action'=>['tarjetas/create'],
+        'action'=>$action,
         'enableAjaxValidation' => true,
         'id'=>'create_tarjeta',
     ]); ?>
@@ -20,10 +20,12 @@ use app\components\MyHelpers;
     <?= $form->field($model, 'denominacion', ['enableAjaxValidation' => true,])
         ->textInput(['maxlength' => true]) ?>
 
+
     <?= Html::hiddenInput('tablero_id', $tablero->id) ?>
 
+
     <div class="form-group">
-        <?= MyHelpers::submit('Crear', ['id'=>'btn_tarjeta']) ?>
+        <?= MyHelpers::submit($label, ['id'=>'btn_tarjeta']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
