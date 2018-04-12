@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use app\components\MyHelpers;
+use yii\bootstrap\Modal;
 
 $css = <<<EOT
     .tarjeta {
@@ -13,8 +14,13 @@ $css = <<<EOT
     }
 EOT;
 
+$url_tarjeta = Url::to(['tarjetas/delete', 'id'=>$model->id]);
+$js = <<<EOT
+    eliminarElemento($("#btn_delete_tarjeta_$model->id"), '$url_tarjeta');
+EOT;
 
 $this->registerCss($css);
+$this->registerJs($js);
 ?>
 
 <div class='col-md-4'>
@@ -25,20 +31,42 @@ $this->registerCss($css);
             </p>
         </div>
         <div class='panel-footer'>
-            <?= Html::button(
-                    Html::tag(
+            <?php Modal::begin([
+                'header'=>Html::tag(
+                        'h4',
+                        Html::tag(
+                            'span',
+                            '',
+                            ['class'=>'glyphicon glyphicon-credit-card']
+                        ) . ' ' .
+                        Html::encode($model->denominacion)
+                    ),
+                'toggleButton'=>[
+                    'label'=>Html::tag(
                         'span',
                         '',
-                        ['class'=>'glyphicon glyphicon-remove']
-                    ). '',
-                    [
-                        'class'=>'btn btn-xs btn-danger',
-                        'id'=>'btn_remove'
-                    ]
-                )
-            ?>
+                        ['class'=>'glyphicon glyphicon-eye-open']
+                    ),
+                    'class'=>'btn btn-default'
+                ],
+                'size'=>Modal::SIZE_LARGE,
+            ]) ?>
+                <?= $this->render('/tarjetas/view', [
+                    'model'=>$model,
+                ]) ?>
+            <?php Modal::end() ?>
+
+            <?= Html::button(
+                Html::tag(
+                    'span',
+                    '',
+                    ['class'=>'glyphicon glyphicon-remove']
+                ),
+                [
+                    'class'=>'btn btn-default',
+                    'id'=>"btn_delete_tarjeta_$model->id",
+                ]
+            ) ?>
         </div>
     </div>
-
-
 </div>

@@ -31,16 +31,13 @@ $css = <<<EOT
     }
 EOT;
 
-echo MyHelpers::confirmacion('Eliminar tablero');
-echo MyHelpers::confirmacion('Eliminar tarjeta');
-$url_tarjeta = Url::to(['tarjetas/create']);
-$url_delete_tablero = Url::to(['tableros/delete', 'id'=>$model->id]);
+echo MyHelpers::confirmacion('Eliminar');
+$url_tablero = Url::to(['tableros/delete', 'id'=>$model->id]);
 
 $js = <<<EOT
 
-    eliminarElemento($('#btn_eliminar'), '$url_delete_tablero');
+    eliminarElemento($('#btn_eliminar'), '$url_tablero');
 
-    eliminarElemento($('#btn_delete'), '$url_delete_tablero');
 EOT;
 
 $this->registerJS($js);

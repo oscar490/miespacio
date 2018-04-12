@@ -24,6 +24,7 @@ function seleccionarMenuUsuario() {
  * @param  {[type]} direccion  URL donde se envía la petición ajax.
  */
 function eliminarElemento(elem_boton, direccion) {
+
     elem_boton.on('click', function() {
         krajeeDialog.confirm("¿Deseas de verdad eliminarlo?", function (result) {
             if (result) {

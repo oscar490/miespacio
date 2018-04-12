@@ -108,9 +108,11 @@ class TarjetasController extends Controller
      */
     public function actionDelete($id)
     {
+        $tablero = $this->findModel($id)->tablero;
+
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['tableros/view', 'id'=>$tablero->id]);
     }
 
     /**
