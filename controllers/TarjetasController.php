@@ -74,7 +74,7 @@ class TarjetasController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['tableros/view', 'id' => $model->tablero->id]);
+            return $this->redirect(['tableros/view', 'id'=>$model->tablero->id]);
         }
 
     }
@@ -108,9 +108,11 @@ class TarjetasController extends Controller
      */
     public function actionDelete($id)
     {
+        $tablero = $this->findModel($id)->tablero;
+
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['tableros/view', 'id'=>$tablero->id]);
     }
 
     /**

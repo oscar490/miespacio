@@ -2,36 +2,49 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\helpers\Url;
+use app\components\MyHelpers;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Tarjetas */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Tarjetas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
+$url = Url::to(['tarjetas/delete', 'id'=>$model->id]);
+$js = <<<EOT
+
+    eliminarElemento($('div.modal-body button#btn_delete_$model->id'), '$url');
+EOT;
+
+$this->registerJs($js);
 ?>
-<div class="tarjetas-view">
+<div class='container'>
+    <div class='row'>
+        <div class='col-md-6'>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <?= Html::encode('Descripción') ?>
+                </div>
+                <div class='panel-body'>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+                </div>
+            </div>
+        </div>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'denominacion',
-            'tablero_id',
-        ],
-    ]) ?>
-
+        <div class='col-md-3'>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <?= Html::encode('Acciones') ?>
+                </div>
+                <div class='panel-body'>
+                    <?= Html::button(
+                        'Eliminar',
+                        [
+                            'class'=>'btn btn-default btn-block',
+                            'id'=>"btn_delete_$model->id",
+                        ]
+                    ) ?>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

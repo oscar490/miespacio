@@ -1,4 +1,8 @@
 <?php
+/* Contenido de un Tablero */
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Tableros */
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -8,8 +12,7 @@ use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
 use app\components\MyHelpers;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Tableros */
+
 
 $this->title = $model->denominacion . ' | MiEspacio';
 $this->params['breadcrumbs'][] = [
@@ -21,51 +24,25 @@ $this->params['breadcrumbs'][] = [
     'url'=>['equipos/view', 'id'=>$model->equipo->id],
 ];
 
+//  CSS.
 $css = <<<EOT
     a:link {
         text-decoration: none;
     }
+
+    .container {
+        padding-left: 0px;
+    }
 EOT;
 
-echo MyHelpers::confirmacion('Eliminar tablero');
+//  Mensaje de confirmación de eliminación.
+echo MyHelpers::confirmacion('Eliminar');
+$url_tablero = Url::to(['tableros/delete', 'id'=>$model->id]);
 
-$url_update = Url::to(['tableros/update', 'id'=>$model->id]);
-$url_delete = Url::to(['tableros/delete', 'id'=>$model->id]);
-
+//  JavaScript.
 $js = <<<EOT
-    let contenedor = $('div.wrap');
-    let titulo = $('#nombre_tablero');
-    let boton = $('#btn_eliminar');
 
-    eliminarElemento(boton, '$url_delete');
-    contenedor.css('backgroundColor', '$model->color');
-
-
-    $('#btn_color').on('click', function() {
-        let color_seleccion = $('#color').val();
-
-        titulo.css('color', 'black');
-        cambiarColorTitulo(color_seleccion);
-        contenedor.css('backgroundColor', color_seleccion);
-        cambiar_color_ajax(color_seleccion);
-    })
-
-    function cambiarColorTitulo(color) {
-        if (color !== "#ffffffff") {
-            titulo.css('color', 'white');
-        }
-    }
-
-    function cambiar_color_ajax(color) {
-        $.ajax({
-            url: '$url_update',
-            type: 'POST',
-            data: {
-                color: color,
-            }
-        });
-    }
-
+    eliminarElemento($('#btn_eliminar'), '$url_tablero');
 
 EOT;
 
@@ -75,9 +52,9 @@ $this->registerCss($css);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
+    <!-- Nombre del tablero -->
     <div class='row'>
-        <!-- Nombre del tablero y enlace de su equipo -->
-        <div id='nombre_tablero' class='col-md-9'>
+        <div class='col-xs-12 col-md-12'>
             <h3>
                 <span class='label label-primary'>
                     <strong>
@@ -85,8 +62,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     </strong>
                 </span>
             </h3>
-            <br>
-            <!-- Tarjetas del tablero -->
+        </div>
+    </div>
+    <br>
+
+    <div class='row'>
+        <!-- Tarjetas del tablero -->
+        <div class='col-md-9'>
             <div class='panel panel-primary'>
                 <div class='panel-heading'>
                     <strong>
@@ -115,8 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
         <div class='col-md-3'>
-
-            <!-- Equipo del tablero -->
+            <!-- Enlace al equipo del tablero -->
             <div class='panel panel-primary'>
                 <div class='panel-heading'>
                     <strong>
@@ -140,6 +121,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ?>
                 </div>
             </div>
+
             <!-- Formulario de propiedades del tablero -->
             <div class='panel panel-primary'>
                 <div class='panel-heading'>
@@ -179,14 +161,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     ?>
                 </div>
             </div>
+            <!-- Formulario de creación de tarjeta -->
             <div id='crear_tarjeta'>
                 <?= $this->render('/tarjetas/create', [
                     'model'=>$tarjeta,
                     'tablero'=>$model,
                 ]) ?>
             </div>
-
         </div>
-
     </div>
 </div>
