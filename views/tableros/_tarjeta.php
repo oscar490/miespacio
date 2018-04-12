@@ -1,9 +1,14 @@
 <?php
+/* Vista de una tarjeta */
+
+/* $model app\models\Tarjetas */
+
 use yii\helpers\Html;
 use yii\helpers\Url;
 use app\components\MyHelpers;
 use yii\bootstrap\Modal;
 
+//  CSS.
 $css = <<<EOT
     .tarjeta {
         box-shadow: 2px 2px 10px;
@@ -15,6 +20,10 @@ $css = <<<EOT
 EOT;
 
 $url_tarjeta = Url::to(['tarjetas/delete', 'id'=>$model->id]);
+
+//  JavaScript.
+
+//  Eliminar una tarjeta.
 $js = <<<EOT
     eliminarElemento($("#btn_delete_tarjeta_$model->id"), '$url_tarjeta');
 EOT;
@@ -24,6 +33,7 @@ $this->registerJs($js);
 ?>
 
 <div class='col-md-4'>
+    <!-- Nombre de la tarjeta -->
     <div class='panel panel-default tarjeta'>
         <div class='panel-heading forma'>
             <p class='text-left'>
@@ -31,6 +41,7 @@ $this->registerJs($js);
             </p>
         </div>
         <div class='panel-footer'>
+            <!-- Modal que muestra el contenido de la tarjeta -->
             <?php Modal::begin([
                 'header'=>Html::tag(
                         'h4',
@@ -51,11 +62,13 @@ $this->registerJs($js);
                 ],
                 'size'=>Modal::SIZE_LARGE,
             ]) ?>
+                <!-- Vista de la tarjeta -->
                 <?= $this->render('/tarjetas/view', [
                     'model'=>$model,
                 ]) ?>
             <?php Modal::end() ?>
 
+            <!-- Eliminar tarjeta -->
             <?= Html::button(
                 Html::tag(
                     'span',

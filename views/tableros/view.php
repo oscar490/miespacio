@@ -1,4 +1,8 @@
 <?php
+/* Contenido de un Tablero */
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Tableros */
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -8,8 +12,7 @@ use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
 use app\components\MyHelpers;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Tableros */
+
 
 $this->title = $model->denominacion . ' | MiEspacio';
 $this->params['breadcrumbs'][] = [
@@ -21,6 +24,7 @@ $this->params['breadcrumbs'][] = [
     'url'=>['equipos/view', 'id'=>$model->equipo->id],
 ];
 
+//  CSS.
 $css = <<<EOT
     a:link {
         text-decoration: none;
@@ -31,9 +35,11 @@ $css = <<<EOT
     }
 EOT;
 
+//  Mensaje de confirmación de eliminación.
 echo MyHelpers::confirmacion('Eliminar');
 $url_tablero = Url::to(['tableros/delete', 'id'=>$model->id]);
 
+//  JavaScript.
 $js = <<<EOT
 
     eliminarElemento($('#btn_eliminar'), '$url_tablero');
@@ -46,6 +52,7 @@ $this->registerCss($css);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
+    <!-- Nombre del tablero -->
     <div class='row'>
         <div class='col-xs-12 col-md-12'>
             <h3>
@@ -58,10 +65,10 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <br>
-    <div class='row'>
-        <div id='nombre_tablero' class='col-md-9'>
 
-            <!-- Tarjetas del tablero -->
+    <div class='row'>
+        <!-- Tarjetas del tablero -->
+        <div class='col-md-9'>
             <div class='panel panel-primary'>
                 <div class='panel-heading'>
                     <strong>
@@ -90,8 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
         <div class='col-md-3'>
-
-            <!-- Equipo del tablero -->
+            <!-- Enlace al equipo del tablero -->
             <div class='panel panel-primary'>
                 <div class='panel-heading'>
                     <strong>
@@ -115,6 +121,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ?>
                 </div>
             </div>
+
             <!-- Formulario de propiedades del tablero -->
             <div class='panel panel-primary'>
                 <div class='panel-heading'>
@@ -154,14 +161,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     ?>
                 </div>
             </div>
+            <!-- Formulario de creación de tarjeta -->
             <div id='crear_tarjeta'>
                 <?= $this->render('/tarjetas/create', [
                     'model'=>$tarjeta,
                     'tablero'=>$model,
                 ]) ?>
             </div>
-
         </div>
-
     </div>
 </div>
