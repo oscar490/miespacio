@@ -62,11 +62,10 @@ class TablerosController extends Controller
             ->select(['denominacion'])
             ->indexBy('id')
             ->column();
-            
+
         return $this->render('view', [
             'model' => $this->findModel($id),
             'equipos'=>$equipos,
-            'tableros'=>$tableros,
             'tarjeta' => new Tarjetas(),
         ]);
     }
