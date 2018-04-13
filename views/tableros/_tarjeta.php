@@ -64,7 +64,7 @@ $this->registerJs($js);
                 'size'=>Modal::SIZE_LARGE,
             ]) ?>
                 <!-- Vista de la tarjeta -->
-                <?= $this->render('/tarjetas/contenido', [
+                <?= $this->render('/tarjetas/view', [
                     'model'=>$model,
                     'tableros'=>$tableros,
                 ]) ?>
@@ -82,6 +82,34 @@ $this->registerJs($js);
                     'id'=>"btn_delete_tarjeta_$model->id",
                 ]
             ) ?>
+
+            <!-- Modificar tarjeta -->
+            <?php Modal::begin([
+                'header'=>Html::tag(
+                        'h4',
+                        Html::tag(
+                            'span',
+                            '',
+                            ['class'=>'glyphicon glyphicon-wrench']
+                        ) . ' ' .
+                        Html::encode('Modificación')
+                    ),
+                'toggleButton'=>[
+                    'label'=>Html::tag(
+                        'span',
+                        '',
+                        ['class'=>'glyphicon glyphicon-wrench']
+                    ),
+                    'class'=>'btn btn-default'
+                ],
+                'size'=>Modal::SIZE_LARGE,
+            ]) ?>
+                <!-- Vista de la tarjeta -->
+                <?= $this->render('/tarjetas/update', [
+                    'model'=>$model,
+                    'tableros'=>$tableros,
+                ]) ?>
+            <?php Modal::end() ?>
         </div>
     </div>
 </div>

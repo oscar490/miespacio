@@ -6,11 +6,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+
 ?>
 <div class="container">
 
     <div class='row'>
-        <div class='col-md-6'>
+        <div class='col-md-5 col-md-offset-2'>
             <div class='panel panel-default'>
                 <div class='panel-heading'>
                     <?= Html::encode('Tarjeta') ?>
@@ -26,22 +27,6 @@ use yii\widgets\ActiveForm;
             </div>
         </div>
 
-        <div class='col-md-3'>
-            <div class='panel panel-default'>
-                <div class='panel-heading'>
-                    <?= Html::encode('Mover') ?>
-                </div>
-                <div class='panel-body'>
-                    <?php $form = ActiveForm::begin() ?>
-
-                        <?= $form->field($model, 'tablero_id')->dropdownList([
-                            'Tableros'=>$tableros
-                        ]) ?>
-
-                    <?php ActiveForm::end() ?>
-                </div>
-            </div>
-        </div>
     </div>
 
 </div>

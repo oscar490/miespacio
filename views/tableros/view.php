@@ -58,7 +58,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <h3>
                 <span class='label label-primary'>
                     <strong>
-                        <?= Html::encode($model->denominacion) ?>
+                        <?=
+                            Html::encode($model->denominacion);
+                        ?>
                     </strong>
                 </span>
             </h3>
@@ -101,7 +103,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class='col-md-3'>
             <!-- Formulario de creación de tarjeta -->
-            <div id='crear_tarjeta'>
+            <div>
                 <?= $this->render('/tarjetas/create', [
                     'model'=>$tarjeta,
                     'tablero'=>$model,

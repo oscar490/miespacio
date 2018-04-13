@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use Spatie\Dropbox\Exceptions\BadRequest;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "equipos".

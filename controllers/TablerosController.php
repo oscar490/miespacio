@@ -63,11 +63,6 @@ class TablerosController extends Controller
             ->indexBy('id')
             ->column();
             
-        $tableros = Tableros::find()
-            ->select(['denominacion'])
-            ->indexBy('id')
-            ->column();
-
         return $this->render('view', [
             'model' => $this->findModel($id),
             'equipos'=>$equipos,
