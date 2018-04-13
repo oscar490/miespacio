@@ -90,8 +90,18 @@ class TarjetasController extends Controller
     {
         $model = $this->findModel($id);
 
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model); \Yii::$app->end();
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash(
+                'success',
+                'Se han modificado los datos de la tarjeta correctamente'
+            );
+
+            return $this->redirect(['tableros/view', 'id' => $model->tablero->id]);
         }
 
         return $this->render('update', [

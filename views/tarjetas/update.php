@@ -1,21 +1,32 @@
 <?php
-
-use yii\helpers\Html;
+/* Renderización del formulario de modificación de tarjeta */
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Tarjetas */
 
-$this->title = 'Update Tarjetas: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Tarjetas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
 ?>
-<div class="tarjetas-update">
+<div class="container">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class='row'>
+        <div class='col-md-5 col-md-offset-2'>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <?= Html::encode('Tarjeta') ?>
+                </div>
+                <div class='panel-body'>
+                    <?= $this->render('_form', [
+                        'model' => $model,
+                        'tablero'=>$model->tablero,
+                        'label'=>'Modificar',
+                        'action'=>['tarjetas/update', 'id'=>$model->id]
+                    ]) ?>
+                </div>
+            </div>
+        </div>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    </div>
 
 </div>
