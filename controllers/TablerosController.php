@@ -95,9 +95,7 @@ class TablerosController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Tableros([
-            'color'=>'#ffffffff',
-        ]);
+        $model = new Tableros();
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;

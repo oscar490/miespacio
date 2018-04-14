@@ -68,7 +68,7 @@ class AdjuntosController extends Controller
         $model = new Adjuntos();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['tableros/view','id'=>$model->tarjeta->tablero->id]);
         }
 
         return $this->render('create', [

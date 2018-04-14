@@ -11,7 +11,7 @@ use yii\helpers\Html;
             </div>
             <div class='panel-body'>
                 <?php $form = ActiveForm::begin([
-                    'action'=>['subidas/create'],
+                    'action'=>['adjuntos/create'],
                 ]) ?>
                     <?= $form->field($model, 'nombre') ?>
 
