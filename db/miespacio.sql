@@ -115,25 +115,10 @@ CREATE TABLE adjuntos
        id            BIGSERIAL    PRIMARY KEY
     ,  nombre        VARCHAR(255) NOT NULL
     ,  url_direccion VARCHAR(255) NOT NULL
+    ,  tarjeta_id    BIGINT       NOT NULL REFERENCES tarjetas (id) ON DELETE
+                                  NO ACTION ON UPDATE CASCADE
 );
 
-INSERT INTO adjuntos (nombre, url_direccion)
-    VALUES ('3dJuegos', 'https://www.3djuegos.com/'),
-            ('Ágora', 'http://agora.iesdonana.org/');
-
-
--- Tabla subidas --
-
-DROP TABLE IF EXISTS subidas CASCADE;
-
-CREATE TABLE subidas
-(
-       id         BIGSERIAL PRIMARY KEY
-    ,  adjunto_id BIGINT    NOT NULL REFERENCES adjuntos (id) ON DELETE
-                            CASCADE ON UPDATE CASCADE
-    ,  tarjeta_id BIGINT    NOT NULL REFERENCES tarjetas (id) ON DELETE
-                            NO ACTION ON UPDATE CASCADE
-);
-
-INSERT INTO subidas (adjunto_id, tarjeta_id)
-    VALUES (1, 1), (2, 1);
+INSERT INTO adjuntos (nombre, url_direccion, tarjeta_id)
+    VALUES ('3dJuegos', 'https://www.3djuegos.com/', 1),
+            ('Ágora', 'http://agora.iesdonana.org/', 1);

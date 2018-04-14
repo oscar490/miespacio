@@ -10,8 +10,24 @@ $css = <<<EOT
     a:link {
         text-decoration:none;
     }
+
+    .sombra {
+        box-shadow: 10px 10px 10px #75a4c1;
+    }
 EOT;
 
+$js = <<<EOT
+    $('div.panel-primary').hover(
+        function() {
+            $(this).toggleClass('sombra');
+        },
+        function() {
+            $(this).toggleClass('sombra');
+        }
+    )
+EOT;
+
+$this->registerJs($js);
 $this->registerCss($css);
 ?>
 

@@ -6,6 +6,7 @@ use Yii;
 use app\models\Tableros;
 use app\models\Equipos;
 use app\models\Tarjetas;
+use app\models\Adjuntos;
 use app\models\TablerosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -67,6 +68,7 @@ class TablerosController extends Controller
             'model' => $this->findModel($id),
             'equipos'=>$equipos,
             'tarjeta' => new Tarjetas(),
+            'adjunto'=>new Adjuntos(),
         ]);
     }
 

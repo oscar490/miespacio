@@ -7,6 +7,7 @@ use app\components\MyHelpers;
 use yii\widgets\ActiveForm;
 use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
+use yii\bootstrap\Modal;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tarjetas */
 
@@ -40,6 +41,7 @@ $this->registerJs($js);
 ?>
 <div class='container'>
     <div class='row'>
+        <!-- Título de la tarjeta -->
         <div class='col-md-9 titulo'>
             <h3>
                 <span class='label label-default'>
@@ -50,6 +52,7 @@ $this->registerJs($js);
             </h3>
         </div>
 
+        <!-- Descripcion -->
         <div id='descripcion' class='col-md-7'>
             <div class='panel panel-default'>
                 <div class='panel-heading'>
@@ -70,6 +73,7 @@ $this->registerJs($js);
             </div>
         </div>
 
+        <!-- Modificar tarjeta -->
         <div class='col-md-2'>
             <div class='panel panel-default'>
                 <div class='panel-heading'>
@@ -106,7 +110,8 @@ $this->registerJs($js);
     </div>
 
     <div class='row'>
-        <div class='col-md-9'>
+        <!-- Lista de adjuntos -->
+        <div class='col-md-7'>
             <div class='panel panel-default'>
                 <div class='panel-heading'>
                     <p>

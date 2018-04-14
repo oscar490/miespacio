@@ -10,8 +10,9 @@ use Yii;
  * @property int $id
  * @property string $nombre
  * @property string $url_direccion
+ * @property int $tarjeta_id
  *
- * @property Subidas[] $subidas
+ * @property Tarjetas $tarjeta
  */
 class Adjuntos extends \yii\db\ActiveRecord
 {
@@ -29,8 +30,11 @@ class Adjuntos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'url_direccion'], 'required'],
+            [['nombre', 'url_direccion', 'tarjeta_id'], 'required'],
+            [['tarjeta_id'], 'default', 'value' => null],
+            [['tarjeta_id'], 'integer'],
             [['nombre', 'url_direccion'], 'string', 'max' => 255],
+            [['tarjeta_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tarjetas::className(), 'targetAttribute' => ['tarjeta_id' => 'id']],
         ];
     }
 
@@ -43,14 +47,15 @@ class Adjuntos extends \yii\db\ActiveRecord
             'id' => 'ID',
             'nombre' => 'Nombre',
             'url_direccion' => 'Url Direccion',
+            'tarjeta_id' => 'Tarjeta ID',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSubidas()
+    public function getTarjeta()
     {
-        return $this->hasMany(Subidas::className(), ['adjunto_id' => 'id'])->inverseOf('adjunto');
+        return $this->hasOne(Tarjetas::className(), ['id' => 'tarjeta_id'])->inverseOf('adjuntos');
     }
 }

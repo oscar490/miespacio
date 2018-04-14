@@ -91,6 +91,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'query'=>$model->getTarjetas(),
                             ]),
                             'itemView'=>'_tarjeta',
+                            'viewParams'=>[
+                                'adjunto'=>$adjunto,
+                            ],
                             'summary'=>'',
                         ]); ?>
                     <?php endif; ?>
