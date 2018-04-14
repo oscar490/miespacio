@@ -130,7 +130,7 @@ CREATE TABLE subidas
 (
        id         BIGSERIAL PRIMARY KEY
     ,  adjunto_id BIGINT    NOT NULL REFERENCES adjuntos (id) ON DELETE
-                            NO ACTION ON UPDATE CASCADE
+                            CASCADE ON UPDATE CASCADE
     ,  tarjeta_id BIGINT    NOT NULL REFERENCES tarjetas (id) ON DELETE
                             NO ACTION ON UPDATE CASCADE
 );

@@ -1,7 +1,32 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
+
+$url_adjunto = Url::to(['adjuntos/delete', 'id'=>$model->id]);
+$js = <<<EOT
+
+    $('#btn_delete_adjunto_$model->id').on('click', function() {
+        krajeeDialog.confirm("¿Deseas de verdad eliminarlo?", function (result) {
+            if (result) {
+                $.ajax({
+                    url: '$url_adjunto',
+                    type: 'POST',
+                    success: function(data) {
+                        console.log(data);
+                        let div_adjunto = $("div[data-key='$model->id']");
+
+                        div_adjunto.children('div.row').remove();
+                        div_adjunto.find('hr').remove();
+                    }
+                })
+            }
+        });
+    })
+
+EOT;
 
 
+$this->registerJs($js);
 ?>
 
 <div class='row'>
@@ -17,7 +42,7 @@ use yii\helpers\Html;
         <?= Html::encode($model->nombre) ?>
 
     </div>
-    <div class='col-md-1'>
+    <div class='col-md-4'>
         <?=
             Html::a(
                 Html::tag(
@@ -32,6 +57,21 @@ use yii\helpers\Html;
                 ]
             )
         ?>
+        <!-- Botón de borrar -->
+        <?=
+            Html::button(
+                Html::tag(
+                    'span',
+                    '',
+                    ['class'=>'glyphicon glyphicon-remove']
+                ),
+                [
+                    'class'=>'btn btn-default',
+                    'id'=>"btn_delete_adjunto_$model->id"
+                ]
+            );
+        ?>
     </div>
+
 </div>
 <hr>

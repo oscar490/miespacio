@@ -8,6 +8,7 @@ use app\models\AdjuntosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * AdjuntosController implements the CRUD actions for Adjuntos model.
@@ -104,9 +105,12 @@ class AdjuntosController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return $this->findModel($id)->delete();
+        }
 
-        return $this->redirect(['index']);
+
     }
 
     /**
