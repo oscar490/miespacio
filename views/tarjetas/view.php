@@ -5,6 +5,8 @@ use yii\widgets\DetailView;
 use yii\helpers\Url;
 use app\components\MyHelpers;
 use yii\widgets\ActiveForm;
+use yii\widgets\ListView;
+use yii\data\ActiveDataProvider;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tarjetas */
 
@@ -104,7 +106,7 @@ $this->registerJs($js);
     </div>
 
     <div class='row'>
-        <div class='col-md-7'>
+        <div class='col-md-9'>
             <div class='panel panel-default'>
                 <div class='panel-heading'>
                     <p>
@@ -118,7 +120,13 @@ $this->registerJs($js);
                     </p>
                 </div>
                 <div class='panel-body'>
-
+                    <?= ListView::widget([
+                        'dataProvider'=> new ActiveDataProvider([
+                            'query'=>$model->getAdjuntos(),
+                        ]),
+                        'itemView'=>'_adjunto',
+                        'summary'=>'',
+                    ]) ?>
                 </div>
             </div>
         </div>
