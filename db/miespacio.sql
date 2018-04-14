@@ -92,6 +92,7 @@ CREATE TABLE tarjetas
 (
       id           BIGSERIAL    PRIMARY KEY
     , denominacion VARCHAR(255) NOT NULL
+    , descripcion  VARCHAR(255)
     , tablero_id   BIGINT       NOT NULL REFERENCES tableros (id) ON DELETE
                                 CASCADE ON UPDATE CASCADE
 

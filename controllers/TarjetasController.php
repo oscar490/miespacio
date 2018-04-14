@@ -92,20 +92,37 @@ class TarjetasController extends Controller
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model); \Yii::$app->end();
+            return ActiveForm::validate($model);
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash(
-                'success',
-                'Se han modificado los datos de la tarjeta correctamente'
-            );
-
-            return $this->redirect(['tableros/view', 'id' => $model->tablero->id]);
-        }
+        $model->load(Yii::$app->request->post());
+        $model->save();
 
         return $this->render('update', [
             'model' => $model,
+        ]);
+    }
+
+    public function actionUpdateAjax($id)
+    {
+        $model = $this->findModel($id);
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            $model->save();
+
+            return $this->renderAjax('view', [
+                'model'=>$model,
+            ]);
+        }
+    }
+
+    public function actionRenderUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        return $this->renderAjax('update', [
+            'model'=>$model,
         ]);
     }
 

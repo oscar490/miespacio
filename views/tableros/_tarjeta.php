@@ -49,9 +49,7 @@ $this->registerJs($js);
                             'span',
                             '',
                             ['class'=>'glyphicon glyphicon-credit-card']
-                        ) . ' ' .
-                        Html::encode($model->denominacion) .
-                        ' del tablero ' . Html::encode($model->tablero->denominacion)
+                        ) . ' ' . 'Contenido de tarjeta'
                     ),
                 'toggleButton'=>[
                     'label'=>Html::tag(
@@ -66,7 +64,6 @@ $this->registerJs($js);
                 <!-- Vista de la tarjeta -->
                 <?= $this->render('/tarjetas/view', [
                     'model'=>$model,
-                    'tableros'=>$tableros,
                 ]) ?>
             <?php Modal::end() ?>
 
@@ -83,33 +80,6 @@ $this->registerJs($js);
                 ]
             ) ?>
 
-            <!-- Modificar tarjeta -->
-            <?php Modal::begin([
-                'header'=>Html::tag(
-                        'h4',
-                        Html::tag(
-                            'span',
-                            '',
-                            ['class'=>'glyphicon glyphicon-wrench']
-                        ) . ' ' .
-                        Html::encode('Modificación')
-                    ),
-                'toggleButton'=>[
-                    'label'=>Html::tag(
-                        'span',
-                        '',
-                        ['class'=>'glyphicon glyphicon-wrench']
-                    ),
-                    'class'=>'btn btn-default'
-                ],
-                'size'=>Modal::SIZE_LARGE,
-            ]) ?>
-                <!-- Vista de la tarjeta -->
-                <?= $this->render('/tarjetas/update', [
-                    'model'=>$model,
-                    'tableros'=>$tableros,
-                ]) ?>
-            <?php Modal::end() ?>
         </div>
     </div>
 </div>
