@@ -112,8 +112,8 @@ $this->registerJs($js);
                             Html::tag(
                                 'span',
                                 '',
-                                ['class'=>'glyphicon glyphicon-hand-up']
-                            ) . ' Enlaces';
+                                ['class'=>'glyphicon glyphicon-paperclip']
+                            ) . ' Adjuntos';
                         ?>
                     </p>
                 </div>

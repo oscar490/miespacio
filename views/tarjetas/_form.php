@@ -21,9 +21,11 @@ use app\components\MyHelpers;
         <?= $form->field($model, 'denominacion', ['enableAjaxValidation' => true,])
             ->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'descripcion')->textarea([
-            'rows'=>5
-        ]) ?>
+        <?php if (!$model->isNewRecord): ?>
+            <?= $form->field($model, 'descripcion')->textarea([
+                'rows'=>5
+            ]) ?>
+        <?php endif; ?>
 
         <?= Html::hiddenInput('tablero_id', $tablero->id) ?>
 

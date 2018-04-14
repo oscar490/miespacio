@@ -10,14 +10,6 @@ use yii\helpers\Url;
 use kartik\dialog\Dialog;
 
 
-echo Dialog::widget([
-    'dialogDefaults' => [
-        Dialog::DIALOG_ALERT => [
-            'title' => Html::encode('Modificación')
-        ]
-    ]
-]);
-
 $url = Url::to(['tarjetas/update-ajax', 'id' => $model->id]);
 
 $js = <<<EOT
@@ -38,16 +30,10 @@ $js = <<<EOT
                 $("div[data-key='$model->id']  div.modal-body > div.container").html(data);
                 $("div[data-key='$model->id']  p.text-left").text(nombre);
 
-                krajeeDialog.alert(
-                    'Se han modificado los datos correctamente',
-                );
 
 
             }
         })
-
-
-
         return false;
 
 
