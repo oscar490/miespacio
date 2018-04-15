@@ -32,6 +32,12 @@ $js = <<<EOT
                 mensaje.text('Sólo se permite la extensión jpg.');
                 $('div.file-input').after(mensaje);
 
+            } else if (archivo.size > 2097152) {
+                enviar = false;
+
+                mensaje.text('El tamaño máximo debe ser de 2MB.');
+                $('div.file-input').after(mensaje);
+
             } else {
                 enviar = true;
                 if (!en_proceso) {
