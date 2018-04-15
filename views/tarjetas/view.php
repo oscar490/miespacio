@@ -15,6 +15,8 @@ $url_update = Url::to(['tarjetas/render-update', 'id'=>$model->id]);
 $url_adjunto = Url::to(['adjuntos/create-ajax']);
 
 $js = <<<EOT
+    var en_proceso = false;
+
     $("#btn_update_$model->id").on('click', function() {
 
         $.ajax({
@@ -40,21 +42,26 @@ $js = <<<EOT
             console.log('entra');
             return false;
         }
-        console.log('hola');
-        $.ajax({
-            url: '$url_adjunto',
-            type: 'POST',
-            data: new FormData(this),
-            enctype: 'multipart/form-data',
-            success: function(data) {
-                $('div#loading').empty();
-                $("div[data-key='$model->id'] div#lista_adjunto").html(data);
-            },
-            dataType: 'json',
-            contentType: false,
-            processData: false,
 
-        })
+        if (!en_proceso) {
+            en_proceso = true;
+
+            $.ajax({
+                url: '$url_adjunto',
+                type: 'POST',
+                data: new FormData(this),
+                enctype: 'multipart/form-data',
+                success: function(data) {
+                    en_proceso = false;
+                    $('div#loading').empty();
+                    $("div[data-key='$model->id'] div#lista_adjunto").html(data);
+                },
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+
+            })
+        }
         return false;
 
 
@@ -67,9 +74,6 @@ $css = <<<EOT
         margin-bottom: 20px;
     }
 
-    #lista_adjuntos {
-        height: 280px;
-    }
 
 
 EOT;
