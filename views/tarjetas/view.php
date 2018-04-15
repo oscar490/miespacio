@@ -111,7 +111,7 @@ $this->registerJs($js);
 
     <div class='row'>
         <!-- Lista de adjuntos -->
-        <div class='col-md-7'>
+        <div class='col-md-6'>
             <div class='panel panel-default'>
                 <div class='panel-heading'>
                     <p>
@@ -134,6 +134,14 @@ $this->registerJs($js);
                     ]) ?>
                 </div>
             </div>
+        </div>
+
+        <!-- Añadir un nievo adjunto -->
+        <div class='col-md-3'>
+            <?= $this->render('/adjuntos/create', [
+                'model'=>$adjunto,
+                'tarjeta'=>$model,
+            ]) ?>
         </div>
     </div>
 </div>

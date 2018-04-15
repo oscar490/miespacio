@@ -16,6 +16,7 @@ use Yii;
  */
 class Adjuntos extends \yii\db\ActiveRecord
 {
+    const ESCENARIO_ENLACES = 'enlaces';
     /**
      * {@inheritdoc}
      */
@@ -30,10 +31,33 @@ class Adjuntos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'url_direccion', 'tarjeta_id'], 'required'],
+            [
+                ['url_direccion', 'tarjeta_id'],
+                'required',
+                'on'=>self::ESCENARIO_ENLACES,
+            ],
             [['tarjeta_id'], 'default', 'value' => null],
             [['tarjeta_id'], 'integer'],
             [['nombre', 'url_direccion'], 'string', 'max' => 255],
+            [
+                ['nombre'],
+                'default',
+                'value'=>null,
+                'on'=>self::ESCENARIO_ENLACES,
+            ],
+            [
+                ['url_direccion', 'tarjeta_id'],
+                'unique',
+                'targetAttribute' => ['url_direccion', 'tarjeta_id'],
+                'on'=>self::ESCENARIO_ENLACES,
+                'message'=>'Ya existe ese adjunto',
+            ],
+            [
+                ['url_direccion'],
+                'url',
+                'defaultScheme' => ['http','https'],
+                'on'=>self::ESCENARIO_ENLACES,
+            ],
             [['tarjeta_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tarjetas::className(), 'targetAttribute' => ['tarjeta_id' => 'id']],
         ];
     }
@@ -45,8 +69,8 @@ class Adjuntos extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'nombre' => 'Nombre',
-            'url_direccion' => 'Url Direccion',
+            'nombre' => 'Nombre (opcional)',
+            'url_direccion' => 'Dirección',
             'tarjeta_id' => 'Tarjeta ID',
         ];
     }

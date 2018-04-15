@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
+use app\models\Adjuntos;
 
 /**
  * TarjetasController implements the CRUD actions for Tarjetas model.
@@ -113,6 +114,9 @@ class TarjetasController extends Controller
 
             return $this->renderAjax('view', [
                 'model'=>$model,
+                'adjunto'=>new Adjuntos([
+                    'scenario'=>Adjuntos::ESCENARIO_ENLACES,
+                ])
             ]);
         }
     }

@@ -64,6 +64,7 @@ $this->registerJs($js);
                 <!-- Vista de la tarjeta -->
                 <?= $this->render('/tarjetas/view', [
                     'model'=>$model,
+                    'adjunto'=>$adjunto,
                 ]) ?>
             <?php Modal::end() ?>
 
@@ -79,21 +80,6 @@ $this->registerJs($js);
                     'id'=>"btn_delete_tarjeta_$model->id",
                 ]
             ) ?>
-
-            <!-- Modal para mostrar formulario de adjunar -->
-            <?php Modal::begin([
-                'header'=>"<span class='glyphicon glyphicon-circle-arrow-up'></span>",
-                'toggleButton'=>[
-                    'label'=>"<span class='glyphicon glyphicon-paperclip'></span>",
-                    'class'=>'btn btn-default'
-                ],
-                'size'=>Modal::SIZE_LARGE,
-            ]) ?>
-                <?= $this->render('/adjuntos/form_adjuntar', [
-                    'model'=>$adjunto,
-                    'tarjeta'=>$model,
-                ]) ?>
-            <?php Modal::end(); ?>
 
         </div>
     </div>

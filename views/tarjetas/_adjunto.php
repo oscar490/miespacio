@@ -39,7 +39,11 @@ $this->registerJs($js);
         ?>
     </div>
     <div class='col-md-3'>
-        <?= Html::encode($model->nombre) ?>
+        <?php if ($model->nombre !== null): ?>
+            <?= Html::encode($model->nombre) ?>
+        <?php else: ?>
+            <?= Html::encode($model->url_direccion) ?>
+        <?php endif; ?>
 
     </div>
     <div class='col-md-4'>

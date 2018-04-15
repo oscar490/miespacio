@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 /**
  * AdjuntosController implements the CRUD actions for Adjuntos model.
@@ -65,7 +66,14 @@ class AdjuntosController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Adjuntos();
+        $model = new Adjuntos([
+            'scenario'=>Adjuntos::ESCENARIO_ENLACES,
+        ]);
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['tableros/view','id'=>$model->tarjeta->tablero->id]);

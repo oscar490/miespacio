@@ -6,16 +6,25 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Adjuntos */
 
-$this->title = 'Create Adjuntos';
-$this->params['breadcrumbs'][] = ['label' => 'Adjuntos', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
 ?>
-<div class="adjuntos-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+<div class='panel panel-default'>
+    <div class='panel-heading'>
+        <p>
+            <?=
+                Html::tag(
+                    'span',
+                    '',
+                    ['class'=>'glyphicon glyphicon-link']
+                ) . ' Adjuntar un enlace'
+            ?>
+        </p>
+    </div>
+    <div class='panel-body'>
+        <?= $this->render('_form', [
+            'model' => $model,
+            'tarjeta'=>$tarjeta,
+            'action'=>['adjuntos/create'],
+        ]) ?>
+    </div>
 </div>
