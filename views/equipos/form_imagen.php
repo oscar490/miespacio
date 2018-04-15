@@ -14,7 +14,7 @@ $css = <<<EOT
     }
 EOT;
 $js = <<<EOT
-    let input_imagen = $('#imagen_equipo');
+    let input_imagen = $("#$equipo->id");
     let enviar = true;
     let mensaje = $('<div></div>');
     let en_proceso = false;
@@ -47,7 +47,7 @@ $js = <<<EOT
 
         }
     });
-    $('#form_imagen').on('submit', function(e) {
+    $("#form_imagen_$equipo->id").on('submit', function(e) {
         console.log(enviar);
         if (enviar && (!en_proceso)) {
             en_proceso = true;
@@ -93,27 +93,18 @@ $this->registerCss($css);
                 ?>
             </div>
             <div class='panel-body'>
-                <?php $form = ActiveForm::begin([
-                    'id'=>'form_imagen',
-                ]) ?>
-
-                    <?= $form->field($equipo, 'imagen_equipo')->widget(FileInput::className(), [
-                        'options'=>['accept'=>'image/jpg'],
-                        'pluginOptions'=>[
-                            'showUpload'=>false,
-                            'showPreview' => false,
-                            'browseIcon'=> '<i class="glyphicon glyphicon-picture"></i>',
-                        ],
+                <!-- Formulario de modificado de imagen -->
+                <?=
+                    $this->render('/site/form_input_file', [
+                        'model'=>$equipo,
+                        'attribute'=>'imagen_equipo',
+                        'showUpload'=>false,
+                        'showPreview'=>false,
+                        'action'=>'',
+                        'id_form'=>$equipo->id,
+                        'btn_id'=>'btn-imagen',
                     ]);
-                    ?>
-
-                    <?= Html::submitButton('Cambiar imágen',[
-                            'class'=>'btn btn-success btn-block',
-                            'id'=>'btn-imagen'
-                        ])
-                    ?>
-
-                <?php ActiveForm::end() ?>
+                ?>
             </div>
         </div>
     </div>

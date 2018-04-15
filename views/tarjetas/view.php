@@ -12,6 +12,7 @@ use yii\bootstrap\Modal;
 /* @var $model app\models\Tarjetas */
 
 $url_update = Url::to(['tarjetas/render-update', 'id'=>$model->id]);
+$url_adjunto = Url::to(['adjuntos/create-ajax']);
 
 $js = <<<EOT
     $("#btn_update_$model->id").on('click', function() {
@@ -23,8 +24,31 @@ $js = <<<EOT
                 $("div[data-key='$model->id']  div.modal-body > div.container").html(data);
             }
         })
-    })
+    });
 
+    $("#form_imagen_$model->id").on('submit', function(e) {
+        e.preventDefault();
+        var form = $(this);
+
+        if (form.find('.has-error').length) {
+            console.log('entra');
+            return false;
+        }
+
+        $.ajax({
+            url: '$url_adjunto',
+            type: 'POST',
+            data: new FormData(this),
+            enctype: 'multipart/form-data',
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+
+        })
+
+        return false;
+
+    });
 EOT;
 
 $css = <<<EOT
@@ -132,9 +156,41 @@ $this->registerJs($js);
                      ?>
                 </div>
             </div>
+
+            <!-- Adjuntar un archivo -->
+            <div class='row'>
+                <div class='col-md-12'>
+                    <div class='panel panel-default'>
+                        <div class='panel-heading'>
+                            <p>
+                                <?=
+                                    Html::tag(
+                                        'span',
+                                        '',
+                                        ['class'=>'glyphicon glyphicon-file']
+                                    ) . ' Adjuntar un archivo'
+                                ?>
+                            </p>
+                        </div>
+                        <div class='panel-body'>
+                            <?=
+                                $this->render('/site/form_input_file', [
+                                    'model'=>$adjunto,
+                                    'attribute'=>'archivo',
+                                    'showUpload'=>false,
+                                    'showPreview'=>true,
+                                    'action'=>['adjuntos/create'],
+                                    'id_form'=>"$model->id",
+                                    'btn_id'=>"btn_file_$model->id",
+                                ]);
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Añadir un nievo adjunto -->
+        <!-- Añadir un nuevo adjunto -->
         <div class='col-md-3'>
             <?= $this->render('/adjuntos/create', [
                 'model'=>$adjunto,

@@ -114,9 +114,7 @@ class TarjetasController extends Controller
 
             return $this->renderAjax('view', [
                 'model'=>$model,
-                'adjunto'=>new Adjuntos([
-                    'scenario'=>Adjuntos::ESCENARIO_ENLACES,
-                ])
+                'adjunto'=>new Adjuntos()
             ]);
         }
     }

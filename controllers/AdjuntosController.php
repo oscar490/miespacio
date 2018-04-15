@@ -10,6 +10,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
+use yii\web\UploadedFile;
+use yii\app\UploadFiles;
 
 /**
  * AdjuntosController implements the CRUD actions for Adjuntos model.
@@ -66,17 +68,11 @@ class AdjuntosController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Adjuntos([
-            'scenario'=>Adjuntos::ESCENARIO_ENLACES,
-        ]);
+        $model = new Adjuntos();
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
-        }
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['tableros/view','id'=>$model->tarjeta->tablero->id]);
         }
 
         return $this->render('create', [
@@ -86,12 +82,23 @@ class AdjuntosController extends Controller
 
     public function actionCreateAjax()
     {
-        $model = new Adjuntos([
-            'scenario'=>Adjuntos::ESCENARIO_ENLACES,
-        ]);
+        $model = new Adjuntos();
+        $model->archivo = UploadedFile::getInstance($model, 'archivo');
+        var_dump($model->archivo); die();
+        // if ($model->archivo !== null) {
+        //     $subida = new UploadFiles([
+        //         'nombre'=>$model->archivo->name,
+        //         'archivo'=>$model->archivo,
+        //     ]);
+        //
+        //     $model->url_direccion = $subida->upload();
+        // }
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+
+
             $model->save();
+            Yii::$app->response->format = Response::FORMAT_JSON;
 
             return $this->renderAjax('/tarjetas/lista_adjuntos', [
                 'model'=>$model->tarjeta,

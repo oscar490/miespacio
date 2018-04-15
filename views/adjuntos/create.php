@@ -13,6 +13,7 @@ $js = <<<EOT
         var form = $(this);
 
         if (form.find('.has-error').length) {
+            console.log('entra');
             return false;
         }
 
