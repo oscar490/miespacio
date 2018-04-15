@@ -26,7 +26,7 @@ $js = <<<EOT
         })
     });
 
-    $("#form_imagen_$model->id").on('submit', function(e) {
+    $("#form_imagen_$model->id").on('beforeSubmit', function(e) {
         e.preventDefault();
         var form = $(this);
 
@@ -34,19 +34,22 @@ $js = <<<EOT
             console.log('entra');
             return false;
         }
-
+        console.log('hola');
         $.ajax({
             url: '$url_adjunto',
             type: 'POST',
             data: new FormData(this),
             enctype: 'multipart/form-data',
+            success: function(data) {
+                $("div[data-key='$model->id'] div#lista_adjunto").html(data);
+            },
             dataType: 'json',
             contentType: false,
             processData: false,
 
         })
-
         return false;
+
 
     });
 EOT;
@@ -182,6 +185,7 @@ $this->registerJs($js);
                                     'action'=>['adjuntos/create'],
                                     'id_form'=>"$model->id",
                                     'btn_id'=>"btn_file_$model->id",
+                                    'tarjeta'=>$model,
                                 ]);
                             ?>
                         </div>

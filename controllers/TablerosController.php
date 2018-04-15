@@ -68,7 +68,9 @@ class TablerosController extends Controller
             'model' => $this->findModel($id),
             'equipos'=>$equipos,
             'tarjeta' => new Tarjetas(),
-            'adjunto'=>new Adjuntos(),
+            'adjunto'=>new Adjuntos([
+                'scenario'=>Adjuntos::ESCENARIO_FILE,
+            ]),
         ]);
     }
 

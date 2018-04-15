@@ -11,7 +11,7 @@ use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use yii\web\UploadedFile;
-use yii\app\UploadFiles;
+use app\models\UploadFiles;
 
 /**
  * AdjuntosController implements the CRUD actions for Adjuntos model.
@@ -84,26 +84,28 @@ class AdjuntosController extends Controller
     {
         $model = new Adjuntos();
         $model->archivo = UploadedFile::getInstance($model, 'archivo');
-        var_dump($model->archivo); die();
-        // if ($model->archivo !== null) {
-        //     $subida = new UploadFiles([
-        //         'nombre'=>$model->archivo->name,
-        //         'archivo'=>$model->archivo,
-        //     ]);
-        //
-        //     $model->url_direccion = $subida->upload();
-        // }
 
-        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+        if ($model->archivo !== null) {
 
-
-            $model->save();
-            Yii::$app->response->format = Response::FORMAT_JSON;
-
-            return $this->renderAjax('/tarjetas/lista_adjuntos', [
-                'model'=>$model->tarjeta,
+            $subida = new UploadFiles([
+                'nombre_archivo'=>$model->archivo->name,
+                'archivo'=>$model->archivo,
             ]);
+
+            $model->url_direccion = $subida->upload();
+            $model->tarjeta_id = Yii::$app->request->post('tarjeta_id');
+
+        } else {
+            $model->load(Yii::$app->request->post());
+
         }
+
+        $model->save();
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $this->renderAjax('/tarjetas/lista_adjuntos', [
+            'model'=>$model->tarjeta,
+        ]);
     }
 
     /**

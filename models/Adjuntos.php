@@ -16,6 +16,8 @@ use Yii;
  */
 class Adjuntos extends \yii\db\ActiveRecord
 {
+    const ESCENARIO_FILE = 'file';
+
     public $archivo;
     /**
      * {@inheritdoc}
@@ -32,7 +34,7 @@ class Adjuntos extends \yii\db\ActiveRecord
     {
         return [
             [
-                ['url_direccion', 'tarjeta_id'],
+                ['url_direccion', 'tarjeta_id',],
                 'required',
             ],
             [['tarjeta_id'], 'default', 'value' => null],
@@ -43,10 +45,17 @@ class Adjuntos extends \yii\db\ActiveRecord
                 'default',
                 'value'=>null,
             ],
+    
             [
                 ['archivo'],
                 'file',
                 'maxSize'=>1024*1024*2,
+                'on'=>self::ESCENARIO_FILE,
+            ],
+            [
+                ['archivo'],
+                'required',
+                'on'=>self::ESCENARIO_FILE,
             ],
             [
                 ['url_direccion', 'tarjeta_id'],

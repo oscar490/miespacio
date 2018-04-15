@@ -9,7 +9,7 @@ use yii\helpers\Html;
 
 <?php $form = ActiveForm::begin([
     'id'=>"form_imagen_$id_form",
-    'action'=>$action
+    'action'=>$action,
 ]) ?>
 
      <?= $form->field($model, $attribute)->widget(FileInput::className(), [
@@ -21,6 +21,10 @@ use yii\helpers\Html;
          ],
      ]);
      ?>
+
+    <?php if (isset($tarjeta)): ?>
+        <?= Html::hiddenInput('tarjeta_id', $tarjeta->id); ?>
+    <?php endif; ?>
 
      <?= Html::submitButton('Cambiar imágen',[
              'class'=>'btn btn-success btn-block',
