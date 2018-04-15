@@ -3,7 +3,13 @@ use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
 use yii\helpers\Html;
 
-
+if ($action === ['adjuntos/create']) {
+    $label = 'Adjuntar';
+    $class = 'btn btn-default btn-block';
+} else {
+    $label = 'Cambiar imágen';
+    $class = 'btn btn-success btn-block';
+}
 
 ?>
 
@@ -26,8 +32,8 @@ use yii\helpers\Html;
         <?= Html::hiddenInput('tarjeta_id', $tarjeta->id); ?>
     <?php endif; ?>
 
-     <?= Html::submitButton('Cambiar imágen',[
-             'class'=>'btn btn-success btn-block',
+     <?= Html::submitButton($label,[
+             'class'=>$class,
              'id'=>$btn_id,
          ])
      ?>

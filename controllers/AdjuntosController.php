@@ -92,7 +92,15 @@ class AdjuntosController extends Controller
                 'archivo'=>$model->archivo,
             ]);
 
-            $model->url_direccion = $subida->upload();
+            $model->nombre = $subida->nombre_archivo;
+            $direccion = $subida->upload();
+            $adjunto = Adjuntos::findOne(['nombre'=>$model->nombre]);
+
+            if ($adjunto !== null) {
+                $adjunto->url_direccion = $direccion;
+                $adjunto->save();
+            }
+            $model->url_direccion = $direccion;
             $model->tarjeta_id = Yii::$app->request->post('tarjeta_id');
 
         } else {

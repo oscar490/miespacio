@@ -46,6 +46,7 @@ $this->registerJs($js);
         <?php endif; ?>
 
     </div>
+    <!-- Botón de ver -->
     <div class='col-md-4'>
         <?=
             Html::a(

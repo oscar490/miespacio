@@ -28,6 +28,12 @@ $js = <<<EOT
 
     $("#form_imagen_$model->id").on('beforeSubmit', function(e) {
         e.preventDefault();
+
+        let img = $('<img>');
+        img.attr('src', 'images/cargando2.gif');
+        $('div#loading').empty();
+        $('div#loading').append(img);
+
         var form = $(this);
 
         if (form.find('.has-error').length) {
@@ -41,6 +47,7 @@ $js = <<<EOT
             data: new FormData(this),
             enctype: 'multipart/form-data',
             success: function(data) {
+                $('div#loading').empty();
                 $("div[data-key='$model->id'] div#lista_adjunto").html(data);
             },
             dataType: 'json',
@@ -58,6 +65,10 @@ $css = <<<EOT
     .titulo {
         margin-top: 0px;
         margin-bottom: 20px;
+    }
+
+    #lista_adjuntos {
+        height: 280px;
     }
 
 
@@ -138,8 +149,8 @@ $this->registerJs($js);
 
     <div class='row'>
         <!-- Lista de adjuntos -->
-        <div class='col-md-6'>
-            <div class='panel panel-default'>
+        <div  class='col-md-6'>
+            <div id='lista_adjuntos' class='panel panel-default'>
                 <div class='panel-heading'>
                     <p>
                         <?=
@@ -160,38 +171,7 @@ $this->registerJs($js);
                 </div>
             </div>
 
-            <!-- Adjuntar un archivo -->
-            <div class='row'>
-                <div class='col-md-12'>
-                    <div class='panel panel-default'>
-                        <div class='panel-heading'>
-                            <p>
-                                <?=
-                                    Html::tag(
-                                        'span',
-                                        '',
-                                        ['class'=>'glyphicon glyphicon-file']
-                                    ) . ' Adjuntar un archivo'
-                                ?>
-                            </p>
-                        </div>
-                        <div class='panel-body'>
-                            <?=
-                                $this->render('/site/form_input_file', [
-                                    'model'=>$adjunto,
-                                    'attribute'=>'archivo',
-                                    'showUpload'=>false,
-                                    'showPreview'=>true,
-                                    'action'=>['adjuntos/create'],
-                                    'id_form'=>"$model->id",
-                                    'btn_id'=>"btn_file_$model->id",
-                                    'tarjeta'=>$model,
-                                ]);
-                            ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
 
         <!-- Añadir un nuevo adjunto -->
@@ -201,5 +181,43 @@ $this->registerJs($js);
                 'tarjeta'=>$model,
             ]) ?>
         </div>
+    </div>
+
+    <!-- Adjuntar un archivo -->
+    <div class='row'>
+        <div class='col-md-6'>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <p>
+                        <?=
+                            Html::tag(
+                                'span',
+                                '',
+                                ['class'=>'glyphicon glyphicon-file']
+                            ) . ' Adjuntar un archivo'
+                        ?>
+                    </p>
+                </div>
+                <div class='panel-body'>
+                    <?=
+                        $this->render('/site/form_input_file', [
+                            'model'=>$adjunto,
+                            'attribute'=>'archivo',
+                            'showUpload'=>false,
+                            'showPreview'=>false,
+                            'action'=>['adjuntos/create'],
+                            'id_form'=>"$model->id",
+                            'btn_id'=>"btn_file_$model->id",
+                            'tarjeta'=>$model,
+                        ]);
+                    ?>
+                </div>
+            </div>
+        </div>
+
+        <div id='loading' class='col-md-3'>
+
+        </div>
+
     </div>
 </div>

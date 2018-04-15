@@ -116,7 +116,7 @@ CREATE TABLE adjuntos
     ,  nombre        VARCHAR(255)
     ,  url_direccion VARCHAR(255) NOT NULL
     ,  tarjeta_id    BIGINT       NOT NULL REFERENCES tarjetas (id) ON DELETE
-                                  NO ACTION ON UPDATE CASCADE
+                                  CASCADE ON UPDATE CASCADE
     ,  UNIQUE (url_direccion, tarjeta_id)
 );
 
