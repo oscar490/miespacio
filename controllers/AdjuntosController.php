@@ -94,6 +94,8 @@ class AdjuntosController extends Controller
 
             $model->nombre = $subida->nombre_archivo;
             $direccion = $subida->upload();
+
+            $direccion = substr($direccion, 0, -1) . '0';
             $adjunto = Adjuntos::findOne(['nombre'=>$model->nombre]);
 
             if ($adjunto !== null) {

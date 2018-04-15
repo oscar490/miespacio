@@ -62,6 +62,12 @@ $this->registerJs($js);
                 ]
             )
         ?>
+
+        <?php if (file_exists($model->url_direccion)): ?>
+            <p>
+                Es una imagen
+            </p>
+        <?php endif; ?>
         <!-- Botón de borrar -->
         <?=
             Html::button(
