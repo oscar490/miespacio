@@ -6,6 +6,7 @@ use Yii;
 use app\models\Tableros;
 use app\models\Equipos;
 use app\models\Tarjetas;
+use app\models\Adjuntos;
 use app\models\TablerosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -67,6 +68,9 @@ class TablerosController extends Controller
             'model' => $this->findModel($id),
             'equipos'=>$equipos,
             'tarjeta' => new Tarjetas(),
+            'adjunto'=>new Adjuntos([
+                'scenario'=>Adjuntos::ESCENARIO_FILE,
+            ]),
         ]);
     }
 
@@ -93,9 +97,7 @@ class TablerosController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Tableros([
-            'color'=>'#ffffffff',
-        ]);
+        $model = new Tableros();
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;

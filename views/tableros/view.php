@@ -91,8 +91,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'query'=>$model->getTarjetas(),
                             ]),
                             'itemView'=>'_tarjeta',
-                            'viewParams'=> [
-                                'tableros'=>$tableros,
+                            'viewParams'=>[
+                                'adjunto'=>$adjunto,
                             ],
                             'summary'=>'',
                         ]); ?>

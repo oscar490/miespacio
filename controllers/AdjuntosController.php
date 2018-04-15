@@ -3,19 +3,20 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Tarjetas;
-use app\models\TarjetasSearch;
+use app\models\Adjuntos;
+use app\models\AdjuntosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
-use app\models\Adjuntos;
+use yii\web\UploadedFile;
+use app\models\UploadFiles;
 
 /**
- * TarjetasController implements the CRUD actions for Tarjetas model.
+ * AdjuntosController implements the CRUD actions for Adjuntos model.
  */
-class TarjetasController extends Controller
+class AdjuntosController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -33,12 +34,12 @@ class TarjetasController extends Controller
     }
 
     /**
-     * Lists all Tarjetas models.
+     * Lists all Adjuntos models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TarjetasSearch();
+        $searchModel = new AdjuntosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -48,7 +49,7 @@ class TarjetasController extends Controller
     }
 
     /**
-     * Displays a single Tarjetas model.
+     * Displays a single Adjuntos model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,27 +62,62 @@ class TarjetasController extends Controller
     }
 
     /**
-     * Creates a new Tarjetas model.
+     * Creates a new Adjuntos model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Tarjetas();
+        $model = new Adjuntos();
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['tableros/view', 'id'=>$model->tablero->id]);
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionCreateAjax()
+    {
+        $model = new Adjuntos();
+        $model->archivo = UploadedFile::getInstance($model, 'archivo');
+
+        if ($model->archivo !== null) {
+
+            $subida = new UploadFiles([
+                'nombre_archivo'=>$model->archivo->name,
+                'archivo'=>$model->archivo,
+            ]);
+
+            $model->nombre = $subida->nombre_archivo;
+            $direccion = $subida->upload();
+            $adjunto = Adjuntos::findOne(['nombre'=>$model->nombre]);
+
+            if ($adjunto !== null) {
+                $adjunto->url_direccion = $direccion;
+                $adjunto->save();
+            }
+            $model->url_direccion = $direccion;
+            $model->tarjeta_id = Yii::$app->request->post('tarjeta_id');
+
+        } else {
+            $model->load(Yii::$app->request->post());
+
         }
 
+        $model->save();
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $this->renderAjax('/tarjetas/lista_adjuntos', [
+            'model'=>$model->tarjeta,
+        ]);
     }
 
     /**
-     * Updates an existing Tarjetas model.
+     * Updates an existing Adjuntos model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -91,45 +127,17 @@ class TarjetasController extends Controller
     {
         $model = $this->findModel($id);
 
-        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
-
-        $model->load(Yii::$app->request->post());
-        $model->save();
 
         return $this->render('update', [
             'model' => $model,
         ]);
     }
 
-    public function actionUpdateAjax($id)
-    {
-        $model = $this->findModel($id);
-
-        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            $model->save();
-
-            return $this->renderAjax('view', [
-                'model'=>$model,
-                'adjunto'=>new Adjuntos()
-            ]);
-        }
-    }
-
-    public function actionRenderUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        return $this->renderAjax('update', [
-            'model'=>$model,
-        ]);
-    }
-
     /**
-     * Deletes an existing Tarjetas model.
+     * Deletes an existing Adjuntos model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -137,23 +145,24 @@ class TarjetasController extends Controller
      */
     public function actionDelete($id)
     {
-        $tablero = $this->findModel($id)->tablero;
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return $this->findModel($id)->delete();
+        }
 
-        $this->findModel($id)->delete();
 
-        return $this->redirect(['tableros/view', 'id'=>$tablero->id]);
     }
 
     /**
-     * Finds the Tarjetas model based on its primary key value.
+     * Finds the Adjuntos model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Tarjetas the loaded model
+     * @return Adjuntos the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Tarjetas::findOne($id)) !== null) {
+        if (($model = Adjuntos::findOne($id)) !== null) {
             return $model;
         }
 

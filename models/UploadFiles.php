@@ -32,9 +32,7 @@ class UploadFiles extends Model
         $nombre = Yii::getAlias("@uploads/$this->nombre_archivo");
         $res = $this->archivo->saveAs($nombre);
 
-        if ($res) {
-            Image::thumbnail($nombre, 250, null)->save($nombre);
-        }
+
 
         return $this->uploadDropbox();
     }

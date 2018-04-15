@@ -5,8 +5,10 @@ namespace app\components;
 use kartik\tabs\TabsX;
 use kartik\dialog\Dialog;
 use yii\helpers\Html;
+use yii\web\View;
+use yii\bootstrap\Modal;
 
-class MyHelpers
+class MyHelpers extends View
 {
     public static function tabs($items)
     {
@@ -38,6 +40,12 @@ class MyHelpers
         ]);
     }
 
+    /**
+     * Muestra el botón de envio de formulario.
+     * @param  string $nombre  Nombre que se muestra en etiqueta.
+     * @param  array  $options Opcones para el botón.
+     * @return string          El botón de submit.
+     */
     public static function submit($nombre= '', $options = [])
     {
         if (!array_key_exists('class', $options)) {
@@ -51,5 +59,28 @@ class MyHelpers
         ) . ' ' . $nombre;
 
         return Html::submitButton($label, $options);
+    }
+
+    public static function modal(
+        $view,
+        $paramsView = [],
+        $header = '',
+        $label = '',
+        $class = 'btn btn-success',
+        $size = Modal::SIZE_LARGE
+    )
+    {
+
+        return Modal::begin([
+            'header'=>$header,
+            'toggleButton'=>[
+                'label'=>$label,
+                'class'=>$class,
+            ],
+            'size'=>$size
+        ]);
+            $this->render($view, $paramsView);
+
+        Modal::end();
     }
 }

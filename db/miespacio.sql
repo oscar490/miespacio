@@ -71,7 +71,6 @@ CREATE TABLE tableros
 (
       id           BIGSERIAL     PRIMARY KEY
     , denominacion VARCHAR(255)  NOT NULL
-    , color        VARCHAR(255)
     , equipo_id    BIGINT        NOT NULL REFERENCES equipos (id) ON DELETE
                                  CASCADE ON UPDATE CASCADE
 
@@ -92,6 +91,7 @@ CREATE TABLE tarjetas
 (
       id           BIGSERIAL    PRIMARY KEY
     , denominacion VARCHAR(255) NOT NULL
+    , descripcion  VARCHAR(255)
     , tablero_id   BIGINT       NOT NULL REFERENCES tableros (id) ON DELETE
                                 CASCADE ON UPDATE CASCADE
 
@@ -101,3 +101,25 @@ CREATE TABLE tarjetas
 INSERT INTO tarjetas (denominacion, tablero_id)
     VALUES ('Desarrollo web', 2), ('Git', 2), ('JavaScript', 1),
             ('Estilos CSS', 4), ('Introducción a PHP', 2);
+
+
+
+
+
+-- Tabla adjuntos --
+
+DROP TABLE IF EXISTS adjuntos CASCADE;
+
+CREATE TABLE adjuntos
+(
+       id            BIGSERIAL    PRIMARY KEY
+    ,  nombre        VARCHAR(255)
+    ,  url_direccion VARCHAR(255) NOT NULL
+    ,  tarjeta_id    BIGINT       NOT NULL REFERENCES tarjetas (id) ON DELETE
+                                  CASCADE ON UPDATE CASCADE
+    ,  UNIQUE (url_direccion, tarjeta_id)
+);
+
+INSERT INTO adjuntos (nombre, url_direccion, tarjeta_id)
+    VALUES ('3dJuegos', 'https://www.3djuegos.com/', 1),
+            ('Ágora', 'http://agora.iesdonana.org/', 1);

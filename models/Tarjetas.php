@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\Adjuntos;
 
 /**
  * This is the model class for table "tarjetas".
@@ -10,7 +11,7 @@ use Yii;
  * @property int $id
  * @property string $denominacion
  * @property int $tablero_id
- *
+ * @property string $descripcion
  * @property Tableros $tablero
  */
 class Tarjetas extends \yii\db\ActiveRecord
@@ -32,7 +33,7 @@ class Tarjetas extends \yii\db\ActiveRecord
             [['denominacion', 'tablero_id'], 'required'],
             [['tablero_id'], 'default', 'value' => null],
             [['tablero_id'], 'integer'],
-            [['denominacion'], 'string', 'max' => 255],
+            [['denominacion', 'descripcion'], 'string', 'max' => 255],
             [
                 ['denominacion', 'tablero_id'],
                 'unique',
@@ -67,4 +68,14 @@ class Tarjetas extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Tableros::className(), ['id' => 'tablero_id'])->inverseOf('tarjetas');
     }
+
+    /**
+    *  @return \yii\db\ActiveQuery
+    */
+    public function getAdjuntos()
+    {
+        return $this->hasMany(Adjuntos::className(), ['tarjeta_id' => 'id'])->inverseOf('tarjeta');
+    }
+
+
 }

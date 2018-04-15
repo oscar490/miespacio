@@ -15,18 +15,27 @@ use app\components\MyHelpers;
     <?php $form = ActiveForm::begin([
         'action'=>$action,
         'enableAjaxValidation' => true,
+        'id'=>"form_tarjeta_$model->id"
     ]); ?>
 
         <?= $form->field($model, 'denominacion', ['enableAjaxValidation' => true,])
             ->textInput(['maxlength' => true]) ?>
 
+        <?php if (!$model->isNewRecord): ?>
+            <?= $form->field($model, 'descripcion')->textarea([
+                'rows'=>5
+            ]) ?>
+        <?php endif; ?>
 
         <?= Html::hiddenInput('tablero_id', $tablero->id) ?>
 
 
         <div class="form-group">
             <?=
-                MyHelpers::submit($label);
+                MyHelpers::submit($label,
+                    (!$model->isNewRecord) ?
+                        ['id'=>"btn_tarjeta_$model->id"]: []
+                );
             ?>
         </div>
 
