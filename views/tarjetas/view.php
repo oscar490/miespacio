@@ -124,14 +124,12 @@ $this->registerJs($js);
                         ?>
                     </p>
                 </div>
-                <div class='panel-body'>
-                    <?= ListView::widget([
-                        'dataProvider'=> new ActiveDataProvider([
-                            'query'=>$model->getAdjuntos(),
-                        ]),
-                        'itemView'=>'_adjunto',
-                        'summary'=>'',
-                    ]) ?>
+                <div id="lista_adjunto" class='panel-body'>
+                    <?=
+                        $this->render('lista_adjuntos', [
+                            'model'=>$model,
+                        ]);
+                     ?>
                 </div>
             </div>
         </div>

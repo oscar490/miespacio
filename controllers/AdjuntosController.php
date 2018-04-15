@@ -84,6 +84,21 @@ class AdjuntosController extends Controller
         ]);
     }
 
+    public function actionCreateAjax()
+    {
+        $model = new Adjuntos([
+            'scenario'=>Adjuntos::ESCENARIO_ENLACES,
+        ]);
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            $model->save();
+
+            return $this->renderAjax('/tarjetas/lista_adjuntos', [
+                'model'=>$model->tarjeta,
+            ]);
+        }
+    }
+
     /**
      * Updates an existing Adjuntos model.
      * If update is successful, the browser will be redirected to the 'view' page.
