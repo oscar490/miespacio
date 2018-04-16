@@ -9,7 +9,7 @@ use yii\helpers\Url;
 $url = Url::to(['adjuntos/create-ajax']);
 
 $js = <<<EOT
-    $("#form_adjunto_$tarjeta->id").on('beforeSubmit', function() {
+    $("#form_adjunto_create_$tarjeta->id").on('beforeSubmit', function() {
         var form = $(this);
 
         if (form.find('.has-error').length) {
@@ -24,7 +24,7 @@ $js = <<<EOT
             success: function(data) {
                 $("div[data-key='$tarjeta->id'] div#lista_adjunto").html(data);
             }
-        })
+        });
 
         return false;
     })
@@ -49,6 +49,7 @@ $this->registerJs($js);
             'model' => $model,
             'tarjeta'=>$tarjeta,
             'action'=>['adjuntos/create'],
+            'id_form'=>"form_adjunto_create_$tarjeta->id",
         ]) ?>
     </div>
 </div>
