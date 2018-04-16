@@ -14,7 +14,7 @@ use app\components\MyHelpers;
     <?php $form = ActiveForm::begin([
         'action'=>$action,
         'enableAjaxValidation'=>true,
-        'id'=>"form_adjunto_$tarjeta->id",
+        'id'=>$id_form,
     ]); ?>
 
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>

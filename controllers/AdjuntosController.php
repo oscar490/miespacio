@@ -129,13 +129,27 @@ class AdjuntosController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+    }
+
+    public function actionUpdateAjax($id)
+    {
+        $model = $this->findModel($id);
+
+        $model->nombre = Yii::$app->request->post('nombre');
+        $model->url_direccion = Yii::$app->request->post('url_direccion');
+        $model->tarjeta_id = Yii::$app->request->post('tarjeta_id');
+
+        if ($model->save()) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return $this->renderAjax('/tarjetas/lista_adjuntos', [
+                'model'=>$model->tarjeta,
+            ]);
+        }
     }
 
     /**

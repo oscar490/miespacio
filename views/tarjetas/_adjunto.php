@@ -25,8 +25,9 @@ $js = <<<EOT
     })
 
     $('#btn_update_adjunto_$model->id').on('click', function() {
-        $("div[data-key='$model->id'] #update_adjunto").fadeToggle();
-    })
+        let aqui = $(this).closest('div.row').next()
+            .find('div#update_adjunto').fadeToggle();
+    });
 
 EOT;
 
@@ -105,7 +106,6 @@ $this->registerJs($js);
         ?>
     </div>
 </div>
-<br>
 <div class='row'>
     <div id="update_adjunto" class='col-md-8 col-md-offset-3'>
         <?=
