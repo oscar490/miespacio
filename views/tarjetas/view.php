@@ -178,7 +178,7 @@ $this->registerJs($js);
 
         </div>
 
-        <!-- Añadir un nuevo adjunto -->
+        <!-- Añadir un nuevo adjunto (enlace) -->
         <div class='col-md-3'>
             <?= $this->render('/adjuntos/create', [
                 'model'=>$adjunto,

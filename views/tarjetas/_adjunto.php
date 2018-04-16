@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
+use kartik\popover\PopoverX;
 
 $url_adjunto = Url::to(['adjuntos/delete', 'id'=>$model->id]);
 $js = <<<EOT
@@ -23,9 +24,19 @@ $js = <<<EOT
         });
     })
 
+    $('#btn_update_adjunto_$model->id').on('click', function() {
+        $("div[data-key='$model->id'] #update_adjunto").fadeToggle();
+    })
+
 EOT;
 
+$css = <<<EOT
+    #update_adjunto {
+        display: none;
+    }
+EOT;
 
+$this->registerCss($css);
 $this->registerJs($js);
 ?>
 
@@ -63,11 +74,6 @@ $this->registerJs($js);
             )
         ?>
 
-        <?php if (file_exists($model->url_direccion)): ?>
-            <p>
-                Es una imagen
-            </p>
-        <?php endif; ?>
         <!-- Botón de borrar -->
         <?=
             Html::button(
@@ -82,7 +88,33 @@ $this->registerJs($js);
                 ]
             );
         ?>
-    </div>
 
+        <!-- Botón de modificar -->
+        <?=
+            Html::button(
+                Html::tag(
+                    'span',
+                    '',
+                    ['class'=>'glyphicon glyphicon-pencil']
+                ),
+                [
+                    'class'=>'btn btn-default',
+                    'id'=>"btn_update_adjunto_$model->id"
+                ]
+            );
+        ?>
+    </div>
+</div>
+<br>
+<div class='row'>
+    <div id="update_adjunto" class='col-md-8 col-md-offset-3'>
+        <?=
+            $this->render('/adjuntos/update', [
+                'model'=>$model,
+                'tarjeta'=>$model->tarjeta,
+                'action'=>['adjuntos/update', 'id'=>$model->id]
+            ]);
+        ?>
+    </div>
 </div>
 <hr>
