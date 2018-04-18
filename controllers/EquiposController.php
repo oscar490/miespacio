@@ -66,7 +66,7 @@ class EquiposController extends Controller
         return $this->render('gestionar', [
             'equipos' => $equipos,
             'tablero_crear'=> new Tableros(),
-            'equipo_crear'=> new Equipos(),
+            'equipo'=> new Equipos(),
         ]);
     }
 

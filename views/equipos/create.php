@@ -1,24 +1,39 @@
 <?php
-
-use yii\helpers\Html;
+/* Vista de creación de un nuevo equipo */
 
 /* @var $this yii\web\View */
 /* @var $equipo app\models\Equipos */
-/* @var $equipos app\models\Equipos */
-/* @var $tablero app\models\Tableros */
-/* @var $tablerosLista app\models\Tableros */
 
+use yii\helpers\Html;
+use app\components\MyHelpers;
 
-$this->title = 'Crear | MiEspacio';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="equipos-create">
 
-    <?= $this->render('_form', [
-        'equipo' => $equipo,
-        'tablero'=>$tablero,
-        'equipos'=>$equipos,
-        'tablerosLista'=>$tablerosLista,
-    ]) ?>
-
+<div class='col-md-4'>
+    <div class='panel panel-default'>
+        <div class='panel-heading centrado'>
+            <?=
+                Html::tag(
+                    'p',
+                    MyHelpers::icon('glyphicon glyphicon-plus')
+                    . ' Crear un nuevo equipo'
+                );
+            ?>
+        </div>
+        <div class='panel-body'>
+            <?=
+                $this->render('_form', [
+                    'equipo' => $equipo,
+                    'action' => ['equipos/create'],
+                    'label' => 'Crear',
+                ]);
+            ?>
+            <hr>
+            <p>
+                Un equipo es un conjunto de tableros y
+                personas. Utilícelo para organizar su
+                empresa y sus planes.
+            </p>
+        </div>
+    </div>
 </div>

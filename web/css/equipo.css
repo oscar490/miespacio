@@ -1,0 +1,17 @@
+.logo-equipo {
+    width: 56px;
+    height: 47px;
+}
+
+#imagen_equipo {
+    padding-right: 0px;
+    width: 75px;
+}
+
+#texto_equipo {
+    padding-left: 0px;
+}
+
+.create_equipo {
+    background-color: red;
+}

@@ -201,7 +201,7 @@ a.desc:after {
     font-size: 60px;
 }
 
-.panel-heading {
+.centrado {
     display: flex;
     justify-content: center;
 }

@@ -10,23 +10,7 @@ use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
 use app\models\Tableros;
 
-$css = <<<EOT
-    .logo-equipo {
-        width: 56px;
-        height: 47px;
-    }
-
-    #imagen_equipo {
-        padding-right: 0px;
-        width: 75px;
-    }
-
-    #texto_equipo {
-        padding-left: 0px;
-    }
-EOT;
-
-$this->registerCss($css);
+$this->registerCssFile('/css/equipo.css');
 ?>
 
 <!-- Nombre del equipo -->

@@ -12,7 +12,14 @@ use yii\bootstrap\Modal;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 
+$this->registerCssFile(
+    '/css/tablero.css'
+);
 
+$this->registerJsFile(
+    '/js/tablero.js',
+    ['depends'=>[\yii\web\JqueryAsset::className()]]
+);
 ?>
 <br>
 <!-- Tableros pertenecientes al equipo -->
@@ -27,13 +34,12 @@ use yii\helpers\Html;
 
     <!-- Formulario para crear tableros en un equipo -->
     <div class='col-md-3'>
-        <div class='panel panel-primary'>
-            <div class='panel-heading'>
+        <div class='panel panel-default'>
+            <div id='tablero_create' class='panel-heading centrado'>
                 <?php Modal::begin([
                     'toggleButton'=>[
-                        'label'=>"<span class='glyphicon glyphicon-plus'></span>
-                                  Crear un nuevo tablero",
-                        'class'=>'btn-md btn-info',
+                        'label'=>"Crear un nuevo tablero",
+                        'class'=>'btn btn-md btn-info',
                     ],
                     'size'=>Modal::SIZE_SMALL,
                 ]) ?>
@@ -44,8 +50,6 @@ use yii\helpers\Html;
                     ]) ?>
                 <?php Modal::end() ?>
                 <br>
-            </div>
-            <div class='panel-body'>
             </div>
         </div>
     </div>
