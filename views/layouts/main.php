@@ -152,12 +152,14 @@ AppAsset::register($this);
     ?>
 
     <?php
-        $img = $datosUsuario->url_imagen;
-        $this->registerJs("
-            $(document).ready(function() {
-                $('img.logo-nav').attr('src', '$img');
-            })
-        ");
+        if (!Yii::$app->user->isGuest) {
+            $img = $datosUsuario->url_imagen;
+            $this->registerJs("
+                $(document).ready(function() {
+                    $('img.logo-nav').attr('src', '$img');
+                })
+            ");
+        }
     ?>
     <div class="container">
         <?= Breadcrumbs::widget([

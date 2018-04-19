@@ -47,7 +47,7 @@ $this->registerJs($js);
     </div>
 </div>
 <div class='row'>
-    <div class='col-md-6 col-md-offset-5'>
+    <div class='col-md-12 centrado'>
         <?= Html::button(
             '¿Eliminar este equipo?',
             [

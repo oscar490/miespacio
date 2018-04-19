@@ -10,7 +10,17 @@ use yii\widgets\ActiveForm;
 use app\components\MyHelpers;
 use yii\helpers\Url;
 
+$js = <<<EOT
+    $(document).ready(function() {
 
+        selector = $('.jumbotron > img');
+        imagen = '$model->url_imagen';
+
+        cambiarImagen(imagen, selector);
+    })
+EOT;
+
+$this->registerJs($js);
 $this->title = 'Perfil | MiEspacio';
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -37,7 +47,7 @@ $items = [
     <div class='jumbotron'>
         <?=
             Html::img(
-                $model->url_imagen,
+                'images/cargando.gif',
                 ['class'=>'logo-x3 img-circle']
             );
         ?>

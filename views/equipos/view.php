@@ -11,6 +11,16 @@ use yii\data\ActiveDataProvider;
 /* @var $tableros app\models\Tableros */
 /* @var $tablero_crear app\models\Tableros */
 
+$js = <<<EOT
+    $(document).ready(function() {
+        selector = $('#img_equipo img');
+        imagen = '$model->url_imagen';
+
+        cambiarImagen(imagen, selector);
+    })
+EOT;
+
+$this->registerJs($js);
 
 $this->title = $model->denominacion;
 $this->params['breadcrumbs'][] = [
@@ -88,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div id='img_equipo' class='col-xs-4 col-sm-1 col-md-1 col-lg-1'>
                 <?=
                     Html::img(
-                        $model->url_imagen,
+                        'images/cargando.gif',
                         ['class'=>'img-circle']
                     );
                 ?>

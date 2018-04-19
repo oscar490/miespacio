@@ -29,16 +29,20 @@ $this->registerCssFile(
 ?>
 
 <!-- Botón de creación de nuevo equipo -->
-<?=
-    Html::button(
-        MyHelpers::icon('glyphicon glyphicon-plus') .
-        ' Crear un nuevo equipo',
-        [
-            'class' => 'btn btn-default',
-            'id' => 'btn_create_equipo'
-        ]
-    );
-?>
+<div class='row'>
+    <div class='col-md-3'>
+        <?=
+            Html::button(
+                MyHelpers::icon('glyphicon glyphicon-plus') .
+                ' Crear un nuevo equipo',
+                [
+                    'class' => 'btn btn-default',
+                    'id' => 'btn_create_equipo'
+                ]
+            );
+        ?>
+    </div>
+</div>
 
 <!-- Vista de creación de equipo -->
 <div class='row'>

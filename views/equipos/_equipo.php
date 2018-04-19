@@ -33,7 +33,7 @@ $this->registerCssFile('/css/equipo.css');
                 ['class'=>'img-circle logo-equipo']
             ),
             [
-                'class'=>'col-xs-1 col-md-1 col-lg-1 img_equipo',
+                'class'=>'col-xs-3 col-md-1 col-lg-1 img_equipo',
                 'id' => "imagen_equipo_$model->id"
             ]
         )
