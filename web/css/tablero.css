@@ -9,9 +9,11 @@
     background-color: #e2e4e6;
 }
 
-#tablero_create > button {
-    background-color: #838c91;
-    border-color: #838c91;
-    height: 50px;
-    margin-top: 10px;
+.create > button{
+    width: 260.5px;
+    font-size: 15px;
+    color: #838c91;
+    height: 90px;
+    background-color: #e2e4e6;
+    margin-bottom: 20px;
 }

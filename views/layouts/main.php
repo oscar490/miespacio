@@ -28,22 +28,23 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <?php
-    $items = [];
+    $items[] = [
+
+        'label'=>Html::tag(
+            'span',
+            ' ',
+            ['class'=>'glyphicon glyphicon-home icono-x2']
+        ) . ' Inicio',
+        'url'=>['site/index'],
+        'encode'=>false,
+
+    ];
     $datosUsuario = DatosUsuarios::findOne([
         'usuario_id'=>Yii::$app->user->id,
     ]);
 
     if (Yii::$app->user->isGuest) {
-        $items = [
-            [
-                'label'=>Html::tag(
-                    'span',
-                    '',
-                    ['class'=>'glyphicon glyphicon-th icono-x2']
-                ) . 'Inicio',
-                'url'=>['site/index'],
-                'encode'=>false,
-            ],
+        $items[] =
             [
                 'label'=>Html::tag(
                     'span',
@@ -52,7 +53,8 @@ AppAsset::register($this);
                 ) . '  Iniciar sesión',
                 'url'=>['site/login'],
                 'encode'=>false,
-            ],
+            ];
+        $items[] =
             [
                 'label'=>Html::tag(
                     'span',
@@ -61,19 +63,9 @@ AppAsset::register($this);
                 ) . '  Registrarse',
                 'url'=>['usuarios/create'],
                 'encode'=>false,
-            ]
-        ];
+            ];
     } else {
-        $items = [
-            [
-                'label'=>Html::tag(
-                    'span',
-                    ' ',
-                    ['class'=>'glyphicon glyphicon-home icono-x2']
-                ) . ' Inicio',
-                'url'=>['site/index'],
-                'encode'=>false,
-            ],
+        $items[] =
             [
                 'label'=> Html::tag(
                     'span',
@@ -82,13 +74,13 @@ AppAsset::register($this);
                 ) . ' Mis tableros',
                 'url'=>['equipos/gestionar-tableros'],
                 'encode'=>false,
-            ],
+            ];
+        $items[] =
             [
-                'label'=>Html::tag(
-                    'span',
-                    '',
-                    ['class'=>'glyphicon glyphicon-user icono-x2']
-                ) . ' ' . Yii::$app->user->identity->nombre,
+                'label'=>Html::img(
+                    'images/cargando.gif',
+                    ['class'=>'img-circle logo-nav']
+                ),
                 'items' => [
                     Html::tag(
                         'li',
@@ -125,9 +117,11 @@ AppAsset::register($this);
                 ],
                 'encode'=>false,
 
-            ],
-        ];
+            ];
+
+
     }
+
 ?>
 
 <div class="wrap">
@@ -157,6 +151,14 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
+    <?php
+        $img = $datosUsuario->url_imagen;
+        $this->registerJs("
+            $(document).ready(function() {
+                $('img.logo-nav').attr('src', '$img');
+            })
+        ");
+    ?>
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

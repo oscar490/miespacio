@@ -10,19 +10,36 @@ use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
 use app\models\Tableros;
 
+$imagen = $model->url_imagen;
+
+$js = <<<EOT
+    $(document).ready(function() {
+        $('#imagen_equipo_$model->id img').attr('src', '$imagen');
+    })
+EOT;
+
+$this->registerJs($js);
 $this->registerCssFile('/css/equipo.css');
 ?>
 
-<!-- Nombre del equipo -->
+
 <div class='row'>
-    <div id='imagen_equipo' class='col-xs-1 col-md-1 col-lg-1'>
-        <?=
+    <!-- Imágen del equipo -->
+    <?=
+        Html::tag(
+            'div',
             Html::img(
-                $model->url_imagen,
+                'images/cargando.gif',
                 ['class'=>'img-circle logo-equipo']
-            )
-        ?>
-    </div>
+            ),
+            [
+                'class'=>'col-xs-1 col-md-1 col-lg-1 img_equipo',
+                'id' => "imagen_equipo_$model->id"
+            ]
+        )
+    ?>
+
+    <!-- Nombre del equipo -->
     <div id='texto_equipo' class='col-xs-8 col-md-11 col-lg-11'>
 
         <h4>
@@ -36,7 +53,7 @@ $this->registerCssFile('/css/equipo.css');
 </div>
 
 
-<!-- Tableros de cada equipo -->
+<!-- Tableros del equipo -->
 <?= $this->render('tableros_equipo', [
     'tableros'=>new ActiveDataProvider([
         'query'=>$model->getTableros(),

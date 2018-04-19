@@ -34,23 +34,20 @@ $this->registerJsFile(
 
     <!-- Formulario para crear tableros en un equipo -->
     <div class='col-md-3'>
-        <div class='panel panel-default'>
-            <div id='tablero_create' class='panel-heading centrado'>
-                <?php Modal::begin([
-                    'toggleButton'=>[
-                        'label'=>"Crear un nuevo tablero",
-                        'class'=>'btn btn-md btn-info',
-                    ],
-                    'size'=>Modal::SIZE_SMALL,
-                ]) ?>
+        <div class='panael-heading centrado create'>
+            <?php Modal::begin([
+                'toggleButton'=>[
+                    'label'=>"Crear un nuevo tablero",
+                    'class'=>'btn btn-lg btn-default',
+                ],
+                'size'=>Modal::SIZE_SMALL,
+            ]) ?>
 
-                    <?= $this->render('/tableros/_form', [
-                        'tablero'=>$tablero_crear,
-                        'equipo'=>$equipo,
-                    ]) ?>
-                <?php Modal::end() ?>
-                <br>
-            </div>
+                <?= $this->render('/tableros/_form', [
+                    'tablero'=>$tablero_crear,
+                    'equipo'=>$equipo,
+                ]) ?>
+            <?php Modal::end() ?>
         </div>
     </div>
 </div>

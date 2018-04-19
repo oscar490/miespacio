@@ -1,5 +1,5 @@
 .logo-equipo {
-    width: 56px;
+    width: 52px;
     height: 47px;
 }
 
@@ -14,4 +14,8 @@
 
 .create_equipo {
     background-color: red;
+}
+
+#texto_equipo {
+    margin-left: -17px;
 }

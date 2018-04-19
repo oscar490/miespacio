@@ -22,7 +22,6 @@ $this->registerJsFile(
 );
 
 
-
 $this->registerCss($css);
 ?>
 
