@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\models\DatosUsuarios;
+use app\components\MyHelpers;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
@@ -65,6 +66,16 @@ AppAsset::register($this);
                 'encode'=>false,
             ];
     } else {
+        $items[] =
+            [
+                'label'=>MyHelpers::icon('glyphicon glyphicon-plus icono-x2').
+                    ' Crear equipo',
+                'linkOptions'=>[
+                    'data-toggle'=>'modal',
+                    'data-target'=>'#w28',
+                ],
+                'encode'=>false,
+            ];
         $items[] =
             [
                 'label'=> Html::tag(

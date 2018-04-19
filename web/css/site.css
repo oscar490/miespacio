@@ -210,3 +210,7 @@ li.dropdown > a.dropdown-toggle {
     padding-top: 4px;
     padding-bottom: 3px;
 }
+
+ul.breadcrumb  {
+    margin-bottom: 0px;
+}

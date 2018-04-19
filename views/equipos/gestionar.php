@@ -12,6 +12,7 @@ use yii\grid\GridView;
 use yii\widgets\ActiveForm;
 use kartik\popover\PopoverX;
 use app\components\MyHelpers;
+use yii\bootstrap\Modal;
 use app\assets\AppAsset;
 
 $this->title = 'Tableros | MiEspacio';
@@ -27,23 +28,6 @@ $this->registerCssFile(
 );
 
 ?>
-
-<!-- Botón de creación de nuevo equipo -->
-<div class='row'>
-    <div class='col-md-3'>
-        <?=
-            Html::button(
-                MyHelpers::icon('glyphicon glyphicon-plus') .
-                ' Crear un nuevo equipo',
-                [
-                    'class' => 'btn btn-default',
-                    'id' => 'btn_create_equipo'
-                ]
-            );
-        ?>
-    </div>
-</div>
-
 <!-- Vista de creación de equipo -->
 <div class='row'>
     <br>
@@ -68,3 +52,23 @@ $this->registerCssFile(
         'summary'=>'',
     ])?>
 </div>
+
+<!-- Botón de creación de nuevo equipo -->
+
+<?php
+    Modal::begin([
+        'header'=>' Crear un nuevo equipo ...',
+        'toggleButton'=>[
+            'label'=>MyHelpers::icon('glyphicon glyphicon-plus') .
+                ' Crear un nuevo equipo',
+            'class' => 'btn btn-defautl'
+        ]
+    ]);
+ ?>
+    <?=
+        $this->render('create', [
+            'equipo' => $equipo,
+        ]);
+    ?>
+
+ <?php Modal::end() ?>

@@ -5,6 +5,7 @@
 
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use app\components\MyHelpers;
 
 if ($equipo->id !== null) {
     $action = ['equipos/update', 'id'=>$equipo->id];
@@ -36,7 +37,9 @@ if ($equipo->id !== null) {
     ?>
 
     <div class="form-group">
-        <?= Html::submitButton( $label, ['class' => 'btn btn-success btn-block']) ?>
+        <?=
+            MyHelpers::submit($label, ['class'=>'btn btn-success btn-block']);
+        ?>
     </div>
 
 <?php ActiveForm::end(); ?>
