@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\components\MyHelpers;
 use yii\widgets\ListView;
+use yii\helpers\Url;
 use yii\data\ActiveDataProvider;
 
 /* @var $this yii\web\View */
@@ -39,6 +40,9 @@ $items = [
             'tablero_crear'=>$tablero_crear,
             'equipo'=>$model,
         ]),
+        'linkOptions'=>[
+            'id'=>'lista_tableros'
+        ]
     ],
     [
         //  Modificación del equipo.
@@ -47,6 +51,9 @@ $items = [
         'content'=> $this->render('update', [
             'equipo'=>$model,
         ]),
+        'linkOptions'=>[
+            'id'=>'config_tableros'
+        ]
     ],
     [
         //  Modificación de imágen.

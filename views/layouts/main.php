@@ -68,16 +68,6 @@ AppAsset::register($this);
     } else {
         $items[] =
             [
-                'label'=>MyHelpers::icon('glyphicon glyphicon-plus icono-x2').
-                    ' Crear equipo',
-                'linkOptions'=>[
-                    'data-toggle'=>'modal',
-                    'data-target'=>'#w28',
-                ],
-                'encode'=>false,
-            ];
-        $items[] =
-            [
                 'label'=> Html::tag(
                     'span',
                     ' ',

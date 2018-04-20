@@ -44,7 +44,7 @@ class Equipos extends \yii\db\ActiveRecord
             [['denominacion', 'usuario_id'], 'required'],
             [['usuario_id'], 'default', 'value' => null],
             [['usuario_id'], 'integer'],
-            [['denominacion', 'descripcion'], 'string', 'max' => 40],
+            [['denominacion', 'descripcion'], 'string', 'max' => 30],
             [
                 ['denominacion', 'usuario_id'],
                 'unique',
@@ -82,17 +82,7 @@ class Equipos extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * Devuelve un enlace a una vista del Equipo.
-     * @return [type] [description]
-     */
-    public function getEnlace()
-    {
-        return Html::a(
-            $this->denominacion,
-            ['equipos/view', 'id'=>$this->id]
-        );
-    }
+
 
     /**
      * Nombre del formulario.
@@ -118,6 +108,18 @@ class Equipos extends \yii\db\ActiveRecord
             );
         } catch (BadRequest $e) {
         }
+    }
+
+    /**
+     * Devuelve un enlace a la vista del equipo.
+     * @return [type] [description]
+     */
+    public function getEnlace()
+    {
+        return Html::a(
+            $this->denominacion,
+            ['equipos/view', 'id'=>$this->id]
+        );
     }
 
 

@@ -9,16 +9,20 @@ use yii\helpers\Html;
 use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
 use app\models\Tableros;
+use app\components\MyHelpers;
 
 $imagen = $model->url_imagen;
 
 $js = <<<EOT
     $(document).ready(function() {
-        $('#imagen_equipo_$model->id img').attr('src', '$imagen');
+        let selector = $('#imagen_equipo_$model->id img');
+        cambiarImagen('$imagen', selector);
     })
+
 EOT;
 
 $this->registerJs($js);
+
 $this->registerCssFile('/css/equipo.css');
 ?>
 
@@ -44,7 +48,7 @@ $this->registerCssFile('/css/equipo.css');
 
         <h4>
             <strong>
-                <?= Html::encode($model->denominacion) ?>
+                <?= $model->enlace ?>
             </strong>
         </h4>
 
@@ -64,12 +68,6 @@ $this->registerCssFile('/css/equipo.css');
 
 
 <!-- Enlace a los tableros del equipo actual -->
-<?=
-    Html::a(
-        "<span class='glyphicon glyphicon-menu-hamburger'></span> Tableros",
-        ['equipos/view', 'id'=>$model->id],
-        ['class'=>'btn btn-info']
-    )
-?>
+
 
 <hr>

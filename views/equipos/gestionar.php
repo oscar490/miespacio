@@ -1,10 +1,9 @@
 <?php
-/* Se muestra los equios y los tableros que pertenecen a cada equipo. */
+/* Se muestra los equipos y los tableros que pertenecen a cada equipo. */
 
 /* @var $this yii\web\View */
 /* @var $equipos yii\data\ActiveDataProvider */
-/* @var $equipo_crear app\models\Equipos */
-/* @var $tablero_crear app\models\Tableros */
+
 
 use yii\helpers\Html;
 use yii\widgets\ListView;
@@ -28,9 +27,10 @@ $this->registerCssFile(
 );
 
 ?>
+
+
 <!-- Vista de creación de equipo -->
 <div class='row'>
-    <br>
     <div id='form_create_equipo'>
         <?=
             $this->render('create', [
@@ -54,14 +54,13 @@ $this->registerCssFile(
 </div>
 
 <!-- Botón de creación de nuevo equipo -->
-
 <?php
     Modal::begin([
         'header'=>' Crear un nuevo equipo ...',
         'toggleButton'=>[
             'label'=>MyHelpers::icon('glyphicon glyphicon-plus') .
                 ' Crear un nuevo equipo',
-            'class' => 'btn btn-defautl'
+            'class' => 'btn btn-primary'
         ]
     ]);
  ?>

@@ -2,3 +2,8 @@
 #form_create_equipo {
     display: none;
 }
+
+ul.pagination {
+    display: flex;
+    justify-content: center;
+}

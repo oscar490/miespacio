@@ -61,6 +61,9 @@ class EquiposController extends Controller
             'sort'=>[
                 'defaultOrder'=>['created_at'=>SORT_DESC],
             ],
+            'pagination'=>[
+                'pageSize'=>2
+            ]
         ]);
 
         return $this->render('gestionar', [
