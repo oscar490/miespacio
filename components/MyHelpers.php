@@ -21,6 +21,21 @@ class MyHelpers extends View
     }
 
     /**
+     * Devuelve una etiqueta <span> que representa
+     * un icono de Boostrap.
+     * @param  string $class Clase que identifica un icono
+     * @return string        La etiquta <span></span>
+     */
+    public static function icon($class)
+    {
+        return Html::tag(
+            'span',
+            '',
+            ['class'=>$class]
+        );
+    }
+
+    /**
      * Muestra un mensaje de prompt preguntando si desea
      * realizar una acción de eliminar.
      * @return [type] [description]

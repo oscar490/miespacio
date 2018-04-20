@@ -1,0 +1,38 @@
+.logo-equipo {
+    width: 52px;
+    height: 47px;
+}
+
+#imagen_equipo {
+    padding-right: 0px;
+    width: 70px;
+}
+
+#texto_equipo {
+    padding-left: 0px;
+}
+
+.list-view .row > div.img_equipo {
+    width: 95px;
+}
+
+
+.create_equipo {
+    background-color: red;
+}
+
+#texto_equipo {
+    margin-left: -17px;
+}
+
+strong a {
+    color: black;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #75a4c1;
+}

@@ -16,18 +16,12 @@ $css = <<<EOT
     }
 EOT;
 
-$js = <<<EOT
-    $('div.panel-primary').hover(
-        function() {
-            $(this).toggleClass('sombra');
-        },
-        function() {
-            $(this).toggleClass('sombra');
-        }
-    )
-EOT;
+$this->registerJsFile(
+    '/js/tablero.js',
+    ['depends'=>[\yii\web\JqueryAsset::className()]]
+);
 
-$this->registerJs($js);
+
 $this->registerCss($css);
 ?>
 
@@ -46,14 +40,12 @@ $this->registerCss($css);
                             $model->denominacion
                         )
                     ),
-                    ['class'=>'panel-heading']
-                ) .
-                Html::tag(
-                    'div',
-                    '',
-                    ['class'=>'panel-body']
+                    [
+                        'class'=>'panel-heading',
+                        'id' => 'tablero'
+                    ]
                 ),
-                ['class'=>'panel panel-primary']
+                ['class'=>'panel panel-primary tablero']
             ),
             ['tableros/view', 'id'=>$model->id]
         ),

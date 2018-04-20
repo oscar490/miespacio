@@ -1,0 +1,19 @@
+#tablero {
+    height: 90px;
+    text-align: left;
+}
+
+#tablero_create {
+    height: 90px;
+    text-align: left;
+    background-color: #e2e4e6;
+}
+
+.create > button{
+    width: 260.5px;
+    font-size: 15px;
+    color: #838c91;
+    height: 90px;
+    background-color: #e2e4e6;
+    margin-bottom: 20px;
+}

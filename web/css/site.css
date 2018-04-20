@@ -175,8 +175,8 @@ a.desc:after {
 }
 
 .logo-nav {
-    width: 33px;
-    height: 25px;
+    width: 53px;
+    height: 48px;
 }
 
 .breadcrumb > li > a {
@@ -201,7 +201,16 @@ a.desc:after {
     font-size: 60px;
 }
 
-.panel-heading {
+.centrado {
     display: flex;
     justify-content: center;
+}
+
+li.dropdown > a.dropdown-toggle {
+    padding-top: 4px;
+    padding-bottom: 3px;
+}
+
+ul.breadcrumb  {
+    margin-bottom: 10px;
 }

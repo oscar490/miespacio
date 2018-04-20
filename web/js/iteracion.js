@@ -18,6 +18,16 @@ function seleccionarMenuUsuario() {
 }
 
 /**
+ * Cambia una imágen que se le pasa por parámetro por otra
+ * imágen que ya existe.
+ * @param  {[type]} imagen          Imágen nueva
+ * @param  {[type]} selector_imagen Ubicación de imagen.
+ */
+function cambiarImagen(imagen, selector_imagen) {
+    selector_imagen.attr('src', imagen);
+}
+
+/**
  * Se eliminar un elemento mediante ajax.
  * @param  {[type]} elem_boton elemento que inicia el borrado.
  * @param  {[type]} direccion  URL donde se envía la petición ajax.

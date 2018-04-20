@@ -9,41 +9,46 @@ use yii\helpers\Html;
 use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
 use app\models\Tableros;
+use app\components\MyHelpers;
 
-$css = <<<EOT
-    .logo-equipo {
-        width: 56px;
-        height: 47px;
-    }
+$imagen = $model->url_imagen;
 
-    #imagen_equipo {
-        padding-right: 0px;
-        width: 75px;
-    }
+$js = <<<EOT
+    $(document).ready(function() {
+        let selector = $('#imagen_equipo_$model->id img');
+        cambiarImagen('$imagen', selector);
+    })
 
-    #texto_equipo {
-        padding-left: 0px;
-    }
 EOT;
 
-$this->registerCss($css);
+$this->registerJs($js);
+
+$this->registerCssFile('/css/equipo.css');
 ?>
 
-<!-- Nombre del equipo -->
+
 <div class='row'>
-    <div id='imagen_equipo' class='col-xs-1 col-md-1 col-lg-1'>
-        <?=
+    <!-- Imágen del equipo -->
+    <?=
+        Html::tag(
+            'div',
             Html::img(
-                $model->url_imagen,
+                'images/cargando.gif',
                 ['class'=>'img-circle logo-equipo']
-            )
-        ?>
-    </div>
+            ),
+            [
+                'class'=>'col-xs-3 col-md-1 col-lg-1 img_equipo',
+                'id' => "imagen_equipo_$model->id"
+            ]
+        )
+    ?>
+
+    <!-- Nombre del equipo -->
     <div id='texto_equipo' class='col-xs-8 col-md-11 col-lg-11'>
 
         <h4>
             <strong>
-                <?= Html::encode($model->denominacion) ?>
+                <?= $model->enlace ?>
             </strong>
         </h4>
 
@@ -52,7 +57,7 @@ $this->registerCss($css);
 </div>
 
 
-<!-- Tableros de cada equipo -->
+<!-- Tableros del equipo -->
 <?= $this->render('tableros_equipo', [
     'tableros'=>new ActiveDataProvider([
         'query'=>$model->getTableros(),
@@ -63,12 +68,6 @@ $this->registerCss($css);
 
 
 <!-- Enlace a los tableros del equipo actual -->
-<?=
-    Html::a(
-        "<span class='glyphicon glyphicon-menu-hamburger'></span> Tableros",
-        ['equipos/view', 'id'=>$model->id],
-        ['class'=>'btn btn-info']
-    )
-?>
+
 
 <hr>

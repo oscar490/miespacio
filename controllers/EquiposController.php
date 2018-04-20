@@ -61,12 +61,15 @@ class EquiposController extends Controller
             'sort'=>[
                 'defaultOrder'=>['created_at'=>SORT_DESC],
             ],
+            'pagination'=>[
+                'pageSize'=>2
+            ]
         ]);
 
         return $this->render('gestionar', [
             'equipos' => $equipos,
             'tablero_crear'=> new Tableros(),
-            'equipo_crear'=> new Equipos(),
+            'equipo'=> new Equipos(),
         ]);
     }
 
