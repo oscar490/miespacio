@@ -9,15 +9,7 @@ use app\components\MyHelpers;
 use yii\bootstrap\Modal;
 
 //  CSS.
-$css = <<<EOT
-    .tarjeta {
-        box-shadow: 2px 2px 10px;
-    }
 
-    .forma {
-        height: 60px;
-    }
-EOT;
 
 $url_tarjeta = Url::to(['tarjetas/delete', 'id'=>$model->id]);
 
@@ -28,13 +20,15 @@ $js = <<<EOT
     eliminarElemento($("#btn_delete_tarjeta_$model->id"), '$url_tarjeta');
 EOT;
 
-$this->registerCss($css);
+$this->registerCssFile(
+    '/css/tarjeta.css'
+);
 $this->registerJs($js);
 ?>
 
-<div class='row'>
 
-    <div class='col-md-12'>
+
+    <div class='col-md-3'>
         <!-- Nombre de la tarjeta -->
         <div class='panel panel-default'>
             <div class='panel-heading forma'>
@@ -89,4 +83,3 @@ $this->registerJs($js);
             <!-- </div> -->
         </div>
     </div>
-</div>

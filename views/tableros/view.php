@@ -31,12 +31,10 @@ $css = <<<EOT
         text-decoration: none;
     }
 
-    .container {
-        padding-left: 0px;
-    }
+    
 
     #menu {
-        display: none;
+
     }
 EOT;
 
@@ -76,19 +74,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class='row'>
         <!-- Tarjetas del tablero -->
         <div class='col-md-9'>
-            <div class='row'>
-                <?= ListView::widget([
-                    'dataProvider' => new ActiveDataProvider([
-                        'query' => $model->getListas(),
-                    
-                    ]),
-                    'itemView' => '_lista',
-                    'summary' => '',
-                ]); ?>
+            <?= ListView::widget([
+                'dataProvider' => new ActiveDataProvider([
+                    'query' => $model->getListas(),
+                    'pagination'=>[
+                        'pageSize'=>3
+                    ],
+                ]),
 
-            </div>
-
+                'itemView' => '_lista',
+                'summary' => '',
+            ]); ?>
         </div>
+
 
         <div id='menu' class='col-md-3'>
             <!-- Formulario de creación de tarjeta -->

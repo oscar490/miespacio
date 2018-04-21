@@ -7,31 +7,31 @@ use yii\helpers\Html;
 use app\components\MyHelpers;
 use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
-use kop\y2sp\ScrollPager;
+
+$this->registerCssFile(
+    '/css/lista.css'
+);
 
 ?>
 
-
-    <div class='col-md-4'>
-        <div class='panel panel-default'>
-            <div class='panel-heading'>
-                <?=
-                    MyHelpers::icon('glyphicon glyphicon-th-list') .
-                    ' ' . Html::encode($model->denominacion)
-                ?>
-            </div>
-            <div class='panel-body'>
+<div class='col-md-12'>
+    <div class='panel panel-default'>
+        <div class='panel-heading'>
+            <?=
+                MyHelpers::icon('glyphicon glyphicon-th-list') .
+                ' ' . Html::encode($model->denominacion)
+            ?>
+        </div>
+        <div class='panel-body lista'>
+            <div class='row'>
                 <?= ListView::widget([
                     'dataProvider'=>new ActiveDataProvider([
                         'query' => $model->getTarjetas(),
                     ]),
                     'itemView'=>'_tarjeta',
-                    'pager' => [
-                        'class' => \kop\y2sp\ScrollPager::className(),
-                        'triggerOffset' => 3,
-                    ],
                     'summary'=>''
                 ]); ?>
             </div>
         </div>
     </div>
+</div>
