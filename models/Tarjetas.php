@@ -10,9 +10,12 @@ use app\models\Adjuntos;
  *
  * @property int $id
  * @property string $denominacion
- * @property int $tablero_id
  * @property string $descripcion
  * @property Tableros $tablero
+ * @property int $lista_id
+ *
+ * @property Adjuntos[] $adjuntos
+ * @property Listas $lista
  */
 class Tarjetas extends \yii\db\ActiveRecord
 {
@@ -35,12 +38,17 @@ class Tarjetas extends \yii\db\ActiveRecord
             [['tablero_id'], 'integer'],
             [['denominacion', 'descripcion'], 'string', 'max' => 255],
             [
-                ['denominacion', 'tablero_id'],
+                ['denominacion', 'lista_id'],
                 'unique',
-                'targetAttribute' => ['denominacion', 'tablero_id'],
+                'targetAttribute' => ['denominacion', 'lista_id'],
                 'message'=>'Ya existe una tarjeta con ese nombre.',
             ],
-            [['tablero_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tableros::className(), 'targetAttribute' => ['tablero_id' => 'id']],
+            [
+                ['lista_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Listas::className(),
+                'targetAttribute' => ['lista_id' => 'id']],
         ];
     }
 
@@ -64,9 +72,9 @@ class Tarjetas extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTablero()
+    public function getLista()
     {
-        return $this->hasOne(Tableros::className(), ['id' => 'tablero_id'])->inverseOf('tarjetas');
+        return $this->hasOne(Listas::className(), ['id' => 'lista_id'])->inverseOf('tarjetas');
     }
 
     /**
