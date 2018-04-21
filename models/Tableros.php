@@ -9,9 +9,9 @@ use Yii;
  *
  * @property int $id
  * @property string $denominacion
- * @property string $color
  * @property int $equipo_id
  *
+ * @property Listas[] $listas
  * @property Equipos $equipo
  */
 class Tableros extends \yii\db\ActiveRecord
@@ -45,7 +45,13 @@ class Tableros extends \yii\db\ActiveRecord
                 'targetAttribute' => ['denominacion', 'equipo_id'],
                 'message'=>'Ya existe un tablero con ese nombre.',
             ],
-            [['equipo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Equipos::className(), 'targetAttribute' => ['equipo_id' => 'id']],
+            [
+                ['equipo_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Equipos::className(),
+                'targetAttribute' => ['equipo_id' => 'id']
+            ],
         ];
     }
 
@@ -66,10 +72,6 @@ class Tableros extends \yii\db\ActiveRecord
         return '';
     }
 
-    public function getContieneTarjetas()
-    {
-        return !empty($this->tarjetas);
-    }
 
     /**
      * @return \yii\db\ActiveQuery
@@ -82,8 +84,8 @@ class Tableros extends \yii\db\ActiveRecord
     /**
     * @return \yii\db\ActiveQuery
     */
-    public function getTarjetas()
+    public function getListas()
     {
-       return $this->hasMany(Tarjetas::className(), ['tablero_id' => 'id'])->inverseOf('tablero');
+       return $this->hasMany(Listas::className(), ['tablero_id' => 'id'])->inverseOf('tablero');
     }
 }

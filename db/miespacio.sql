@@ -98,9 +98,10 @@ CREATE TABLE listas
 );
 
 INSERT INTO listas (denominacion, tablero_id)
-    VALUES ('Documentacion', 1), ('Actividades', 1), ('Práctico', 2);
+    VALUES ('Documentacion', 1), ('Actividades', 1),
+            ('Práctico', 1), ('Exámenes', 1), ('Excursiones', 1);
 
-    
+
 
 -- Tabla tarjetas --
 
@@ -118,7 +119,8 @@ CREATE TABLE tarjetas
 );
 
 INSERT INTO tarjetas (denominacion, lista_id)
-    VALUES ('Desarrollo web', 1), ('Git', 1), ('Introducción a PHP', 1);
+    VALUES ('Desarrollo web', 1), ('Git', 1), ('Introducción a PHP', 1),
+            ('Enero', 2), ('Febrero', 2), ('Practica 0', 3), ('Practica 1', 3);
 
 
 

@@ -11,6 +11,7 @@ use yii\helpers\Url;
 use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
 use app\components\MyHelpers;
+use app\models\Listas;
 
 
 
@@ -32,6 +33,10 @@ $css = <<<EOT
 
     .container {
         padding-left: 0px;
+    }
+
+    #menu {
+        display: none;
     }
 EOT;
 
@@ -71,37 +76,21 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class='row'>
         <!-- Tarjetas del tablero -->
         <div class='col-md-9'>
-            <div class='panel panel-primary'>
-                <div class='panel-heading'>
-                    <strong>
-                        <?=
-                            Html::tag(
-                                'span',
-                                '',
-                                ['class'=>'glyphicon glyphicon-credit-card']
-                            ) . ' ' .
-                            Html::encode('Tarjetas')
-                        ?>
-                    </strong>
-                </div>
-                <div class='panel-body'>
-                    <?php if ($model->contieneTarjetas): ?>
-                        <?= ListView::widget([
-                            'dataProvider'=> new ActiveDataProvider([
-                                'query'=>$model->getTarjetas(),
-                            ]),
-                            'itemView'=>'_tarjeta',
-                            'viewParams'=>[
-                                'adjunto'=>$adjunto,
-                            ],
-                            'summary'=>'',
-                        ]); ?>
-                    <?php endif; ?>
-                </div>
+            <div class='row'>
+                <?= ListView::widget([
+                    'dataProvider' => new ActiveDataProvider([
+                        'query' => $model->getListas(),
+                    
+                    ]),
+                    'itemView' => '_lista',
+                    'summary' => '',
+                ]); ?>
+
             </div>
+
         </div>
 
-        <div class='col-md-3'>
+        <div id='menu' class='col-md-3'>
             <!-- Formulario de creación de tarjeta -->
             <div>
                 <?= $this->render('/tarjetas/create', [

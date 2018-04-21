@@ -32,55 +32,61 @@ $this->registerCss($css);
 $this->registerJs($js);
 ?>
 
-<div class='col-md-4'>
-    <!-- Nombre de la tarjeta -->
-    <div class='panel panel-default tarjeta'>
-        <div class='panel-heading forma'>
-            <p class='text-left'>
-                <?= Html::encode($model->denominacion) ?>
-            </p>
-        </div>
-        <div class='panel-footer'>
-            <!-- Modal que muestra el contenido de la tarjeta -->
-            <?php Modal::begin([
-                'header'=>Html::tag(
-                        'h4',
-                        Html::tag(
+<div class='row'>
+
+    <div class='col-md-12'>
+        <!-- Nombre de la tarjeta -->
+        <div class='panel panel-default'>
+            <div class='panel-heading forma'>
+                <p class='text-left'>
+                    <?= Html::encode($model->denominacion) ?>
+                </p>
+            </div>
+            <!-- <div class='panel-footer'> -->
+                <!-- Modal que muestra el contenido de la tarjeta -->
+                <?php /**
+                <?php Modal::begin([
+                    'header'=>Html::tag(
+                            'h4',
+                            Html::tag(
+                                'span',
+                                '',
+                                ['class'=>'glyphicon glyphicon-credit-card']
+                            ) . ' ' . 'Contenido de tarjeta'
+                        ),
+                    'toggleButton'=>[
+                        'label'=>Html::tag(
                             'span',
                             '',
-                            ['class'=>'glyphicon glyphicon-credit-card']
-                        ) . ' ' . 'Contenido de tarjeta'
-                    ),
-                'toggleButton'=>[
-                    'label'=>Html::tag(
+                            ['class'=>'glyphicon glyphicon-eye-open']
+                        ),
+                        'class'=>'btn btn-default'
+                    ],
+                    'size'=>Modal::SIZE_LARGE,
+                ]) ?>
+                    <!-- Vista de la tarjeta -->
+                    <?= $this->render('/tarjetas/view', [
+                        'model'=>$model,
+                        'adjunto'=>$adjunto,
+                    ]) ?>
+                <?php Modal::end() ?>
+
+                <!-- Eliminar tarjeta -->
+
+                <?= Html::button(
+                    Html::tag(
                         'span',
                         '',
-                        ['class'=>'glyphicon glyphicon-eye-open']
+                        ['class'=>'glyphicon glyphicon-remove']
                     ),
-                    'class'=>'btn btn-default'
-                ],
-                'size'=>Modal::SIZE_LARGE,
-            ]) ?>
-                <!-- Vista de la tarjeta -->
-                <?= $this->render('/tarjetas/view', [
-                    'model'=>$model,
-                    'adjunto'=>$adjunto,
-                ]) ?>
-            <?php Modal::end() ?>
+                    [
+                        'class'=>'btn btn-default',
+                        'id'=>"btn_delete_tarjeta_$model->id",
+                    ]
+                ) ?>
+                **/ ?>
 
-            <!-- Eliminar tarjeta -->
-            <?= Html::button(
-                Html::tag(
-                    'span',
-                    '',
-                    ['class'=>'glyphicon glyphicon-remove']
-                ),
-                [
-                    'class'=>'btn btn-default',
-                    'id'=>"btn_delete_tarjeta_$model->id",
-                ]
-            ) ?>
-
+            <!-- </div> -->
         </div>
     </div>
 </div>
