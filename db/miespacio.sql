@@ -83,6 +83,25 @@ INSERT INTO tableros (denominacion, equipo_id)
 
 
 
+-- Tabla listas --
+
+DROP TABLE IF EXISTS listas CASCADE;
+
+CREATE TABLE listas
+(
+      id           BIGSERIAL    PRIMARY KEY
+    , denominacion VARCHAR(255) NOT NULL
+    , tablero_id   BIGINT       NOT NULL REFERENCES tableros (id) ON DELETE
+                                CASCADE ON UPDATE CASCADE
+
+    , UNIQUE (denominacion, tablero_id)
+);
+
+INSERT INTO listas (denominacion, tablero_id)
+    VALUES ('Documentacion', 1), ('Actividades', 1), ('Práctico', 2);
+
+    
+
 -- Tabla tarjetas --
 
 DROP TABLE IF EXISTS tarjetas CASCADE;
@@ -92,15 +111,14 @@ CREATE TABLE tarjetas
       id           BIGSERIAL    PRIMARY KEY
     , denominacion VARCHAR(255) NOT NULL
     , descripcion  VARCHAR(255)
-    , tablero_id   BIGINT       NOT NULL REFERENCES tableros (id) ON DELETE
+    , lista_id     BIGINT       NOT NULL REFERENCES listas (id) ON DELETE
                                 CASCADE ON UPDATE CASCADE
 
-    , UNIQUE (denominacion, tablero_id)
+    , UNIQUE (denominacion, lista_id)
 );
 
-INSERT INTO tarjetas (denominacion, tablero_id)
-    VALUES ('Desarrollo web', 2), ('Git', 2), ('JavaScript', 1),
-            ('Estilos CSS', 4), ('Introducción a PHP', 2);
+INSERT INTO tarjetas (denominacion, lista_id)
+    VALUES ('Desarrollo web', 1), ('Git', 1), ('Introducción a PHP', 1);
 
 
 
