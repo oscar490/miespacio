@@ -14,24 +14,22 @@ $this->registerCssFile(
 
 ?>
 
-<div class='col-md-12'>
-    <div class='panel panel-default'>
-        <div class='panel-heading'>
-            <?=
-                MyHelpers::icon('glyphicon glyphicon-th-list') .
-                ' ' . Html::encode($model->denominacion)
-            ?>
-        </div>
-        <div class='panel-body lista'>
-            <div class='row'>
-                <?= ListView::widget([
-                    'dataProvider'=>new ActiveDataProvider([
-                        'query' => $model->getTarjetas(),
-                    ]),
-                    'itemView'=>'_tarjeta',
-                    'summary'=>''
-                ]); ?>
-            </div>
+<div class='panel panel-default'>
+    <div class='panel-heading'>
+        <?=
+            MyHelpers::icon('glyphicon glyphicon-th-list') .
+            ' ' . Html::encode($model->denominacion)
+        ?>
+    </div>
+    <div class='panel-body lista'>
+        <div class='row'>
+            <?= ListView::widget([
+                'dataProvider'=>new ActiveDataProvider([
+                    'query' => $model->getTarjetas(),
+                ]),
+                'itemView'=>'_tarjeta',
+                'summary'=>''
+            ]); ?>
         </div>
     </div>
 </div>

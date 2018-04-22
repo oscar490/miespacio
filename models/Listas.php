@@ -46,9 +46,14 @@ class Listas extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'denominacion' => 'Denominacion',
+            'denominacion' => 'Título',
             'tablero_id' => 'Tablero ID',
         ];
+    }
+
+    public function formName()
+    {
+        return '';
     }
 
     /**

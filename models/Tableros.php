@@ -72,6 +72,18 @@ class Tableros extends \yii\db\ActiveRecord
         return '';
     }
 
+    /**
+     * Comprueba si el tablero contiene alguna lista creada,
+     * devolviendo true en caso de que si o false en caso
+     * contrario.
+     * @return boolean True si tiene listas creadas, false en
+     *                 caso contrario
+     */
+    public function getContieneListas()
+    {
+        return count($this->getListas()->all()) !== 0;
+    }
+
 
     /**
      * @return \yii\db\ActiveQuery

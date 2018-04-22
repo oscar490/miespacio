@@ -1,21 +1,26 @@
 <?php
-
+/* Creación de una Lista */
 use yii\helpers\Html;
-
+use app\components\MyHelpers;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Listas */
 
-$this->title = 'Create Listas';
-$this->params['breadcrumbs'][] = ['label' => 'Listas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="listas-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+<div class='panel panel-default'>
+    <div id='header_menu' class='panel-heading'>
+        <?=
+            MyHelpers::icon('glyphicon glyphicon-plus') . ' ' .
+            Html::encode('Crear lista ');
+        ?>
+        <small>(click aquí)</small>
+    </div>
+    <div class='panel-body'>
+        <?= $this->render('_form', [
+            'model' => $lista,
+            'tablero' => $tablero,
+            'action'=>['listas/create']
+        ]) ?>
+    </div>
 </div>

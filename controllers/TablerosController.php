@@ -6,6 +6,7 @@ use Yii;
 use app\models\Tableros;
 use app\models\Equipos;
 use app\models\Tarjetas;
+use app\models\Listas;
 use app\models\Adjuntos;
 use app\models\TablerosSearch;
 use yii\web\Controller;
@@ -68,6 +69,7 @@ class TablerosController extends Controller
             'model' => $this->findModel($id),
             'equipos'=>$equipos,
             'tarjeta' => new Tarjetas(),
+            'lista' => new Listas(),
             'adjunto'=>new Adjuntos([
                 'scenario'=>Adjuntos::ESCENARIO_FILE,
             ]),

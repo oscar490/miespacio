@@ -5,21 +5,13 @@
 
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use app\components\MyHelpers;
 
-$label = Html::tag(
-    'span',
-    '',
-    ['class'=>'glyphicon glyphicon-ok-sign']
-) . ' ';
+
 
 if ($tablero->isNewRecord) {
-    $label .= 'Crear';
-    $mostrar = true;
+    $label = 'Crear';
     $action = ['tableros/create'];
-} else {
-    $label .= 'Modificar';
-    $mostrar = false;
-    $action = ['tableros/update', 'id'=>$tablero->id];
 }
 
 ?>
@@ -36,7 +28,7 @@ if ($tablero->isNewRecord) {
         )->textInput(['maxlength' => true, 'placeholder'=>'Nombre del tablero']);
     ?>
 
-    <?php if ($mostrar): ?>
+    <?php if (!isset($equipos)): ?>
         <?= Html::hiddenInput('equipo_id', $equipo->id) ?>
 
     <?php else: ?>
@@ -49,7 +41,9 @@ if ($tablero->isNewRecord) {
     <?php endif; ?>
 
     <div class="form-group">
-        <?= Html::submitButton($label, ['class' => 'btn btn-success btn-block']) ?>
+        <?= MyHelpers::submit($label, [
+            'class' => 'btn btn-success btn-block'
+        ]) ?>
     </div>
 
 <?php ActiveForm::end(); ?>
