@@ -38,7 +38,7 @@ class Tableros extends \yii\db\ActiveRecord
                 'filter'=>'intval',
             ],
             [['equipo_id'], 'integer'],
-            [['denominacion'], 'string', 'max' => 255],
+            [['denominacion'], 'string', 'max' =>30 ],
             [
                 ['denominacion', 'equipo_id'],
                 'unique',

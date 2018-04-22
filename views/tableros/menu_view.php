@@ -6,26 +6,31 @@
 /* $equipos app\models\Equipos */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
+
+$url_create = Url::to(['listas/create-ajax']);
+
+$this->registerJsVar('url', $url_create);
 
 $this->registerJsFile(
     '/js/menu_view.js',
-    ['depends'=>[\yii\web\JqueryAsset::className()]]
+    [
+        'depends'=>[\yii\web\JqueryAsset::className()],
+        'url' => $url_create
+    ]
 );
 
 $this->registerCssFile('/css/menu_view.css')
 ?>
 
-<div id='menu' class='col-md-3'>
-    <!-- Formulario de creación de tarjeta -->
-    <?= $this->render('/listas/create', [
-        'lista'=>$lista,
-        'tablero'=>$model,
-    ]) ?>
+<!-- Formulario de creación de lista -->
+<?= $this->render('/listas/create', [
+    'lista'=>$lista,
+    'tablero'=>$model,
+]) ?>
 
-    <!-- Modificar el tablero -->
-    <?= $this->render('update', [
-        'model'=>$model,
-        'equipos'=>$equipos,
-    ]) ?>
-
-</div>
+<!-- Modificar el tablero -->
+<?= $this->render('update', [
+    'model'=>$model,
+    'equipos'=>$equipos,
+]) ?>

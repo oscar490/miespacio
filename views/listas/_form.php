@@ -9,23 +9,20 @@ use app\components\MyHelpers;
 /* @var $model app\models\Listas */
 /* @var $form yii\widgets\ActiveForm */
 
-$css = <<<EOT
-    #btn_create_list {
 
-    }
-EOT;
 
-$this->registerCss($css);
 ?>
 
 <div class="listas-form">
 
     <?php $form = ActiveForm::begin([
-        'action'=>$action
+        'action'=>$action,
+        'enableAjaxValidation' => true,
+        'id' => 'form_lista'
     ]); ?>
 
 
-        <?= $form->field($model, 'denominacion')
+        <?= $form->field($model, 'denominacion', ['enableAjaxValidation' => true])
             ->textInput([
                 'maxlength' => true,
                 'placeholder'=>'Título de la lista'

@@ -71,19 +71,21 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class='row'>
         <!-- Listas del tablero -->
-        <div class='col-md-9'>
+        <div id='container_listas' class='col-md-9'>
             <?= $this->render('listas_tablero', [
                 'model'=>$model
             ]) ?>
         </div>
 
         <!-- Menú del Tablero -->
-        <?= $this->render('menu_view', [
-            'tarjeta'=>$tarjeta,
-            'lista'=>$lista,
-            'model'=>$model,
-            'equipos'=>$equipos
-        ]) ?>
+        <div id='menu' class='col-md-3'>
+            <?= $this->render('menu_view', [
+                'tarjeta'=>$tarjeta,
+                'lista'=>$lista,
+                'model'=>$model,
+                'equipos'=>$equipos
+            ]) ?>
+        </div>
 
     </div>
 </div>

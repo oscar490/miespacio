@@ -33,8 +33,13 @@ class Listas extends \yii\db\ActiveRecord
             [['denominacion', 'tablero_id'], 'required'],
             [['tablero_id'], 'default', 'value' => null],
             [['tablero_id'], 'integer'],
-            [['denominacion'], 'string', 'max' => 255],
-            [['denominacion', 'tablero_id'], 'unique', 'targetAttribute' => ['denominacion', 'tablero_id']],
+            [['denominacion'], 'string', 'max' => 30],
+            [
+                ['denominacion', 'tablero_id'],
+                'unique',
+                'targetAttribute' => ['denominacion', 'tablero_id'],
+                'message' => 'Ya existe una lista con ese título'
+            ],
             [['tablero_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tableros::className(), 'targetAttribute' => ['tablero_id' => 'id']],
         ];
     }

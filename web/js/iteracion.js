@@ -27,6 +27,18 @@ function cambiarImagen(imagen, selector_imagen) {
     selector_imagen.attr('src', imagen);
 }
 
+function sendAjaxRenderizar(url_p, type_p, form_p, selector) {
+    $.ajax({
+        url: url_p,
+        type: type_p,
+        data: form_p.serialize(),
+        success: function(data) {
+            console.log(data);
+            selector.html(data);
+        },
+    });
+}
+
 /**
  * Se eliminar un elemento mediante ajax.
  * @param  {[type]} elem_boton elemento que inicia el borrado.

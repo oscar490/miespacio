@@ -91,6 +91,7 @@ CREATE TABLE listas
 (
       id           BIGSERIAL    PRIMARY KEY
     , denominacion VARCHAR(255) NOT NULL
+    , created_at   TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
     , tablero_id   BIGINT       NOT NULL REFERENCES tableros (id) ON DELETE
                                 CASCADE ON UPDATE CASCADE
 
@@ -120,7 +121,7 @@ CREATE TABLE tarjetas
 
 INSERT INTO tarjetas (denominacion, lista_id)
     VALUES ('Desarrollo web', 1), ('Git', 1), ('Introducción a PHP', 1),
-            ('Enero', 2), ('Febrero', 2), ('Practica 0', 3), ('Practica 1', 3);
+            ('Enero', 1), ('Febrero', 2), ('Practica 0', 3), ('Practica 1', 3);
 
 
 

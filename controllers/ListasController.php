@@ -8,6 +8,8 @@ use app\models\ListasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 /**
  * ListasController implements the CRUD actions for Listas model.
@@ -66,13 +68,26 @@ class ListasController extends Controller
     {
         $model = new Listas();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+
+            return ActiveForm::validate($model);
+
         }
 
-        return $this->render('create', [
-            'model' => $model,
+    }
+
+    public function actionCreateAjax()
+    {
+        $model = new Listas();
+        $model->load(Yii::$app->request->post());
+
+        $model->save();
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $this->renderAjax('/tableros/listas_tablero', [
+            'model' => $model->tablero,
         ]);
+
     }
 
     /**

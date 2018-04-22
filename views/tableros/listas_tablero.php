@@ -1,7 +1,7 @@
 <?php
 /* Listas de un tablero */
 
-/* $model app\models\Listas */
+/* $model app\models\Tableros */
 
 use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
@@ -13,9 +13,7 @@ use yii\helpers\Html;
     <?= ListView::widget([
         'dataProvider' => new ActiveDataProvider([
             'query' => $model->getListas(),
-            'pagination'=>[
-                'pageSize'=>3
-            ],
+            'sort'=>['defaultOrder'=>['created_at'=>SORT_DESC]]
         ]),
 
         'itemView' => '_lista',
