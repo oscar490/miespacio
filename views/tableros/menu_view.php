@@ -8,15 +8,15 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$url_create = Url::to(['listas/create-ajax']);
+$url_create = Url::to(['listas/create']);
 
-$this->registerJsVar('url', $url_create);
+$this->registerJsVar('url_create', $url_create);
 
 $this->registerJsFile(
     '/js/menu_view.js',
     [
         'depends'=>[\yii\web\JqueryAsset::className()],
-        'url' => $url_create
+        'url_create' => $url_create,
     ]
 );
 

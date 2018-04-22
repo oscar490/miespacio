@@ -62,6 +62,16 @@ class Listas extends \yii\db\ActiveRecord
     }
 
     /**
+     * Devuelve true o false en caso si contiene o no
+     * tarjetas.
+     * @return [type] [description]
+     */
+    public function getContieneTarjetas()
+    {
+        return !empty($this->getTarjetas()->all());
+    }
+
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getTablero()

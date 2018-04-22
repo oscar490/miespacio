@@ -64,7 +64,7 @@ class ListasController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionValidateAjax()
     {
         $model = new Listas();
 
@@ -72,21 +72,21 @@ class ListasController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
 
             return ActiveForm::validate($model);
-
         }
 
     }
 
-    public function actionCreateAjax()
+    public function actionCreate()
     {
         $model = new Listas();
-        $model->load(Yii::$app->request->post());
 
-        $model->save();
-        Yii::$app->response->format = Response::FORMAT_JSON;
-        return $this->renderAjax('/tableros/listas_tablero', [
-            'model' => $model->tablero,
-        ]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+
+            return $this->renderAjax('/tableros/listas_tablero', [
+                'model' => $model->tablero,
+            ]);
+        }
 
     }
 

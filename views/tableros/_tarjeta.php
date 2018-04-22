@@ -27,11 +27,10 @@ $this->registerJs($js);
 ?>
 
 
-
-    <div class='col-md-3'>
+    <div class='col-md-4'>
         <!-- Nombre de la tarjeta -->
         <div class='panel panel-default'>
-            <div class='panel-heading forma'>
+            <div class='panel-heading '>
                 <p class='text-left'>
                     <?= Html::encode($model->denominacion) ?>
                 </p>

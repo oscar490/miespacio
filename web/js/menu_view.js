@@ -12,7 +12,7 @@ $(document).ready(function() {
             return false;
         }
 
-        sendAjaxRenderizar(url, 'POST', form, contenedor);
+        sendAjaxRenderizar(url_create, 'POST', form, contenedor);
 
         return false;
     })

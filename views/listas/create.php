@@ -20,7 +20,6 @@ use app\components\MyHelpers;
         <?= $this->render('_form', [
             'model' => $lista,
             'tablero' => $tablero,
-            'action'=>['listas/create']
         ]) ?>
     </div>
 </div>

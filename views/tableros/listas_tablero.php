@@ -17,8 +17,13 @@ use yii\helpers\Html;
         ]),
 
         'itemView' => '_lista',
+        'viewParams'=>[
+            'tablero'=>$model,
+            'tarjeta'=>$tarjeta,
+        ],
         'summary' => '',
     ]); ?>
+
 <?php else: ?>
     <div class='panel panel-default'>
         <div class='panel-heading'>

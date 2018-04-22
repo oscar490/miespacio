@@ -2,3 +2,7 @@
     height: 200px;
     overflow: scroll;
 }
+
+#form_create {
+    display: none;
+}

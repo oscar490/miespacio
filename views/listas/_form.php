@@ -16,7 +16,7 @@ use app\components\MyHelpers;
 <div class="listas-form">
 
     <?php $form = ActiveForm::begin([
-        'action'=>$action,
+        'action'=>['listas/validate-ajax'],
         'enableAjaxValidation' => true,
         'id' => 'form_lista'
     ]); ?>

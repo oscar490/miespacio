@@ -70,12 +70,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <br>
 
     <div class='row'>
-        <!-- Listas del tablero -->
-        <div id='container_listas' class='col-md-9'>
-            <?= $this->render('listas_tablero', [
-                'model'=>$model
-            ]) ?>
-        </div>
 
         <!-- Menú del Tablero -->
         <div id='menu' class='col-md-3'>
@@ -86,6 +80,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'equipos'=>$equipos
             ]) ?>
         </div>
+
+        <!-- Listas del tablero -->
+        <div id='container_listas' class='col-md-8'>
+            <?= $this->render('listas_tablero', [
+                'model'=>$model,
+                'tarjeta'=>$tarjeta,
+            ]) ?>
+        </div>
+
+
 
     </div>
 </div>
