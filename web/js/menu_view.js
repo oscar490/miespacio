@@ -6,13 +6,18 @@ $(document).ready(function() {
 
     $('#form_lista').on('beforeSubmit', function() {
         let form = $(this);
-        let contenedor = $('div#container_listas');
+        let contenedor = $('div#contenedor_general');
 
         if (form.find('.has-error').length) {
             return false;
         }
 
         sendAjaxRenderizar(url_create, 'POST', form, contenedor);
+
+        let input = form.find('input#denominacion');
+
+        input.val('');
+        input.parent().removeClass('has-success');
 
         return false;
     })

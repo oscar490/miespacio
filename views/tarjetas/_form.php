@@ -15,7 +15,7 @@ use app\components\MyHelpers;
     <?php $form = ActiveForm::begin([
         'action'=>['tarjetas/validate-ajax'],
         'enableAjaxValidation' => true,
-        'id'=>"form_tarjeta_$model->id"
+        'id'=>"form_tarjeta_$lista->id"
     ]); ?>
 
         <div class='row'>
@@ -34,14 +34,13 @@ use app\components\MyHelpers;
                 ]) ?>
             <?php endif; ?>
 
-            <?= Html::hiddenInput('tablero_id', $tablero->id) ?>
+            <?= Html::hiddenInput('lista_id', $lista->id) ?>
 
-            <div class='col-md-3'>
+            <div class='col-md-2'>
                 <div class="form-group">
                     <?=
                         MyHelpers::submit($label,
-                            (!$model->isNewRecord) ?
-                                ['id'=>"btn_tarjeta_$model->id"]: []
+                            ['class'=>"btn btn-success"]
                         );
                     ?>
                 </div>

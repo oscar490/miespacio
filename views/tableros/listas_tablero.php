@@ -2,6 +2,7 @@
 /* Listas de un tablero */
 
 /* $model app\models\Tableros */
+/* $tarjeta app\models\Tarjetas */
 
 use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
@@ -18,7 +19,6 @@ use yii\helpers\Html;
 
         'itemView' => '_lista',
         'viewParams'=>[
-            'tablero'=>$model,
             'tarjeta'=>$tarjeta,
         ],
         'summary' => '',

@@ -27,7 +27,7 @@ $this->registerJs($js);
 ?>
 
 
-    <div class='col-md-4'>
+    <div class='col-md-6'>
         <!-- Nombre de la tarjeta -->
         <div class='panel panel-default'>
             <div class='panel-heading '>

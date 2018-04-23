@@ -24,23 +24,15 @@ $this->params['breadcrumbs'][] = [
 ];
 
 //  CSS.
-$css = <<<EOT
-    a:link {
-        text-decoration: none;
-    }
-
-
-
-    #menu {
-
-    }
-EOT;
+$this->registerCssFile(
+    '/css/tableros_view.css'
+);
 
 //  Mensaje de confirmación de eliminación.
 echo MyHelpers::confirmacion('Eliminar');
 $url_tablero = Url::to(['tableros/delete', 'id'=>$model->id]);
 
-//  JavaScript.
+//  JavaScript: Eliminación del tablero.
 $js = <<<EOT
 
     eliminarElemento($('#btn_eliminar'), '$url_tablero');
@@ -48,7 +40,7 @@ $js = <<<EOT
 EOT;
 
 $this->registerJS($js);
-$this->registerCss($css);
+
 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -74,7 +66,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <!-- Menú del Tablero -->
         <div id='menu' class='col-md-3'>
             <?= $this->render('menu_view', [
-                'tarjeta'=>$tarjeta,
                 'lista'=>$lista,
                 'model'=>$model,
                 'equipos'=>$equipos
@@ -82,12 +73,13 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
         <!-- Listas del tablero -->
-        <div id='container_listas' class='col-md-8'>
+        <div id='contenedor_general' class='col-md-8'>
             <?= $this->render('listas_tablero', [
                 'model'=>$model,
                 'tarjeta'=>$tarjeta,
             ]) ?>
         </div>
+
 
 
 

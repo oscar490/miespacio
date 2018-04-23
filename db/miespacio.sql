@@ -113,6 +113,7 @@ CREATE TABLE tarjetas
       id           BIGSERIAL    PRIMARY KEY
     , denominacion VARCHAR(255) NOT NULL
     , descripcion  VARCHAR(255)
+    , created_at   TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
     , lista_id     BIGINT       NOT NULL REFERENCES listas (id) ON DELETE
                                 CASCADE ON UPDATE CASCADE
 
