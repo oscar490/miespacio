@@ -4,28 +4,27 @@
 /* @var $this yii\web\View */
 /* @var $model app\models\Tarjetas */
 use yii\helpers\Html;
+use yii\helpers\Url;
+
+$url_create_tarjeta = Url::to(['tarjetas/create']);
+$js = <<<EOT
+    $(document).ready(function() {
+        let form = $("#form_tarjeta_$lista->id");
+        let url = '$url_create_tarjeta';
+        let selector = $("div[data-key='$lista->id'] div.contenido_lista");
+        let input = form.find('#denominacion');
+
+        validarForm(form, url, 'POST', selector, input);
+
+    })
+EOT;
+
+$this->registerJs($js);
 
 ?>
 
-<div class='panel panel-primary'>
-    <div class='panel-heading'>
-        <strong>
-            <?=
-                Html::tag(
-                    'span',
-                    '',
-                    ['class'=>'glyphicon glyphicon-plus']
-                ) . ' ' .
-                Html::encode('Crear tarjeta');
-            ?>
-        </strong>
-    </div>
-    <div class='panel-body'>
-        <?= $this->render('_form', [
-            'model' => $model,
-            'tablero'=>$tablero,
-            'label'=>'Crear',
-            'action'=>['tarjetas/create'],
-        ]) ?>
-    </div>
-</div>
+<?= $this->render('_form', [
+    'model' => $model,
+    'lista' => $lista,
+    'label'=>'Crear',
+]) ?>

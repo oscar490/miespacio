@@ -1,0 +1,8 @@
+.contenido_lista {
+    height: 240px;
+    overflow: scroll;
+}
+
+#form_create {
+    display: none;
+}

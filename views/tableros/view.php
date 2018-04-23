@@ -8,9 +8,8 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use yii\widgets\ListView;
-use yii\data\ActiveDataProvider;
 use app\components\MyHelpers;
+use app\models\Listas;
 
 
 
@@ -25,21 +24,15 @@ $this->params['breadcrumbs'][] = [
 ];
 
 //  CSS.
-$css = <<<EOT
-    a:link {
-        text-decoration: none;
-    }
-
-    .container {
-        padding-left: 0px;
-    }
-EOT;
+$this->registerCssFile(
+    '/css/tableros_view.css'
+);
 
 //  Mensaje de confirmación de eliminación.
 echo MyHelpers::confirmacion('Eliminar');
 $url_tablero = Url::to(['tableros/delete', 'id'=>$model->id]);
 
-//  JavaScript.
+//  JavaScript: Eliminación del tablero.
 $js = <<<EOT
 
     eliminarElemento($('#btn_eliminar'), '$url_tablero');
@@ -47,14 +40,14 @@ $js = <<<EOT
 EOT;
 
 $this->registerJS($js);
-$this->registerCss($css);
+
 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
     <!-- Nombre del tablero -->
     <div class='row'>
-        <div class='col-xs-12 col-md-12'>
+        <div id='tablero_name' class='col-md-12'>
             <h3>
                 <span class='label label-primary'>
                     <strong>
@@ -69,86 +62,26 @@ $this->params['breadcrumbs'][] = $this->title;
     <br>
 
     <div class='row'>
-        <!-- Tarjetas del tablero -->
-        <div class='col-md-9'>
-            <div class='panel panel-primary'>
-                <div class='panel-heading'>
-                    <strong>
-                        <?=
-                            Html::tag(
-                                'span',
-                                '',
-                                ['class'=>'glyphicon glyphicon-credit-card']
-                            ) . ' ' .
-                            Html::encode('Tarjetas')
-                        ?>
-                    </strong>
-                </div>
-                <div class='panel-body'>
-                    <?php if ($model->contieneTarjetas): ?>
-                        <?= ListView::widget([
-                            'dataProvider'=> new ActiveDataProvider([
-                                'query'=>$model->getTarjetas(),
-                            ]),
-                            'itemView'=>'_tarjeta',
-                            'viewParams'=>[
-                                'adjunto'=>$adjunto,
-                            ],
-                            'summary'=>'',
-                        ]); ?>
-                    <?php endif; ?>
-                </div>
-            </div>
+
+        <!-- Menú del Tablero -->
+        <div id='menu' class='col-md-3'>
+            <?= $this->render('menu_view', [
+                'lista'=>$lista,
+                'model'=>$model,
+                'equipos'=>$equipos
+            ]) ?>
         </div>
 
-        <div class='col-md-3'>
-            <!-- Formulario de creación de tarjeta -->
-            <div>
-                <?= $this->render('/tarjetas/create', [
-                    'model'=>$tarjeta,
-                    'tablero'=>$model,
-                ]) ?>
-            </div>
-            <!-- Formulario de propiedades del tablero -->
-            <div class='panel panel-primary'>
-                <div class='panel-heading'>
-                    <strong>
-                        <?=
-                            Html::tag(
-                                'span',
-                                '',
-                                ['class'=>'glyphicon glyphicon-edit']
-                            ) . ' ' .
-                            Html::encode('Propiedades')
-                        ?>
-                    </strong>
-                </div>
-                <div class='panel-body'>
-
-                    <!-- Modificar el tablero -->
-                    <?= $this->render('update', [
-                        'model'=>$model,
-                        'equipos'=>$equipos,
-                    ]) ?>
-
-                    <!-- Eliminar el tablero -->
-                    <?=
-                        Html::button(
-                            Html::tag(
-                                'span',
-                                '',
-                                ['class'=>'glyphicon glyphicon-remove-sign']
-                            ) . ' ' .
-                            'Eliminar',
-                            [
-                                'class'=>'btn btn-danger btn-block',
-                                'id'=>'btn_eliminar',
-                            ]
-                        );
-                    ?>
-                </div>
-            </div>
-
+        <!-- Listas del tablero -->
+        <div id='contenedor_general' class='col-md-8'>
+            <?= $this->render('listas_tablero', [
+                'model'=>$model,
+                'tarjeta'=>$tarjeta,
+            ]) ?>
         </div>
+
+
+
+
     </div>
 </div>

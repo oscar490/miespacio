@@ -62,7 +62,7 @@ class EquiposController extends Controller
                 'defaultOrder'=>['created_at'=>SORT_DESC],
             ],
             'pagination'=>[
-                'pageSize'=>2
+                'pageSize'=>3
             ]
         ]);
 

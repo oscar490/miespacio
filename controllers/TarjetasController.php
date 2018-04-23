@@ -69,15 +69,22 @@ class TarjetasController extends Controller
     {
         $model = new Tarjetas();
 
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->renderAjax('/tableros/vista_tarjetas', [
+                'model'=>$model->lista,
+            ]);
+        }
+
+    }
+
+    public function actionValidateAjax()
+    {
+        $model = new Tarjetas();
+
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['tableros/view', 'id'=>$model->tablero->id]);
-        }
-
     }
 
     /**

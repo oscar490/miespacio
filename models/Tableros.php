@@ -9,9 +9,9 @@ use Yii;
  *
  * @property int $id
  * @property string $denominacion
- * @property string $color
  * @property int $equipo_id
  *
+ * @property Listas[] $listas
  * @property Equipos $equipo
  */
 class Tableros extends \yii\db\ActiveRecord
@@ -38,14 +38,20 @@ class Tableros extends \yii\db\ActiveRecord
                 'filter'=>'intval',
             ],
             [['equipo_id'], 'integer'],
-            [['denominacion'], 'string', 'max' => 255],
+            [['denominacion'], 'string', 'max' => 40 ],
             [
                 ['denominacion', 'equipo_id'],
                 'unique',
                 'targetAttribute' => ['denominacion', 'equipo_id'],
                 'message'=>'Ya existe un tablero con ese nombre.',
             ],
-            [['equipo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Equipos::className(), 'targetAttribute' => ['equipo_id' => 'id']],
+            [
+                ['equipo_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Equipos::className(),
+                'targetAttribute' => ['equipo_id' => 'id']
+            ],
         ];
     }
 
@@ -66,10 +72,18 @@ class Tableros extends \yii\db\ActiveRecord
         return '';
     }
 
-    public function getContieneTarjetas()
+    /**
+     * Comprueba si el tablero contiene alguna lista creada,
+     * devolviendo true en caso de que si o false en caso
+     * contrario.
+     * @return boolean True si tiene listas creadas, false en
+     *                 caso contrario
+     */
+    public function getContieneListas()
     {
-        return !empty($this->tarjetas);
+        return count($this->getListas()->all()) !== 0;
     }
+
 
     /**
      * @return \yii\db\ActiveQuery
@@ -82,8 +96,8 @@ class Tableros extends \yii\db\ActiveRecord
     /**
     * @return \yii\db\ActiveQuery
     */
-    public function getTarjetas()
+    public function getListas()
     {
-       return $this->hasMany(Tarjetas::className(), ['tablero_id' => 'id'])->inverseOf('tablero');
+       return $this->hasMany(Listas::className(), ['tablero_id' => 'id'])->inverseOf('tablero');
     }
 }

@@ -28,6 +28,43 @@ function cambiarImagen(imagen, selector_imagen) {
 }
 
 /**
+ * Envia una petición AJAX y renderizar una vista.
+ * @param  {[type]} url_p    Dirección URL
+ * @param  {[type]} type_p   Tipo de petición
+ * @param  {[type]} form_p   Formulario
+ * @param  {[type]} selector Selector donde se renderiza la vista.
+
+ */
+function sendAjaxRenderizar(url_p, type_p, form_p, selector) {
+    $.ajax({
+        url: url_p,
+        type: type_p,
+        data: form_p.serialize(),
+        success: function(data) {
+            selector.html(data);
+        },
+    });
+}
+
+function validarForm(form_p, url_p, type_p, selector, input) {
+
+    form_p.on('beforeSubmit', function() {
+        let form = $(this);
+
+        if (form_p.find('.has-error').length) {
+            return false;
+        }
+
+        sendAjaxRenderizar(url_p, type_p, form_p, selector);
+
+        input.val('');
+        input.parent().removeClass('has-success');
+
+        return false;
+    })
+}
+
+/**
  * Se eliminar un elemento mediante ajax.
  * @param  {[type]} elem_boton elemento que inicia el borrado.
  * @param  {[type]} direccion  URL donde se envía la petición ajax.

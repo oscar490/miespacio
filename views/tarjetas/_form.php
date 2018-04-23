@@ -13,30 +13,38 @@ use app\components\MyHelpers;
 <div class="tarjetas-form">
 
     <?php $form = ActiveForm::begin([
-        'action'=>$action,
+        'action'=>['tarjetas/validate-ajax'],
         'enableAjaxValidation' => true,
-        'id'=>"form_tarjeta_$model->id"
+        'id'=>"form_tarjeta_$lista->id"
     ]); ?>
 
-        <?= $form->field($model, 'denominacion', ['enableAjaxValidation' => true,])
-            ->textInput(['maxlength' => true]) ?>
+        <div class='row'>
+            <div class='col-md-4'>
+                <?= $form->field($model, 'denominacion', ['enableAjaxValidation' => true,])
+                    ->textInput([
+                        'maxlength' => true,
+                        'placeholder'=>'Nombre de la tarjeta'
+                    ])->label(false)
+                ?>
+            </div>
 
-        <?php if (!$model->isNewRecord): ?>
-            <?= $form->field($model, 'descripcion')->textarea([
-                'rows'=>5
-            ]) ?>
-        <?php endif; ?>
+            <?php if (!$model->isNewRecord): ?>
+                <?= $form->field($model, 'descripcion')->textarea([
+                    'rows'=>5
+                ]) ?>
+            <?php endif; ?>
 
-        <?= Html::hiddenInput('tablero_id', $tablero->id) ?>
+            <?= Html::hiddenInput('lista_id', $lista->id) ?>
 
-
-        <div class="form-group">
-            <?=
-                MyHelpers::submit($label,
-                    (!$model->isNewRecord) ?
-                        ['id'=>"btn_tarjeta_$model->id"]: []
-                );
-            ?>
+            <div class='col-md-2'>
+                <div class="form-group">
+                    <?=
+                        MyHelpers::submit($label,
+                            ['class'=>"btn btn-success"]
+                        );
+                    ?>
+                </div>
+            </div>
         </div>
 
     <?php ActiveForm::end(); ?>
