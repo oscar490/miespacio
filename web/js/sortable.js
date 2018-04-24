@@ -1,3 +1,5 @@
 $(document).ready(function() {
-    alert('aqui');
+    $('#lista').sortable({
+        connectWith: '.conexion'
+    })
 })

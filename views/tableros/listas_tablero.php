@@ -11,6 +11,7 @@ use yii\helpers\Html;
 ?>
 
 <?php if ($model->contieneListas): ?>
+    <?php /**
     <?= ListView::widget([
         'dataProvider' => new ActiveDataProvider([
             'query' => $model->getListas(),
@@ -22,7 +23,13 @@ use yii\helpers\Html;
             'tarjeta'=>$tarjeta,
         ],
         'summary' => '',
-    ]); ?>
+    ]); **/?>
+
+    <?php foreach ($model->getListas()->all() as $lista): ?>
+        <?= $this->render('_lista_nueva', [
+            'lista'=>$lista
+        ]) ?>
+    <?php endforeach; ?>
 
 <?php else: ?>
     <div class='panel panel-default'>
