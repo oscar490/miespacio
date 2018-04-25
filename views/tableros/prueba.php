@@ -7,21 +7,21 @@ $this->registerJsFile(
 );
 
 $js = <<<EOT
-    $(document).ready(function() {
+    $(function() {
         $('#lista1, #lista2').sortable({
             connectWith: ".contenedor",
-            receive: function (event, ui) {
-                console.log(ui.item[0].innerHTML);
-            }
-
         })
-    })
+    });
 EOT;
 
 $css = <<<EOT
     li {
         border: solid 2px black;
         list-style: none;
+    }
+
+    #lista1, #lista2 {
+        min-height: 20px;
     }
 EOT;
 

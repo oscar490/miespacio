@@ -17,6 +17,15 @@ function seleccionarMenuUsuario() {
     }
 }
 
+function sendAjaxSimple(url_p, type_p, data_p) {
+
+    $.ajax({
+        url: url_p,
+        type: type_p,
+        data: data_p
+    });
+}
+
 /**
  * Cambia una imágen que se le pasa por parámetro por otra
  * imágen que ya existe.

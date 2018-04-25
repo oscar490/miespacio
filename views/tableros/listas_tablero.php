@@ -25,11 +25,13 @@ use yii\helpers\Html;
         'summary' => '',
     ]); **/?>
 
-    <?php foreach ($model->getListas()->all() as $lista): ?>
-        <?= $this->render('_lista_nueva', [
-            'lista'=>$lista
-        ]) ?>
-    <?php endforeach; ?>
+    <div class='row'>
+        <?php foreach ($model->getListas()->all() as $lista): ?>
+            <?= $this->render('_lista_nueva', [
+                'lista'=>$lista
+            ]) ?>
+        <?php endforeach; ?>
+    </div>
 
 <?php else: ?>
     <div class='panel panel-default'>
