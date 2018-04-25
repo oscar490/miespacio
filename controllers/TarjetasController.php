@@ -136,6 +136,12 @@ class TarjetasController extends Controller
         ]);
     }
 
+    /**
+     * Modifica la lista a la que pertenece una tarjeta.
+     * @param  int $id_tarjeta ID de la tarjeta
+     * @return bool            True o false si se ha guardado
+     *                         la modificación.
+     */
     public function actionUpdateLista($id_tarjeta)
     {
         $model = $this->findModel($id_tarjeta);

@@ -21,8 +21,15 @@ function efectoSortable(url_tarjeta) {
 
             sendAjaxSimple(url, 'POST', data);
 
-            
+
         }
 
+    })
+}
+
+function iteracionFormTarjeta(selector) {
+
+    selector.on('click', function() {
+        $(this).closest('.contenedor_lista').find('#form_create_tarjeta').slideToggle();
     })
 }

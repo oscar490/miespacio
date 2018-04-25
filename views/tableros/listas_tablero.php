@@ -25,10 +25,12 @@ use yii\helpers\Html;
         'summary' => '',
     ]); **/?>
 
+    <!-- Listas del Tablero -->
     <div class='row'>
         <?php foreach ($model->getListas()->all() as $lista): ?>
             <?= $this->render('_lista_nueva', [
-                'lista'=>$lista
+                'lista'=>$lista,
+                'tarjeta' => $tarjeta
             ]) ?>
         <?php endforeach; ?>
     </div>

@@ -19,8 +19,7 @@ $this->registerCss($css);
 
 ?>
 <li id='item' data-key="<?= $tarjeta->id ?>">
-        <div class='panel panel-default tarjeta'>
-            <?= Html::encode($tarjeta->denominacion) ?>
-        </div>
-
+    <div class='panel panel-default tarjeta'>
+        <?= Html::encode($tarjeta->denominacion) ?>
+    </div>
 </li>
