@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use app\models\Adjuntos;
+use yii\db\Expression;
 
 /**
  * TarjetasController implements the CRUD actions for Tarjetas model.
@@ -133,6 +134,17 @@ class TarjetasController extends Controller
         return $this->renderAjax('update', [
             'model'=>$model,
         ]);
+    }
+
+    public function actionUpdateLista($id_tarjeta)
+    {
+        $model = $this->findModel($id_tarjeta);
+
+        $model->lista_id = Yii::$app->request->post('lista_id');
+        $model->created_at = new Expression('current_timestamp');
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        return $model->save();
     }
 
     /**
