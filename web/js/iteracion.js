@@ -68,6 +68,7 @@ function validarForm(form_p, url_p, type_p, selector, input) {
 
         input.val('');
         input.parent().removeClass('has-success');
+        form_p.parent().hide();
 
         return false;
     })

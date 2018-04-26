@@ -27,7 +27,8 @@ use yii\helpers\Html;
 
     <!-- Listas del Tablero -->
     <div class='row'>
-        <?php foreach ($model->getListas()->all() as $lista): ?>
+        <?php foreach ($model->getListas()
+            ->orderBy(['created_at'=>SORT_DESC])->all() as $lista): ?>
             <?= $this->render('_lista_nueva', [
                 'lista'=>$lista,
                 'tarjeta' => $tarjeta
@@ -36,18 +37,23 @@ use yii\helpers\Html;
     </div>
 
 <?php else: ?>
-    <div class='panel panel-default'>
-        <div class='panel-heading'>
-            <?= Html::encode('Lista'); ?>
-        </div>
-        <div class='panel-body'>
-            <p>
-                En una <strong>Lista</strong> se pueden colocar las
-                diferentes tarjetas para realizar sobre ellas una
-                clasificación y tener un orden sobre ellas. Desde
-                el menú <strong>Crear lista</strong> podemos empezar
-                a crear nuestras listas.
-            </p>
+    <!-- Lista de prueba -->
+    <div class='row'>
+        <div class='col-md-4'>
+            <div class='panel panel-default'>
+                <div class='panel-heading'>
+                    <?= Html::encode('Lista'); ?>
+                </div>
+                <div class='panel-body'>
+                    <p>
+                        En una <strong>Lista</strong> se pueden colocar las
+                        diferentes tarjetas para realizar sobre ellas una
+                        clasificación y tener un orden sobre ellas. Desde
+                        el menú <strong>Crear lista</strong> podemos empezar
+                        a crear nuestras listas.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 <?php endif; ?>

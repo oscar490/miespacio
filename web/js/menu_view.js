@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
-    $('div#header_menu').on('click', function() {
+    var header_menu = $('div#header_menu');
+
+    header_menu.on('click', function() {
         $(this).next().slideToggle();
     })
 
@@ -18,6 +20,8 @@ $(document).ready(function() {
 
         input.val('');
         input.parent().removeClass('has-success');
+
+        header_menu.next().hide();
 
         return false;
     })

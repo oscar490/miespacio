@@ -45,6 +45,7 @@ $this->registerJS($js);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
+
     <!-- Nombre del tablero -->
     <div class='row'>
         <div id='tablero_name' class='col-md-12'>
@@ -61,27 +62,22 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <br>
 
+    <!-- Menú del Tablero -->
     <div class='row'>
+        <?= $this->render('menu_view', [
+            'lista'=>$lista,
+            'model'=>$model,
+            'equipos'=>$equipos
+        ]) ?>
+    </div>
 
-        <!-- Menú del Tablero -->
-        <div id='menu' class='col-md-3'>
-            <?= $this->render('menu_view', [
-                'lista'=>$lista,
-                'model'=>$model,
-                'equipos'=>$equipos
-            ]) ?>
-        </div>
-
-        <!-- Listas del tablero -->
-        <div id='contenedor_general' class='col-md-8'>
+    <!-- Listas del tablero -->
+    <div class='row'>
+        <div id='contenedor_general' class='col-md-12'>
             <?= $this->render('listas_tablero', [
                 'model'=>$model,
                 'tarjeta'=>$tarjeta,
             ]) ?>
         </div>
-
-
-
-
     </div>
 </div>

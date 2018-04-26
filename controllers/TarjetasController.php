@@ -71,8 +71,8 @@ class TarjetasController extends Controller
         $model = new Tarjetas();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->renderAjax('/tableros/vista_tarjetas', [
-                'model'=>$model->lista,
+            return $this->renderAjax('/tableros/lista_de_tarjetas', [
+                'lista'=>$model->lista,
             ]);
         }
 

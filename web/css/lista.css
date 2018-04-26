@@ -1,8 +1,19 @@
-.contenido_lista {
-    height: 240px;
+ul[id^='lista_'] {
+    min-height: 20px;
+    height: 280px;
     overflow: scroll;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-#form_create {
+#contenedor_lista {
+    box-shadow: 2px 2px 5px #999;
+}
+
+#form_create_tarjeta {
+    display: none;
+}
+
+div.panel-footer {
     display: none;
 }

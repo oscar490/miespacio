@@ -18,75 +18,42 @@ $this->registerJsFile(
     ['depends'=>[\yii\web\JqueryAsset::className()]]
 );
 
+$this->registerCssFile(
+    '/css/lista.css'
+);
+
+
 $url_update = Url::to(['tarjetas/update-lista']);
 
 $js = <<<EOT
     $(document).ready(function() {
-        let selector = $("#btn_form_tarjeta_$lista->id");
+        let selector = $("#form_create_tarjeta_$lista->id").parent()
+            .find('.panel-heading');
 
         efectoSortable('$url_update');
         iteracionFormTarjeta(selector);
     })
 EOT;
 
-$css = <<<EOT
-    ul[id^='lista_'] {
-        min-height: 20px;
-        height: 280px;
-        overflow: scroll;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .contenedor_lista {
-        box-shadow: 2px 2px 5px #999;
-    }
-
-    #form_create_tarjeta {
-        display: none;
-    }
-
-EOT;
 $this->registerJs($js);
-$this->registerCss($css);
+
 ?>
 
 <!-- Contenido de la Lista -->
-<div class='col-md-6'>
-    <div class='panel panel-default contenedor_lista'>
+<div class='col-md-4'>
+    <div id="contenedor_lista" class='panel panel-default'>
         <!-- Título de la lista -->
         <div class='panel-heading'>
-            <div class='row'>
-                <div class='col-md-9'>
-                    <?= Html::encode($lista->denominacion) ?>
-                </div>
-                <div class='col-md-3'>
-                    <?=
-                        Html::button(
-                            MyHelpers::icon('glyphicon glyphicon-plus'),
-                            [
-                                'class'=>'btn btn-xs btn-default',
-                                'id' => "btn_form_tarjeta_$lista->id"
-                            ]
-                        )
-                    ?>
-                </div>
-            </div>
-
+            <?= Html::encode($lista->denominacion) ?>
         </div>
 
         <!-- Conjunto de tarjetas de la lista -->
         <div class='panel-body'>
-            <ul id="lista_<?= $lista->id ?>"  data-key="<?= $lista->id ?>"
-                    class='contenedor'>
-                <?php foreach ($lista->getTarjetas()->orderBy(['created_at'=>SORT_DESC])->all() as $elem): ?>
-                    <?= $this->render('_tarjeta_nueva', [
-                        'tarjeta'=>$elem
-                    ]) ?>
-                <?php endforeach; ?>
-            </ul>
+            <?= $this->render('lista_de_tarjetas', [
+                'lista' => $lista
+            ]) ?>
         </div>
-        <div id="form_create_tarjeta" class='panel-footer'>
+        <div id="form_create_tarjeta_<?= $lista->id ?>" class='panel-footer'>
             <?= $this->render('/tarjetas/create', [
                 'model'=>$tarjeta,
                 'lista'=>$lista,

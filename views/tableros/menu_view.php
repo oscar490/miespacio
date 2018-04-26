@@ -24,13 +24,17 @@ $this->registerCssFile('/css/menu_view.css')
 ?>
 
 <!-- Formulario de creación de lista -->
-<?= $this->render('/listas/create', [
-    'lista'=>$lista,
-    'tablero'=>$model,
-]) ?>
+<div class='col-md-3'>
+    <?= $this->render('/listas/create', [
+        'lista'=>$lista,
+        'tablero'=>$model,
+    ]) ?>
+</div>
 
 <!-- Modificar el tablero -->
-<?= $this->render('update', [
-    'model'=>$model,
-    'equipos'=>$equipos,
-]) ?>
+<div class='col-md-3'>
+    <?= $this->render('update', [
+        'model'=>$model,
+        'equipos'=>$equipos,
+    ]) ?>
+</div>
