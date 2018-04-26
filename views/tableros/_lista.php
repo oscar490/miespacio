@@ -1,25 +1,37 @@
 <?php
-/* Vista parcial de una lista */
+/* Vista de una Lista */
 
-/* $model app\models\Listas */
-/* $tarjeta app\models\Tarjetas */
+/* @var $lista app\models\Listas */
+/* @var $tarjeta app\models\Tarjetas */
 
 use yii\helpers\Html;
 use app\components\MyHelpers;
-use yii\widgets\ListView;
-use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
+
+$this->registerJsFile(
+    '/js/jquery-ui/jquery-ui.js',
+    ['depends'=>[\yii\web\JqueryAsset::className()]]
+);
+
+$this->registerJsFile(
+    '/js/lista.js',
+    ['depends'=>[\yii\web\JqueryAsset::className()]]
+);
 
 $this->registerCssFile(
     '/css/lista.css'
 );
 
 
+$url_update = Url::to(['tarjetas/update-lista']);
+
 $js = <<<EOT
     $(document).ready(function() {
-        $("div#titulo_lista_$model->id").on('click', function() {
-            $(this).parent().find('#form_create').slideToggle();
-        });
+        let selector = $("#form_create_tarjeta_$lista->id").parent()
+            .find('.panel-heading');
+
+        efectoSortable('$url_update');
+        iteracionFormTarjeta(selector);
     })
 EOT;
 
@@ -27,36 +39,25 @@ $this->registerJs($js);
 
 ?>
 
-<div class='panel panel-default'>
-    <!-- Título de la lista-->
-    <?=
-        Html::tag(
-            'div',
-            MyHelpers::icon('glyphicon glyphicon-th-list') .
-            ' ' . Html::encode($model->denominacion) . ' ' .
-            Html::tag(
-                'small',
-                '(click aquí para crear una nueva tarjeta)'
-            ),
-            [
-                'class'=>'panel-heading',
-                'id' => "titulo_lista_$model->id"
-            ]
-        )
-    ?>
-    <!-- Tarjetas de la lista -->
-    <div class='panel-body contenido_lista'>
-        <div class='row'>
-            <?= $this->render('vista_tarjetas', [
-                'model'=>$model
+<!-- Contenido de la Lista -->
+<div class='col-md-4'>
+    <div id="contenedor_lista_<?= $lista->id ?>" class='panel panel-default'>
+        <!-- Título de la lista -->
+        <div class='panel-heading'>
+            <?= Html::encode($lista->denominacion) ?>
+        </div>
+
+        <!-- Conjunto de tarjetas de la lista -->
+        <div class='panel-body'>
+            <?= $this->render('lista_de_tarjetas', [
+                'lista' => $lista
             ]) ?>
         </div>
-    </div>
-
-    <div id='form_create' class='panel-footer'>
-        <?= $this->render('/tarjetas/create', [
-            'model'=>$tarjeta,
-            'lista'=>$model,
-        ]) ?>
+        <div id="form_create_tarjeta_<?= $lista->id ?>" class='panel-footer'>
+            <?= $this->render('/tarjetas/create', [
+                'model'=>$tarjeta,
+                'lista'=>$lista,
+            ]) ?>
+        </div>
     </div>
 </div>

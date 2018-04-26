@@ -11,11 +11,10 @@ $js = <<<EOT
     $(document).ready(function() {
         let form = $("#form_tarjeta_$lista->id");
         let url = '$url_create_tarjeta';
-        let div_form = $("#form_create_tarjeta_$lista->id")
-        let selector = div_form.parent().find('.panel-body');
-
+        let selector = $("div#contenedor_general");
+        console.log(selector);
         let input = form.find('#denominacion');
-        div_form.hide();
+
         validarForm(form, url, 'POST', selector, input);
 
 

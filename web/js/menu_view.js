@@ -1,29 +1,28 @@
-$(document).ready(function() {
+/** menu_view.js **/
 
-    var header_menu = $('div#header_menu');
-
+/**
+ * Muestra ú oculta el menú de creación de lista y el de
+ * las propiedades del tablero.
+ */
+function iteracionMenu() {
+    let header_menu = $('div#header_menu');
+    console.log(header_menu);
     header_menu.on('click', function() {
         $(this).next().slideToggle();
     })
+}
 
-    $('#form_lista').on('beforeSubmit', function() {
-        let form = $(this);
-        let contenedor = $('div#contenedor_general');
+/**
+ * Usando AJAX, crea una lista.
+ * @param  {[type]} url_p Dirección URL para realizar la petición.
+ */
+function createLista(url_p) {
 
-        if (form.find('.has-error').length) {
-            return false;
-        }
+    let form = $('#form_lista');
+    let url = url_p;
+    let selector = $('div#contenedor_general');
+    let input = form.find('input#denominacion');
 
-        sendAjaxRenderizar(url_create, 'POST', form, contenedor);
+    validarForm(form, url, 'POST', selector, input);
 
-        let input = form.find('input#denominacion');
-
-        input.val('');
-        input.parent().removeClass('has-success');
-
-        header_menu.next().hide();
-
-        return false;
-    })
-
-})
+}

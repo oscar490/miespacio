@@ -53,7 +53,7 @@ class TablerosController extends Controller
     }
 
     /**
-     * Displays a single Tableros model.
+     * Muestra el contenido de un tablero.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found

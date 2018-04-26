@@ -17,6 +17,12 @@ function seleccionarMenuUsuario() {
     }
 }
 
+/**
+ * Realiza una petición AJAX simple.
+ * @param  {[type]} url_p  Dirección URL para enviar petición.
+ * @param  {[type]} type_p Tipo de petición.
+ * @param  {[type]} data_p Datos que se envía en la peticiión.
+ */
 function sendAjaxSimple(url_p, type_p, data_p) {
 
     $.ajax({
@@ -55,6 +61,15 @@ function sendAjaxRenderizar(url_p, type_p, form_p, selector) {
     });
 }
 
+/**
+ * Valida un formulario y realiza una petición ajax.
+ * También renderiza una vista.
+ * @param  {[type]} form_p   Formulario a validar.
+ * @param  {[type]} url_p    Dirección URL para enviar petición.
+ * @param  {[type]} type_p   Typo de petición.
+ * @param  {[type]} selector Selector donde se renderiza la respuesta.
+ * @param  {[type]} input    Elemento input que se resetea.
+ */
 function validarForm(form_p, url_p, type_p, selector, input) {
 
     form_p.on('beforeSubmit', function() {

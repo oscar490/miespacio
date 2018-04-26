@@ -10,16 +10,23 @@ use yii\helpers\Url;
 
 $url_create = Url::to(['listas/create']);
 
-$this->registerJsVar('url_create', $url_create);
-
+//  JavaScript.
 $this->registerJsFile(
     '/js/menu_view.js',
-    [
-        'depends'=>[\yii\web\JqueryAsset::className()],
-        'url_create' => $url_create,
-    ]
+    ['depends'=>[\yii\web\JqueryAsset::className()]]
 );
 
+$js = <<<EOT
+    $(document).ready(function() {
+
+        iteracionMenu();
+        createLista('$url_create');
+    })
+EOT;
+
+$this->registerJs($js);
+
+//  CSS.
 $this->registerCssFile('/css/menu_view.css')
 ?>
 
@@ -31,7 +38,7 @@ $this->registerCssFile('/css/menu_view.css')
     ]) ?>
 </div>
 
-<!-- Modificar el tablero -->
+<!-- Modificar las propiedades del tablero -->
 <div class='col-md-3'>
     <?= $this->render('update', [
         'model'=>$model,
