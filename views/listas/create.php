@@ -20,6 +20,7 @@ use app\components\MyHelpers;
         <?= $this->render('_form', [
             'model' => $lista,
             'tablero' => $tablero,
+            'label'=>'Crear'
         ]) ?>
     </div>
 </div>

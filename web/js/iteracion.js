@@ -23,12 +23,13 @@ function seleccionarMenuUsuario() {
  * @param  {[type]} type_p Tipo de petición.
  * @param  {[type]} data_p Datos que se envía en la peticiión.
  */
-function sendAjaxSimple(url_p, type_p, data_p) {
+function sendAjaxSimple(url_p, type_p, data_p, function_p) {
 
     $.ajax({
         url: url_p,
         type: type_p,
-        data: data_p
+        data: data_p,
+        success: function_p
     });
 }
 

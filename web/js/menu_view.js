@@ -6,7 +6,7 @@
  */
 function iteracionMenu() {
     let header_menu = $('div#header_menu');
-    console.log(header_menu);
+    
     header_menu.on('click', function() {
         $(this).next().slideToggle();
     })

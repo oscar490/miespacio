@@ -9,22 +9,25 @@ function efectoSortable(url_tarjeta) {
 
     $("ul[id^='lista_']").sortable({
         connectWith: ".contenedor",
+        revert: true,
         receive: function (event, ui) {
             let elem = ui.item;
-            let id_tarjeta_p = elem.data('key');
-            let id_lista = elem.parent().data('key')
-            let primero = elem.parent().find('li').first();
-            primero.before(elem);
-
-            let url = url_tarjeta + '&id_tarjeta=' + id_tarjeta_p;
-            let data = {lista_id: id_lista};
-
-            sendAjaxSimple(url, 'POST', data);
-
-
+            updateLista(elem, url_tarjeta);
         }
-
     })
+}
+
+function updateLista(elem, url_envio) {
+
+    let id_tarjeta_p = elem.data('key');
+    let id_lista = elem.parent().data('key')
+    let primero = elem.parent().find('li').first();
+    primero.before(elem);
+
+    let url = url_envio + '&id_tarjeta=' + id_tarjeta_p;
+    let data = {lista_id: id_lista};
+
+    sendAjaxSimple(url, 'POST', data);
 }
 
 function iteracionFormTarjeta(selector) {

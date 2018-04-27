@@ -29,7 +29,7 @@ use app\components\MyHelpers;
 
     <!-- Botón de envio -->
     <?=
-        MyHelpers::submit('Añadir lista', [
+        MyHelpers::submit($label, [
             'class'=>'btn btn-success btn-block',
             'id'=>'btn_create_list'
         ]);

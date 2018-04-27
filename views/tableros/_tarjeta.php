@@ -1,84 +1,49 @@
 <?php
-/* Vista de una tarjeta */
+/* Vista de tarjeta */
 
-/* $model app\models\Tarjetas */
+/* @var $tarjeta app\models\Tarjetas */
 
 use yii\helpers\Html;
-use yii\helpers\Url;
 use app\components\MyHelpers;
-use yii\bootstrap\Modal;
 
-//  CSS.
+$css = <<<EOT
+    #item {
+        list-style: none;
 
+    }
 
-$url_tarjeta = Url::to(['tarjetas/delete', 'id'=>$model->id]);
-
-//  JavaScript.
-
-//  Eliminar una tarjeta.
-$js = <<<EOT
-    eliminarElemento($("#btn_delete_tarjeta_$model->id"), '$url_tarjeta');
+    .tarjeta {
+        background-color: #f5f5f5;
+        padding: 10px 15px;
+        border-color: #ddd;
+        box-shadow: 2px 2px 5px #999;
+    }
 EOT;
 
-$this->registerCssFile(
-    '/css/tarjeta.css'
-);
-$this->registerJs($js);
+$this->registerCss($css);
+
 ?>
-
-
-    <div class='col-md-6'>
-        <!-- Nombre de la tarjeta -->
-        <div class='panel panel-default'>
-            <div class='panel-heading '>
-                <p class='text-left'>
-                    <?= Html::encode($model->denominacion) ?>
-                </p>
+<li id='item' data-key="<?= $tarjeta->id ?>">
+    <div class='panel panel-default tarjeta'>
+        <div class='row'>
+            <div class='col-xs-7 col-md-8'>
+                <?= Html::encode($tarjeta->denominacion) ?>
             </div>
-            <!-- <div class='panel-footer'> -->
-                <!-- Modal que muestra el contenido de la tarjeta -->
-                <?php /**
-                <?php Modal::begin([
-                    'header'=>Html::tag(
-                            'h4',
-                            Html::tag(
-                                'span',
-                                '',
-                                ['class'=>'glyphicon glyphicon-credit-card']
-                            ) . ' ' . 'Contenido de tarjeta'
-                        ),
-                    'toggleButton'=>[
-                        'label'=>Html::tag(
-                            'span',
-                            '',
-                            ['class'=>'glyphicon glyphicon-eye-open']
-                        ),
-                        'class'=>'btn btn-default'
-                    ],
-                    'size'=>Modal::SIZE_LARGE,
-                ]) ?>
-                    <!-- Vista de la tarjeta -->
-                    <?= $this->render('/tarjetas/view', [
-                        'model'=>$model,
-                        'adjunto'=>$adjunto,
-                    ]) ?>
-                <?php Modal::end() ?>
+            <div class='col-xs-5 col-md-4'>
+                <!-- Botón de crear tarjeta -->
+                
 
-                <!-- Eliminar tarjeta -->
+                <!-- Botón de eliminar tarjeta -->
+                <?=
+                    Html::button(
+                        MyHelpers::icon('glyphicon glyphicon-remove'),
+                        ['class'=>'btn btn-xs btn-default']
+                    );
+                ?>
 
-                <?= Html::button(
-                    Html::tag(
-                        'span',
-                        '',
-                        ['class'=>'glyphicon glyphicon-remove']
-                    ),
-                    [
-                        'class'=>'btn btn-default',
-                        'id'=>"btn_delete_tarjeta_$model->id",
-                    ]
-                ) ?>
-                **/ ?>
 
-            <!-- </div> -->
+            </div>
         </div>
+
     </div>
+</li>

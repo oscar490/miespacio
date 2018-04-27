@@ -44,7 +44,10 @@ $this->registerJs($js);
     <div id="contenedor_lista_<?= $lista->id ?>" class='panel panel-default'>
         <!-- Título de la lista -->
         <div class='panel-heading'>
-            <?= Html::encode($lista->denominacion) ?>
+            <?=
+                MyHelpers::icon('glyphicon glyphicon-th-list') . ' ' .
+                Html::encode($lista->denominacion)
+            ?>
         </div>
 
         <!-- Conjunto de tarjetas de la lista -->

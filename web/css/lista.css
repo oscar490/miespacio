@@ -6,7 +6,7 @@ ul[id^='lista_'] {
     padding-right: 20px;
 }
 
-#contenedor_lista {
+div[id^='contenedor_lista'] {
     box-shadow: 2px 2px 5px #999;
 }
 
