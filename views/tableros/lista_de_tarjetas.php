@@ -12,7 +12,8 @@ $tarjetas = $lista->getTarjetas()->orderBy(['created_at'=>SORT_DESC])->all();
     <?php foreach ( $tarjetas as $elem): ?>
 
         <?= $this->render('_tarjeta', [
-            'tarjeta'=>$elem
+            'tarjeta'=>$elem,
+            'adjunto'=>$adjunto,
         ]) ?>
 
     <?php endforeach; ?>

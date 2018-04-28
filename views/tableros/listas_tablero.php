@@ -20,7 +20,8 @@ $listas = $model->getListas()
 
             <?= $this->render('_lista', [
                 'lista'=>$lista,
-                'tarjeta' => $tarjeta
+                'tarjeta' => $tarjeta,
+                'adjunto'=>$adjunto
             ]) ?>
 
         <?php endforeach; ?>

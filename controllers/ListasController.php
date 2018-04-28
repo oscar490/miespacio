@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use app\models\Tarjetas;
+use app\models\Adjuntos;
 
 /**
  * ListasController implements the CRUD actions for Listas model.
@@ -87,6 +88,7 @@ class ListasController extends Controller
             return $this->renderAjax('/tableros/listas_tablero', [
                 'model' => $model->tablero,
                 'tarjeta' => new Tarjetas(),
+                'adjunto' => new Adjuntos()
             ]);
         }
 

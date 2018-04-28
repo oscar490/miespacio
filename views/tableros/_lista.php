@@ -44,18 +44,28 @@ $this->registerJs($js);
     <div id="contenedor_lista_<?= $lista->id ?>" class='panel panel-default'>
         <!-- Título de la lista -->
         <div class='panel-heading'>
-            <?=
-                MyHelpers::icon('glyphicon glyphicon-th-list') . ' ' .
-                Html::encode($lista->denominacion)
-            ?>
+            <div class='row'>
+                <div class='col-md-8'>
+                    <?=
+                        MyHelpers::icon('glyphicon glyphicon-th-list') . ' ' .
+                        Html::encode($lista->denominacion)
+                    ?>
+                </div>
+                <div class='col-md-4'>
+                    
+                </div>
+            </div>
         </div>
 
         <!-- Conjunto de tarjetas de la lista -->
         <div class='panel-body'>
             <?= $this->render('lista_de_tarjetas', [
-                'lista' => $lista
+                'lista' => $lista,
+                'adjunto'=>$adjunto,
             ]) ?>
         </div>
+
+        <!-- Formulario para crear lista -->
         <div id="form_create_tarjeta_<?= $lista->id ?>" class='panel-footer'>
             <?= $this->render('/tarjetas/create', [
                 'model'=>$tarjeta,

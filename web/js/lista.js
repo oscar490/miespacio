@@ -27,7 +27,7 @@ function updateLista(elem, url_envio) {
     let url = url_envio + '&id_tarjeta=' + id_tarjeta_p;
     let data = {lista_id: id_lista};
 
-    sendAjaxSimple(url, 'POST', data);
+    sendAjax(url, 'POST', data);
 }
 
 function iteracionFormTarjeta(selector) {

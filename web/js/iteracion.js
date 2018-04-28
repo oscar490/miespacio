@@ -23,7 +23,7 @@ function seleccionarMenuUsuario() {
  * @param  {[type]} type_p Tipo de petición.
  * @param  {[type]} data_p Datos que se envía en la peticiión.
  */
-function sendAjaxSimple(url_p, type_p, data_p, function_p) {
+function sendAjaxSimple(url_p, type_p, data_p, function_p = null) {
 
     $.ajax({
         url: url_p,
@@ -64,14 +64,13 @@ function sendAjaxRenderizar(url_p, type_p, form_p, selector) {
 
 /**
  * Valida un formulario y realiza una petición ajax.
- * También renderiza una vista.
- * @param  {[type]} form_p   Formulario a validar.
- * @param  {[type]} url_p    Dirección URL para enviar petición.
- * @param  {[type]} type_p   Typo de petición.
- * @param  {[type]} selector Selector donde se renderiza la respuesta.
- * @param  {[type]} input    Elemento input que se resetea.
+ * @param  {[type]} form_p    Formulario a validar.
+ * @param  {[type]} url_p     Dirección URL para enviar petición.
+ * @param  {[type]} type_p    Typo de petición.
+ * @param  {[type]} success_p Función ha realizar cuando se hace la petición
+ *                            AJAX correctamente.
  */
-function validarForm(form_p, url_p, type_p, selector, input) {
+function validarForm(form_p, url_p, type_p, success_p) {
 
     form_p.on('beforeSubmit', function() {
         let form = $(this);
@@ -80,11 +79,7 @@ function validarForm(form_p, url_p, type_p, selector, input) {
             return false;
         }
 
-        sendAjaxRenderizar(url_p, type_p, form_p, selector);
-
-        input.val('');
-        input.parent().removeClass('has-success');
-        form_p.parent().hide();
+        sendAjax(url_p, type_p, form.serialize(), success_p);
 
         return false;
     })
@@ -95,16 +90,35 @@ function validarForm(form_p, url_p, type_p, selector, input) {
  * @param  {[type]} elem_boton elemento que inicia el borrado.
  * @param  {[type]} direccion  URL donde se envía la petición ajax.
  */
-function eliminarElemento(elem_boton, direccion) {
+function eliminarElemento(elem_boton, direccion, func_success = null) {
 
     elem_boton.on('click', function() {
         krajeeDialog.confirm("¿Deseas de verdad eliminarlo?", function (result) {
             if (result) {
-                $.ajax({
-                    type: 'POST',
-                    url: direccion
-                });
+                sendAjax(direccion, 'POST', {}, func_success);
             }
         });
     })
+}
+
+/**
+ * Realiza una petición AJAX.
+ * @param  {[type]} url_p               Dirección URL de peticiión.
+ * @param  {[type]} type_p              Tipo de petición.
+ * @param  {[type]} data_p              Datos que se envía en la petición.
+ * @param  {[type]} [success_p=null]    Función ha realizar si se hace
+ *                                      la petición AJAX correctamente.
+ * @param  {[type]} [beforeSend_p=null] Función ha realizar antes de realizar
+ *                                      la petición AJAX.
+ */
+function sendAjax(url_p, type_p, data_p, success_p = null,
+        beforeSend_p = null) {
+
+    $.ajax({
+        url: url_p,
+        type: type_p,
+        data: data_p,
+        beforeSend: beforeSend_p,
+        success: success_p
+    });
 }

@@ -25,11 +25,13 @@ use app\components\MyHelpers;
             ?>
         </div>
 
+        <?php /**
         <?php if (!$model->isNewRecord): ?>
             <?= $form->field($model, 'descripcion')->textarea([
                 'rows'=>5
             ]) ?>
         <?php endif; ?>
+         **/?>
 
         <?= Html::hiddenInput('lista_id', $lista->id) ?>
 

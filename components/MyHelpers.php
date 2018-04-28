@@ -76,26 +76,33 @@ class MyHelpers extends View
         return Html::submitButton($label, $options);
     }
 
-    public static function modal(
-        $view,
-        $paramsView = [],
-        $header = '',
-        $label = '',
-        $class = 'btn btn-success',
-        $size = Modal::SIZE_LARGE
-    )
+    /**
+     * Renderiza las etiquetas de apertura de un Modal.
+     * @param  [type] $header Titulo de cabecera.
+     * @param  [type] $label  Nombre del botón.
+     * @param  [type] $class  Clase del estilo del botón.
+     * @param  [type] $size   Tamaño del modal.
+     */
+    public static function modal_begin($header, $label, $class,
+        $size = Modal::SIZE_LARGE)
     {
-
         return Modal::begin([
             'header'=>$header,
             'toggleButton'=>[
                 'label'=>$label,
-                'class'=>$class,
+                'class'=>'btn btn-xs btn-default'
             ],
             'size'=>$size
         ]);
-            $this->render($view, $paramsView);
-
-        Modal::end();
     }
+
+    /**
+     * Renderiza las etiquetas de cierre de un Modal.
+     * @return [type] [description]
+     */
+    public static function modal_end()
+    {
+        return Modal::end();
+    }
+
 }

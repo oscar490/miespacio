@@ -71,9 +71,11 @@ class TarjetasController extends Controller
         $model = new Tarjetas();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
             return $this->renderAjax('/tableros/listas_tablero', [
                 'model'=>$model->lista->tablero,
                 'tarjeta' => new Tarjetas(),
+                'adjunto'=>new Adjuntos(),
             ]);
         }
 
@@ -163,11 +165,15 @@ class TarjetasController extends Controller
      */
     public function actionDelete($id)
     {
-        $tablero = $this->findModel($id)->tablero;
+        $tablero = $this->findModel($id)->lista->tablero;
 
         $this->findModel($id)->delete();
 
-        return $this->redirect(['tableros/view', 'id'=>$tablero->id]);
+        return $this->renderAjax('/tableros/listas_tablero', [
+            'model'=>$tablero,
+            'tarjeta' => new Tarjetas(),
+            'adjunto'=>new Adjuntos(),
+        ]);
     }
 
     /**

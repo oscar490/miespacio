@@ -79,6 +79,7 @@ $this->registerJS($js);
             <?= $this->render('listas_tablero', [
                 'model'=>$model,
                 'tarjeta'=>$tarjeta,
+                'adjunto'=>$adjunto,
             ]) ?>
         </div>
     </div>
