@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use app\components\MyHelpers;
 use yii\helpers\Url;
 
-echo MyHelpers::alert('Información');
+
 
 $this->registerJsFile(
     '/js/jquery-ui/jquery-ui.js',
