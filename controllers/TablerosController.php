@@ -53,7 +53,7 @@ class TablerosController extends Controller
     }
 
     /**
-     * Displays a single Tableros model.
+     * Muestra el contenido de un tablero.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -73,6 +73,22 @@ class TablerosController extends Controller
             'adjunto'=>new Adjuntos([
                 'scenario'=>Adjuntos::ESCENARIO_FILE,
             ]),
+        ]);
+    }
+
+    /**
+     * Renderiza el contenido de un tablero.
+     * @param  int $id ID del tablero.
+     * @return [type]     [description]
+     */
+    public function actionRenderContenido($id)
+    {
+        $model = $this->findModel($id);
+
+        return $this->renderAjax('listas_tablero', [
+            'model'=>$model,
+            'tarjeta' => new Tarjetas(),
+            'adjunto'=>new Adjuntos(),
         ]);
     }
 
@@ -168,8 +184,4 @@ class TablerosController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    public function actionPrueba()
-    {
-        return $this->render('prueba');
-    }
 }

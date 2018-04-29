@@ -1,25 +1,42 @@
-$(document).ready(function() {
+/** menu_view.js **/
 
-    $('div#header_menu').on('click', function() {
+//  Renderización de listas.
+var func_success_list_create = function (data) {
+
+    let form = $('#form_lista');
+    let input = form.find('input#denominacion');
+
+    $('div#contenedor_general').html(data);
+
+    input.val('');
+    input.parent().removeClass('has-success');
+    form.parent().hide();
+
+}
+
+
+/**
+ * Muestra ú oculta el menú de creación de lista y el de
+ * las propiedades del tablero.
+ */
+function iteracionMenu() {
+    let header_menu = $('div#header_menu');
+
+    header_menu.on('click', function() {
         $(this).next().slideToggle();
     })
+}
 
-    $('#form_lista').on('beforeSubmit', function() {
-        let form = $(this);
-        let contenedor = $('div#contenedor_general');
+/**
+ * Usando AJAX, crea una lista.
+ * @param  {[type]} url_p Dirección URL para realizar la petición.
+ */
+function createLista(url_p) {
 
-        if (form.find('.has-error').length) {
-            return false;
-        }
+    let form = $('#form_lista');
+    let url = url_p;
 
-        sendAjaxRenderizar(url_create, 'POST', form, contenedor);
+    //  js/iteracion.js
+    validarForm(form, url, 'POST', func_success_list_create);
 
-        let input = form.find('input#denominacion');
-
-        input.val('');
-        input.parent().removeClass('has-success');
-
-        return false;
-    })
-
-})
+}

@@ -71,8 +71,11 @@ class TarjetasController extends Controller
         $model = new Tarjetas();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->renderAjax('/tableros/vista_tarjetas', [
-                'model'=>$model->lista,
+
+            return $this->renderAjax('/tableros/listas_tablero', [
+                'model'=>$model->lista->tablero,
+                'tarjeta' => new Tarjetas(),
+                'adjunto'=>new Adjuntos(),
             ]);
         }
 
@@ -104,12 +107,6 @@ class TarjetasController extends Controller
             return ActiveForm::validate($model);
         }
 
-        $model->load(Yii::$app->request->post());
-        $model->save();
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
     public function actionUpdateAjax($id)
@@ -136,6 +133,12 @@ class TarjetasController extends Controller
         ]);
     }
 
+    /**
+     * Modifica la lista a la que pertenece una tarjeta.
+     * @param  int $id_tarjeta ID de la tarjeta
+     * @return bool            True o false si se ha guardado
+     *                         la modificación.
+     */
     public function actionUpdateLista($id_tarjeta)
     {
         $model = $this->findModel($id_tarjeta);
@@ -156,11 +159,15 @@ class TarjetasController extends Controller
      */
     public function actionDelete($id)
     {
-        $tablero = $this->findModel($id)->tablero;
+        $tablero = $this->findModel($id)->lista->tablero;
 
         $this->findModel($id)->delete();
 
-        return $this->redirect(['tableros/view', 'id'=>$tablero->id]);
+        return $this->renderAjax('/tableros/listas_tablero', [
+            'model'=>$tablero,
+            'tarjeta' => new Tarjetas(),
+            'adjunto'=>new Adjuntos(),
+        ]);
     }
 
     /**

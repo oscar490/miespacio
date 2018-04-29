@@ -9,36 +9,30 @@ use app\components\MyHelpers;
 /* @var $model app\models\Listas */
 /* @var $form yii\widgets\ActiveForm */
 
-
-
 ?>
 
-<div class="listas-form">
+<?php $form = ActiveForm::begin([
+    'action'=>['listas/validate-ajax'],
+    'enableAjaxValidation' => true,
+    'id' => 'form_lista'
+]); ?>
 
-    <?php $form = ActiveForm::begin([
-        'action'=>['listas/validate-ajax'],
-        'enableAjaxValidation' => true,
-        'id' => 'form_lista'
-    ]); ?>
+    <!-- Denominación -->
+    <?= $form->field($model, 'denominacion', ['enableAjaxValidation' => true])
+        ->textInput([
+            'maxlength' => true,
+            'placeholder'=>'Título de la lista'
+        ])->label(false) ?>
 
+    <!-- ID del Tablero -->
+    <?= Html::hiddenInput('tablero_id', $tablero->id) ?>
 
-        <?= $form->field($model, 'denominacion', ['enableAjaxValidation' => true])
-            ->textInput([
-                'maxlength' => true,
-                'placeholder'=>'Título de la lista'
-            ])->label(false) ?>
+    <!-- Botón de envio -->
+    <?=
+        MyHelpers::submit($label, [
+            'class'=>'btn btn-success btn-block',
+            'id'=>'btn_create_list'
+        ]);
+    ?>
 
-        <?= Html::hiddenInput('tablero_id', $tablero->id) ?>
-
-        <?=
-            MyHelpers::submit('Añadir lista', [
-                'class'=>'btn btn-success btn-block',
-                'id'=>'btn_create_list'
-            ]);
-        ?>
-
-
-
-    <?php ActiveForm::end(); ?>
-
-</div>
+<?php ActiveForm::end(); ?>

@@ -6,16 +6,18 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
+$this->registerJsFile(
+    '/js/tarjeta.js',
+    ['depends'=>[\yii\web\JqueryAsset::className()]]
+);
+
 $url_create_tarjeta = Url::to(['tarjetas/create']);
 $js = <<<EOT
     $(document).ready(function() {
         let form = $("#form_tarjeta_$lista->id");
         let url = '$url_create_tarjeta';
-        let selector = $("div[data-key='$lista->id'] div.contenido_lista");
-        let input = form.find('#denominacion');
 
-        validarForm(form, url, 'POST', selector, input);
-
+        createTarjeta('$url_create_tarjeta', form);
     })
 EOT;
 
@@ -27,4 +29,6 @@ $this->registerJs($js);
     'model' => $model,
     'lista' => $lista,
     'label'=>'Crear',
+    'id'=>"form_tarjeta_$lista->id",
+    'action'=>['tarjetas/validate-ajax', 'id'=>$model->id]
 ]) ?>

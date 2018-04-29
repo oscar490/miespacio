@@ -35,6 +35,7 @@ class Tarjetas extends \yii\db\ActiveRecord
             [['denominacion', 'lista_id'], 'required'],
             [['lista_id'], 'integer'],
             [['denominacion', 'descripcion'], 'string', 'max' => 40],
+            [['descripcion'], 'default'],
             [
                 ['denominacion', 'lista_id'],
                 'unique',
@@ -59,6 +60,15 @@ class Tarjetas extends \yii\db\ActiveRecord
             'id' => 'ID',
             'denominacion' => 'Nombre de la tarjeta',
         ];
+    }
+
+    /**
+     * Devuelve true o false en caso si tiene o no descripción.
+     * @return [type] [description]
+     */
+    public function getContieneDescripcion()
+    {
+        return $this->descripcion !== null;
     }
 
     public function formName()
