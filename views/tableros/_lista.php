@@ -8,6 +8,8 @@ use yii\helpers\Html;
 use app\components\MyHelpers;
 use yii\helpers\Url;
 
+echo MyHelpers::alert('Información');
+
 $this->registerJsFile(
     '/js/jquery-ui/jquery-ui.js',
     ['depends'=>[\yii\web\JqueryAsset::className()]]
@@ -24,13 +26,14 @@ $this->registerCssFile(
 
 
 $url_update = Url::to(['tarjetas/update-lista']);
+$url_content = Url::to(['tableros/render-contenido', 'id'=>$lista->tablero->id]);
 
 $js = <<<EOT
     $(document).ready(function() {
         let selector = $("#form_create_tarjeta_$lista->id").parent()
             .find('#header_lista_titulo');
 
-        efectoSortable('$url_update');
+        efectoSortable('$url_update', '$url_content');
         iteracionFormTarjeta(selector);
     })
 EOT;

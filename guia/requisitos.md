@@ -93,7 +93,7 @@
 
 | **R11**     | **Modificar tableros.**           |
 | --------------: | :------------------- |
-| **Descripción** | El usuario autenticado podrá modificar un tablero, ya creado de antes, accediendo a su contenido. Podrá modificar su nombre, su color de fondo y en que equipo se encuentra.             |
+| **Descripción** | El usuario autenticado podrá modificar un tablero, ya creado de antes, accediendo a su contenido. Podrá modificar su nombre y en que equipo se encuentra.             |
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
@@ -115,7 +115,7 @@
 | **Prioridad**   | Opcional           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
-| **Entrega**     | v1             |
+| **Entrega**     | v2             |
 | **Incidencia**  | [13](https://github.com/oscar490/miespacio/issues/13) |
 
 | **R14**     | **Mostrar tableros.**           |
@@ -174,7 +174,7 @@
 
 | **R20**     | **Modificar tarjetas.**           |
 | --------------: | :------------------- |
-| **Descripción** | Se podrá modificar el nombre de dicha tarjeta, que se encuentra creado en el tablero, por medio de un formulario.             |
+| **Descripción** | Se podrá modificar el nombre y la descripción de dicha tarjeta, que se encuentra creado en el tablero, por medio de un formulario.             |
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Fácil         |
@@ -712,6 +712,42 @@
 | **Entrega**     | v3             |
 | **Incidencia**  | [79](https://github.com/oscar490/miespacio/issues/79) |
 
+| **R80**     | **Añadir listas.**           |
+| --------------: | :------------------- |
+| **Descripción** | Se dará la posibilidad de añadir listas en el contenido del tablero. Cada lista contendrá un conjunto de tarjetas. Por medio de un formulario donde se indique el nombre de la lista,l dicho formulario estará en el contenido del tablero.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+| **Incidencia**  | [80](https://github.com/oscar490/miespacio/issues/113) |
+
+| **R81**     | **Modificar listas.**           |
+| --------------: | :------------------- |
+| **Descripción** | Se podrá modificar una lista por medio de un formulario, en el contenido del tablero.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+| **Incidencia**  | [81](https://github.com/oscar490/miespacio/issues/114) |
+
+| **R82**     | **Eliminar listas.**           |
+| --------------: | :------------------- |
+| **Descripción** | Se podrá eliminar la lista mediante un botón de eliminación, colocado al lado del nombre de la lista.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+| **Incidencia**  | [82](https://github.com/oscar490/miespacio/issues/115) |
+
+| **R83**     | **Mostrar listas.**           |
+| --------------: | :------------------- |
+| **Descripción** | Se podrá mostrar las diferentes listas dentro del contenido del tablero. Cada lista contendrá en su interior un conjunto de tarjetas que pertenezcan a esa lista.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+| **Incidencia**  | [83](https://github.com/oscar490/miespacio/issues/116) |
+
 
 ## Cuadro resumen
 
@@ -796,3 +832,7 @@
 | (**R77**) Compartir contenidos de tarjetas por redes sociales. | Opcional | Funcional | Media | v3 | [77](https://github.com/oscar490/miespacio/issues/77) |
 | (**R78**) Añadir “Me gusta”. | Opcional | Funcional | Media | v3 | [78](https://github.com/oscar490/miespacio/issues/78) |
 | (**R79**) Añadir cita. | Opcional | Funcional | Media | v3 | [79](https://github.com/oscar490/miespacio/issues/79) |
+| (**R80**) Añadir listas. | Importante | Funcional | Media | v2 | [80](https://github.com/oscar490/miespacio/issues/113) |
+| (**R81**) Modificar listas. | Importante | Funcional | Media | v2 | [81](https://github.com/oscar490/miespacio/issues/114) |
+| (**R82**) Eliminar listas. | Importante | Funcional | Media | v2 | [82](https://github.com/oscar490/miespacio/issues/115) |
+| (**R83**) Mostrar listas. | Importante | Funcional | Media | v3 | [83](https://github.com/oscar490/miespacio/issues/116) |

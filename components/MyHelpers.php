@@ -105,4 +105,18 @@ class MyHelpers extends View
         return Modal::end();
     }
 
+
+    public static function alert($titulo)
+    {
+        return Dialog::widget([
+            'dialogDefaults'=>[
+                Dialog::DIALOG_ALERT => [
+                    'type'=>Dialog::TYPE_INFO,
+                    'title'=>$titulo,
+                    'buttonLabel'=>MyHelpers::icon('glyphicon glyphicon-ok')
+                ],
+            ],
+        ]);
+    }
+
 }

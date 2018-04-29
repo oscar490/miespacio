@@ -77,6 +77,22 @@ class TablerosController extends Controller
     }
 
     /**
+     * Renderiza el contenido de un tablero.
+     * @param  int $id ID del tablero.
+     * @return [type]     [description]
+     */
+    public function actionRenderContenido($id)
+    {
+        $model = $this->findModel($id);
+
+        return $this->renderAjax('listas_tablero', [
+            'model'=>$model,
+            'tarjeta' => new Tarjetas(),
+            'adjunto'=>new Adjuntos(),
+        ]);
+    }
+
+    /**
      * Renderiza una vista de los tableros de un equipo.
      * pertenecen a un equipo.
      * @param  integer $id_equipo Identificador del equipo.
