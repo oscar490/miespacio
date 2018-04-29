@@ -14,7 +14,7 @@ div[id^='contenedor_lista'] {
     display: none;
 }
 
-div.panel-footer {
+div[id^='form_create_tarjeta'] {
     display: none;
 }
 

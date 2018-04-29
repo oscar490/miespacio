@@ -107,12 +107,6 @@ class TarjetasController extends Controller
             return ActiveForm::validate($model);
         }
 
-        $model->load(Yii::$app->request->post());
-        $model->save();
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
     public function actionUpdateAjax($id)

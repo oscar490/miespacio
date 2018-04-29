@@ -61,6 +61,15 @@ class Tarjetas extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * Devuelve true o false en caso si tiene o no descripción.
+     * @return [type] [description]
+     */
+    public function getContieneDescripcion()
+    {
+        return $this->descripcion !== null;
+    }
+
     public function formName()
     {
         return '';

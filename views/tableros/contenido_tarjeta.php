@@ -11,7 +11,8 @@ use yii\helpers\Html;
 ?>
 <!-- Modal contenido tarjeta -->
 <?php MyHelpers::modal_begin(
-        'Contenido tarjeta',
+        MyHelpers::icon('glyphicon glyphicon-info-sign') .
+        ' ' . '<strong>Contenido de tarjeta</strong>',
         MyHelpers::icon('glyphicon glyphicon-eye-open'),
         'btn-xs btn-default'
 ); ?>
@@ -22,7 +23,6 @@ use yii\helpers\Html;
     ]) ?>
 
 <?php MyHelpers::modal_end() ?>
-
 
 <!-- Botón de eliminar tarjeta -->
 <?=

@@ -45,14 +45,19 @@ $this->registerJs($js);
         <!-- Título de la lista -->
         <div class='panel-heading'>
             <div class='row'>
-                <div class='col-md-8'>
-                    <?=
-                        MyHelpers::icon('glyphicon glyphicon-th-list') . ' ' .
-                        Html::encode($lista->denominacion)
-                    ?>
+                <div class='col-md-11'>
+                    <strong>
+                        <?=
+                            MyHelpers::icon('glyphicon glyphicon-th-list') . ' ' .
+                            Html::encode($lista->denominacion)
+                        ?>
+                    </strong>
+                    <small>
+                        (click aquí para crear tarjeta)
+                    </small>
                 </div>
-                <div class='col-md-4'>
-                    
+                <div class='col-md-1'>
+
                 </div>
             </div>
         </div>

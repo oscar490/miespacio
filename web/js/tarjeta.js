@@ -5,7 +5,9 @@ var func_success_tarjeta = function (data) {
     $('div#contenedor_general').html(data);
 }
 
-
+var func_success_tarjeta_update = function (data) {
+    $('div.modal-body').html(data);
+}
 
 /**
  * Eliminación de tarjeta por AJAX.
@@ -25,6 +27,7 @@ function createTarjeta(url_send, form_p) {
 }
 
 function updateTarjeta(url_send, form_p) {
-
-    validarForm(form_p, url_send, 'POST', func_success_tarjeta);
+    
+    //  js/iteracion.js
+    validarForm(form_p, url_send, 'POST', func_success_tarjeta_update);
 }

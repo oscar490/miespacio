@@ -14,7 +14,23 @@ $this->registerJsFile(
     ['depends'=>[\yii\web\JqueryAsset::className()]]
 );
 
-$url = Url::to(['tarjetas/update-ajax', 'id' => $model->id]);
-$lista = $model->lista;
+$url_update_tarjeta = Url::to(['tarjetas/update-ajax', 'id'=>$model->id]);
+$js = <<<EOT
+    $(document).ready(function() {
+        let form_update_tarjeta = $("#form_update_tarjeta_$model->id");
 
+        updateTarjeta('$url_update_tarjeta', form_update_tarjeta);
+    })
+EOT;
+
+$this->registerJs($js);
+$lista = $model->lista;
 ?>
+
+<?= $this->render('_form', [
+    'model'=>$model,
+    'lista'=>$lista,
+    'label'=>'Modificar',
+    'id'=>"form_update_tarjeta_$model->id",
+    'action'=>['tarjetas/update', 'id'=>$model->id],
+]) ?>

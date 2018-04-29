@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use app\components\MyHelpers;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Adjuntos */
@@ -33,16 +34,14 @@ EOT;
 $this->registerJs($js);
 ?>
 <div class='panel panel-default'>
-    <div class='panel-heading'>
-        <p>
+    <div id='header_form_adjunto_<?= $tarjeta->id ?>'class='panel-heading'>
+        <strong>
             <?=
-                Html::tag(
-                    'span',
-                    '',
-                    ['class'=>'glyphicon glyphicon-link']
-                ) . ' Adjuntar un enlace'
+                MyHelpers::icon('glyphicon glyphicon-link') .
+                ' ' . 'Adjuntar un enlace'
             ?>
-        </p>
+        </strong>
+        <small>(click aquí)</small>
     </div>
     <div class='panel-body'>
         <?= $this->render('_form', [

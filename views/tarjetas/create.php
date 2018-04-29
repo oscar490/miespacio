@@ -29,4 +29,6 @@ $this->registerJs($js);
     'model' => $model,
     'lista' => $lista,
     'label'=>'Crear',
+    'id'=>"form_tarjeta_$lista->id",
+    'action'=>['tarjetas/validate-ajax', 'id'=>$model->id]
 ]) ?>
