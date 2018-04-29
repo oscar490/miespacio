@@ -15,11 +15,19 @@ $this->registerJsFile(
 );
 
 $url_update_tarjeta = Url::to(['tarjetas/update-ajax', 'id'=>$model->id]);
+$url_render_listas = Url::to([
+    'listas/render-listas',
+    'id_tablero'=>$model->lista->tablero->id]);
 $js = <<<EOT
     $(document).ready(function() {
         let form_update_tarjeta = $("#form_update_tarjeta_$model->id");
 
-        updateTarjeta('$url_update_tarjeta', form_update_tarjeta);
+        updateTarjeta(
+            '$url_update_tarjeta',
+            form_update_tarjeta,
+            '$model->id',
+            '$url_render_listas'
+        );
     })
 EOT;
 

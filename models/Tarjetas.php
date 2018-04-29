@@ -35,6 +35,7 @@ class Tarjetas extends \yii\db\ActiveRecord
             [['denominacion', 'lista_id'], 'required'],
             [['lista_id'], 'integer'],
             [['denominacion', 'descripcion'], 'string', 'max' => 40],
+            [['descripcion'], 'default'],
             [
                 ['denominacion', 'lista_id'],
                 'unique',

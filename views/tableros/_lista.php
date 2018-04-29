@@ -28,7 +28,7 @@ $url_update = Url::to(['tarjetas/update-lista']);
 $js = <<<EOT
     $(document).ready(function() {
         let selector = $("#form_create_tarjeta_$lista->id").parent()
-            .find('.panel-heading');
+            .find('#header_lista_titulo');
 
         efectoSortable('$url_update');
         iteracionFormTarjeta(selector);
@@ -39,11 +39,11 @@ $this->registerJs($js);
 
 ?>
 
-<!-- Contenido de la Lista -->
+
 <div class='col-md-4'>
     <div id="contenedor_lista_<?= $lista->id ?>" class='panel panel-default'>
         <!-- Título de la lista -->
-        <div class='panel-heading'>
+        <div id="header_lista_titulo" class='panel-heading'>
             <div class='row'>
                 <div class='col-md-11'>
                     <strong>
@@ -70,7 +70,7 @@ $this->registerJs($js);
             ]) ?>
         </div>
 
-        <!-- Formulario para crear lista -->
+        <!-- Formulario para crear tarjeta -->
         <div id="form_create_tarjeta_<?= $lista->id ?>" class='panel-footer'>
             <?= $this->render('/tarjetas/create', [
                 'model'=>$tarjeta,

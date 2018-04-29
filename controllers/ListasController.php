@@ -12,6 +12,7 @@ use yii\web\Response;
 use yii\widgets\ActiveForm;
 use app\models\Tarjetas;
 use app\models\Adjuntos;
+use app\models\Tableros;
 
 /**
  * ListasController implements the CRUD actions for Listas model.
@@ -92,6 +93,11 @@ class ListasController extends Controller
             ]);
         }
 
+    }
+
+    public function actionRenderListas($id_tablero)
+    {
+        return $this->redirect(['tableros/view', 'id'=>$id_tablero]);
     }
 
     /**

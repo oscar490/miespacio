@@ -8,10 +8,10 @@ use yii\helpers\Html;
 
 ?>
 
-<div class='panel panel-default'>
+<div id="panel_descri_tarjeta_<?= $tarjeta->id ?>" class='panel panel-default'>
 
     <!-- Cabecera de descripción -->
-    <div id="header_descri_tarjeta_<?= $tarjeta->id ?> "class='panel-heading'>
+    <div class='panel-heading'>
         <strong>
             <?=
                 MyHelpers::icon('glyphicon glyphicon-align-left') .
