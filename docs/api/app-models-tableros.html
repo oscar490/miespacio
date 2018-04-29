@@ -6,7 +6,7 @@
     <meta name="language" content="en" />
         <link href="./assets/c4e409e4/css/bootstrap.css" rel="stylesheet">
 <link href="./assets/54cfe0ea/solarized_light.css" rel="stylesheet">
-<link href="./assets/6635efe4/style.css" rel="stylesheet">
+<link href="./assets/edbf93c8/style.css" rel="stylesheet">
 <script src="./assets/5be09766/jquery.js"></script>
 <script src="./assets/c4e409e4/js/bootstrap.js"></script>
 <script src="./assets/e4e89636/jssearch.js"></script>    <title>Tableros, app\models\Tableros - API del proyecto</title>
@@ -41,6 +41,7 @@
 <a class="list-group-item" href="#navigation-49" data-toggle="collapse" data-parent="#navigation">app\controllers <b class="caret"></b></a><div id="navigation-49" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-controllers-adjuntoscontroller.html">AdjuntosController</a>
 <a class="list-group-item" href="./app-controllers-datosusuarioscontroller.html">DatosUsuariosController</a>
 <a class="list-group-item" href="./app-controllers-equiposcontroller.html">EquiposController</a>
+<a class="list-group-item" href="./app-controllers-listascontroller.html">ListasController</a>
 <a class="list-group-item" href="./app-controllers-sitecontroller.html">SiteController</a>
 <a class="list-group-item" href="./app-controllers-tableroscontroller.html">TablerosController</a>
 <a class="list-group-item" href="./app-controllers-tarjetascontroller.html">TarjetasController</a>
@@ -53,6 +54,8 @@
 <a class="list-group-item" href="./app-models-equipos.html">Equipos</a>
 <a class="list-group-item" href="./app-models-equipossearch.html">EquiposSearch</a>
 <a class="list-group-item" href="./app-models-establecerpasswordform.html">EstablecerPasswordForm</a>
+<a class="list-group-item" href="./app-models-listas.html">Listas</a>
+<a class="list-group-item" href="./app-models-listassearch.html">ListasSearch</a>
 <a class="list-group-item" href="./app-models-loginform.html">LoginForm</a>
 <a class="list-group-item" href="./app-models-subidassearch.html">SubidasSearch</a>
 <a class="list-group-item active" href="./app-models-tableros.html">Tableros</a>
@@ -129,10 +132,11 @@
         <td>List of behaviors attached to this component</td>
         <td><a href="yii-base-component.html">yii\base\Component</a></td>
     </tr>
-            <tr id="$contieneTarjetas">
-        <td><a href="app-models-tableros.html#$contieneTarjetas-detail">$contieneTarjetas</a></td>
-        <td></td>
-        <td></td>
+            <tr id="$contieneListas">
+        <td><a href="app-models-tableros.html#$contieneListas-detail">$contieneListas</a></td>
+        <td><a href="http://www.php.net/language.types.boolean">boolean</a></td>
+        <td>True si tiene listas creadas, false en
+                caso contrario</td>
         <td><a href="app-models-tableros.html">app\models\Tableros</a></td>
     </tr>
             <tr class="inherited" id="$dirtyAttributes">
@@ -171,6 +175,12 @@
         <td>An iterator for traversing the items in the list.</td>
         <td><a href="yii-base-model.html">yii\base\Model</a></td>
     </tr>
+            <tr id="$listas">
+        <td><a href="app-models-tableros.html#$listas-detail">$listas</a></td>
+        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
+        <td></td>
+        <td><a href="app-models-tableros.html">app\models\Tableros</a></td>
+    </tr>
             <tr class="inherited" id="$oldAttributes">
         <td><a href="yii-db-baseactiverecord.html#$oldAttributes-detail">$oldAttributes</a></td>
         <td><a href="http://www.php.net/language.types.array">array</a></td>
@@ -200,12 +210,6 @@
         <td><a href="http://www.php.net/language.types.string">string</a></td>
         <td>The scenario that this model is in.</td>
         <td><a href="yii-base-model.html">yii\base\Model</a></td>
-    </tr>
-            <tr id="$tarjetas">
-        <td><a href="app-models-tableros.html#$tarjetas-detail">$tarjetas</a></td>
-        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
-        <td></td>
-        <td><a href="app-models-tableros.html">app\models\Tableros</a></td>
     </tr>
             <tr class="inherited" id="$validators">
         <td><a href="yii-base-model.html#$validators-detail">$validators</a></td>
@@ -482,9 +486,11 @@
         <td>Returns all behaviors attached to this component.</td>
         <td><a href="yii-base-component.html">yii\base\Component</a></td>
     </tr>
-            <tr id="getContieneTarjetas()">
-        <td><a href="app-models-tableros.html#getContieneTarjetas()-detail">getContieneTarjetas()</a></td>
-        <td></td>
+            <tr id="getContieneListas()">
+        <td><a href="app-models-tableros.html#getContieneListas()-detail">getContieneListas()</a></td>
+        <td>Comprueba si el tablero contiene alguna lista creada,
+devolviendo true en caso de que si o false en caso
+contrario.</td>
         <td><a href="app-models-tableros.html">app\models\Tableros</a></td>
     </tr>
             <tr class="inherited" id="getDb()">
@@ -532,6 +538,11 @@
         <td>Returns an iterator for traversing the attributes in the model.</td>
         <td><a href="yii-base-model.html">yii\base\Model</a></td>
     </tr>
+            <tr id="getListas()">
+        <td><a href="app-models-tableros.html#getListas()-detail">getListas()</a></td>
+        <td></td>
+        <td><a href="app-models-tableros.html">app\models\Tableros</a></td>
+    </tr>
             <tr class="inherited" id="getOldAttribute()">
         <td><a href="yii-db-baseactiverecord.html#getOldAttribute()-detail">getOldAttribute()</a></td>
         <td>Returns the old value of the named attribute.</td>
@@ -571,11 +582,6 @@
         <td><a href="yii-db-activerecord.html#getTableSchema()-detail">getTableSchema()</a></td>
         <td>Returns the schema information of the DB table associated with this AR class.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
-    </tr>
-            <tr id="getTarjetas()">
-        <td><a href="app-models-tableros.html#getTarjetas()-detail">getTarjetas()</a></td>
-        <td></td>
-        <td><a href="app-models-tableros.html">app\models\Tableros</a></td>
     </tr>
             <tr class="inherited" id="getValidators()">
         <td><a href="yii-base-model.html#getValidators()-detail">getValidators()</a></td>
@@ -1094,21 +1100,24 @@ This is a shortcut of the expression: OP_INSERT | OP_UPDATE | OP_DELETE.        
 
 <div class="property-doc">
 
-    <div class="detail-header h3" id="$contieneTarjetas-detail">
+    <div class="detail-header h3" id="$contieneListas-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-models-tableros.html#$contieneTarjetas-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        <a class="tool-link hash" href="app-models-tableros.html#$contieneListas-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $contieneTarjetas        <span class="detail-header-tag small">
+        $contieneListas        <span class="detail-header-tag small">
             public                         <em>read-only</em>                         property
                     </span>
     </div>
 
     
     <div class="doc-description">
-        
+        <p>True si tiene listas creadas, false en</p>
+<pre><code class="hljs nginx">            <span class="hljs-title">caso</span> contrario
+</code></pre>
+
             </div>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="app-models-tableros.html#getContieneTarjetas()-detail">getContieneTarjetas</a></strong> ( )</div>
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <strong><a href="app-models-tableros.html#getContieneListas()-detail">getContieneListas</a></strong> ( )</div>
 
 
     <div class="detail-header h3" id="$equipo-detail">
@@ -1128,11 +1137,11 @@ This is a shortcut of the expression: OP_INSERT | OP_UPDATE | OP_DELETE.        
     <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-tableros.html#getEquipo()-detail">getEquipo</a></strong> ( )</div>
 
 
-    <div class="detail-header h3" id="$tarjetas-detail">
+    <div class="detail-header h3" id="$listas-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-models-tableros.html#$tarjetas-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        <a class="tool-link hash" href="app-models-tableros.html#$listas-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        $tarjetas        <span class="detail-header-tag small">
+        $listas        <span class="detail-header-tag small">
             public                         <em>read-only</em>                         property
                     </span>
     </div>
@@ -1142,7 +1151,7 @@ This is a shortcut of the expression: OP_INSERT | OP_UPDATE | OP_DELETE.        
         
             </div>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-tableros.html#getTarjetas()-detail">getTarjetas</a></strong> ( )</div>
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-tableros.html#getListas()-detail">getListas</a></strong> ( )</div>
 
 </div>
 <h2>Method Details</h2>
@@ -1208,11 +1217,11 @@ merge the parent labels with child labels using functions such as <code>array_me
 
 <!--	-->
 
-    <div class="detail-header h3" id="getContieneTarjetas()-detail">
+    <div class="detail-header h3" id="getContieneListas()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-models-tableros.html#getContieneTarjetas()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        <a class="tool-link hash" href="app-models-tableros.html#getContieneListas()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        getContieneTarjetas()
+        getContieneListas()
         <span class="detail-header-tag small">
             public                                    method
                     </span>
@@ -1220,14 +1229,24 @@ merge the parent labels with child labels using functions such as <code>array_me
 
     
     <div class="doc-description">
-        <p><strong></strong></p>
+        <p><strong>Comprueba si el tablero contiene alguna lista creada,
+devolviendo true en caso de que si o false en caso
+contrario.</strong></p>
 
         
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="app-models-tableros.html#getContieneTarjetas()-detail">getContieneTarjetas</a></strong> ( )</td></tr>
-            </table>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <strong><a href="app-models-tableros.html#getContieneListas()-detail">getContieneListas</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.boolean">boolean</a></td>
+                  <td class="param-desc-col"><p>True si tiene listas creadas, false en</p>
+<pre><code class="hljs nginx">            <span class="hljs-title">caso</span> contrario
+</code></pre>
+</td>
+                </tr>
+                                    </table>
 
 <!--	-->
 
@@ -1254,11 +1273,11 @@ merge the parent labels with child labels using functions such as <code>array_me
 
 <!--	-->
 
-    <div class="detail-header h3" id="getTarjetas()-detail">
+    <div class="detail-header h3" id="getListas()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
-        <a class="tool-link hash" href="app-models-tableros.html#getTarjetas()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        <a class="tool-link hash" href="app-models-tableros.html#getListas()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
         
-        getTarjetas()
+        getListas()
         <span class="detail-header-tag small">
             public                                    method
                     </span>
@@ -1272,7 +1291,7 @@ merge the parent labels with child labels using functions such as <code>array_me
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-tableros.html#getTarjetas()-detail">getTarjetas</a></strong> ( )</td></tr>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-tableros.html#getListas()-detail">getListas</a></strong> ( )</td></tr>
             </table>
 
 <!--	-->
@@ -1424,7 +1443,7 @@ if the table is not named after this convention.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sat, 21 Apr 2018 09:39:12 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sun, 29 Apr 2018 22:22:44 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

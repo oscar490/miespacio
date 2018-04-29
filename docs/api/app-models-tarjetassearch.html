@@ -6,7 +6,7 @@
     <meta name="language" content="en" />
         <link href="./assets/c4e409e4/css/bootstrap.css" rel="stylesheet">
 <link href="./assets/54cfe0ea/solarized_light.css" rel="stylesheet">
-<link href="./assets/6635efe4/style.css" rel="stylesheet">
+<link href="./assets/edbf93c8/style.css" rel="stylesheet">
 <script src="./assets/5be09766/jquery.js"></script>
 <script src="./assets/c4e409e4/js/bootstrap.js"></script>
 <script src="./assets/e4e89636/jssearch.js"></script>    <title>TarjetasSearch, app\models\TarjetasSearch - API del proyecto</title>
@@ -41,6 +41,7 @@
 <a class="list-group-item" href="#navigation-58" data-toggle="collapse" data-parent="#navigation">app\controllers <b class="caret"></b></a><div id="navigation-58" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-controllers-adjuntoscontroller.html">AdjuntosController</a>
 <a class="list-group-item" href="./app-controllers-datosusuarioscontroller.html">DatosUsuariosController</a>
 <a class="list-group-item" href="./app-controllers-equiposcontroller.html">EquiposController</a>
+<a class="list-group-item" href="./app-controllers-listascontroller.html">ListasController</a>
 <a class="list-group-item" href="./app-controllers-sitecontroller.html">SiteController</a>
 <a class="list-group-item" href="./app-controllers-tableroscontroller.html">TablerosController</a>
 <a class="list-group-item" href="./app-controllers-tarjetascontroller.html">TarjetasController</a>
@@ -53,6 +54,8 @@
 <a class="list-group-item" href="./app-models-equipos.html">Equipos</a>
 <a class="list-group-item" href="./app-models-equipossearch.html">EquiposSearch</a>
 <a class="list-group-item" href="./app-models-establecerpasswordform.html">EstablecerPasswordForm</a>
+<a class="list-group-item" href="./app-models-listas.html">Listas</a>
+<a class="list-group-item" href="./app-models-listassearch.html">ListasSearch</a>
 <a class="list-group-item" href="./app-models-loginform.html">LoginForm</a>
 <a class="list-group-item" href="./app-models-subidassearch.html">SubidasSearch</a>
 <a class="list-group-item" href="./app-models-tableros.html">Tableros</a>
@@ -135,6 +138,12 @@
         <td>List of behaviors attached to this component</td>
         <td><a href="yii-base-component.html">yii\base\Component</a></td>
     </tr>
+            <tr class="inherited" id="$contieneDescripcion">
+        <td><a href="app-models-tarjetas.html#$contieneDescripcion-detail">$contieneDescripcion</a></td>
+        <td>\app\models\[type]</td>
+        <td>[description]</td>
+        <td><a href="app-models-tarjetas.html">app\models\Tarjetas</a></td>
+    </tr>
             <tr class="inherited" id="$dirtyAttributes">
         <td><a href="yii-db-baseactiverecord.html#$dirtyAttributes-detail">$dirtyAttributes</a></td>
         <td><a href="http://www.php.net/language.types.array">array</a></td>
@@ -165,6 +174,12 @@
         <td>An iterator for traversing the items in the list.</td>
         <td><a href="yii-base-model.html">yii\base\Model</a></td>
     </tr>
+            <tr class="inherited" id="$lista">
+        <td><a href="app-models-tarjetas.html#$lista-detail">$lista</a></td>
+        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
+        <td></td>
+        <td><a href="app-models-tarjetas.html">app\models\Tarjetas</a></td>
+    </tr>
             <tr class="inherited" id="$oldAttributes">
         <td><a href="yii-db-baseactiverecord.html#$oldAttributes-detail">$oldAttributes</a></td>
         <td><a href="http://www.php.net/language.types.array">array</a></td>
@@ -194,12 +209,6 @@
         <td><a href="http://www.php.net/language.types.string">string</a></td>
         <td>The scenario that this model is in.</td>
         <td><a href="yii-base-model.html">yii\base\Model</a></td>
-    </tr>
-            <tr class="inherited" id="$tablero">
-        <td><a href="app-models-tarjetas.html#$tablero-detail">$tablero</a></td>
-        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
-        <td></td>
-        <td><a href="app-models-tarjetas.html">app\models\Tarjetas</a></td>
     </tr>
             <tr class="inherited" id="$validators">
         <td><a href="yii-base-model.html#$validators-detail">$validators</a></td>
@@ -481,6 +490,11 @@
         <td>Returns all behaviors attached to this component.</td>
         <td><a href="yii-base-component.html">yii\base\Component</a></td>
     </tr>
+            <tr class="inherited" id="getContieneDescripcion()">
+        <td><a href="app-models-tarjetas.html#getContieneDescripcion()-detail">getContieneDescripcion()</a></td>
+        <td>Devuelve true o false en caso si tiene o no descripción.</td>
+        <td><a href="app-models-tarjetas.html">app\models\Tarjetas</a></td>
+    </tr>
             <tr class="inherited" id="getDb()">
         <td><a href="yii-db-activerecord.html#getDb()-detail">getDb()</a></td>
         <td>Returns the database connection used by this AR class.</td>
@@ -521,6 +535,11 @@
         <td>Returns an iterator for traversing the attributes in the model.</td>
         <td><a href="yii-base-model.html">yii\base\Model</a></td>
     </tr>
+            <tr class="inherited" id="getLista()">
+        <td><a href="app-models-tarjetas.html#getLista()-detail">getLista()</a></td>
+        <td></td>
+        <td><a href="app-models-tarjetas.html">app\models\Tarjetas</a></td>
+    </tr>
             <tr class="inherited" id="getOldAttribute()">
         <td><a href="yii-db-baseactiverecord.html#getOldAttribute()-detail">getOldAttribute()</a></td>
         <td>Returns the old value of the named attribute.</td>
@@ -560,11 +579,6 @@
         <td><a href="yii-db-activerecord.html#getTableSchema()-detail">getTableSchema()</a></td>
         <td>Returns the schema information of the DB table associated with this AR class.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
-    </tr>
-            <tr class="inherited" id="getTablero()">
-        <td><a href="app-models-tarjetas.html#getTablero()-detail">getTablero()</a></td>
-        <td></td>
-        <td><a href="app-models-tarjetas.html">app\models\Tarjetas</a></td>
     </tr>
             <tr class="inherited" id="getValidators()">
         <td><a href="yii-base-model.html#getValidators()-detail">getValidators()</a></td>
@@ -910,7 +924,7 @@ The previous example would extract "id".</td>
         <td>Finds ActiveRecord instance(s) by the given condition.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
     </tr>
-                                                                                                                                                                        <tr class="inherited" id="insertInternal()">
+                                                                                                                                                                            <tr class="inherited" id="insertInternal()">
         <td><a href="yii-db-activerecord.html#insertInternal()-detail">insertInternal()</a></td>
         <td>Inserts an ActiveRecord into DB without considering transaction.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
@@ -1274,7 +1288,7 @@ are being validated by the validation rules that apply to the scenario.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sat, 21 Apr 2018 09:39:12 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sun, 29 Apr 2018 22:22:44 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {
