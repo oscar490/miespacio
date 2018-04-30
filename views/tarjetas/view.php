@@ -62,9 +62,16 @@ $this->registerJs($js);
 
     <!-- Formulario de adjuntar -->
     <div class='col-md-4'>
+        <!-- Enlace -->
         <?= $this->render('/adjuntos/create', [
             'model'=>$adjunto,
             'tarjeta'=>$model
+        ]) ?>
+
+        <!-- Archivo -->
+        <?= $this->render('form_file', [
+            'model'=>$adjunto,
+            'tarjeta'=>$model,
         ]) ?>
     </div>
 </div>

@@ -12,6 +12,11 @@ use yii\data\ActiveDataProvider;
 /* @var $tableros app\models\Tableros */
 /* @var $tablero_crear app\models\Tableros */
 
+$this->registerJsFile(
+    '/js/equipo.js',
+    ['depends'=>[\yii\web\JqueryAsset::className()]]
+);
+
 $js = <<<EOT
     $(document).ready(function() {
         selector = $('#img_equipo img');

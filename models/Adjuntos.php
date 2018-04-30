@@ -45,7 +45,7 @@ class Adjuntos extends \yii\db\ActiveRecord
                 'default',
                 'value'=>null,
             ],
-    
+
             [
                 ['archivo'],
                 'file',
@@ -82,6 +82,7 @@ class Adjuntos extends \yii\db\ActiveRecord
             'nombre' => 'Nombre (opcional)',
             'url_direccion' => 'Dirección',
             'tarjeta_id' => 'Tarjeta ID',
+            'archivo' => '',
         ];
     }
 
