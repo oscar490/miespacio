@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 use app\components\MyHelpers;
 
 
-echo MyHelpers::confirmacion('Eliminar equipo');
+echo MyHelpers::dialogo();
 
 $urlEliminarEquipo = Url::to(['equipos/delete', 'id'=>$equipo->id]);
 $js = <<<EOT

@@ -63,3 +63,11 @@ $this->registerJs($js);
         ]) ?>
     </div>
 </div>
+
+<div class='row'>
+    <div class='col-md-8'>
+        <?= $this->render('adjuntos_tarjeta',[
+            'model'=>$model,
+        ]) ?>
+    </div>
+</div>

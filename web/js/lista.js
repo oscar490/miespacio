@@ -17,6 +17,15 @@ function efectoSortable(url_tarjeta, url_render) {
     })
 }
 
+/**
+ * Modifica la lista a la que pertenece la tarjeta. Si ya existe
+ * una tarjeta con el mismo nombre en la lista, se notifica por un
+ * mensaje.
+ * @param  {[type]} elem       [description]
+ * @param  {[type]} url_envio  [description]
+ * @param  {[type]} url_render [description]
+ * @return {[type]}            [description]
+ */
 function updateLista(elem, url_envio, url_render) {
 
     let id_tarjeta_p = elem.data('key');
