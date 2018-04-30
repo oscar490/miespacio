@@ -12,6 +12,7 @@ use yii\web\Response;
 use yii\widgets\ActiveForm;
 use yii\web\UploadedFile;
 use app\models\UploadFiles;
+use app\models\Tarjetas;
 
 /**
  * AdjuntosController implements the CRUD actions for Adjuntos model.
@@ -89,6 +90,27 @@ class AdjuntosController extends Controller
             ]);
         }
 
+    }
+
+    public function actionUploadFile($id_tarjeta)
+    {
+        $model = new Adjuntos();
+        $model->archivo = UploadedFile::getInstance($model, 'archivo');
+
+        $upload = new UploadFiles();
+        $upload->nombre_archivo = $model->archivo->name;
+        $upload->archivo = $model->archivo;
+
+        $model->nombre = $upload->nombre_archivo;
+        $model->url_direccion = $upload->upload();
+        $model->tarjeta_id = $id_tarjeta;
+
+        $model->save();
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        return $this->renderAjax('/tarjetas/lista_adjuntos', [
+            'model'=>Tarjetas::findOne($id_tarjeta),
+        ]);
     }
 
     /**

@@ -50,7 +50,7 @@ $this->registerJs($js);
             )
         ?>
     </div>
-    <div class='col-md-3'>
+    <div class='col-md-6'>
         <?php if ($model->nombre !== null): ?>
             <?= Html::encode($model->nombre) ?>
         <?php else: ?>
@@ -59,7 +59,7 @@ $this->registerJs($js);
 
     </div>
     <!-- Botón de ver -->
-    <div class='col-md-4'>
+    <div class='col-md-5'>
         <?=
             Html::a(
                 Html::tag(

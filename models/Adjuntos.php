@@ -55,7 +55,9 @@ class Adjuntos extends \yii\db\ActiveRecord
             [
                 ['archivo'],
                 'required',
-                'on'=>self::ESCENARIO_FILE,
+                'message'=>'No puede estar vacio,
+                se debe seleccionar un archivo.',
+                'on'=>self::ESCENARIO_FILE
             ],
             [
                 ['url_direccion', 'tarjeta_id'],

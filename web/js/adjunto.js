@@ -18,3 +18,16 @@ function createAdjunto(form_p, url_send, id_tarjeta) {
 
     })
 }
+
+function subirArchivo(url_send, form_p, id_tarjeta) {
+    let imagen = $(`div#img_form_file_${id_tarjeta}`).find('img');
+
+
+    uploadFile(url_send, form_p, function(data) {
+        $(`div#lista_adjuntos_${id_tarjeta}`).html(data);
+        imagen.attr('src', 'images/file.png');
+    }, function () {
+
+        imagen.attr('src', 'images/cargando.gif');
+    })
+}

@@ -122,3 +122,34 @@ function sendAjax(url_p, type_p, data_p, success_p = null,
         success: success_p
     });
 }
+
+/**
+ * Valida formulario y envia archivos por AJAX.
+ * @param  {[type]} url_send         Dirección URL para enviar.
+ * @param  {[type]} form_p           Formulario a validar.
+ * @param  {[type]} [success_p=null] Función a realizar si se hace
+ *                                   bién la petición AJAX.
+ */
+function uploadFile(url_send, form_p, success_p = null, beforeSend_p = null) {
+
+    form_p.on('beforeSubmit', function(e) {
+
+        if ($(this).find('.has-error').length) {
+            return false;
+        }
+
+        $.ajax({
+            url: url_send,
+            type: 'POST',
+            enctype: 'multipart/form-data',
+            data: new FormData(this),
+            beforeSend: beforeSend_p,
+            success: success_p,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+        });
+
+        return false;
+    })
+}

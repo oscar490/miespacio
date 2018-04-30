@@ -8,6 +8,7 @@ use yii\widgets\ActiveForm;
 use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
 use yii\bootstrap\Modal;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Tarjetas */
 

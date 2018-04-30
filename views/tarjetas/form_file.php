@@ -8,6 +8,23 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use app\components\MyHelpers;
 
+$url_upload = Url::to(['adjuntos/upload-file', 'id_tarjeta'=>$tarjeta->id]);
+
+$this->registerJsFile(
+    '/js/adjunto.js',
+    ['depends'=>[\yii\web\JqueryAsset::className()]]
+);
+
+$js = <<<EOT
+    $(document).ready(function() {
+        let form_file = $('#form_file_$tarjeta->id');
+
+        subirArchivo('$url_upload', form_file, '$tarjeta->id');
+    })
+EOT;
+
+$this->registerJs($js);
+
 ?>
 
 <div class='panel panel-default'>
@@ -20,7 +37,7 @@ use app\components\MyHelpers;
         </strong>
     </div>
     <div class='panel-body'>
-        <div class='centrado'>
+        <div id='img_form_file_<?= $tarjeta->id ?>' class='centrado'>
             <?= Html::img(
                 'images/file.png',
                 [
