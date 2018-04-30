@@ -134,11 +134,12 @@ DROP TABLE IF EXISTS adjuntos CASCADE;
 
 CREATE TABLE adjuntos
 (
-       id            BIGSERIAL    PRIMARY KEY
+       id            BIGSERIAL     PRIMARY KEY
     ,  nombre        VARCHAR(255)
-    ,  url_direccion VARCHAR(255) NOT NULL
-    ,  tarjeta_id    BIGINT       NOT NULL REFERENCES tarjetas (id) ON DELETE
-                                  CASCADE ON UPDATE CASCADE
+    ,  url_direccion VARCHAR(255)  NOT NULL
+    ,  created_at    TIMESTAMP(0)  NOT NULL DEFAULT LOCALTIMESTAMP
+    ,  tarjeta_id    BIGINT        NOT NULL REFERENCES tarjetas (id) ON DELETE
+                                   CASCADE ON UPDATE CASCADE
     ,  UNIQUE (url_direccion, tarjeta_id)
 );
 

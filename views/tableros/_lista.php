@@ -24,7 +24,7 @@ $this->registerCssFile(
     '/css/lista.css'
 );
 
-
+$url_refrescar = Url::to(['tableros/refrescar', 'id'=>$lista->tablero->id]);
 $url_update = Url::to(['tarjetas/update-lista']);
 $url_content = Url::to(['tableros/render-contenido', 'id'=>$lista->tablero->id]);
 
@@ -33,7 +33,7 @@ $js = <<<EOT
         let selector = $("#form_create_tarjeta_$lista->id").parent()
             .find('#header_lista_titulo');
 
-        efectoSortable('$url_update', '$url_content');
+        efectoSortable('$url_update', '$url_content', '$url_refrescar');
         iteracionFormTarjeta(selector);
     })
 EOT;

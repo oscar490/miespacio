@@ -53,6 +53,11 @@ $this->registerJs($js);
         <?= $this->render('descripcion_tarjeta', [
             'tarjeta'=>$model
         ]) ?>
+
+        <!-- Lista de adjuntos de la tarjeta -->
+        <?= $this->render('adjuntos_tarjeta',[
+            'model'=>$model,
+        ]) ?>
     </div>
 
     <!-- Formulario de adjuntar -->
@@ -60,14 +65,6 @@ $this->registerJs($js);
         <?= $this->render('/adjuntos/create', [
             'model'=>$adjunto,
             'tarjeta'=>$model
-        ]) ?>
-    </div>
-</div>
-
-<div class='row'>
-    <div class='col-md-8'>
-        <?= $this->render('adjuntos_tarjeta',[
-            'model'=>$model,
         ]) ?>
     </div>
 </div>

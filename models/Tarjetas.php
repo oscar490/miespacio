@@ -72,6 +72,11 @@ class Tarjetas extends \yii\db\ActiveRecord
         return $this->descripcion !== null;
     }
 
+    public function getContieneAdjuntos()
+    {
+        return !empty($this->getAdjuntos()->all());
+    }
+
     public function formName()
     {
         return '';

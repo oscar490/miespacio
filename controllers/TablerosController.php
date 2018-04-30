@@ -77,6 +77,20 @@ class TablerosController extends Controller
     }
 
     /**
+     * Renderización de la página.
+     * @param  int $id ID del tablero
+     * @return [type]     [description]
+     */
+    public function actionRefrescar($id)
+    {
+        $model = $this->findModel($id);
+
+        return $this->renderAjax('view', [
+            'model'=>$model
+        ]);
+    }
+
+    /**
      * Renderiza el contenido de un tablero.
      * @param  int $id ID del tablero.
      * @return [type]     [description]

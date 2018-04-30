@@ -66,7 +66,7 @@ class AdjuntosController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionValidateAjax()
     {
         $model = new Adjuntos();
 
@@ -75,47 +75,20 @@ class AdjuntosController extends Controller
             return ActiveForm::validate($model);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
-    public function actionCreateAjax()
+    public function actionCreate()
     {
         $model = new Adjuntos();
-        $model->archivo = UploadedFile::getInstance($model, 'archivo');
 
-        if ($model->archivo !== null) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
 
-            $subida = new UploadFiles([
-                'nombre_archivo'=>$model->archivo->name,
-                'archivo'=>$model->archivo,
+            return $this->renderAjax('/tarjetas/lista_adjuntos', [
+                'model'=>$model->tarjeta,
             ]);
-
-            $model->nombre = $subida->nombre_archivo;
-            $direccion = $subida->upload();
-
-            $direccion = substr($direccion, 0, -1) . '0';
-            $adjunto = Adjuntos::findOne(['nombre'=>$model->nombre]);
-
-            if ($adjunto !== null) {
-                $adjunto->url_direccion = $direccion;
-                $adjunto->save();
-            }
-            $model->url_direccion = $direccion;
-            $model->tarjeta_id = Yii::$app->request->post('tarjeta_id');
-
-        } else {
-            $model->load(Yii::$app->request->post());
-
         }
 
-        $model->save();
-
-        Yii::$app->response->format = Response::FORMAT_JSON;
-        return $this->renderAjax('/tarjetas/lista_adjuntos', [
-            'model'=>$model->tarjeta,
-        ]);
     }
 
     /**

@@ -6,3 +6,8 @@ div[id^='header_form_adjunto'] + div, div[id^='div_update_tarjeta'] {
 .titulo {
     margin-bottom: 20px;
 }
+
+div[id^='lista_adjuntos'] {
+    height: 300px;
+    overflow: scroll;
+}
