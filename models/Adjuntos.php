@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property string $nombre
  * @property string $url_direccion
+ * @property string $tipo
  * @property int $tarjeta_id
  *
  * @property Tarjetas $tarjeta
@@ -51,6 +52,11 @@ class Adjuntos extends \yii\db\ActiveRecord
                 'file',
                 'maxSize'=>1024*1024*2,
                 'on'=>self::ESCENARIO_FILE,
+            ],
+            [
+                ['url_direccion'],
+                'default',
+                'value'=>null
             ],
             [
                 ['archivo'],
@@ -107,5 +113,25 @@ class Adjuntos extends \yii\db\ActiveRecord
     public function getTarjeta()
     {
         return $this->hasOne(Tarjetas::className(), ['id' => 'tarjeta_id'])->inverseOf('adjuntos');
+    }
+
+    /**
+     * Almacena el tipo de archivo adjuntado.
+     * @param  [type] $insert [description]
+     * @return [type]         [description]
+     */
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+
+        if ($this->tipo !== null) {
+            $type = $this->tipo;
+            $indice = strpos($type, '/');
+            $this->tipo = substr($type,0,  $indice);
+        }
+
+        return true;
     }
 }

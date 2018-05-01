@@ -70,9 +70,11 @@ $this->registerJs($js);
         ]) ?>
 
         <!-- Archivo -->
-        <?= $this->render('form_file', [
-            'model'=>$adjunto,
-            'tarjeta'=>$model,
-        ]) ?>
+        <div id='div_form_file_<?= $model->id ?>'>
+            <?= $this->render('form_file', [
+                'model'=>$adjunto,
+                'tarjeta'=>$model,
+            ]) ?>
+        </div>
     </div>
 </div>

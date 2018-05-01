@@ -130,26 +130,17 @@ function sendAjax(url_p, type_p, data_p, success_p = null,
  * @param  {[type]} [success_p=null] Función a realizar si se hace
  *                                   bién la petición AJAX.
  */
-function uploadFile(url_send, form_p, success_p = null, beforeSend_p = null) {
+function sendAjaxFile(url_send, form_p, type_p, success_p = null) {
 
-    form_p.on('beforeSubmit', function(e) {
+    $.ajax({
+        url: url_send,
+        type: type_p,
+        enctype: 'multipart/form-data',
+        data: new FormData(form_p),
+        success: success_p,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+    });
 
-        if ($(this).find('.has-error').length) {
-            return false;
-        }
-
-        $.ajax({
-            url: url_send,
-            type: 'POST',
-            enctype: 'multipart/form-data',
-            data: new FormData(this),
-            beforeSend: beforeSend_p,
-            success: success_p,
-            dataType: 'json',
-            contentType: false,
-            processData: false,
-        });
-
-        return false;
-    })
 }

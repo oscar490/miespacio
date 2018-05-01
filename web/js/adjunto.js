@@ -16,18 +16,46 @@ function createAdjunto(form_p, url_send, id_tarjeta) {
         divs_form.find('input').val('');
         form_p.closest('.panel-body').hide();
 
-    })
+    });
 }
 
-function subirArchivo(url_send, form_p, id_tarjeta) {
-    let imagen = $(`div#img_form_file_${id_tarjeta}`).find('img');
+function subirArchivo(url_send, form_p, id_tarjeta, url_render) {
 
+    let enviando = false;
 
-    uploadFile(url_send, form_p, function(data) {
-        $(`div#lista_adjuntos_${id_tarjeta}`).html(data);
-        imagen.attr('src', 'images/file.png');
-    }, function () {
+    form_p.on('beforeSubmit', function(e) {
 
-        imagen.attr('src', 'images/cargando.gif');
+        if ($(this).find('.has-error').length) {
+            return false;
+        }
+
+        if (!enviando) {
+            enviando = true;
+            
+            $.ajax({
+                url: url_send,
+                type: 'POST',
+                enctype: 'multipart/form-data',
+                data: new FormData(this),
+                success: function(data) {
+                    $(`div#lista_adjuntos_${id_tarjeta}`).html(data);
+
+                    sendAjax(url_render, 'POST', {}, function (data) {
+                        $(`div#div_form_file_${id_tarjeta}`).html(data);
+                    });
+
+                },
+                beforeSend: function() {
+                    let imagen = $(`div#img_form_file_${id_tarjeta}`).find('img');
+                    imagen.attr('src', 'images/cargando.gif');
+
+                },
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+            });
+        }
+
+        return false;
     })
 }

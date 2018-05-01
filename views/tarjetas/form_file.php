@@ -9,6 +9,7 @@ use yii\helpers\Url;
 use app\components\MyHelpers;
 
 $url_upload = Url::to(['adjuntos/upload-file', 'id_tarjeta'=>$tarjeta->id]);
+$url_render_form = Url::to(['tarjetas/render-form-file', 'id'=>$tarjeta->id]);
 
 $this->registerJsFile(
     '/js/adjunto.js',
@@ -19,7 +20,8 @@ $js = <<<EOT
     $(document).ready(function() {
         let form_file = $('#form_file_$tarjeta->id');
 
-        subirArchivo('$url_upload', form_file, '$tarjeta->id');
+        subirArchivo('$url_upload', form_file, '$tarjeta->id',
+            '$url_render_form');
     })
 EOT;
 

@@ -35,6 +35,11 @@ $css = <<<EOT
     #update_adjunto {
         display: none;
     }
+
+    #content_img > img{
+        width: 50px;
+        height: 50px;
+    }
 EOT;
 
 $this->registerCss($css);
@@ -42,11 +47,21 @@ $this->registerJs($js);
 ?>
 
 <div class='row'>
-    <div class='col-md-1'>
+    <div id='content_img' class='col-md-2'>
+        <?php
+            if ($model->tipo === 'image') {
+                $src = $model->url_direccion;
+            } else {
+                $src = 'images/adjunto.png';
+            }
+        ?>
         <?=
             Html::img(
-                'images/adjunto.png',
-                ['alt'=>'adjunto']
+                $src,
+                [
+                    'alt'=>'adjunto',
+                    'class'=>'img-rounded'
+                ]
             )
         ?>
     </div>
@@ -59,7 +74,7 @@ $this->registerJs($js);
 
     </div>
     <!-- Botón de ver -->
-    <div class='col-md-5'>
+    <div class='col-md-4'>
         <?=
             Html::a(
                 Html::tag(
