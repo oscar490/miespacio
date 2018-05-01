@@ -98,7 +98,7 @@ class MyHelpers extends View
             'header'=>$header,
             'toggleButton'=>[
                 'label'=>$label,
-                'class'=>'btn btn-xs btn-default'
+                'class'=>$class,
             ],
             'size'=>$size
         ]);

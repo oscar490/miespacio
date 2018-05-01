@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use kartik\popover\PopoverX;
+use app\components\MyHelpers;
 
 $url_adjunto = Url::to(['adjuntos/delete', 'id'=>$model->id]);
 $js = <<<EOT
@@ -37,58 +38,76 @@ $css = <<<EOT
     }
 
     #content_img > img{
-        width: 50px;
-        height: 50px;
+        width: 80px;
+        height: 80px;
     }
 EOT;
 
 $this->registerCss($css);
 $this->registerJs($js);
+
+switch ($model->tipo) {
+    case 'image':
+        $src = $model->url_direccion;
+        break;
+
+    case null:
+        $src = 'images/enlace.png';
+        break;
+
+    default:
+        $src = 'images/adjunto.png';
+        break;
+}
 ?>
 
 <div class='row'>
+    <!-- Imágen del Adjunto -->
     <div id='content_img' class='col-md-2'>
-        <?php
-            if ($model->tipo === 'image') {
-                $src = $model->url_direccion;
-            } else {
-                $src = 'images/adjunto.png';
-            }
-        ?>
         <?=
             Html::img(
                 $src,
                 [
                     'alt'=>'adjunto',
-                    'class'=>'img-rounded'
+                    'class'=>'img-circle'
                 ]
             )
         ?>
     </div>
-    <div class='col-md-6'>
-        <?php if ($model->nombre !== null): ?>
-            <?= Html::encode($model->nombre) ?>
-        <?php else: ?>
-            <?= Html::encode($model->url_direccion) ?>
-        <?php endif; ?>
 
+    <!-- Nombre del adjunto -->
+    <div class='col-md-6'>
+        <?php
+            if ($model->nombre !== null) {
+                $nombre = $model->nombre;
+            } else {
+                $nombre = $model->url_direccion;
+            }
+        ?>
+        <p>
+            <strong>
+                <?= Html::encode($nombre) ?>
+            </strong>
+            <small>
+                <?=
+                    Yii::$app->formatter->asRelativeTime($model->created_at);
+                ?>
+            </small>
+        </p>
     </div>
     <!-- Botón de ver -->
     <div class='col-md-4'>
-        <?=
-            Html::a(
-                Html::tag(
-                    'span',
-                    '',
-                    ['class'=>'glyphicon glyphicon-eye-open']
-                ),
-                $model->url_direccion,
-                [
-                    'class'=>'btn btn-default',
-                    'target'=>'_blank'
-                ]
-            )
+        <?php
+            MyHelpers::modal_begin(
+                'content',
+                MyHelpers::icon('glyphicon glyphicon-eye-open'),
+                'btn btn-default'
+            );
         ?>
+            <?= $this->render('vista_adjunto', [
+                'adjunto'=>$model,
+            ]) ?>
+        <?php MyHelpers::modal_end() ?>
 
         <!-- Botón de borrar -->
         <?=

@@ -54,11 +54,6 @@ class Adjuntos extends \yii\db\ActiveRecord
                 'on'=>self::ESCENARIO_FILE,
             ],
             [
-                ['url_direccion'],
-                'default',
-                'value'=>null
-            ],
-            [
                 ['archivo'],
                 'required',
                 'message'=>'No puede estar vacio,
@@ -116,7 +111,8 @@ class Adjuntos extends \yii\db\ActiveRecord
     }
 
     /**
-     * Almacena el tipo de archivo adjuntado.
+     * Almacena el tipo de archivo adjuntado. En el caso que ya
+     * exista, lo sobrescribe.
      * @param  [type] $insert [description]
      * @return [type]         [description]
      */
@@ -126,6 +122,11 @@ class Adjuntos extends \yii\db\ActiveRecord
             return false;
         }
 
+        $adjunto = Adjuntos::findOne(['nombre'=>$this->nombre]);
+
+        if ($adjunto !== null) {
+            $adjunto->delete();
+        }
         if ($this->tipo !== null) {
             $type = $this->tipo;
             $indice = strpos($type, '/');
