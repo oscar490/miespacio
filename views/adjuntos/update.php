@@ -6,28 +6,15 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model app\models\Adjuntos */
 
-$url_adjuntos_update = Url::to(['adjuntos/update-ajax', 'id'=>$model->id]);
+$url_adjunto_update = Url::to(['adjuntos/update-ajax', 'id'=>$model->id]);
+$id_tarjeta = $model->tarjeta->id;
+
 $js = <<<EOT
-    $("#form_adjunto_update_$model->id").on('beforeSubmit', function(e) {
-        e.preventDefault();
-        var form = $(this);
-
-        if (form.find('.has-error').length) {
-               return false;
+    validarForm($("#form_adjunto_update_$model->id"),'$url_adjunto_update',
+        'POST', function(data) {
+            $("div#lista_adjuntos_$id_tarjeta").html(data);
         }
-
-        $.ajax({
-            url: '$url_adjuntos_update',
-            type: 'POST',
-            data: form.serialize(),
-            success: function(data) {
-                $("div[data-key='$tarjeta->id'] div#lista_adjunto").html(data);
-            },
-            dataType: 'json'
-        });
-
-        return false;
-    })
+    );
 EOT;
 
 $this->registerJs($js);
@@ -35,17 +22,13 @@ $this->registerJs($js);
 ?>
 
 <div class='panel panel-default'>
-    <div class='panel-heading'>
-        <?=
-            Html::encode('Modificar');
-        ?>
-    </div>
     <div class='panel-body'>
         <?= $this->render('_form', [
             'model' => $model,
-            'action'=>$action,
-            'tarjeta'=>$tarjeta,
+            'action'=>['adjuntos/update', 'id'=>$model->id],
+            'tarjeta'=>$model->tarjeta,
             'id_form' =>"form_adjunto_update_$model->id",
+            'label'=>'Modificar',
         ]) ?>
     </div>
 </div>

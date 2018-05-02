@@ -1,33 +1,25 @@
 <?php
+/* Crear un nuevo adjunto */
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Adjuntos */
+/* @var $tarjeta app\models\Tarjetas */
 
 use yii\helpers\Html;
 use yii\helpers\Url;
 use app\components\MyHelpers;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Adjuntos */
+$url_create_adjunto = Url::to(['adjuntos/create']);
 
-$url = Url::to(['adjuntos/create-ajax']);
+$this->registerJsFile(
+    '/js/adjunto.js',
+    ['depends'=>[\yii\web\JqueryAsset::className()]]
+);
 
 $js = <<<EOT
-    $("#form_adjunto_create_$tarjeta->id").on('beforeSubmit', function() {
-        var form = $(this);
-
-        if (form.find('.has-error').length) {
-            console.log('entra');
-            return false;
-        }
-
-        $.ajax({
-            url: '$url',
-            type: 'POST',
-            data: form.serialize(),
-            success: function(data) {
-                $("div[data-key='$tarjeta->id'] div#lista_adjunto").html(data);
-            }
-        });
-
-        return false;
+    $(document).ready(function() {
+        let form_adjunto = $("#form_adjunto_create_$tarjeta->id");
+        createAdjunto(form_adjunto, '$url_create_adjunto', '$tarjeta->id');
     })
 EOT;
 
@@ -47,8 +39,9 @@ $this->registerJs($js);
         <?= $this->render('_form', [
             'model' => $model,
             'tarjeta'=>$tarjeta,
-            'action'=>['adjuntos/create'],
+            'action'=>['adjuntos/validate-ajax'],
             'id_form'=>"form_adjunto_create_$tarjeta->id",
+            'label'=>'Adjuntar',
         ]) ?>
     </div>
 </div>

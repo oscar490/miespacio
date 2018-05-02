@@ -32,8 +32,6 @@ class UploadFiles extends Model
         $nombre = Yii::getAlias("@uploads/$this->nombre_archivo");
         $res = $this->archivo->saveAs($nombre);
 
-
-
         return $this->uploadDropbox();
     }
 
@@ -63,7 +61,6 @@ class UploadFiles extends Model
         );
 
         return  substr($resultado['url'], 0, -1) . '1';
-
 
     }
 }

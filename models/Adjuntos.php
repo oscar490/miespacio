@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property string $nombre
  * @property string $url_direccion
+ * @property string $tipo
  * @property int $tarjeta_id
  *
  * @property Tarjetas $tarjeta
@@ -45,7 +46,7 @@ class Adjuntos extends \yii\db\ActiveRecord
                 'default',
                 'value'=>null,
             ],
-    
+
             [
                 ['archivo'],
                 'file',
@@ -55,7 +56,9 @@ class Adjuntos extends \yii\db\ActiveRecord
             [
                 ['archivo'],
                 'required',
-                'on'=>self::ESCENARIO_FILE,
+                'message'=>'No puede estar vacio,
+                se debe seleccionar un archivo.',
+                'on'=>self::ESCENARIO_FILE
             ],
             [
                 ['url_direccion', 'tarjeta_id'],
@@ -82,6 +85,7 @@ class Adjuntos extends \yii\db\ActiveRecord
             'nombre' => 'Nombre (opcional)',
             'url_direccion' => 'Dirección',
             'tarjeta_id' => 'Tarjeta ID',
+            'archivo' => '',
         ];
     }
 
@@ -104,5 +108,28 @@ class Adjuntos extends \yii\db\ActiveRecord
     public function getTarjeta()
     {
         return $this->hasOne(Tarjetas::className(), ['id' => 'tarjeta_id'])->inverseOf('adjuntos');
+    }
+
+    /**
+     * Almacena el tipo de archivo adjuntado. En el caso que ya
+     * exista, lo sobrescribe.
+     * @param  [type] $insert [description]
+     * @return [type]         [description]
+     */
+    public function beforeSave($insert)
+    {
+
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+
+        $adjunto = Adjuntos::findOne(['nombre'=>$this->nombre]);
+
+        if ($adjunto !== null) {
+            $adjunto->delete();
+        }
+        
+
+        return true;
     }
 }

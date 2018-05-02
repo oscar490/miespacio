@@ -40,16 +40,24 @@ class MyHelpers extends View
      * realizar una acción de eliminar.
      * @return [type] [description]
      */
-    public static function confirmacion($titulo)
+    public static function dialogo()
     {
         return Dialog::widget([
             'dialogDefaults'=>[
                 Dialog::DIALOG_CONFIRM => [
                     'type'=>Dialog::TYPE_DANGER,
-                    'title'=>$titulo,
+                    'title'=>MyHelpers::icon('glyphicon glyphicon-question-sign')
+                        . ' ' . 'Eliminar',
                     'btnOKLabel'=>'Si',
                     'btnCancelLabel'=>'No',
                     'btnOKClass'=>'btn-danger',
+                ],
+                Dialog::DIALOG_ALERT => [
+                    'type'=>Dialog::TYPE_PRIMARY,
+                    'title'=>MyHelpers::icon('glyphicon glyphicon-info-sign')
+                        . ' ' . 'Información',
+                    'btnOKLabel'=>'Ok',
+
                 ]
             ]
         ]);
@@ -90,7 +98,7 @@ class MyHelpers extends View
             'header'=>$header,
             'toggleButton'=>[
                 'label'=>$label,
-                'class'=>'btn btn-xs btn-default'
+                'class'=>$class,
             ],
             'size'=>$size
         ]);

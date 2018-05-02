@@ -109,6 +109,12 @@ class TarjetasController extends Controller
 
     }
 
+    /**
+     * Modifica los datos de la tarjeta y devuelve una renderización
+     * del contenido de la tarjeta.
+     * @param  [type] $id ID de la tarjeta.
+     * @return [type]     [description]
+     */
     public function actionUpdateAjax($id)
     {
         $model = $this->findModel($id);
@@ -117,18 +123,29 @@ class TarjetasController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             $model->save();
 
-            return $this->renderAjax('view', [
-                'model'=>$model,
-                'adjunto'=>new Adjuntos()
+            return $this->renderAjax('descripcion_tarjeta', [
+                'tarjeta'=>$model,
             ]);
         }
     }
 
-    public function actionRenderUpdate($id)
+    public function actionRenderFormFile($id)
     {
-        $model = $this->findModel($id);
+        $tarjeta = $this->findModel($id);
 
-        return $this->renderAjax('update', [
+        return $this->renderAjax('form_file', [
+            'model'=>new Adjuntos([
+                'scenario'=>Adjuntos::ESCENARIO_FILE,
+            ]),
+            'tarjeta'=>$tarjeta,
+        ]);
+    }
+
+    public function actionRenderListaAdjnutos($id_tarjeta)
+    {
+        $model = $this->findModel($id_tarjeta);
+
+        return $this->renderAjax('lista_adjuntos', [
             'model'=>$model,
         ]);
     }

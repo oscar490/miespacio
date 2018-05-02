@@ -17,7 +17,16 @@ function efectoSortable(url_tarjeta, url_render) {
     })
 }
 
-function updateLista(elem, url_envio, url_render) {
+/**
+ * Modifica la lista a la que pertenece la tarjeta. Si ya existe
+ * una tarjeta con el mismo nombre en la lista, se notifica por un
+ * mensaje.
+ * @param  {[type]} elem       [description]
+ * @param  {[type]} url_envio  [description]
+ * @param  {[type]} url_render [description]
+ * @return {[type]}            [description]
+ */
+function updateLista(elem, url_envio, url_render, url_refrescar) {
 
     let id_tarjeta_p = elem.data('key');
     let id_lista = elem.parent().data('key')
@@ -35,6 +44,10 @@ function updateLista(elem, url_envio, url_render) {
                     "Ya existe una tarjeta con ese nombre"
                 );
             })
+        } else {
+            sendAjax(url_refrescar, 'GET', {}, function(data) {
+                $('body').html(data);
+            });
         }
     });
 }

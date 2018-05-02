@@ -1,0 +1,9 @@
+div[id^='div_update_adjunto'] {
+    margin-top: 20px;
+    display: none;
+}
+
+div[id^='content_img'] > img{
+    width: 70px;
+    height: 70px;
+}
