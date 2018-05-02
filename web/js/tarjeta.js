@@ -36,7 +36,7 @@ function updateTarjeta(url_update, form_p, id_tarjeta, url_render) {
             })
         })
 
-        $(`li[data-key='${id_tarjeta}']`).find('div.modal-body').html(data);
+        $(`div#panel_descri_tarjeta_${id_tarjeta}`).html(data);
 
     });
 }

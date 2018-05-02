@@ -41,6 +41,7 @@ $this->registerJs($js);
             'tarjeta'=>$tarjeta,
             'action'=>['adjuntos/validate-ajax'],
             'id_form'=>"form_adjunto_create_$tarjeta->id",
+            'label'=>'Adjuntar',
         ]) ?>
     </div>
 </div>

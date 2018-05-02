@@ -123,11 +123,8 @@ class TarjetasController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             $model->save();
 
-            return $this->renderAjax('view', [
-                'model'=>$model,
-                'adjunto'=>new Adjuntos([
-                    'scenario'=>Adjuntos::ESCENARIO_FILE,
-                ])
+            return $this->renderAjax('descripcion_tarjeta', [
+                'tarjeta'=>$model,
             ]);
         }
     }

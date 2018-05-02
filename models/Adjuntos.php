@@ -118,6 +118,7 @@ class Adjuntos extends \yii\db\ActiveRecord
      */
     public function beforeSave($insert)
     {
+
         if (!parent::beforeSave($insert)) {
             return false;
         }
@@ -127,11 +128,7 @@ class Adjuntos extends \yii\db\ActiveRecord
         if ($adjunto !== null) {
             $adjunto->delete();
         }
-        if ($this->tipo !== null) {
-            $type = $this->tipo;
-            $indice = strpos($type, '/');
-            $this->tipo = substr($type,0,  $indice);
-        }
+        
 
         return true;
     }

@@ -15,10 +15,10 @@ use yii\bootstrap\Modal;
 
 $url_adjunto = Url::to(['adjuntos/create-ajax']);
 
-$this->registerJsFile(
-    '/js/view_tarjeta.js',
-    ['depends'=>[\yii\web\JqueryAsset::className()]]
-);
+// $this->registerJsFile(
+//     '/js/view_tarjeta.js',
+//     ['depends'=>[\yii\web\JqueryAsset::className()]]
+// );
 
 $this->registerCssFile(
     'css/view_tarjeta.css'
@@ -26,34 +26,24 @@ $this->registerCssFile(
 
 $js = <<<EOT
     $(document).ready(function() {
-        iteracionMain('$model->id');
+        $(`#header_form_adjunto_$model->id`).on('click', function() {
+            $(this).next().slideToggle();
+        })
     })
 EOT;
 $this->registerJs($js);
 ?>
-<!-- Título de la tarjeta -->
-<div class='row'>
-    <div class='col-md-9 titulo'>
-        <h4>
-            <strong>
-                <?= Html::encode($model->denominacion) ?>
-            </strong>
-            <small>
-                en lista
-                <?=
-                    Html::encode($model->lista->denominacion)
-                ?>
-            </small>
-        </h4>
-    </div>
+
+<!-- Título y descripción de la tarjeta -->
+<div id="panel_descri_tarjeta_<?= $model->id ?>">
+    <?= $this->render('descripcion_tarjeta', [
+        'tarjeta'=>$model
+    ]) ?>
 </div>
 
+<!-- Resto de contendo -->
 <div class='row'>
-    <!-- Descripción de la tarjeta -->
     <div class='col-md-8'>
-        <?= $this->render('descripcion_tarjeta', [
-            'tarjeta'=>$model
-        ]) ?>
 
         <!-- Lista de adjuntos de la tarjeta -->
         <?= $this->render('adjuntos_tarjeta',[
@@ -63,6 +53,7 @@ $this->registerJs($js);
 
     <!-- Formulario de adjuntar -->
     <div class='col-md-4'>
+        
         <!-- Enlace -->
         <?= $this->render('/adjuntos/create', [
             'model'=>$adjunto,

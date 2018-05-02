@@ -1,4 +1,45 @@
 
+// $('#btn_delete_adjunto_$model->id').on('click', function() {
+//     krajeeDialog.confirm("¿Deseas de verdad eliminarlo?", function (result) {
+//         if (result) {
+//             $.ajax({
+//                 url: '$url_adjunto',
+//                 type: 'POST',
+//                 success: function(data) {
+//                     console.log(data);
+//                     let div_adjunto = $("div[data-key='$model->id']");
+//
+//                     div_adjunto.children('div.row').remove();
+//                     div_adjunto.find('hr').remove();
+//                 }
+//             })
+//         }
+//     });
+// })
+//
+// $('#btn_update_adjunto_$model->id').on('click', function() {
+//     let aqui = $(this).closest('div.row').next()
+//         .find('div#update_adjunto').fadeToggle();
+// });
+
+function cambiarImagenAdjunto(es_imagen, id_adjunto, url_direccion) {
+    let src = '';
+
+    switch(es_imagen) {
+        case '1' :
+            src = url_direccion;
+            break;
+
+        case '0' :
+            src = 'images/adjunto.png';
+            break;
+
+        default:
+            src = 'images/enlace.png';
+            break;
+    };
+    $(`#content_img_${id_adjunto} > img`).attr('src', src);
+}
 /**
  * Crea un nuevo adjunto por AJAX.
  * @param  {[type]} form_p     Formulario a validar.
@@ -31,7 +72,7 @@ function subirArchivo(url_send, form_p, id_tarjeta, url_render) {
 
         if (!enviando) {
             enviando = true;
-            
+
             $.ajax({
                 url: url_send,
                 type: 'POST',

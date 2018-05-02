@@ -78,6 +78,15 @@ class AdjuntosController extends Controller
 
     }
 
+    public function actionRenderContenido($id_adjunto)
+    {
+        $model = $this->findModel($id_adjunto);
+
+        return $this->render('/tarjetas/vista_adjunto', [
+            'adjunto'=>$model,
+        ]);
+    }
+
     public function actionCreate()
     {
         $model = new Adjuntos();
@@ -105,7 +114,15 @@ class AdjuntosController extends Controller
         $model->nombre = $upload->nombre_archivo;
         $model->url_direccion = $upload->upload();
         $model->tarjeta_id = $id_tarjeta;
-        $model->tipo = $model->archivo->type;
+
+        $indice = strpos($model->archivo->type, '/');
+        $tipo = substr($model->archivo->type ,0,  $indice);
+
+        if ($tipo == 'image') {
+            $model->es_imagen = true;
+        } else {
+            $model->es_imagen = false;
+        }
 
         $model->save();
         Yii::$app->response->format = Response::FORMAT_JSON;
@@ -138,15 +155,14 @@ class AdjuntosController extends Controller
         $model = $this->findModel($id);
 
         $model->nombre = Yii::$app->request->post('nombre');
-        $model->url_direccion = Yii::$app->request->post('url_direccion');
         $model->tarjeta_id = Yii::$app->request->post('tarjeta_id');
 
-        if ($model->save()) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return $this->renderAjax('/tarjetas/lista_adjuntos', [
-                'model'=>$model->tarjeta,
-            ]);
-        }
+        $model->save();
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $this->renderAjax('/tarjetas/lista_adjuntos', [
+            'model'=>$model->tarjeta,
+        ]);
     }
 
     /**
@@ -158,10 +174,15 @@ class AdjuntosController extends Controller
      */
     public function actionDelete($id)
     {
-        if (Yii::$app->request->isAjax) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return $this->findModel($id)->delete();
-        }
+        $model = $this->findModel($id);
+        $tarjeta = $model->tarjeta;
+
+        $model->delete();
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $this->renderAjax('/tarjetas/lista_adjuntos', [
+            'model'=>$tarjeta,
+        ]);
 
 
     }

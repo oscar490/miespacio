@@ -25,6 +25,7 @@ $this->registerJs($js);
 
 ?>
 
+<!-- Formulario de creación de tarjeta -->
 <?= $this->render('_form', [
     'model' => $model,
     'lista' => $lista,

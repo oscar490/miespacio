@@ -17,17 +17,26 @@ use app\components\MyHelpers;
         'id'=>$id_form,
     ]); ?>
 
-    <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
+    <?=
+        $form->field($model, 'nombre')->textInput([
+            'maxlength' => true,
+            'placeholder'=>'Nombre (opcional)'
+        ])->label(false);
+    ?>
 
-    <?= $form->field($model, 'url_direccion', ['enableAjaxValidation'=>true,])->textInput([
-        'maxlength' => true,
-        'placeholder'=>'Pega un vínculo aqui...'
-    ]) ?>
+    <?php if ($model->isNewRecord): ?>
+        <?= $form->field($model, 'url_direccion', ['enableAjaxValidation'=>true,])->textInput([
+            'maxlength' => true,
+            'placeholder'=>'Pega un vínculo aqui...'
+        ]) ?>
+    
+
+    <?php endif; ?>
 
     <?= Html::hiddenInput('tarjeta_id', $tarjeta->id) ?>
 
     <div class="form-group">
-        <?= MyHelpers::submit('Adjuntar', ['class'=>'btn btn-default btn-block']) ?>
+        <?= MyHelpers::submit($label, ['class'=>'btn btn-default btn-block']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
