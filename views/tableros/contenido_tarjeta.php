@@ -14,7 +14,8 @@ use yii\helpers\Html;
         MyHelpers::icon('glyphicon glyphicon-info-sign') .
         ' ' . '<strong>Contenido de tarjeta</strong>',
         MyHelpers::icon('glyphicon glyphicon-eye-open'),
-        'btn btn-xs btn-default'
+        'btn btn-xs btn-default',
+        $tarjeta->id
 ); ?>
 
     <?= $this->render('/tarjetas/view',[

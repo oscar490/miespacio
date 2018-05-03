@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\web\View;
 use yii\bootstrap\Modal;
 
-class MyHelpers extends View
+class MyHelpers
 {
     public static function tabs($items)
     {
@@ -92,10 +92,11 @@ class MyHelpers extends View
      * @param  [type] $size   Tamaño del modal.
      */
     public static function modal_begin($header, $label, $class,
-        $size = Modal::SIZE_LARGE)
+        $id_modal, $size = Modal::SIZE_LARGE)
     {
         return Modal::begin([
             'header'=>$header,
+            'id'=>$id_modal,
             'toggleButton'=>[
                 'label'=>$label,
                 'class'=>$class,
