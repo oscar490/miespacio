@@ -85,8 +85,12 @@ class TablerosController extends Controller
     {
         $model = $this->findModel($id);
 
-        return $this->renderAjax('view', [
-            'model'=>$model
+        return $this->renderAjax('listas_tablero', [
+            'model' => $model,
+            'tarjeta' => new Tarjetas(),
+            'adjunto' => new Adjuntos([
+                'scenario'=>Adjuntos::ESCENARIO_FILE
+            ])
         ]);
     }
 

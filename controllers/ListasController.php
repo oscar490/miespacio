@@ -79,6 +79,10 @@ class ListasController extends Controller
 
     }
 
+    /**
+     * Crea una nueva lista.
+     * @return [type] [description]
+     */
     public function actionCreate()
     {
         $model = new Listas();
@@ -89,19 +93,32 @@ class ListasController extends Controller
             return $this->renderAjax('/tableros/listas_tablero', [
                 'model' => $model->tablero,
                 'tarjeta' => new Tarjetas(),
-                'adjunto' => new Adjuntos()
+                'adjunto' => new Adjuntos([
+                    'scenario'=>Adjuntos::ESCENARIO_FILE
+                ])
             ]);
         }
 
     }
 
+    /**
+     * Renderiza la vista de un tablero.
+     * @param  [type] $id_tablero ID del tablero.
+     * @return [type]             [description]
+     */
     public function actionRenderListas($id_tablero)
     {
-        return $this->redirect(['tableros/view', 'id'=>$id_tablero]);
+        return $this->renderAjax('/tableros/listas_tablero', [
+            'model'=>Tableros::findOne($id_tablero),
+            'tarjeta'=>new Tarjetas(),
+            'adjunto'=>new Adjuntos([
+                'scenario'=>Adjuntos::ESCENARIO_FILE
+            ]),
+        ]);
     }
 
     /**
-     * Updates an existing Listas model.
+     * Valida el formulario de modificación de la lista.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -117,11 +134,14 @@ class ListasController extends Controller
             return ActiveForm::validate($model);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
+    /**
+     * Modifica una lista mediante el uso de AJAX, renderiza
+     * la vista completa de todas las listas del tablero.
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
     public function actionUpdateAjax($id)
     {
         $model = $this->findModel($id);
@@ -132,7 +152,9 @@ class ListasController extends Controller
             return $this->renderAjax('/tableros/listas_tablero', [
                 'model'=>$model->tablero,
                 'tarjeta'=>new Tarjetas(),
-                'adjunto'=>new Adjuntos(),
+                'adjunto'=>new Adjuntos([
+                    'scenario'=>Adjuntos::ESCENARIO_FILE
+                ]),
             ]);
         }
     }
@@ -146,9 +168,18 @@ class ListasController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $tablero = $model->tablero;
 
-        return $this->redirect(['index']);
+        $model->delete();
+
+        return $this->renderAjax('/tableros/listas_tablero', [
+            'model'=>$tablero,
+            'tarjeta'=>new Tarjetas(),
+            'adjunto'=>new Adjuntos([
+                'scenario'=>Adjuntos::ESCENARIO_FILE
+            ]),
+        ]);
     }
 
     /**

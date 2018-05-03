@@ -50,7 +50,7 @@ $this->registerJs($js);
             <div class='row'>
 
                 <!-- Nombre -->
-                <div class='col-xs-9 col-md-9'>
+                <div class='col-xs-8 col-md-8'>
                     <strong>
                         <?=
                             MyHelpers::icon('glyphicon glyphicon-th-list') . ' ' .
@@ -60,7 +60,7 @@ $this->registerJs($js);
                 </div>
 
                 <!-- Botones de acción sobre lista -->
-                <div class='col-xs-3 col-md-3'>
+                <div class='col-xs-4 col-md-4'>
                     <?= $this->render('botones_accion_lista', [
                         'lista' => $lista
                     ]) ?>
