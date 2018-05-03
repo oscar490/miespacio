@@ -19,7 +19,9 @@ CREATE TABLE usuarios
 );
 
 INSERT INTO usuarios (nombre, password, email)
-    VALUES ('oscar', crypt('oscar', gen_salt('bf', 13)), 'oscar.vega@iesdonana.org');
+    VALUES ('oscar', crypt('oscar', gen_salt('bf', 13)), 'oscar.vega@iesdonana.org'),
+            ('pepe', crypt('pepe', gen_salt('bf', 13)), 'pepe.pepe@gmail.com'),
+            ('rafa', crypt('rafa', gen_salt('bf', 13)), 'rafa.rafa@gmail.com');
 
 
 -- Tabla datos_usuarios --
@@ -38,7 +40,9 @@ CREATE TABLE datos_usuarios
 );
 
 INSERT INTO datos_usuarios (nombre_completo, apellidos, url_imagen, usuario_id)
-    VALUES ('OSCAR', 'Vega Herrera','images/usuario.png', 1);
+    VALUES ('OSCAR', 'Vega Herrera','images/usuario.png', 1),
+            ('Pepe', 'Macias Herrera','images/usuario.png', 2),
+            ('Rafa', 'Duran García','images/usuario.png', 3);
 
 
 -- Tabla equipos --
@@ -147,3 +151,24 @@ CREATE TABLE adjuntos
 INSERT INTO adjuntos (nombre, url_direccion, tarjeta_id)
     VALUES ('3dJuegos', 'https://www.3djuegos.com/', 1),
             ('Ágora', 'http://agora.iesdonana.org/', 1);
+
+
+
+
+-- Tabla miembros --
+
+DROP TABLE IF EXISTS miembros CASCADE;
+
+CREATE TABLE miembros
+(
+       id         BIGSERIAL    PRIMARY KEY
+    ,  usuario_id BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
+                               CASCADE ON UPDATE CASCADE
+    ,  tablero_id BIGINT       NOT NULL REFERENCES tableros (id) ON DELETE
+                               CASCADE ON UPDATE CASCADE
+    ,  created_at TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
+    ,  UNIQUE (id, usuario_id, tablero_id)
+);
+
+INSERT INTO miembros (usuario_id, tablero_id)
+    VALUES (1, 2), (1, 2);
