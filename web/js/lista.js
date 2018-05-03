@@ -37,18 +37,17 @@ function updateLista(elem, url_envio, url_render, url_refrescar) {
     let data = {lista_id: id_lista};
 
     sendAjax(url, 'POST', data, function (data) {
+
+        sendAjax(url_render, 'GET', {}, function(data) {
+            $('div#contenedor_general').html(data);
+        });
+
         if (!data) {
-            sendAjax(url_render, 'GET', {}, function (data) {
-                $('div#contenedor_general').html(data);
-                krajeeDialog.alert(
-                    "Ya existe una tarjeta con ese nombre"
-                );
-            })
-        } else {
-            sendAjax(url_refrescar, 'GET', {}, function(data) {
-                $('body').html(data);
-            });
+            krajeeDialog.alert(
+                "Ya existe una tarjeta con ese nombre"
+            );
         }
+
     });
 }
 
