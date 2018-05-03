@@ -30,11 +30,10 @@ $url_content = Url::to(['tableros/render-contenido', 'id'=>$lista->tablero->id])
 
 $js = <<<EOT
     $(document).ready(function() {
-        let selector = $("#form_create_tarjeta_$lista->id").parent()
-            .find('#header_lista_titulo');
+        let selector = $("#btn_add_tarjeta_$lista->id");
 
         efectoSortable('$url_update', '$url_content', '$url_refrescar');
-        iteracionFormTarjeta(selector);
+        iteracionFormTarjeta(selector, '$lista->id');
     })
 EOT;
 
@@ -42,27 +41,38 @@ $this->registerJs($js);
 
 ?>
 
-
+<!-- Lista -->
 <div class='col-md-4'>
     <div id="contenedor_lista_<?= $lista->id ?>" class='panel panel-default'>
+
         <!-- Título de la lista -->
         <div id="header_lista_titulo" class='panel-heading'>
             <div class='row'>
-                <div class='col-md-11'>
+
+                <!-- Nombre -->
+                <div class='col-xs-9 col-md-9'>
                     <strong>
                         <?=
                             MyHelpers::icon('glyphicon glyphicon-th-list') . ' ' .
                             Html::encode($lista->denominacion)
                         ?>
                     </strong>
-                    <small>
-                        (click aquí para crear tarjeta)
-                    </small>
                 </div>
-                <div class='col-md-1'>
 
+                <!-- Botones de acción sobre lista -->
+                <div class='col-xs-3 col-md-3'>
+                    <?= $this->render('botones_accion_lista', [
+                        'lista' => $lista
+                    ]) ?>
                 </div>
             </div>
+        </div>
+
+        <!-- Update Lista -->
+        <div id="lista_update_<?= $lista->id ?>" class='panel-heading'>
+            <?= $this->render('/listas/update', [
+                'lista'=>$lista
+            ]) ?>
         </div>
 
         <!-- Conjunto de tarjetas de la lista -->

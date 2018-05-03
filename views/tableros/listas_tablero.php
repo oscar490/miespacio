@@ -1,8 +1,9 @@
 <?php
 /* Listas de un tablero */
 
-/* $model app\models\Tableros */
-/* $tarjeta app\models\Tarjetas */
+/* @var $model app\models\Tableros */
+/* @var $tarjeta app\models\Tarjetas */
+/* @var $adjunto app\models\Adjunto */
 
 use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;

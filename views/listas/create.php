@@ -20,7 +20,9 @@ use app\components\MyHelpers;
         <?= $this->render('_form', [
             'model' => $lista,
             'tablero' => $tablero,
-            'label'=>'Crear'
+            'action'=>['listas/validate-ajax'],
+            'label'=>'Crear',
+            'id_form_lista'=>'form_lista'
         ]) ?>
     </div>
 </div>
