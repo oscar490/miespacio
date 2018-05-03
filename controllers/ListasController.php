@@ -111,13 +111,30 @@ class ListasController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+
+            return ActiveForm::validate($model);
         }
 
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+    public function actionUpdateAjax($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+
+            return $this->renderAjax('/tableros/listas_tablero', [
+                'model'=>$model->tablero,
+                'tarjeta'=>new Tarjetas(),
+                'adjunto'=>new Adjuntos(),
+            ]);
+        }
     }
 
     /**

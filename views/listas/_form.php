@@ -12,9 +12,9 @@ use app\components\MyHelpers;
 ?>
 
 <?php $form = ActiveForm::begin([
-    'action'=>['listas/validate-ajax'],
+    'action'=>$action,
     'enableAjaxValidation' => true,
-    'id' => 'form_lista'
+    'id' => $id_form_lista,
 ]); ?>
 
     <!-- Denominación -->
@@ -28,11 +28,14 @@ use app\components\MyHelpers;
     <?= Html::hiddenInput('tablero_id', $tablero->id) ?>
 
     <!-- Botón de envio -->
-    <?=
-        MyHelpers::submit($label, [
-            'class'=>'btn btn-success btn-block',
-            'id'=>'btn_create_list'
-        ]);
-    ?>
+    <?php if ($model->isNewRecord): ?>
+        <?=
+            MyHelpers::submit($label, [
+                'class'=>'btn btn-success btn-block',
+                'id'=>'btn_create_list'
+            ]);
+        ?>
+
+    <?php endif; ?>
 
 <?php ActiveForm::end(); ?>

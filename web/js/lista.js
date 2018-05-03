@@ -52,9 +52,9 @@ function updateLista(elem, url_envio, url_render, url_refrescar) {
     });
 }
 
-function iteracionFormTarjeta(selector) {
+function iteracionFormTarjeta(selector, id_tarjeta) {
 
     selector.on('click', function() {
-        $(this).parent().find('div.panel-footer').slideToggle();
+        $(`#form_create_tarjeta_${id_tarjeta}`).slideToggle();
     })
 }
