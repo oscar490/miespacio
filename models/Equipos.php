@@ -138,4 +138,16 @@ class Equipos extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Tableros::className(), ['equipo_id' => 'id'])->inverseOf('equipo');
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if (!$insert) {
+            return false;
+        }
+
+        (new Miembros([
+            'equipo_id'=>$this->id,
+            'usuario_id'=>Yii::$app->user->id,
+        ]))->save();
+    }
 }

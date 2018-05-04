@@ -112,7 +112,7 @@ class EquiposController extends Controller
     {
         //  Modelo para craar un nuevo equipo.
         $equipo = new Equipos([
-            'usuario_id'=>Yii::$app->user->id,
+            'propietario_id'=>Yii::$app->user->id,
             'url_imagen'=>'images/equipo.png'
         ]);
 
