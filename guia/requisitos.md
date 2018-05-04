@@ -246,7 +246,7 @@
 
 | **R28**     | **Añadir miembros a un tablero.**           |
 | --------------: | :------------------- |
-| **Descripción** | En el contenido del tablero, habrá una sección que, por medio de un formulario, se buscará a otro usuario, que esté registrado en la aplicación. Se deberá indicar el nombre de usuario o su dirección de correo electrónico, el mismo que uso para registrarse. Una vez buscado, se añadirá dicho usuario al tablero, de manera que podrá śolo ver su contenido y añadir comentarios en las tarjetas.             |
+| **Descripción** | En el contenido del equipo, habrá una sección que, por medio de un formulario, se buscará a otro usuario, que esté registrado en la aplicación. Se deberá indicar el nombre de usuario o su dirección de correo electrónico, el mismo que uso para registrarse. Una vez buscado, se añadirá dicho usuario al equipo y formará parte del equipo.             |
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
@@ -780,7 +780,7 @@
 | (**R25**) Eliminar contenido de tarjeta. | Importante | Funcional | Fácil | v1 | [25](https://github.com/oscar490/miespacio/issues/25) |
 | (**R26**) Validación de los campos del formulario. | Mínimo | Técnico | Fácil | v1 | [26](https://github.com/oscar490/miespacio/issues/26) |
 | (**R27**) Mostrar contenido de la tarjeta. | Importante | Funcional | Fácil | v1 | [27](https://github.com/oscar490/miespacio/issues/27) |
-| (**R28**) Añadir miembros a un tablero. | Importante | Funcional | Media | v2 | [28](https://github.com/oscar490/miespacio/issues/28) |
+| (**R28**) Añadir miembros a un equipo. | Importante | Funcional | Media | v2 | [28](https://github.com/oscar490/miespacio/issues/28) |
 | (**R29**) Ver tableros de otros usuarios. | Importante | Funcional | Media | v2 | [29](https://github.com/oscar490/miespacio/issues/29) |
 | (**R30**) Búsqueda de tableros. | Importante | Funcional | Media | v2 | [30](https://github.com/oscar490/miespacio/issues/30) |
 | (**R31**) Añadir tablero como favorito. | Importante | Funcional | Media | v2 | [31](https://github.com/oscar490/miespacio/issues/31) |

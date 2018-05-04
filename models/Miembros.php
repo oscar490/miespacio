@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property int $usuario_id
- * @property int $tablero_id
+ * @property int $equipo_id
  * @property string $created_at
  *
  * @property Tableros $tablero
@@ -31,11 +31,11 @@ class Miembros extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['usuario_id', 'tablero_id'], 'required'],
-            [['usuario_id', 'tablero_id'], 'default', 'value' => null],
-            [['usuario_id', 'tablero_id'], 'integer'],
+            [['usuario_id', 'equipo_id'], 'required'],
+            [['usuario_id', 'equipo_id'], 'default', 'value' => null],
+            [['usuario_id', 'equipo_id'], 'integer'],
             [['created_at'], 'safe'],
-            [['tablero_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tableros::className(), 'targetAttribute' => ['tablero_id' => 'id']],
+            [['equipo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tableros::className(), 'targetAttribute' => ['equipo_id' => 'id']],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
         ];
     }
@@ -48,7 +48,7 @@ class Miembros extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'usuario_id' => 'Usuario ID',
-            'tablero_id' => 'Tablero ID',
+            'equipo_id' => 'Tablero ID',
             'created_at' => 'Created At',
         ];
     }
@@ -56,9 +56,9 @@ class Miembros extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTablero()
+    public function getEquipo()
     {
-        return $this->hasOne(Tableros::className(), ['id' => 'tablero_id'])->inverseOf('miembros');
+        return $this->hasOne(Tableros::className(), ['id' => 'equipo_id'])->inverseOf('miembros');
     }
 
     /**

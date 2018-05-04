@@ -51,18 +51,18 @@ DROP TABLE IF EXISTS equipos CASCADE;
 
 CREATE TABLE equipos
 (
-      id           BIGSERIAL    PRIMARY KEY
-    , denominacion VARCHAR(255) NOT NULL
-    , descripcion  VARCHAR(255)
-    , url_imagen   VARCHAR(255)
-    , created_at   TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
-    , usuario_id   BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
-                                CASCADE ON UPDATE CASCADE
-    , UNIQUE (denominacion, usuario_id)
+      id               BIGSERIAL    PRIMARY KEY
+    , denominacion     VARCHAR(255) NOT NULL
+    , descripcion      VARCHAR(255)
+    , url_imagen       VARCHAR(255)
+    , created_at       TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
+    , propietario_id   BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
+                                    CASCADE ON UPDATE CASCADE
+    , UNIQUE (denominacion, propietario_id)
 );
 
 
-INSERT INTO equipos (denominacion, usuario_id, url_imagen)
+INSERT INTO equipos (denominacion, propietario_id, url_imagen)
     VALUES ('2º DAW', 1, 'images/equipo.png'), ('1º SMR', 1, 'images/equipo.png');
 
 
@@ -164,11 +164,11 @@ CREATE TABLE miembros
        id         BIGSERIAL    PRIMARY KEY
     ,  usuario_id BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
                                CASCADE ON UPDATE CASCADE
-    ,  tablero_id BIGINT       NOT NULL REFERENCES tableros (id) ON DELETE
+    ,  equipo_id BIGINT        NOT NULL REFERENCES equipos (id) ON DELETE
                                CASCADE ON UPDATE CASCADE
     ,  created_at TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
-    ,  UNIQUE (id, usuario_id, tablero_id)
+    ,  UNIQUE (usuario_id, equipo_id)
 );
 
-INSERT INTO miembros (usuario_id, tablero_id)
-    VALUES (1, 2), (1, 2);
+INSERT INTO miembros (usuario_id, equipo_id)
+    VALUES (1, 1), (1, 2), (2, 1);

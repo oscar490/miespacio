@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Equipos;
+use app\models\Usuarios;
 use app\models\EquiposSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -56,8 +57,8 @@ class EquiposController extends Controller
     {
         //  Equipos creados por el usuario logeado.
         $equipos = new ActiveDataProvider([
-            'query'=>Equipos::find()
-                ->where(['usuario_id'=>Yii::$app->user->id]),
+            'query'=>Usuarios::findOne(Yii::$app->user->id)
+                ->getEquipos(),
             'sort'=>[
                 'defaultOrder'=>['created_at'=>SORT_DESC],
             ],

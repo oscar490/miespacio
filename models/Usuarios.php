@@ -270,7 +270,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function getEquipos()
     {
-        return $this->hasMany(Equipos::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
+        return $this->hasMany(Equipos::className(), ['propietario_id' => 'id'])->inverseOf('usuario');
     }
 
     /**

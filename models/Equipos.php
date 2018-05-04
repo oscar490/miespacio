@@ -12,7 +12,7 @@ use yii\helpers\Html;
  * @property int $id
  * @property string $denominacion
  * @property string $descripcion
- * @property int $usuario_id
+ * @property int $propietario_id
  * @property string $url_imagen
  *
  * @property Usuarios $usuario
@@ -41,22 +41,22 @@ class Equipos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['denominacion', 'usuario_id'], 'required'],
-            [['usuario_id'], 'default', 'value' => null],
-            [['usuario_id'], 'integer'],
+            [['denominacion', 'propietario_id'], 'required'],
+            [['propietario_id'], 'default', 'value' => null],
+            [['propietario_id'], 'integer'],
             [['denominacion', 'descripcion'], 'string', 'max' => 30],
             [
-                ['denominacion', 'usuario_id'],
+                ['denominacion', 'propietario_id'],
                 'unique',
-                'targetAttribute' => ['denominacion', 'usuario_id'],
+                'targetAttribute' => ['denominacion', 'propietario_id'],
                 'message'=>'Ya existe un equipo con ese nombre',
             ],
             [
-                ['usuario_id'],
+                ['propietario_id'],
                 'exist',
                 'skipOnError' => true,
                 'targetClass' => Usuarios::className(),
-                'targetAttribute' => ['usuario_id' => 'id'],
+                'targetAttribute' => ['propietario_id' => 'id'],
             ],
         ];
     }
@@ -77,7 +77,7 @@ class Equipos extends \yii\db\ActiveRecord
             'id' => 'ID',
             'denominacion' => 'Nombre del equipo',
             'descripcion' => 'Descripción (opcional)',
-            'usuario_id' => 'Usuario ID',
+            'propietario_id' => 'Usuario ID',
             'imagen_equipo'=>'Imágen de equipo'
         ];
     }
@@ -128,7 +128,7 @@ class Equipos extends \yii\db\ActiveRecord
      */
     public function getUsuario()
     {
-        return $this->hasOne(Usuarios::className(), ['id' => 'usuario_id'])->inverseOf('equipos');
+        return $this->hasOne(Usuarios::className(), ['id' => 'propietario_id'])->inverseOf('equipos');
     }
 
     /**
