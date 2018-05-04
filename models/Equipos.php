@@ -145,6 +145,9 @@ class Equipos extends \yii\db\ActiveRecord
             return false;
         }
 
+        $this->url_imagen = 'images/equipo.png';
+        $this->save();
+
         (new Miembros([
             'equipo_id'=>$this->id,
             'usuario_id'=>Yii::$app->user->id,

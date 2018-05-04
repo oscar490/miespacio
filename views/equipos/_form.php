@@ -36,6 +36,9 @@ if ($equipo->id !== null) {
         ])
     ?>
 
+    <!-- Propietario del equipo -->
+    <?= Html::hiddenInput('propietario_id', Yii::$app->user->id); ?>
+
     <div class="form-group">
         <?=
             MyHelpers::submit($label, ['class'=>'btn btn-success btn-block']);

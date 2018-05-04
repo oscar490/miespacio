@@ -111,10 +111,7 @@ class EquiposController extends Controller
     public function actionCreate()
     {
         //  Modelo para craar un nuevo equipo.
-        $equipo = new Equipos([
-            'propietario_id'=>Yii::$app->user->id,
-            'url_imagen'=>'images/equipo.png'
-        ]);
+        $equipo = new Equipos();
 
         if (Yii::$app->request->isAjax && $equipo->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
