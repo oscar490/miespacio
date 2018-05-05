@@ -1,0 +1,18 @@
+#img_user > img {
+    width: 53px;
+    height: 48px;
+
+}
+
+#img_user {
+    margin-right: 20px;
+}
+
+#name_user {
+    color: #838c91;
+}
+
+#content_miembros {
+    overflow: scroll;
+    height: 350px;
+}

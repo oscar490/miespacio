@@ -115,17 +115,13 @@ class MyHelpers
     }
 
 
-    public static function alert($titulo)
+    public static function label($class, $contenido)
     {
-        return Dialog::widget([
-            'dialogDefaults'=>[
-                Dialog::DIALOG_ALERT => [
-                    'type'=>Dialog::TYPE_INFO,
-                    'title'=>$titulo,
-                    'buttonLabel'=>MyHelpers::icon('glyphicon glyphicon-ok')
-                ],
-            ],
-        ]);
+        return Html::tag(
+            'span',
+            $contenido,
+            ['class'=>"label label-$class"]
+        );
     }
 
 }

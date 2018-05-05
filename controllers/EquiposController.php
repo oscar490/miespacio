@@ -93,13 +93,17 @@ class EquiposController extends Controller
                 ->where(['equipo_id'=>$id]),
         ]);
 
-        //  Modelo de tablero.
-        $tablero_crear = new Tableros();
+        //  Miembros del equipo.
+        $miembros = new ActiveDataProvider([
+            'query'=>Equipos::findOne($id)
+                ->getUsuarios()
+        ]);
 
         return $this->render('view', [
             'model' => $this->findModel($id),
             'tableros'=>$tableros,
-            'tablero_crear'=>$tablero_crear,
+            'tablero_crear'=>new Tableros(),
+            'miembros'=>$miembros
         ]);
     }
 

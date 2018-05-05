@@ -30,19 +30,19 @@ DROP TABLE IF EXISTS datos_usuarios CASCADE;
 
 CREATE TABLE datos_usuarios
 (
-      id              BIGSERIAL    PRIMARY KEY
+      usuario_id      BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
+                                   CASCADE ON UPDATE CASCADE
     , nombre_completo VARCHAR(255) NOT NULL
     , apellidos       VARCHAR(255)
     , url_imagen      VARCHAR(255)
     , descripcion     VARCHAR(50)
-    , usuario_id      BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
-                                   CASCADE ON UPDATE CASCADE
+    , PRIMARY KEY (usuario_id)
 );
 
-INSERT INTO datos_usuarios (nombre_completo, apellidos, url_imagen, usuario_id)
-    VALUES ('OSCAR', 'Vega Herrera','images/usuario.png', 1),
-            ('Pepe', 'Macias Herrera','images/usuario.png', 2),
-            ('Rafa', 'Duran García','images/usuario.png', 3);
+INSERT INTO datos_usuarios (usuario_id, nombre_completo, apellidos, url_imagen)
+    VALUES (1, 'OSCAR', 'Vega Herrera','images/usuario.png'),
+            (2, 'Pepe', 'Macias Herrera','images/usuario.png'),
+            (3, 'Rafa', 'Duran García','images/usuario.png');
 
 
 -- Tabla equipos --

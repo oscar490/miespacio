@@ -12,11 +12,10 @@ use yii\web\UploadedFile;
 /**
  * This is the model class for table "datos_usuarios".
  *
- * @property int $id
+ * @property int $usuario_id
  * @property string $nombre_completo
  * @property string $apellidos
  * @property string $descripcion
- * @property int $usuario_id
  *
  * @property Usuarios $usuario
  */
@@ -91,21 +90,6 @@ class DatosUsuarios extends \yii\db\ActiveRecord
         ];
     }
 
-    public function upload()
-    {
-        if ($this->imagen === null) {
-            return true;
-        }
-
-        $nombre = Yii::getAlias('@uploads/') . $this->usuario_id . '.jpg';
-        $res = $this->imagen->saveAs($nombre);
-
-        if ($res) {
-            Image::thumbnail($nombre, null, 150)->save($nombre);
-        }
-
-        return $res;
-    }
 
     /**
      * @return \yii\db\ActiveQuery

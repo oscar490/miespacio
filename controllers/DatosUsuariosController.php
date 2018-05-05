@@ -56,9 +56,8 @@ class DatosUsuariosController extends Controller
      */
     public function actionView()
     {
-        $model = $this->findModel([
-            'usuario_id'=>Yii::$app->user->id,
-        ]);
+
+        $model = $this->findModel(Yii::$app->user->id);
 
         $model->usuario->password = '';
         $model->usuario->scenario = Usuarios::ESCENARIO_UPDATE;
@@ -82,9 +81,6 @@ class DatosUsuariosController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
 

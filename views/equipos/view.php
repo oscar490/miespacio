@@ -5,6 +5,7 @@
 /* @var $model app\models\Equipos */
 /* @var $tableros app\models\Tableros */
 /* @var $tablero_crear app\models\Tableros */
+/* @var $miembros yii\data\ActiveDataProvider */
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -43,59 +44,20 @@ EOT;
 
 $this->registerJs($js);
 
-//  Secciones
-$items = [
-    [
-        //  Lista de tableros del equipo.
-        'label'=>MyHelpers::icon('glyphicon glyphicon-align-justify')
-                . ' ' . 'Tableros',
-        'content'=> $this->render('tableros_equipo', [
-            'tableros'=>$tableros,
-            'tablero_crear'=>$tablero_crear,
-            'equipo'=>$model,
-        ]),
-        'linkOptions'=>[
-            'id'=>'lista_tableros'
-        ]
-    ],
-    [
-        //  Modificación del equipo.
-        'label'=>MyHelpers::icon('glyphicon glyphicon-wrench')
-                . ' ' . 'Configuración',
-        'content'=> $this->render('update', [
-            'equipo'=>$model,
-        ]),
-        'linkOptions'=>[
-            'id'=>'config_tableros'
-        ]
-    ],
-    [
-        //  Modificación de imágen.
-        'label'=>MyHelpers::icon('glyphicon glyphicon-picture')
-                . ' ' . 'Imágen',
-        'content'=> $this->render('form_imagen', [
-            'equipo'=>$model,
-        ])
-    ],
-    [
-        //  Miembros del equipo
-        'label'=>MyHelpers::icon('glyphicon glyphicon-user')
-                . ' ' . 'Miembros',
-        'content'=> 'hola'
-    ],
-];
-
 ?>
 
-    <!-- Propiedades. Nombre del equipo e imagen -->
-    <div class='container'>
-        <?= $this->render('propiedades', [
-            'model'=>$model
-        ]) ?>
-    </div>
-    <br>
-
-    <!-- Pestañas de selección -->
-    <?= MyHelpers::tabs($items) ?>
-
+<!-- Propiedades. Nombre del equipo e imagen -->
+<div class='container'>
+    <?= $this->render('propiedades', [
+        'model'=>$model
+    ]) ?>
 </div>
+<br>
+
+<!-- Secciones de opciones -->
+<?= $this->render('secciones', [
+    'model'=>$model,
+    'tableros'=>$tableros,
+    'tablero_crear'=>$tablero_crear,
+    'miembros'=>$miembros
+]) ?>
