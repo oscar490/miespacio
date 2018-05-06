@@ -1,6 +1,9 @@
 <?php
 /* Formulario para buscar y agregar un miembro */
 
+/* @var $usuario_search app\models\UsuariosSearch */
+/* @var $equipo app\models\Equipos */
+
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 

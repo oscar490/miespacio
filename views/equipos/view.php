@@ -6,13 +6,8 @@
 /* @var $tableros yii\data\ActiveDataProvider */
 /* @var $tablero_crear app\models\Tableros */
 /* @var $miembros yii\data\ActiveDataProvider */
+/* @var $usuario_search app\models\UsuariosSearch */
 
-use yii\helpers\Html;
-use yii\widgets\DetailView;
-use app\components\MyHelpers;
-use yii\widgets\ListView;
-use yii\helpers\Url;
-use yii\data\ActiveDataProvider;
 
 //  Migas de pan.
 $this->title = $model->denominacion;
@@ -33,17 +28,6 @@ $this->registerCssFile(
     '/css/equipo.css'
 );
 
-$js = <<<EOT
-    $(document).ready(function() {
-        selector = $('#img_equipo img');
-        imagen = '$model->url_imagen';
-
-        cambiarImagen(imagen, selector);
-    })
-EOT;
-
-$this->registerJs($js);
-
 ?>
 
 <!-- Propiedades. Nombre del equipo e imagen -->
@@ -54,7 +38,7 @@ $this->registerJs($js);
 </div>
 <br>
 
-<!-- Secciones de opciones -->
+<!-- Secciones del navegador de opciones -->
 <?= $this->render('secciones', [
     'model'=>$model,
     'tableros'=>$tableros,

@@ -1,10 +1,10 @@
-#img_user > img {
+div[id^='img_user'] > img {
     width: 53px;
     height: 48px;
 
 }
 
-#img_user {
+div[id^='img_user'] {
     margin-right: 20px;
 }
 

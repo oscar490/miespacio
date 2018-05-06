@@ -10,13 +10,21 @@ use app\components\MyHelpers;
 
 $datos = $model->datosUsuarios;
 
+$js = <<<EOT
+    $(document).ready(function() {
+        let selector = $('#img_user_$model->id').find('img');
+        cambiarImagen('$datos->url_imagen', selector);
+    })
+EOT;
+$this->registerJs($js);
+
 ?>
 <div class='row'>
     <!-- Imagen de perfil -->
-    <div id='img_user' class='col-xs-2 col-md-1'>
+    <div id='img_user_<?= $model->id ?>' class='col-xs-2 col-md-1'>
         <?=
             Html::img(
-                $datos->url_imagen,
+                'images/cargando.gif',
                 ['class'=>'img-circle']
             );
         ?>

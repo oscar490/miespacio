@@ -22,7 +22,7 @@ $url_search = Url::to(['usuarios/search']);
 
 $js = <<<EOT
     $(document).ready(function() {
-        $('#btn_add_miembro').on('click', function() {
+        $('#btn_view_form').on('click', function() {
             let content = $("#form_search_user");
             let input_text = content.find('input#nombre');
 
@@ -38,6 +38,7 @@ $this->registerJs($js);
 ?>
 <br>
 
+<!-- Formulario de búsqueda de usuario -->
 <div class='row'>
     <div id='form_search_user' class='col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4'>
         <?= $this->render('form_agregar_miembro', [
@@ -71,6 +72,7 @@ $this->registerJs($js);
                 ]) ?>
             </div>
 
+            <!-- Botón para mostrar formulario de búsqueda -->
             <div class='panel-heading centrado'>
                 <?=
                     Html::button(
@@ -78,7 +80,7 @@ $this->registerJs($js);
                         . ' ' . 'Añadir miembro',
                         [
                             'class'=>'btn btn-md btn-info',
-                            'id'=>'btn_add_miembro',
+                            'id'=>'btn_view_form',
                         ]
                     );
                 ?>

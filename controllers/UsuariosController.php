@@ -147,12 +147,18 @@ class UsuariosController extends Controller
         return $this->redirect(['site/login']);
     }
 
+    /**
+     * Realiza la búsqueda de un usuario.
+     * @param  integer $id_equipo ID del equipo.
+     * @return [type]            Renderización de la lista de
+     *                           miembros del equipo.
+     */
     public function actionSearch($id_equipo)
     {
         $searchModel = new UsuariosSearch();
 
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        
         return $this->renderAjax('/equipos/lista_miembros', [
             'miembros'=>$dataProvider,
             'model'=>Equipos::findOne($id_equipo),

@@ -1,11 +1,13 @@
 <?php
 
-/** Vista de secciones de opciones **/
+/** Vista de secciones de opciones del equipo **/
 
+/* @var $this yii\web\View */
 /* @var $model app\models\Equipos */
 /* @var $tableros yii\data\ActiveDataProvider */
 /* @var $tablero_crear app\models\Tableros */
 /* @var $miembros yii\data\ActiveDataProvider */
+/* @var $usuario_search app\models\UsuariosSearch */
 
 use yii\helpers\Html;
 use app\components\MyHelpers;
@@ -22,9 +24,6 @@ $items = [
             'tablero_crear'=>$tablero_crear,
             'equipo'=>$model,
         ]),
-        'linkOptions'=>[
-            'id'=>'lista_tableros'
-        ]
     ],
     [
         //  Modificación del equipo.
