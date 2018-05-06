@@ -1,11 +1,11 @@
 <?php
 /* Vista de un miembro del equipo */
 
-/* @var $model app\models\Usuarios */
+/* @var $model app\models\Miembros */
+/* @var $equipo app\models\Equipos */
 
 use yii\helpers\Html;
 use app\components\MyHelpers;
-
 
 
 if ($model->id == $equipo->propietario_id) {
@@ -17,7 +17,7 @@ if ($model->id == $equipo->propietario_id) {
     $contenido = Html::encode('Miembro');
 }
 
-$datos = $model->datosUsuarios;
+$datos = $model->usuario->datosUsuarios;
 ?>
 <div class='row'>
     <!-- Imagen de perfil -->
@@ -30,7 +30,7 @@ $datos = $model->datosUsuarios;
         ?>
     </div>
     <!-- Nombre completo -->
-    <div class='col-xs-5 col-md-6'>
+    <div class='col-xs-5 col-md-4'>
         <strong>
             <?=
                 Html::encode(
@@ -43,15 +43,18 @@ $datos = $model->datosUsuarios;
         <!-- Nombre de usuario -->
         <div class='row'>
             <div id='name_user' class='col-md-5'>
-                <?= Html::encode($model->nombre) ?>
+                <?= Html::encode($model->usuario->nombre) ?>
             </div>
         </div>
     </div>
 
-    <div class='col-xs-4 col-md-4'>
+    <!-- Tipo de usuario: Propietario o miembro -->
+    <div class='col-xs-4 col-md-5'>
         <h4>
             <?= MyHelpers::label($class, $contenido) ?>
         </h4>
     </div>
+
+
 </div>
 <hr>

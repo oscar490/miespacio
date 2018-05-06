@@ -13,6 +13,9 @@
 }
 
 #content_miembros {
-    overflow: scroll;
-    height: 350px;
+    height: 250px;
+}
+
+#form_search_user {
+    display: none;
 }

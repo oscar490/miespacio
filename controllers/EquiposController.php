@@ -16,6 +16,7 @@ use app\models\Tableros;
 use yii\filters\AccessControl;
 use yii\web\UploadedFile;
 use app\models\UploadFiles;
+use app\models\UsuariosSearch;
 
 /**
  * EquiposController implements the CRUD actions for Equipos model.
@@ -96,14 +97,18 @@ class EquiposController extends Controller
         //  Miembros del equipo.
         $miembros = new ActiveDataProvider([
             'query'=>Equipos::findOne($id)
-                ->getUsuarios()
+                ->getMiembros(),
+            'sort'=>[
+                'defaultOrder'=>['created_at'=>SORT_DESC]
+            ]
         ]);
 
         return $this->render('view', [
             'model' => $this->findModel($id),
             'tableros'=>$tableros,
             'tablero_crear'=>new Tableros(),
-            'miembros'=>$miembros
+            'miembros'=>$miembros,
+            'usuario_search'=>new UsuariosSearch(),
         ]);
     }
 

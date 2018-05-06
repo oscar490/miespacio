@@ -1,4 +1,8 @@
 <?php
+/* Lista de miembros del equipo */
+
+/* @var $miembros yii\data\ActiveDataProvider */
+/* @var $model app\models\Equipos */
 
 use yii\helpers\Html;
 use yii\widgets\ListView;

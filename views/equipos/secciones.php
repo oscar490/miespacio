@@ -3,8 +3,9 @@
 /** Vista de secciones de opciones **/
 
 /* @var $model app\models\Equipos */
-/* @var $tableros app\models\Tableros */
-/* @var $model app\models\Tableros */
+/* @var $tableros yii\data\ActiveDataProvider */
+/* @var $tablero_crear app\models\Tableros */
+/* @var $miembros yii\data\ActiveDataProvider */
 
 use yii\helpers\Html;
 use app\components\MyHelpers;
@@ -50,7 +51,8 @@ $items = [
                 . ' ' . 'Miembros',
         'content'=> $this->render('miembros', [
             'model'=>$model,
-            'miembros'=>$miembros
+            'miembros'=>$miembros,
+            'usuario_search'=>$usuario_search,
         ]),
     ],
 ];

@@ -214,3 +214,7 @@ li.dropdown > a.dropdown-toggle {
 ul.breadcrumb  {
     margin-bottom: 10px;
 }
+
+.content-scroll {
+    overflow: scroll;
+}

@@ -3,7 +3,7 @@
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Equipos */
-/* @var $tableros app\models\Tableros */
+/* @var $tableros yii\data\ActiveDataProvider */
 /* @var $tablero_crear app\models\Tableros */
 /* @var $miembros yii\data\ActiveDataProvider */
 
@@ -59,5 +59,6 @@ $this->registerJs($js);
     'model'=>$model,
     'tableros'=>$tableros,
     'tablero_crear'=>$tablero_crear,
-    'miembros'=>$miembros
+    'miembros'=>$miembros,
+    'usuario_search'=>$usuario_search,
 ]) ?>
