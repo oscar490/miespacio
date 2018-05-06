@@ -1,14 +1,17 @@
 
-function addEventKey(input, url_search, id_equipo) {
-    input.on('keyup', function() {
+function addEventKey(input, url_search, id_equipo, form) {
+    form.on('submit', function() {
+        return false;
+    });
 
+    input.on('keyup', function() {
         datos = {
-            nombre: $(this).val(),
+            nombre: input.val(),
             id_equipo: id_equipo,
         };
+        
         sendAjax(url_search, 'GET', datos, function (data) {
-
             $("#content_miembros").html(data);
-        })
+        });
     })
 }

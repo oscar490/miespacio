@@ -96,11 +96,10 @@ class EquiposController extends Controller
 
         //  Miembros del equipo.
         $miembros = new ActiveDataProvider([
-            'query'=>Equipos::findOne($id)
-                ->getMiembros(),
-            'sort'=>[
-                'defaultOrder'=>['created_at'=>SORT_DESC]
-            ]
+            'query'=>Usuarios::find()
+                ->joinWith('miembros')
+                ->where(['equipo_id'=>$id])
+                ->orderBy(['created_at'=>SORT_DESC])
         ]);
 
         return $this->render('view', [

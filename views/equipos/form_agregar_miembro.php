@@ -16,4 +16,6 @@ use yii\widgets\ActiveForm;
             ->label(false)
     ?>
 
+    <?= Html::hiddenInput('id_equipo', $equipo->id); ?>
+
 <?php ActiveForm::end() ?>

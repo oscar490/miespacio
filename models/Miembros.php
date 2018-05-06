@@ -53,12 +53,17 @@ class Miembros extends \yii\db\ActiveRecord
         ];
     }
 
+    public function formName()
+    {
+        return '';
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getEquipo()
     {
-        return $this->hasOne(Tableros::className(), ['id' => 'equipo_id'])->inverseOf('miembros');
+        return $this->hasOne(Equipos::className(), ['id' => 'equipo_id'])->inverseOf('miembros');
     }
 
     /**

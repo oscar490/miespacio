@@ -41,9 +41,7 @@ class UsuariosSearch extends Usuarios
      */
     public function search($params)
     {
-        $query = Miembros::find()
-            ->joinWith('usuario')
-            ->distinct();
+        $query = usuarios::find();
 
 
         // add conditions that should always apply here

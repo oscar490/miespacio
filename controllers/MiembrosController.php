@@ -8,6 +8,9 @@ use app\models\MiembrosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
+use app\models\Usuarios;
+use app\models\UsuariosSearch;
 
 /**
  * MiembrosController implements the CRUD actions for Miembros model.
@@ -67,12 +70,20 @@ class MiembrosController extends Controller
         $model = new Miembros();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+
+            return $this->renderAjax('/equipos/miembros', [
+                'miembros' => new ActiveDataProvider([
+                    'query'=>Usuarios::find()
+                        ->joinWith('miembros')
+                        ->where(['equipo_id'=>$model->equipo_id])
+                        ->orderBy(['created_at'=>SORT_DESC])
+                ]),
+                'model'=>$model->equipo,
+                'usuario_search'=>new UsuariosSearch(),
+            ]);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+
     }
 
     /**

@@ -1,23 +1,15 @@
 <?php
 /* Vista de un miembro del equipo */
 
-/* @var $model app\models\Miembros */
+/* @var $model app\models\Usuarios */
 /* @var $equipo app\models\Equipos */
 
 use yii\helpers\Html;
 use app\components\MyHelpers;
 
 
-if ($model->id == $equipo->propietario_id) {
-    $class = 'default';
-    $contenido = Html::encode('Propietario');
+$datos = $model->datosUsuarios;
 
-} else {
-    $class = 'primary';
-    $contenido = Html::encode('Miembro');
-}
-
-$datos = $model->usuario->datosUsuarios;
 ?>
 <div class='row'>
     <!-- Imagen de perfil -->
@@ -43,16 +35,18 @@ $datos = $model->usuario->datosUsuarios;
         <!-- Nombre de usuario -->
         <div class='row'>
             <div id='name_user' class='col-md-5'>
-                <?= Html::encode($model->usuario->nombre) ?>
+                <?= Html::encode($model->nombre) ?>
             </div>
         </div>
     </div>
 
     <!-- Tipo de usuario: Propietario o miembro -->
+    <!-- Botón para añadir usuario si no es miembro del equipo -->
     <div class='col-xs-4 col-md-5'>
-        <h4>
-            <?= MyHelpers::label($class, $contenido) ?>
-        </h4>
+        <?= $this->render('boton_add_miembro', [
+            'model'=>$model,
+            'equipo'=>$equipo
+        ]) ?>
     </div>
 
 

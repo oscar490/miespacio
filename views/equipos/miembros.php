@@ -24,12 +24,13 @@ $js = <<<EOT
     $(document).ready(function() {
         $('#btn_add_miembro').on('click', function() {
             let content = $("#form_search_user");
-            let input_text = content.find('input');
+            let input_text = content.find('input#nombre');
 
             content.slideToggle();
             input_text.focus()
 
-            addEventKey(input_text, '$url_search', '$model->id');
+            addEventKey(input_text, '$url_search', '$model->id',
+                $('#search_user'));
         })
     })
 EOT;
@@ -41,6 +42,7 @@ $this->registerJs($js);
     <div id='form_search_user' class='col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4'>
         <?= $this->render('form_agregar_miembro', [
             'usuario_search'=>$usuario_search,
+            'equipo'=>$model,
         ])?>
     </div>
 </div>
