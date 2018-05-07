@@ -100,13 +100,13 @@ class SiteController extends Controller
         $usuario = Usuarios::findOne($id_user);
 
         if ($usuario->cuentaActivada) {
-            $direccion = ['site/solicitar-password'];
             $vista_correo = 'recuperar-password';
             $asunto = 'Recuperación de contraseña de ';
+
         } else {
-            $direccion = ['site/login'];
             $vista_correo = 'activacion-cuenta';
             $asunto = 'Activación de cuenta de ';
+
         }
 
         $send = Yii::$app->mailer->compose($vista_correo, [
@@ -124,7 +124,7 @@ class SiteController extends Controller
             );
         }
 
-        return $this->redirect($direccion);
+        return $this->redirect(Yii::$app->session->get('url_vuelta'));
     }
 
     /**
@@ -173,6 +173,12 @@ class SiteController extends Controller
                 'Se ha enviado un correo electrónico a la dirección indicada.
                  Realice el proceso indicado para establecer la contraseña.'
             );
+
+            Yii::$app->session->set(
+                'url_vuelta',
+                ['site/solicitar-password']
+            );
+
             return $this->redirect(['site/send-email', 'id_user'=>$usuario->id]);
         }
 
@@ -249,4 +255,5 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
 }

@@ -83,6 +83,12 @@ class UsuariosController extends Controller
                 'info',
                 'Confirme su dirección de correo electrónico: ' . $model->email
             );
+
+            Yii::$app->session->set(
+                'url_vuelta',
+                ['site/login']
+            );
+
             return $this->redirect(['site/send-email', 'id_user'=>$model->id]);
         }
 
@@ -158,7 +164,7 @@ class UsuariosController extends Controller
         $searchModel = new UsuariosSearch();
 
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        
+
         return $this->renderAjax('/equipos/lista_miembros', [
             'miembros'=>$dataProvider,
             'model'=>Equipos::findOne($id_equipo),
