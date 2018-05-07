@@ -2,6 +2,8 @@
 
 [![Waffle.io - Columns and their card count](https://badge.waffle.io/oscar490/miespacio.svg?columns=all)](https://waffle.io/oscar490/miespacio)
 
+[Documentación](https://oscar490.github.io/miespacio/)
+
 <p>
 
 Su funcionalidad principal se basa en la creación de tableros digitales,
