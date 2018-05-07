@@ -7,6 +7,7 @@ use kartik\dialog\Dialog;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\bootstrap\Modal;
+use kartik\growl\Growl;
 
 class MyHelpers
 {
@@ -102,6 +103,29 @@ class MyHelpers
                 'class'=>$class,
             ],
             'size'=>$size
+        ]);
+    }
+
+    /**
+     * Muestra un mensaje de notificación.
+     * @param  [type] $type    [description]
+     * @param  [type] $mensaje [description]
+     * @param  [type] $delay   [description]
+     * @return [type]          [description]
+     */
+    public static function notification($type, $mensaje, $delay)
+    {
+        switch ($type) {
+            case 'success':
+                $type = Growl::TYPE_SUCCESS;
+                break;
+        }
+
+        return Growl::widget([
+            'type'=>$type,
+            'icon'=>'glyphicon glyphicon-ok',
+            'body'=>$mensaje,
+            'delay'=>$delay,
         ]);
     }
 

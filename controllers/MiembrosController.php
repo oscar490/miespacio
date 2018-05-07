@@ -11,6 +11,8 @@ use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
 use app\models\Usuarios;
 use app\models\UsuariosSearch;
+use app\components\MyHelpers;
+
 
 /**
  * MiembrosController implements the CRUD actions for Miembros model.
@@ -71,6 +73,12 @@ class MiembrosController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
+            MyHelpers::notification(
+                'success',
+                'Se ha añadido al equipo correctamente',
+                0
+            );
+            
             return $this->renderAjax('/equipos/miembros', [
                 'miembros' => new ActiveDataProvider([
                     'query'=>Usuarios::find()
