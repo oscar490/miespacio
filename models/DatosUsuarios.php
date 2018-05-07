@@ -114,9 +114,14 @@ class DatosUsuarios extends \yii\db\ActiveRecord
             $equipo = new Equipos([
                 'denominacion'=>'Tableros personales',
                 'url_imagen'=>'images/equipo.png',
-                'usuario_id'=>$this->usuario_id
+                'propietario_id'=>$this->usuario_id
             ]);
             $equipo->save();
+
+            (new Miembros([
+                'equipo_id'=>$equipo->id,
+                'usuario_id'=>$this->usuario->id
+            ]))->save();
 
             (new Tableros([
                 'denominacion'=>'Tablero de Bienvenida',

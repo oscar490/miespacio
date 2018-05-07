@@ -42,6 +42,7 @@
 <a class="list-group-item" href="./app-controllers-datosusuarioscontroller.html">DatosUsuariosController</a>
 <a class="list-group-item" href="./app-controllers-equiposcontroller.html">EquiposController</a>
 <a class="list-group-item" href="./app-controllers-listascontroller.html">ListasController</a>
+<a class="list-group-item" href="./app-controllers-miembroscontroller.html">MiembrosController</a>
 <a class="list-group-item" href="./app-controllers-sitecontroller.html">SiteController</a>
 <a class="list-group-item" href="./app-controllers-tableroscontroller.html">TablerosController</a>
 <a class="list-group-item" href="./app-controllers-tarjetascontroller.html">TarjetasController</a>
@@ -57,6 +58,8 @@
 <a class="list-group-item" href="./app-models-listas.html">Listas</a>
 <a class="list-group-item" href="./app-models-listassearch.html">ListasSearch</a>
 <a class="list-group-item" href="./app-models-loginform.html">LoginForm</a>
+<a class="list-group-item" href="./app-models-miembros.html">Miembros</a>
+<a class="list-group-item" href="./app-models-miembrossearch.html">MiembrosSearch</a>
 <a class="list-group-item" href="./app-models-subidassearch.html">SubidasSearch</a>
 <a class="list-group-item active" href="./app-models-tableros.html">Tableros</a>
 <a class="list-group-item" href="./app-models-tablerossearch.html">TablerosSearch</a>
@@ -64,7 +67,8 @@
 <a class="list-group-item" href="./app-models-tarjetassearch.html">TarjetasSearch</a>
 <a class="list-group-item" href="./app-models-uploadfiles.html">UploadFiles</a>
 <a class="list-group-item" href="./app-models-user.html">User</a>
-<a class="list-group-item" href="./app-models-usuarios.html">Usuarios</a></div>
+<a class="list-group-item" href="./app-models-usuarios.html">Usuarios</a>
+<a class="list-group-item" href="./app-models-usuariossearch.html">UsuariosSearch</a></div>
 <a class="list-group-item" href="#navigation-51" data-toggle="collapse" data-parent="#navigation">app\widgets <b class="caret"></b></a><div id="navigation-51" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-widgets-alert.html">Alert</a></div></div>    </div>
     <div class="col-md-9 api-content" role="main">
         <h1>Class app\models\Tableros</h1>
@@ -177,6 +181,12 @@
     </tr>
             <tr id="$listas">
         <td><a href="app-models-tableros.html#$listas-detail">$listas</a></td>
+        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
+        <td></td>
+        <td><a href="app-models-tableros.html">app\models\Tableros</a></td>
+    </tr>
+            <tr id="$miembros">
+        <td><a href="app-models-tableros.html#$miembros-detail">$miembros</a></td>
         <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
         <td></td>
         <td><a href="app-models-tableros.html">app\models\Tableros</a></td>
@@ -540,6 +550,11 @@ contrario.</td>
     </tr>
             <tr id="getListas()">
         <td><a href="app-models-tableros.html#getListas()-detail">getListas()</a></td>
+        <td></td>
+        <td><a href="app-models-tableros.html">app\models\Tableros</a></td>
+    </tr>
+            <tr id="getMiembros()">
+        <td><a href="app-models-tableros.html#getMiembros()-detail">getMiembros()</a></td>
         <td></td>
         <td><a href="app-models-tableros.html">app\models\Tableros</a></td>
     </tr>
@@ -922,7 +937,7 @@ The previous example would extract "id".</td>
         <td>Finds ActiveRecord instance(s) by the given condition.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
     </tr>
-                                                                                                                                                                            <tr class="inherited" id="insertInternal()">
+                                                                                                                                                                                <tr class="inherited" id="insertInternal()">
         <td><a href="yii-db-activerecord.html#insertInternal()-detail">insertInternal()</a></td>
         <td>Inserts an ActiveRecord into DB without considering transaction.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
@@ -1153,6 +1168,23 @@ This is a shortcut of the expression: OP_INSERT | OP_UPDATE | OP_DELETE.        
 
     <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-tableros.html#getListas()-detail">getListas</a></strong> ( )</div>
 
+
+    <div class="detail-header h3" id="$miembros-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-models-tableros.html#$miembros-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $miembros        <span class="detail-header-tag small">
+            public                         <em>read-only</em>                         property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-tableros.html#getMiembros()-detail">getMiembros</a></strong> ( )</div>
+
 </div>
 <h2>Method Details</h2>
 
@@ -1292,6 +1324,29 @@ contrario.</strong></p>
 
     <table class="detail-table table table-striped table-bordered table-hover">
         <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-tableros.html#getListas()-detail">getListas</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getMiembros()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-models-tableros.html#getMiembros()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getMiembros()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-tableros.html#getMiembros()-detail">getMiembros</a></strong> ( )</td></tr>
             </table>
 
 <!--	-->
@@ -1443,7 +1498,7 @@ if the table is not named after this convention.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sun, 29 Apr 2018 22:22:44 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Mon, 07 May 2018 19:06:00 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

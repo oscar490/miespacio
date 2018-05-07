@@ -404,7 +404,7 @@
 <tr><th align="right"><strong>R28</strong>     </th><th align="left"><strong>Añadir miembros a un tablero.</strong></th></tr>
 </thead>
 <tbody>
-<tr><td align="right"><strong>Descripción</strong> </td><td align="left">En el contenido del tablero, habrá una sección que, por medio de un formulario, se buscará a otro usuario, que esté registrado en la aplicación. Se deberá indicar el nombre de usuario o su dirección de correo electrónico, el mismo que uso para registrarse. Una vez buscado, se añadirá dicho usuario al tablero, de manera que podrá śolo ver su contenido y añadir comentarios en las tarjetas.</td></tr>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">En el contenido del equipo, habrá una sección que, por medio de un formulario, se buscará a otro usuario, que esté registrado en la aplicación. Se deberá indicar el nombre de usuario o su dirección de correo electrónico, el mismo que uso para registrarse. Una vez buscado, se añadirá dicho usuario al equipo y formará parte del equipo.</td></tr>
 <tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
 <tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
 <tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
@@ -833,7 +833,7 @@
 <tr><th align="right"><strong>R61</strong>     </th><th align="left"><strong>Búsqueda de usuarios.</strong></th></tr>
 </thead>
 <tbody>
-<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Desde la página principal, habrá una sección donde permita, mediante un formulario, buscar un usuario a partir de su nombre o correo electrónico, el mismo que se uso para registrarse. Una ve encontrado, podremos acceder a su perfil y ver sus tableros y sus contenido. En caso de no existir el usuario, se le notificará con un mensaje.</td></tr>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Desde el contenido del equipo, habrá una sección donde permita, mediante un formulario, buscar un usuario a partir de su nombre o correo electrónico, el mismo que se uso para registrarse. Ese usuario buscado puede pertenecer al equipo como miembro o propietario, o no pertenecer. En caso de no existir el usuario, se le notificará con un mensaje.</td></tr>
 <tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
 <tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
 <tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
@@ -1127,6 +1127,19 @@
 <tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/116">83</a></td></tr>
 </tbody>
 </table>
+<table class="table table-bordered table-striped">
+<thead>
+<tr><th align="right"><strong>R84</strong>     </th><th align="left"><strong>Mostrar ususarios que pertenecen a un equipo.</strong></th></tr>
+</thead>
+<tbody>
+<tr><td align="right"><strong>Descripción</strong> </td><td align="left">Desde el contenido de un equipo, se mostrarán los usuarios que sean miembros o propietarios del equipo. De manera que esos usuarios podrán ver y realizar funciones sobre ese equipo, de forma colaborativa.</td></tr>
+<tr><td align="right"><strong>Prioridad</strong>   </td><td align="left">Importante</td></tr>
+<tr><td align="right"><strong>Tipo</strong>        </td><td align="left">Funcional</td></tr>
+<tr><td align="right"><strong>Complejidad</strong> </td><td align="left">Media</td></tr>
+<tr><td align="right"><strong>Entrega</strong>     </td><td align="left">v2</td></tr>
+<tr><td align="right"><strong>Incidencia</strong>  </td><td align="left"><a href="https://github.com/oscar490/miespacio/issues/123">84</a></td></tr>
+</tbody>
+</table>
 <h2>Cuadro resumen <span id="cuadro-resumen"></span><a href="#cuadro-resumen" class="hashlink">&para;</a></h2><table class="table table-bordered table-striped">
 <thead>
 <tr><th align="left"><strong>Requisito</strong> </th><th align="center"><strong>Prioridad</strong> </th><th align="center"><strong>Tipo</strong> </th><th align="center"><strong>Complejidad</strong> </th><th align="center"><strong>Entrega</strong> </th><th align="center"><strong>Incidencia</strong></th></tr>
@@ -1159,7 +1172,7 @@
 <tr><td align="left">(<strong>R25</strong>) Eliminar contenido de tarjeta. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/25">25</a></td></tr>
 <tr><td align="left">(<strong>R26</strong>) Validación de los campos del formulario. </td><td align="center">Mínimo </td><td align="center">Técnico </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/26">26</a></td></tr>
 <tr><td align="left">(<strong>R27</strong>) Mostrar contenido de la tarjeta. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Fácil </td><td align="center">v1 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/27">27</a></td></tr>
-<tr><td align="left">(<strong>R28</strong>) Añadir miembros a un tablero. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/28">28</a></td></tr>
+<tr><td align="left">(<strong>R28</strong>) Añadir miembros a un equipo. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/28">28</a></td></tr>
 <tr><td align="left">(<strong>R29</strong>) Ver tableros de otros usuarios. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/29">29</a></td></tr>
 <tr><td align="left">(<strong>R30</strong>) Búsqueda de tableros. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/30">30</a></td></tr>
 <tr><td align="left">(<strong>R31</strong>) Añadir tablero como favorito. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/31">31</a></td></tr>
@@ -1215,6 +1228,7 @@
 <tr><td align="left">(<strong>R81</strong>) Modificar listas. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/114">81</a></td></tr>
 <tr><td align="left">(<strong>R82</strong>) Eliminar listas. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/115">82</a></td></tr>
 <tr><td align="left">(<strong>R83</strong>) Mostrar listas. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v3 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/116">83</a></td></tr>
+<tr><td align="left">(<strong>R84</strong>) Mostrar ususarios que pertenecen a un equipo. </td><td align="center">Importante </td><td align="center">Funcional </td><td align="center">Media </td><td align="center">v2 </td><td align="center"><a href="https://github.com/oscar490/miespacio/issues/123">84</a></td></tr>
 </tbody>
 </table>
         <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
@@ -1225,7 +1239,7 @@
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sun, 29 Apr 2018 22:23:18 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Mon, 07 May 2018 19:06:34 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

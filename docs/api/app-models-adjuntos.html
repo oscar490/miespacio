@@ -42,6 +42,7 @@
 <a class="list-group-item" href="./app-controllers-datosusuarioscontroller.html">DatosUsuariosController</a>
 <a class="list-group-item" href="./app-controllers-equiposcontroller.html">EquiposController</a>
 <a class="list-group-item" href="./app-controllers-listascontroller.html">ListasController</a>
+<a class="list-group-item" href="./app-controllers-miembroscontroller.html">MiembrosController</a>
 <a class="list-group-item" href="./app-controllers-sitecontroller.html">SiteController</a>
 <a class="list-group-item" href="./app-controllers-tableroscontroller.html">TablerosController</a>
 <a class="list-group-item" href="./app-controllers-tarjetascontroller.html">TarjetasController</a>
@@ -57,6 +58,8 @@
 <a class="list-group-item" href="./app-models-listas.html">Listas</a>
 <a class="list-group-item" href="./app-models-listassearch.html">ListasSearch</a>
 <a class="list-group-item" href="./app-models-loginform.html">LoginForm</a>
+<a class="list-group-item" href="./app-models-miembros.html">Miembros</a>
+<a class="list-group-item" href="./app-models-miembrossearch.html">MiembrosSearch</a>
 <a class="list-group-item" href="./app-models-subidassearch.html">SubidasSearch</a>
 <a class="list-group-item" href="./app-models-tableros.html">Tableros</a>
 <a class="list-group-item" href="./app-models-tablerossearch.html">TablerosSearch</a>
@@ -64,7 +67,8 @@
 <a class="list-group-item" href="./app-models-tarjetassearch.html">TarjetasSearch</a>
 <a class="list-group-item" href="./app-models-uploadfiles.html">UploadFiles</a>
 <a class="list-group-item" href="./app-models-user.html">User</a>
-<a class="list-group-item" href="./app-models-usuarios.html">Usuarios</a></div>
+<a class="list-group-item" href="./app-models-usuarios.html">Usuarios</a>
+<a class="list-group-item" href="./app-models-usuariossearch.html">UsuariosSearch</a></div>
 <a class="list-group-item" href="#navigation-78" data-toggle="collapse" data-parent="#navigation">app\widgets <b class="caret"></b></a><div id="navigation-78" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-widgets-alert.html">Alert</a></div></div>    </div>
     <div class="col-md-9 api-content" role="main">
         <h1>Class app\models\Adjuntos</h1>
@@ -334,10 +338,11 @@
         <td>This method is invoked before deleting a record.</td>
         <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
     </tr>
-            <tr class="inherited" id="beforeSave()">
-        <td><a href="yii-db-baseactiverecord.html#beforeSave()-detail">beforeSave()</a></td>
-        <td>This method is called at the beginning of inserting or updating a record.</td>
-        <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
+            <tr id="beforeSave()">
+        <td><a href="app-models-adjuntos.html#beforeSave()-detail">beforeSave()</a></td>
+        <td>Almacena el tipo de archivo adjuntado. En el caso que ya
+exista, lo sobrescribe.</td>
+        <td><a href="app-models-adjuntos.html">app\models\Adjuntos</a></td>
     </tr>
             <tr class="inherited" id="beforeValidate()">
         <td><a href="yii-base-model.html#beforeValidate()-detail">beforeValidate()</a></td>
@@ -1185,6 +1190,42 @@ merge the parent labels with child labels using functions such as <code>array_me
 
 <!--	-->
 
+    <div class="detail-header h3" id="beforeSave()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-models-adjuntos.html#beforeSave()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        beforeSave()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Almacena el tipo de archivo adjuntado. En el caso que ya
+exista, lo sobrescribe.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">\app\models\[type]</span> <strong><a href="app-models-adjuntos.html#beforeSave()-detail">beforeSave</a></strong> ( <span style="color: #0000BB">$insert</span> )</td></tr>
+                                    <tr>
+                  <td class="param-name-col"><span style="color: #0000BB">$insert</span></td>
+                  <td class="param-type-col">\app\models\[type]</td>
+                  <td class="param-desc-col"><p>[description]</p>
+</td>
+                </tr>
+                                        <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col">\app\models\[type]</td>
+                  <td class="param-desc-col"><p>[description]</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
     <div class="detail-header h3" id="formName()-detail">
         <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
         <a class="tool-link hash" href="app-models-adjuntos.html#formName()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
@@ -1378,7 +1419,7 @@ if the table is not named after this convention.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Sun, 29 Apr 2018 22:22:44 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Mon, 07 May 2018 19:06:00 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {
