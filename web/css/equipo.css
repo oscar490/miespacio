@@ -36,3 +36,31 @@ a:link {
 a:hover {
     color: #75a4c1;
 }
+
+.contenido {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#img_equipo > img {
+    width: 120px;
+    height: 120px;
+}
+
+#titulo {
+    padding-left: 50px;
+}
+
+#titulo.col-md-11 {
+    padding-left: 75px;
+}
+
+#titulo.col-sm-11 {
+    padding-left: 100px;
+}
+
+#titulo.col-lg-11 {
+    padding-left: 60px;
+}

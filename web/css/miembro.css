@@ -1,0 +1,27 @@
+div[id^='img_user'] > img {
+    width: 53px;
+    height: 48px;
+
+}
+
+div[id^='img_user'] {
+    margin-right: 20px;
+}
+
+#name_user {
+    color: #838c91;
+}
+
+#content_miembros {
+    height: 250px;
+}
+
+#form_search_user {
+    display: none;
+}
+
+#panel_definicion {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}

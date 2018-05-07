@@ -14,7 +14,7 @@ use kartik\file\FileInput;
 <div class="datos-usuarios-form">
 
     <?php $form = ActiveForm::begin([
-        'action'=>['datos-usuarios/update', 'id'=>$model->id],
+        'action'=>['datos-usuarios/update', 'id'=>$model->usuario_id],
     ]); ?>
         <!-- Nombre completo -->
         <?= $form->field($model, 'nombre_completo')->textInput(['maxlength' => true]) ?>

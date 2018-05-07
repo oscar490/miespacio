@@ -12,6 +12,16 @@ if ($equipo->id !== null) {
     $label = 'Guardar configuración';
     $mostrar = true;
 }
+
+$js = <<<EOT
+    $(document).ready(function() {
+        $("#w10").on('beforeSubmit', function() {
+            console.log($(this).find("#btn_create_equipo"));
+        })
+    })
+EOT;
+
+$this->registerJs($js);
 ?>
 
 <?php $form = ActiveForm::begin([
@@ -36,9 +46,15 @@ if ($equipo->id !== null) {
         ])
     ?>
 
+    <!-- Propietario del equipo -->
+    <?= Html::hiddenInput('propietario_id', Yii::$app->user->id); ?>
+
     <div class="form-group">
         <?=
-            MyHelpers::submit($label, ['class'=>'btn btn-success btn-block']);
+            MyHelpers::submit($label, [
+                'class'=>'btn btn-success btn-block',
+                'id'=>'btn_create_equipo'
+            ]);
         ?>
     </div>
 

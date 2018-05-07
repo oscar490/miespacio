@@ -246,7 +246,7 @@
 
 | **R28**     | **Añadir miembros a un tablero.**           |
 | --------------: | :------------------- |
-| **Descripción** | En el contenido del tablero, habrá una sección que, por medio de un formulario, se buscará a otro usuario, que esté registrado en la aplicación. Se deberá indicar el nombre de usuario o su dirección de correo electrónico, el mismo que uso para registrarse. Una vez buscado, se añadirá dicho usuario al tablero, de manera que podrá śolo ver su contenido y añadir comentarios en las tarjetas.             |
+| **Descripción** | En el contenido del equipo, habrá una sección que, por medio de un formulario, se buscará a otro usuario, que esté registrado en la aplicación. Se deberá indicar el nombre de usuario o su dirección de correo electrónico, el mismo que uso para registrarse. Una vez buscado, se añadirá dicho usuario al equipo y formará parte del equipo.             |
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
@@ -541,9 +541,9 @@
 | **Entrega**     | v2             |
 | **Incidencia**  | [60](https://github.com/oscar490/miespacio/issues/60) |
 
-| **R61**     | **Búsqueda de usuarios.**           |
+| **R61**     | **Búsqueda de usuarios de un equipo.**           |
 | --------------: | :------------------- |
-| **Descripción** | Desde la página principal, habrá una sección donde permita, mediante un formulario, buscar un usuario a partir de su nombre o correo electrónico, el mismo que se uso para registrarse. Una ve encontrado, podremos acceder a su perfil y ver sus tableros y sus contenido. En caso de no existir el usuario, se le notificará con un mensaje.             |
+| **Descripción** | Desde el contenido del equipo, habrá una sección donde permita, mediante un formulario, buscar un usuario a partir de su nombre o correo electrónico, el mismo que se uso para registrarse. Ese usuario buscado pertenece al equipo como miembro o propietario. En caso de no existir el usuario, se le notificará con un mensaje.             |
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
@@ -748,6 +748,15 @@
 | **Entrega**     | v2             |
 | **Incidencia**  | [83](https://github.com/oscar490/miespacio/issues/116) |
 
+| **R84**     | **Mostrar ususarios que pertenecen a un equipo.**           |
+| --------------: | :------------------- |
+| **Descripción** | Desde el contenido de un equipo, se mostrarán los usuarios que sean miembros o propietarios del equipo. De manera que esos usuarios podrán ver y realizar funciones sobre ese equipo, de forma colaborativa.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+| **Incidencia**  | [84](https://github.com/oscar490/miespacio/issues/123) |
+
 
 ## Cuadro resumen
 
@@ -780,7 +789,7 @@
 | (**R25**) Eliminar contenido de tarjeta. | Importante | Funcional | Fácil | v1 | [25](https://github.com/oscar490/miespacio/issues/25) |
 | (**R26**) Validación de los campos del formulario. | Mínimo | Técnico | Fácil | v1 | [26](https://github.com/oscar490/miespacio/issues/26) |
 | (**R27**) Mostrar contenido de la tarjeta. | Importante | Funcional | Fácil | v1 | [27](https://github.com/oscar490/miespacio/issues/27) |
-| (**R28**) Añadir miembros a un tablero. | Importante | Funcional | Media | v2 | [28](https://github.com/oscar490/miespacio/issues/28) |
+| (**R28**) Añadir miembros a un equipo. | Importante | Funcional | Media | v2 | [28](https://github.com/oscar490/miespacio/issues/28) |
 | (**R29**) Ver tableros de otros usuarios. | Importante | Funcional | Media | v2 | [29](https://github.com/oscar490/miespacio/issues/29) |
 | (**R30**) Búsqueda de tableros. | Importante | Funcional | Media | v2 | [30](https://github.com/oscar490/miespacio/issues/30) |
 | (**R31**) Añadir tablero como favorito. | Importante | Funcional | Media | v2 | [31](https://github.com/oscar490/miespacio/issues/31) |
@@ -813,7 +822,7 @@
 | (**R58**) Realizar el despligue en un host | Mínimo | Técnico |  |  | [58](https://github.com/oscar490/miespacio/issues/58) |
 | (**R59**) Realizar el despliegue en un servidor local. | Mínimo | Técnico |  |  | [59](https://github.com/oscar490/miespacio/issues/59) |
 | (**R60**) Gestión de permisos de usuarios  | Importante | Funcional | Media | v2 | [60](https://github.com/oscar490/miespacio/issues/60) |
-| (**R61**) Búsqueda de usuarios. | Importante | Funcional | Media | v2 | [61](https://github.com/oscar490/miespacio/issues/61) |
+| (**R61**) Búsqueda de usuarios de un equipo. | Importante | Funcional | Media | v2 | [61](https://github.com/oscar490/miespacio/issues/61) |
 | (**R62**) Gestión de permisos de tableros. | Importante | Funcional | Media | v2 | [62](https://github.com/oscar490/miespacio/issues/62) |
 | (**R63**) Mostrar u ocultar tarjetas. | Opcional | Funcional | Difícil | v2 | [63](https://github.com/oscar490/miespacio/issues/63) |
 | (**R64**) Personalizar tableros. | Opcional | Funcional | Media | v2 | [64](https://github.com/oscar490/miespacio/issues/64) |
@@ -836,3 +845,4 @@
 | (**R81**) Modificar listas. | Importante | Funcional | Media | v2 | [81](https://github.com/oscar490/miespacio/issues/114) |
 | (**R82**) Eliminar listas. | Importante | Funcional | Media | v2 | [82](https://github.com/oscar490/miespacio/issues/115) |
 | (**R83**) Mostrar listas. | Importante | Funcional | Media | v3 | [83](https://github.com/oscar490/miespacio/issues/116) |
+| (**R84**) Mostrar ususarios que pertenecen a un equipo. | Importante | Funcional | Media | v2 | [84](https://github.com/oscar490/miespacio/issues/123) |

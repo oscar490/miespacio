@@ -100,4 +100,13 @@ class Tableros extends \yii\db\ActiveRecord
     {
        return $this->hasMany(Listas::className(), ['tablero_id' => 'id'])->inverseOf('tablero');
     }
+
+    /**
+    * @return \yii\db\ActiveQuery
+    */
+    public function getMiembros()
+    {
+        return $this->hasMany(Miembros::className(), ['tablero_id' => 'id'])
+            ->inverseOf('tablero');
+    }
 }

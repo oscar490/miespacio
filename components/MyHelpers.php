@@ -7,6 +7,7 @@ use kartik\dialog\Dialog;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\bootstrap\Modal;
+use kartik\growl\Growl;
 
 class MyHelpers
 {
@@ -106,6 +107,29 @@ class MyHelpers
     }
 
     /**
+     * Muestra un mensaje de notificación.
+     * @param  [type] $type    [description]
+     * @param  [type] $mensaje [description]
+     * @param  [type] $delay   [description]
+     * @return [type]          [description]
+     */
+    public static function notification($type, $mensaje, $delay)
+    {
+        switch ($type) {
+            case 'success':
+                $type = Growl::TYPE_SUCCESS;
+                break;
+        }
+
+        return Growl::widget([
+            'type'=>$type,
+            'icon'=>'glyphicon glyphicon-ok',
+            'body'=>$mensaje,
+            'delay'=>$delay,
+        ]);
+    }
+
+    /**
      * Renderiza las etiquetas de cierre de un Modal.
      * @return [type] [description]
      */
@@ -115,17 +139,13 @@ class MyHelpers
     }
 
 
-    public static function alert($titulo)
+    public static function label($class, $contenido)
     {
-        return Dialog::widget([
-            'dialogDefaults'=>[
-                Dialog::DIALOG_ALERT => [
-                    'type'=>Dialog::TYPE_INFO,
-                    'title'=>$titulo,
-                    'buttonLabel'=>MyHelpers::icon('glyphicon glyphicon-ok')
-                ],
-            ],
-        ]);
+        return Html::tag(
+            'span',
+            $contenido,
+            ['class'=>"label label-$class"]
+        );
     }
 
 }

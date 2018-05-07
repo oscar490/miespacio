@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Equipos;
+use app\models\Usuarios;
 use app\models\EquiposSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -15,6 +16,7 @@ use app\models\Tableros;
 use yii\filters\AccessControl;
 use yii\web\UploadedFile;
 use app\models\UploadFiles;
+use app\models\UsuariosSearch;
 
 /**
  * EquiposController implements the CRUD actions for Equipos model.
@@ -56,8 +58,8 @@ class EquiposController extends Controller
     {
         //  Equipos creados por el usuario logeado.
         $equipos = new ActiveDataProvider([
-            'query'=>Equipos::find()
-                ->where(['usuario_id'=>Yii::$app->user->id]),
+            'query'=>Usuarios::findOne(Yii::$app->user->id)
+                ->getEquipos(),
             'sort'=>[
                 'defaultOrder'=>['created_at'=>SORT_DESC],
             ],
@@ -92,13 +94,20 @@ class EquiposController extends Controller
                 ->where(['equipo_id'=>$id]),
         ]);
 
-        //  Modelo de tablero.
-        $tablero_crear = new Tableros();
+        //  Miembros del equipo.
+        $miembros = new ActiveDataProvider([
+            'query'=>Usuarios::find()
+                ->joinWith('miembros')
+                ->where(['equipo_id'=>$id])
+                ->orderBy(['created_at'=>SORT_DESC])
+        ]);
 
         return $this->render('view', [
             'model' => $this->findModel($id),
             'tableros'=>$tableros,
-            'tablero_crear'=>$tablero_crear,
+            'tablero_crear'=>new Tableros(),
+            'miembros'=>$miembros,
+            'usuario_search'=>new UsuariosSearch(),
         ]);
     }
 
@@ -110,10 +119,7 @@ class EquiposController extends Controller
     public function actionCreate()
     {
         //  Modelo para craar un nuevo equipo.
-        $equipo = new Equipos([
-            'usuario_id'=>Yii::$app->user->id,
-            'url_imagen'=>'images/equipo.png'
-        ]);
+        $equipo = new Equipos();
 
         if (Yii::$app->request->isAjax && $equipo->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;

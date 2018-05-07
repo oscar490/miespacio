@@ -20,7 +20,7 @@ use yii\web\IdentityInterface;
  * @property string $token_clave
  * @property string $auth_key
  *
- * @property DatosUsuarios[] $datosUsuarios
+ * @property DatosUsuarios $datosUsuarios
  * @property Equipos[] $equipos
  */
 class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
@@ -262,7 +262,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function getDatosUsuarios()
     {
-        return $this->hasMany(DatosUsuarios::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
+        return $this->hasOne(DatosUsuarios::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
     }
 
     /**
@@ -270,7 +270,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function getEquipos()
     {
-        return $this->hasMany(Equipos::className(), ['usuario_id' => 'id'])->inverseOf('usuario');
+        return $this->hasMany(Equipos::className(), ['propietario_id' => 'id'])->inverseOf('usuario');
     }
 
     /**
@@ -291,5 +291,14 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             ]))->save();
         }
 
+    }
+
+    /**
+    * @return \yii\db\ActiveQuery
+    */
+    public function getMiembros()
+    {
+        return $this->hasMany(Miembros::className(), ['usuario_id' => 'id'])
+            ->inverseOf('usuario');
     }
 }

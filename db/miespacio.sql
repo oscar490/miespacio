@@ -19,7 +19,9 @@ CREATE TABLE usuarios
 );
 
 INSERT INTO usuarios (nombre, password, email)
-    VALUES ('oscar', crypt('oscar', gen_salt('bf', 13)), 'oscar.vega@iesdonana.org');
+    VALUES ('oscar', crypt('oscar', gen_salt('bf', 13)), 'oscar.vega@iesdonana.org'),
+            ('pepe', crypt('pepe', gen_salt('bf', 13)), 'pepe.pepe@gmail.com'),
+            ('rafa', crypt('rafa', gen_salt('bf', 13)), 'rafa.rafa@gmail.com');
 
 
 -- Tabla datos_usuarios --
@@ -28,17 +30,19 @@ DROP TABLE IF EXISTS datos_usuarios CASCADE;
 
 CREATE TABLE datos_usuarios
 (
-      id              BIGSERIAL    PRIMARY KEY
+      usuario_id      BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
+                                   CASCADE ON UPDATE CASCADE
     , nombre_completo VARCHAR(255) NOT NULL
     , apellidos       VARCHAR(255)
     , url_imagen      VARCHAR(255)
     , descripcion     VARCHAR(50)
-    , usuario_id      BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
-                                   CASCADE ON UPDATE CASCADE
+    , PRIMARY KEY (usuario_id)
 );
 
-INSERT INTO datos_usuarios (nombre_completo, apellidos, url_imagen, usuario_id)
-    VALUES ('OSCAR', 'Vega Herrera','images/usuario.png', 1);
+INSERT INTO datos_usuarios (usuario_id, nombre_completo, apellidos, url_imagen)
+    VALUES (1, 'OSCAR', 'Vega Herrera','images/usuario.png'),
+            (2, 'Pepe', 'Macias Herrera','images/usuario.png'),
+            (3, 'Rafa', 'Duran García','images/usuario.png');
 
 
 -- Tabla equipos --
@@ -47,18 +51,18 @@ DROP TABLE IF EXISTS equipos CASCADE;
 
 CREATE TABLE equipos
 (
-      id           BIGSERIAL    PRIMARY KEY
-    , denominacion VARCHAR(255) NOT NULL
-    , descripcion  VARCHAR(255)
-    , url_imagen   VARCHAR(255)
-    , created_at   TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
-    , usuario_id   BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
-                                CASCADE ON UPDATE CASCADE
-    , UNIQUE (denominacion, usuario_id)
+      id               BIGSERIAL    PRIMARY KEY
+    , denominacion     VARCHAR(255) NOT NULL
+    , descripcion      VARCHAR(255)
+    , url_imagen       VARCHAR(255)
+    , created_at       TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
+    , propietario_id   BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
+                                    CASCADE ON UPDATE CASCADE
+    , UNIQUE (denominacion, propietario_id)
 );
 
 
-INSERT INTO equipos (denominacion, usuario_id, url_imagen)
+INSERT INTO equipos (denominacion, propietario_id, url_imagen)
     VALUES ('2º DAW', 1, 'images/equipo.png'), ('1º SMR', 1, 'images/equipo.png');
 
 
@@ -147,3 +151,24 @@ CREATE TABLE adjuntos
 INSERT INTO adjuntos (nombre, url_direccion, tarjeta_id)
     VALUES ('3dJuegos', 'https://www.3djuegos.com/', 1),
             ('Ágora', 'http://agora.iesdonana.org/', 1);
+
+
+
+
+-- Tabla miembros --
+
+DROP TABLE IF EXISTS miembros CASCADE;
+
+CREATE TABLE miembros
+(
+       id         BIGSERIAL    PRIMARY KEY
+    ,  usuario_id BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
+                               CASCADE ON UPDATE CASCADE
+    ,  equipo_id BIGINT        NOT NULL REFERENCES equipos (id) ON DELETE
+                               CASCADE ON UPDATE CASCADE
+    ,  created_at TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
+    ,  UNIQUE (usuario_id, equipo_id)
+);
+
+INSERT INTO miembros (usuario_id, equipo_id)
+    VALUES (1, 1), (1, 2), (2, 1);
