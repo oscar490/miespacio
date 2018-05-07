@@ -76,8 +76,8 @@ $this->registerJs($js);
             <div class='panel-heading centrado'>
                 <?=
                     Html::button(
-                        MyHelpers::icon('glyphicon glyphicon-plus-sign')
-                        . ' ' . 'Añadir miembro',
+                        MyHelpers::icon('glyphicon glyphicon-search')
+                        . ' ' . 'Buscar usuarios',
                         [
                             'class'=>'btn btn-md btn-info',
                             'id'=>'btn_view_form',
@@ -85,6 +85,14 @@ $this->registerJs($js);
                     );
                 ?>
             </div>
+        </div>
+    </div>
+
+    <!-- Descripción -->
+    <div class='col-xs-12 col-md-6 col-md-offset-3'>
+        <div id='panel_definicion'>
+            Añade a otros usuarios a tu equipos y de esa manera ellos tendrán
+            acceso a él y para trabajar de forma colaborativa contigo.
         </div>
     </div>
 </div>

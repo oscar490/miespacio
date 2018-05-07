@@ -21,6 +21,16 @@ class UsuariosSearch extends Usuarios
             [['id'], 'integer'],
             [['nombre'], 'required'],
             [['nombre'], 'default'],
+            [['nombre'], 'filter', 'filter' => function ($value) {
+                if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
+                    $user = Usuarios::findOne(['email'=>$value]);
+                    if ($user !== null) {
+                        $value = $user->nombre;
+                    }
+                }
+
+                return $value;
+            }],
         ];
     }
 

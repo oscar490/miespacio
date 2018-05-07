@@ -19,3 +19,9 @@ div[id^='img_user'] {
 #form_search_user {
     display: none;
 }
+
+#panel_definicion {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
