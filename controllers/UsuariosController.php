@@ -13,6 +13,7 @@ use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use app\models\Equipos;
+use app\models\Email;
 
 /**
  * UsuariosController implements the CRUD actions for Usuarios model.
@@ -84,12 +85,14 @@ class UsuariosController extends Controller
                 'Confirme su dirección de correo electrónico: ' . $model->email
             );
 
-            Yii::$app->session->set(
-                'url_vuelta',
-                ['site/login']
-            );
+            (new Email([
+                'asunto'=>'Activación de cuenta',
+                'direccion'=>$model->email,
+                'contenido'=>'activacion-cuenta',
+                'options_view'=>['usuario'=>$model]
+            ]))->send();
 
-            return $this->redirect(['site/send-email', 'id_user'=>$model->id]);
+            return $this->redirect(['site/login']);
         }
 
         return $this->render('create', [

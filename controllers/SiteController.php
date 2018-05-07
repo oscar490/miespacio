@@ -18,6 +18,7 @@ use yii\web\Response;
 use yii\web\UploadedFile;
 use Spatie\Dropbox\Exceptions\BadRequest;
 use app\models\UploadFiles;
+use app\models\Email;
 
 class SiteController extends Controller
 {
@@ -88,45 +89,7 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
-     * Envia un correo electrónico a la Dirección
-     * de un usuario. Según si la cuenta del usuario está activada,
-     * se envía el correo de activación o el de recuperación de
-     * contraseña en caso de olvido.
-     * @param  integer $id_user ID del Usuario.
-     */
-    public function actionSendEmail($id_user)
-    {
-        $usuario = Usuarios::findOne($id_user);
-
-        if ($usuario->cuentaActivada) {
-            $vista_correo = 'recuperar-password';
-            $asunto = 'Recuperación de contraseña de ';
-
-        } else {
-            $vista_correo = 'activacion-cuenta';
-            $asunto = 'Activación de cuenta de ';
-
-        }
-
-        $send = Yii::$app->mailer->compose($vista_correo, [
-                'usuario'=>$usuario,
-            ])
-            ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name])
-            ->setTo($usuario->email)
-            ->setSubject($asunto . Yii::$app->name)
-            ->send();
-
-        if (!$send) {
-            Yii::$app->session->setFlash(
-                'danger',
-                'No se ha podido enviar el correo electrónico a la dirección indicada.'
-            );
-        }
-
-        return $this->redirect(Yii::$app->session->get('url_vuelta'));
-    }
-
+    
     /**
      * Inicia la sesión de usuario. Se comprueba si tiene la cuenta
      * activada.
@@ -174,12 +137,14 @@ class SiteController extends Controller
                  Realice el proceso indicado para establecer la contraseña.'
             );
 
-            Yii::$app->session->set(
-                'url_vuelta',
-                ['site/solicitar-password']
-            );
+            (new Email([
+                'asunto'=>'Recuperación de contraseña',
+                'direccion'=>$usuario->email,
+                'contenido'=>'recuperar-password',
+                'options_view'=>['usuario'=>$usuario]
+            ]))->send();
 
-            return $this->redirect(['site/send-email', 'id_user'=>$usuario->id]);
+            return $this->redirect(['site/solicitar-password']);
         }
 
         return $this->render('gestion-password', [
