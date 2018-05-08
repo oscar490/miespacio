@@ -31,15 +31,13 @@ AppAsset::register($this);
 <?php
     $items[] = [
 
-        'label'=>Html::tag(
-            'span',
-            ' ',
-            ['class'=>'glyphicon glyphicon-home icono-x2']
-        ) . ' Inicio',
+        'label'=>MyHelpers::icon('glyphicon glyphicon-home icono-x2')
+            . ' Inicio',
         'url'=>['site/index'],
         'encode'=>false,
 
     ];
+
     $datosUsuario = DatosUsuarios::findOne([
         'usuario_id'=>Yii::$app->user->id,
     ]);
@@ -68,14 +66,39 @@ AppAsset::register($this);
     } else {
         $items[] =
             [
-                'label'=> Html::tag(
-                    'span',
-                    ' ',
-                    ['class'=>'glyphicon glyphicon-align-justify icono-x2']
-                ) . ' Mis tableros',
+                'label'=> MyHelpers::icon(
+                    'glyphicon glyphicon-align-justify icono-x2'
+                ) . ' Mis Tableros',
                 'url'=>['equipos/gestionar-tableros'],
+                'encode'=>false
+
+
+            ];
+
+        $items[] =
+            [
+                'label'=>MyHelpers::icon('glyphicon glyphicon-plus icono-x2')
+                    . ' Crear Equipo',
+
+                'linkOptions'=>[
+                    'data-toggle'=>'modal',
+                    'data-target'=>'#modal_create_equipo'
+                ],
                 'encode'=>false,
             ];
+
+        $items[] =
+            [
+                'label'=>MyHelpers::icon('glyphicon glyphicon-bell icono-x2'),
+
+                'linkOptions'=>[
+                    'data-toggle'=>'modal',
+                    'data-target'=>'#modal_notificaciones'
+                ],
+                'encode'=>false,
+            ];
+
+
         $items[] =
             [
                 'label'=>Html::img(
@@ -117,6 +140,9 @@ AppAsset::register($this);
 
                 ],
                 'encode'=>false,
+                'linkOptions'=>[
+                    'id'=>'avatar_user'
+                ]
 
             ];
 
@@ -162,6 +188,9 @@ AppAsset::register($this);
             ");
         }
     ?>
+
+    <?= $this->render('modales_main') ?>
+
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

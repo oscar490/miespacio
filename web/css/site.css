@@ -206,7 +206,7 @@ a.desc:after {
     justify-content: center;
 }
 
-li.dropdown > a.dropdown-toggle {
+li.dropdown > a#avatar_user {
     padding-top: 4px;
     padding-bottom: 3px;
 }
