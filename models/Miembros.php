@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\Email;
 
 /**
  * This is the model class for table "miembros".
@@ -72,5 +73,15 @@ class Miembros extends \yii\db\ActiveRecord
     public function getUsuario()
     {
         return $this->hasOne(Usuarios::className(), ['id' => 'usuario_id'])->inverseOf('miembros');
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        (new Email([
+            'asunto'=>'Añadido como miembro de un equipo',
+            'direccion'=>$this->usuario->email,
+            'contenido'=>'usuario-miembro',
+            'options_view'=>['equipo'=>$this->equipo],
+        ]))->send();
     }
 }

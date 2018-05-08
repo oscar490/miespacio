@@ -20,7 +20,7 @@ CREATE TABLE usuarios
 
 INSERT INTO usuarios (nombre, password, email)
     VALUES ('oscar', crypt('oscar', gen_salt('bf', 13)), 'oscar.vega@iesdonana.org'),
-            ('pepe', crypt('pepe', gen_salt('bf', 13)), 'pepe.pepe@gmail.com'),
+            ('pepe', crypt('pepe', gen_salt('bf', 13)), 'dwesoscar@gmail.com'),
             ('rafa', crypt('rafa', gen_salt('bf', 13)), 'rafa.rafa@gmail.com');
 
 

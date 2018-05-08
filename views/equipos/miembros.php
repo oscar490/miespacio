@@ -50,7 +50,7 @@ $this->registerJs($js);
 
 <!-- Panel de miembros del equipo -->
 <div clas='row'>
-    <div class='col-md-6 col-md-offset-3'>
+    <div class='col-xs-12 col-md-6 col-md-offset-3'>
         <div class='panel panel-primary'>
 
             <!-- Título -->

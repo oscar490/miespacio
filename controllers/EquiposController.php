@@ -37,11 +37,11 @@ class EquiposController extends Controller
             ],
             'access'=>[
                 'class'=>AccessControl::className(),
-                'only'=>['gestionar-tableros'],
+                'only'=>['gestionar-tableros', 'view'],
                 'rules'=>[
                     [
                         'allow'=>true,
-                        'actions'=>['gestionar-tableros'],
+                        'actions'=>['gestionar-tableros', 'view'],
                         'roles'=>['@'],
                     ],
                 ],

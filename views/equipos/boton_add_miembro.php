@@ -21,6 +21,8 @@ $url_add_miembro = Url::to(['miembros/create']);
 
 $js = <<<EOT
     $(document).ready(function() {
+        let imagen = $('<img>');
+
         $("#boton_add_user_$model->id").on('click', function() {
 
             datos = {
@@ -28,6 +30,10 @@ $js = <<<EOT
                 equipo_id: '$equipo->id'
             };
 
+            imagen.attr('src','images/cargando.gif');
+            $('#boton_add').find('button').remove();
+
+            $('#boton_add').append(imagen);
             sendAjax('$url_add_miembro', 'POST', datos, function (data) {
                 $('.in').html(data);
             })
@@ -46,15 +52,17 @@ $esMiembro = !empty($model->getMiembros()
     </h4>
 
 <?php else: ?>
-    <?=
-        Html::button(
-            MyHelpers::icon('glyphicon glyphicon-plus') .
-            ' ' . 'Añadir',
-            [
-                'class'=>'btn btn-md btn-success',
-                'id'=>"boton_add_user_$model->id"
-            ]
-        )
-    ?>
+    <div id='boton_add'>
+        <?=
+            Html::button(
+                MyHelpers::icon('glyphicon glyphicon-plus') .
+                ' ' . 'Añadir',
+                [
+                    'class'=>'btn btn-md btn-success',
+                    'id'=>"boton_add_user_$model->id"
+                ]
+            )
+        ?>
+    </div>
 
 <?php endif; ?>

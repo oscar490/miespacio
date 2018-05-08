@@ -89,7 +89,7 @@ class SiteController extends Controller
         ]);
     }
 
-    
+
     /**
      * Inicia la sesión de usuario. Se comprueba si tiene la cuenta
      * activada.
