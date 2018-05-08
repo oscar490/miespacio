@@ -9,11 +9,10 @@ $datos = $equipo->usuario->datosUsuarios;
 
 $css = <<<EOT
     #contenido {
-        background-color: #0266a0;
-        color: white;
         padding: 25px 25px 25px 25px;
         display: table-cell;
         border-radius: 4px;
+        text-align: center;
     }
 
     #titulo {
@@ -22,8 +21,8 @@ $css = <<<EOT
     }
 
     img {
-        width: 50px;
-        height: 50px;
+        width: 100px;
+        height: 100px;
     }
 
     #enlace {
@@ -34,8 +33,9 @@ $css = <<<EOT
         border-radius: 4px;
     }
 
-    #enlace > a {
-        display: none;
+    #enlace > a:link {
+        text-decotion: none;
+        color: white;
     }
 EOT;
 $this->registerCss($css);
@@ -43,6 +43,10 @@ $this->registerCss($css);
 
 
 <div id='contenido'>
+    <?= Html::img(
+        'https://www.dropbox.com/s/ztgomv4squm9vuw/logotipo.png?dl=1'
+    ) ?>
+
     <p>
         <strong>
             <?= $datos->nombre_completo ?> <?= $datos->apellidos ?>, con nombre

@@ -172,3 +172,18 @@ CREATE TABLE miembros
 
 INSERT INTO miembros (usuario_id, equipo_id)
     VALUES (1, 1), (1, 2), (2, 1);
+
+
+
+-- Table notificaciones --
+
+DROP TABLE IF EXISTS notificaciones CASCADE;
+
+CREATE TABLE notificaciones
+(
+       id         BIGSERIAL    PRIMARY KEY
+    ,  contenido  VARCHAR(255)
+    ,  usuario_id BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
+                               CASCADE ON UPDATE CASCADE
+    ,  created_at TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
+)
