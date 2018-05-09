@@ -6,7 +6,9 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Notificaciones */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Notificaciones', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
 ?>
+
+<?= $this->render('lista_notificaciones', [
+    'notificaciones'=>$notificaciones
+]) ?>

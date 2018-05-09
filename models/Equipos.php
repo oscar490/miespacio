@@ -82,6 +82,17 @@ class Equipos extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * Devuelve un enlace a la vista del equipo.
+     * @return [type] [description]
+     */
+    public function getEnlace()
+    {
+        return Html::a(
+            $this->denominacion,
+            ['equipos/view', 'id'=>$this->id]
+        );
+    }
 
 
     /**
@@ -110,17 +121,6 @@ class Equipos extends \yii\db\ActiveRecord
         }
     }
 
-    /**
-     * Devuelve un enlace a la vista del equipo.
-     * @return [type] [description]
-     */
-    public function getEnlace()
-    {
-        return Html::a(
-            $this->denominacion,
-            ['equipos/view', 'id'=>$this->id]
-        );
-    }
 
 
     /**

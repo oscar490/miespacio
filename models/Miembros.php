@@ -80,7 +80,12 @@ class Miembros extends \yii\db\ActiveRecord
         if ($this->usuario->id === Yii::$app->user->id) {
             return false;
         }
-        
+
+        $enlace = $this->equipo->enlace;
+        $datos = $this->equipo->usuario->datosUsuarios;
+        $usuario = $datos->nombre_completo . ' '
+            . $datos->apellidos;
+
         (new Email([
             'asunto'=>'Añadido como miembro de un equipo',
             'direccion'=>$this->usuario->email,
@@ -89,8 +94,7 @@ class Miembros extends \yii\db\ActiveRecord
         ]))->send();
 
         (new Notificaciones([
-            'asunto'=>'Añadido como miembro en un equipo',
-            'contenido'=>'¡Has sido añadido como miembro en un equipo! Disfruta de ello.',
+            'contenido'=>"$usuario te ha añadido al equipo $enlace",
             'usuario_id'=>$this->usuario->id,
         ]))->save();
     }
