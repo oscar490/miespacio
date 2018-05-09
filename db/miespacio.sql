@@ -182,6 +182,7 @@ DROP TABLE IF EXISTS notificaciones CASCADE;
 CREATE TABLE notificaciones
 (
        id         BIGSERIAL    PRIMARY KEY
+    ,  asunto     VARCHAR(255)
     ,  contenido  VARCHAR(255)
     ,  usuario_id BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
                                CASCADE ON UPDATE CASCADE

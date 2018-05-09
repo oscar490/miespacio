@@ -11,6 +11,7 @@ use Yii;
  * @property string $contenido
  * @property int $usuario_id
  * @property string $created_at
+ * @property string $asunto
  *
  * @property Usuarios $usuario
  */

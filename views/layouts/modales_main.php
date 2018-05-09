@@ -18,7 +18,7 @@ use app\models\Equipos;
 
 
 <?php MyHelpers::modal_begin(
-    'Crear un nuevo equipo ...',
+    '',
     false,
     '',
     'modal_create_equipo'

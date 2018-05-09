@@ -77,11 +77,21 @@ class Miembros extends \yii\db\ActiveRecord
 
     public function afterSave($insert, $changedAttributes)
     {
+        if ($this->usuario->id === Yii::$app->user->id) {
+            return false;
+        }
+        
         (new Email([
             'asunto'=>'Añadido como miembro de un equipo',
             'direccion'=>$this->usuario->email,
             'contenido'=>'usuario-miembro',
             'options_view'=>['equipo'=>$this->equipo],
         ]))->send();
+
+        (new Notificaciones([
+            'asunto'=>'Añadido como miembro en un equipo',
+            'contenido'=>'¡Has sido añadido como miembro en un equipo! Disfruta de ello.',
+            'usuario_id'=>$this->usuario->id,
+        ]))->save();
     }
 }

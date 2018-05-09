@@ -25,7 +25,10 @@ if ($tablero->isNewRecord) {
             $tablero,
             'denominacion',
             ['enableAjaxValidation' => true]
-        )->textInput(['maxlength' => true, 'placeholder'=>'Nombre del tablero']);
+        )->textInput([
+            'maxlength' => true,
+            'placeholder'=>'Nombre del tablero'
+        ])->label(false);
     ?>
 
     <?php if (!isset($equipos)): ?>

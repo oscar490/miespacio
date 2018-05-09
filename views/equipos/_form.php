@@ -15,8 +15,11 @@ if ($equipo->id !== null) {
 
 $js = <<<EOT
     $(document).ready(function() {
-        $("#w10").on('beforeSubmit', function() {
-            console.log($(this).find("#btn_create_equipo"));
+        $('#create_equipo').on('beforeSubmit', function() {
+            let loading = $('<img>');
+            loading.attr('src', 'images/cargando_green.gif');
+
+            $('#btn_create_equipo').replaceWith(loading);
         })
     })
 EOT;
@@ -27,6 +30,7 @@ $this->registerJs($js);
 <?php $form = ActiveForm::begin([
     'action'=>$action,
     'enableAjaxValidation' => true,
+    'id'=>'create_equipo'
 ]); ?>
 
     <!-- Denominación  -->
@@ -36,14 +40,18 @@ $this->registerJs($js);
             'denominacion',
             ['enableAjaxValidation' => true]
         )
-        ->textInput(['maxlength' => true])
+        ->textInput([
+            'maxlength' => true,
+            'placeholder'=>'Nombre del equipo',
+        ])->label(false);
     ?>
 
     <!-- Descripción -->
     <?=
         $form->field($equipo, 'descripcion')->textarea([
-            'rows'=>3,
-        ])
+            'rows'=>4,
+            'placeholder'=>'Descripción (opcional)'
+        ])->label(false);
     ?>
 
     <!-- Propietario del equipo -->
