@@ -36,7 +36,7 @@ class Miembros extends \yii\db\ActiveRecord
             [['usuario_id', 'equipo_id'], 'default', 'value' => null],
             [['usuario_id', 'equipo_id'], 'integer'],
             [['created_at'], 'safe'],
-            [['equipo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tableros::className(), 'targetAttribute' => ['equipo_id' => 'id']],
+            [['equipo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Equipos::className(), 'targetAttribute' => ['equipo_id' => 'id']],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
         ];
     }
