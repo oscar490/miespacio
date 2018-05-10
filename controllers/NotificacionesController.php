@@ -8,6 +8,8 @@ use app\models\NotificacionesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Usuarios;
+use yii\db\Expression;
 
 /**
  * NotificacionesController implements the CRUD actions for Notificaciones model.
@@ -73,6 +75,26 @@ class NotificacionesController extends Controller
         return $this->render('create', [
             'model' => $model,
         ]);
+    }
+
+    public function actionObservar($id_usuario)
+    {
+
+        $notificaciones = Usuarios::findOne($id_usuario)
+            ->getNotificaciones()
+            ->all();
+
+        $expresion = new Expression('current_timestamp');
+
+        foreach ($notificaciones as $elem) {
+            $elem->view_at = $expresion;
+            $elem->save();
+        }
+
+        return Usuarios::findOne($id_usuario)
+            ->getNotificaciones()
+            ->where(['view_at'=>null])
+            ->count();
     }
 
     /**

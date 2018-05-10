@@ -58,6 +58,11 @@ class Notificaciones extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getObservada()
+    {
+        return !$this->view_at === null;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

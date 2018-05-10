@@ -4,9 +4,12 @@
 /* @var $model app\models\Notificaciones */
 
 use yii\helpers\Html;
-
+use app\components\MyHelpers;
 
 $datos = $model->miembro->equipo->usuario->datosUsuarios;
+
+$contenido = $datos->nombre_completo . ' ' .
+    ' ' . $datos->apellidos . ' ' . $model->contenido;
 ?>
 
 <div class='row'>
@@ -23,12 +26,11 @@ $datos = $model->miembro->equipo->usuario->datosUsuarios;
         </div>
 
         <!-- Descripción de notificación -->
-        <div class='col-xs-9 col-md-10'>
-            <strong>
-                <?= $datos->nombre_completo ?>
-                <?= $datos->apellidos ?>
-                <?= $model->contenido ?>
-            </strong>
+        <div class='col-xs-9 col-md-7'>
+                <strong>
+                    <?= $contenido ?>
+                </strong>
+
 
             <div class='row'>
                 <div class='col-md-6'>
