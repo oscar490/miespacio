@@ -17,6 +17,7 @@ use yii\filters\AccessControl;
 use yii\web\UploadedFile;
 use app\models\UploadFiles;
 use app\models\UsuariosSearch;
+use app\models\Miembros;
 
 /**
  * EquiposController implements the CRUD actions for Equipos model.
@@ -41,11 +42,28 @@ class EquiposController extends Controller
                 'rules'=>[
                     [
                         'allow'=>true,
-                        'actions'=>['gestionar-tableros', 'view'],
+                        'actions'=>['gestionar-tableros'],
                         'roles'=>['@'],
                     ],
+                    [
+                        'allow'=>true,
+                        'actions'=>['view'],
+                        'roles'=>['@'],
+                        'matchCallback'=>function($rule, $action) {
+                            $id_equipo = Yii::$app->request->get('id');
+                            $id_user = Yii::$app->user->id;
+
+                            $miembro = Miembros::find()
+                                ->where([
+                                    'usuario_id'=>$id_user,
+                                    'equipo_id'=>$id_equipo
+                                ])->one();
+
+                            return $miembro !== null;
+                        }
+                    ]
                 ],
-            ],
+            ]
         ];
     }
 
@@ -58,8 +76,9 @@ class EquiposController extends Controller
     {
         //  Equipos creados por el usuario logeado.
         $equipos = new ActiveDataProvider([
-            'query'=>Usuarios::findOne(Yii::$app->user->id)
-                ->getEquipos(),
+            'query'=>Equipos::find()
+                ->joinWith('miembros')
+                ->where(['usuario_id'=>Yii::$app->user->id]),
             'sort'=>[
                 'defaultOrder'=>['created_at'=>SORT_DESC],
             ],
@@ -130,6 +149,11 @@ class EquiposController extends Controller
             return $this->redirect(['view', 'id' => $equipo->id]);
         }
 
+    }
+
+    public function actionEnlaceEquipo($id)
+    {
+        return $this->redirect(['equipos/view', 'id'=>$id]);
     }
 
     /**

@@ -57,7 +57,7 @@ $this->registerCss($css);
                 <?=
                     Html::a(
                         'Pincha aquí para acceder',
-                        Url::to(['equipos/view', 'id'=>$equipo->id], true),
+                        Url::to(['equipos/enlace-equipo', 'id'=>$equipo->id], true),
                         ['class'=>'btn btn-success']
                     )
                 ?>
