@@ -20,7 +20,7 @@ CREATE TABLE usuarios
 
 INSERT INTO usuarios (nombre, password, email)
     VALUES ('oscar', crypt('oscar', gen_salt('bf', 13)), 'oscar.vega@iesdonana.org'),
-            ('pepe', crypt('pepe', gen_salt('bf', 13)), 'pepe.pepe@gmail.com'),
+            ('pepe', crypt('pepe', gen_salt('bf', 13)), 'dwesoscar@gmail.com'),
             ('rafa', crypt('rafa', gen_salt('bf', 13)), 'rafa.rafa@gmail.com');
 
 
@@ -172,3 +172,19 @@ CREATE TABLE miembros
 
 INSERT INTO miembros (usuario_id, equipo_id)
     VALUES (1, 1), (1, 2), (2, 1);
+
+
+
+-- Table notificaciones --
+
+DROP TABLE IF EXISTS notificaciones CASCADE;
+
+CREATE TABLE notificaciones
+(
+       id         BIGSERIAL    PRIMARY KEY
+    ,  contenido  VARCHAR(255)
+    ,  miembro_id BIGINT       NOT NULL REFERENCES miembros (id) ON DELETE
+                               CASCADE ON UPDATE CASCADE
+    ,  created_at TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
+    ,  view_at    TIMESTAMP(0)
+)

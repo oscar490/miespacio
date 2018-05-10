@@ -11,6 +11,7 @@ use yii\widgets\Breadcrumbs;
 use app\models\DatosUsuarios;
 use app\components\MyHelpers;
 use app\assets\AppAsset;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -31,15 +32,13 @@ AppAsset::register($this);
 <?php
     $items[] = [
 
-        'label'=>Html::tag(
-            'span',
-            ' ',
-            ['class'=>'glyphicon glyphicon-home icono-x2']
-        ) . ' Inicio',
+        'label'=>MyHelpers::icon('glyphicon glyphicon-home icono-x2')
+            . ' Inicio',
         'url'=>['site/index'],
         'encode'=>false,
 
     ];
+
     $datosUsuario = DatosUsuarios::findOne([
         'usuario_id'=>Yii::$app->user->id,
     ]);
@@ -68,14 +67,39 @@ AppAsset::register($this);
     } else {
         $items[] =
             [
-                'label'=> Html::tag(
-                    'span',
-                    ' ',
-                    ['class'=>'glyphicon glyphicon-align-justify icono-x2']
-                ) . ' Mis tableros',
+                'label'=> MyHelpers::icon(
+                    'glyphicon glyphicon-align-justify icono-x2'
+                ) . ' Mis Tableros',
                 'url'=>['equipos/gestionar-tableros'],
+                'encode'=>false
+
+
+            ];
+
+        $items[] =
+            [
+                'label'=>MyHelpers::icon('glyphicon glyphicon-plus icono-x2')
+                    . ' Crear Equipo',
+
+                'linkOptions'=>[
+                    'data-toggle'=>'modal',
+                    'data-target'=>'#modal_create_equipo'
+                ],
                 'encode'=>false,
             ];
+
+        $items[] =
+            [
+                'label'=>MyHelpers::icon('glyphicon glyphicon-bell icono-x2'),
+
+                'linkOptions'=>[
+                    'data-toggle'=>'modal',
+                    'data-target'=>'#modal_notificaciones'
+                ],
+                'encode'=>false,
+            ];
+
+
         $items[] =
             [
                 'label'=>Html::img(
@@ -117,6 +141,9 @@ AppAsset::register($this);
 
                 ],
                 'encode'=>false,
+                'linkOptions'=>[
+                    'id'=>'avatar_user'
+                ]
 
             ];
 
@@ -153,15 +180,36 @@ AppAsset::register($this);
     ?>
 
     <?php
+
+        $this->registerJsFile(
+            '/js/main.js',
+            ['depends'=>[\yii\web\JqueryAsset::className()]]
+        );
+
+
         if (!Yii::$app->user->isGuest) {
             $img = $datosUsuario->url_imagen;
+            $num_notifi = Yii::$app->user->identity
+                ->getNotificaciones()
+                ->where(['view_at'=>null])
+                ->count();
+
+            $url_observar = Url::to([
+                'notificaciones/observar',
+                'id_usuario'=>Yii::$app->user->id
+            ]);
+
             $this->registerJs("
                 $(document).ready(function() {
                     $('img.logo-nav').attr('src', '$img');
+                    indicarNotificaciones('$num_notifi', '$url_observar');
                 })
             ");
         }
     ?>
+
+    <?= $this->render('modales_main') ?>
+
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

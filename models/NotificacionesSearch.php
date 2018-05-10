@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Subidas;
+use app\models\Notificaciones;
 
 /**
- * SubidasSearch represents the model behind the search form of `app\models\Subidas`.
+ * NotificacionesSearch represents the model behind the search form of `app\models\Notificaciones`.
  */
-class SubidasSearch extends Subidas
+class NotificacionesSearch extends Notificaciones
 {
     /**
      * {@inheritdoc}
@@ -18,7 +18,8 @@ class SubidasSearch extends Subidas
     public function rules()
     {
         return [
-            [['id', 'adjunto_id', 'tarjeta_id'], 'integer'],
+            [['id', 'usuario_id'], 'integer'],
+            [['contenido', 'created_at'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class SubidasSearch extends Subidas
      */
     public function search($params)
     {
-        $query = Subidas::find();
+        $query = Notificaciones::find();
 
         // add conditions that should always apply here
 
@@ -59,9 +60,11 @@ class SubidasSearch extends Subidas
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'adjunto_id' => $this->adjunto_id,
-            'tarjeta_id' => $this->tarjeta_id,
+            'usuario_id' => $this->usuario_id,
+            'created_at' => $this->created_at,
         ]);
+
+        $query->andFilterWhere(['ilike', 'contenido', $this->contenido]);
 
         return $dataProvider;
     }

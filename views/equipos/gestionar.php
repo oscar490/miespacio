@@ -52,22 +52,3 @@ $this->registerCssFile(
         'summary'=>'',
     ])?>
 </div>
-
-<!-- Botón de creación de nuevo equipo -->
-<?php
-    Modal::begin([
-        'header'=>' Crear un nuevo equipo ...',
-        'toggleButton'=>[
-            'label'=>MyHelpers::icon('glyphicon glyphicon-plus') .
-                ' Crear un nuevo equipo',
-            'class' => 'btn btn-primary'
-        ]
-    ]);
- ?>
-    <?=
-        $this->render('create', [
-            'equipo' => $equipo,
-        ]);
-    ?>
-
- <?php Modal::end() ?>

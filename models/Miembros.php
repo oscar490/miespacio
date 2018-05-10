@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\Email;
 
 /**
  * This is the model class for table "miembros".
@@ -35,7 +36,7 @@ class Miembros extends \yii\db\ActiveRecord
             [['usuario_id', 'equipo_id'], 'default', 'value' => null],
             [['usuario_id', 'equipo_id'], 'integer'],
             [['created_at'], 'safe'],
-            [['equipo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tableros::className(), 'targetAttribute' => ['equipo_id' => 'id']],
+            [['equipo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Equipos::className(), 'targetAttribute' => ['equipo_id' => 'id']],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
         ];
     }
@@ -72,5 +73,36 @@ class Miembros extends \yii\db\ActiveRecord
     public function getUsuario()
     {
         return $this->hasOne(Usuarios::className(), ['id' => 'usuario_id'])->inverseOf('miembros');
+    }
+
+    /**
+    * @return \yii\db\ActiveQuery
+    */
+    public function getNotificaciones()
+    {
+        return $this->hasMany(Notificaciones::className(), ['miembro_id' => 'id'])
+            ->inverseOf('miembro');
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if ($this->usuario->id === Yii::$app->user->id) {
+            return false;
+        }
+
+        $enlace = $this->equipo->enlace;
+
+        (new Email([
+            'asunto'=>'Añadido como miembro de un equipo',
+            'direccion'=>$this->usuario->email,
+            'contenido'=>'usuario-miembro',
+            'options_view'=>['equipo'=>$this->equipo],
+        ]))->send();
+
+        (new Notificaciones([
+            'contenido'=>"te ha añadido al equipo $enlace",
+            'miembro_id'=>$this->id
+        ]))->save();
+
     }
 }

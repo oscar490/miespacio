@@ -301,4 +301,11 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->hasMany(Miembros::className(), ['usuario_id' => 'id'])
             ->inverseOf('usuario');
     }
+
+    public function getNotificaciones()
+    {
+        return $this->hasMany(Notificaciones::className(), ['miembro_id'=>'id'])
+            ->via('miembros');
+    }
+
 }

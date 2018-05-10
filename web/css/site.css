@@ -165,8 +165,8 @@ a.desc:after {
 }
 
 .logo-x2 {
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 56px;
 }
 
 .logo-x3 {
@@ -206,7 +206,7 @@ a.desc:after {
     justify-content: center;
 }
 
-li.dropdown > a.dropdown-toggle {
+li.dropdown > a#avatar_user {
     padding-top: 4px;
     padding-bottom: 3px;
 }
@@ -217,4 +217,16 @@ ul.breadcrumb  {
 
 .content-scroll {
     overflow: scroll;
+}
+
+.modal-header {
+    background-color: #0266a0bf;
+    color: white;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+
+}
+
+.modal-content {
+    border-radius: 10px;
 }

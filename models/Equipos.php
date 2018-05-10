@@ -82,6 +82,17 @@ class Equipos extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * Devuelve un enlace a la vista del equipo.
+     * @return [type] [description]
+     */
+    public function getEnlace()
+    {
+        return Html::a(
+            $this->denominacion,
+            ['equipos/view', 'id'=>$this->id]
+        );
+    }
 
 
     /**
@@ -110,17 +121,6 @@ class Equipos extends \yii\db\ActiveRecord
         }
     }
 
-    /**
-     * Devuelve un enlace a la vista del equipo.
-     * @return [type] [description]
-     */
-    public function getEnlace()
-    {
-        return Html::a(
-            $this->denominacion,
-            ['equipos/view', 'id'=>$this->id]
-        );
-    }
 
 
     /**
@@ -162,9 +162,18 @@ class Equipos extends \yii\db\ActiveRecord
         $this->url_imagen = 'images/equipo.png';
         $this->save();
 
-        (new Miembros([
+        $miembro = new Miembros([
             'equipo_id'=>$this->id,
             'usuario_id'=>Yii::$app->user->id,
-        ]))->save();
+        ]);
+
+        if (!$miembro->validate()) {
+            var_dump($miembro->errors);
+            die();
+        } else {
+            $miembro->save();
+        }
+
+
     }
 }

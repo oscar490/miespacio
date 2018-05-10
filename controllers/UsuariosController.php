@@ -13,6 +13,7 @@ use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use app\models\Equipos;
+use app\models\Email;
 
 /**
  * UsuariosController implements the CRUD actions for Usuarios model.
@@ -83,7 +84,15 @@ class UsuariosController extends Controller
                 'info',
                 'Confirme su dirección de correo electrónico: ' . $model->email
             );
-            return $this->redirect(['site/send-email', 'id_user'=>$model->id]);
+
+            (new Email([
+                'asunto'=>'Activación de cuenta',
+                'direccion'=>$model->email,
+                'contenido'=>'activacion-cuenta',
+                'options_view'=>['usuario'=>$model]
+            ]))->send();
+
+            return $this->redirect(['site/login']);
         }
 
         return $this->render('create', [
@@ -158,7 +167,7 @@ class UsuariosController extends Controller
         $searchModel = new UsuariosSearch();
 
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        
+
         return $this->renderAjax('/equipos/lista_miembros', [
             'miembros'=>$dataProvider,
             'model'=>Equipos::findOne($id_equipo),

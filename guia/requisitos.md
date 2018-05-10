@@ -255,7 +255,9 @@
 
 | **R29**     | **Ver tableros de otros usuarios.**           |
 | --------------: | :------------------- |
-| **Descripción** | Desde la página principal, se podrá ver los tableros de otros usuarios, que han añadido al usuario como miembro. Se mostrarán junto al equipo al que pertenece.             |
+| **Descripción** | Desde la página principal, se podrá ver los tableros de otros usuarios, que han
+añadido al usuario como miembro. Se mostrarán junto al equipo al que
+pertenece.          |
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
@@ -757,6 +759,24 @@
 | **Entrega**     | v2             |
 | **Incidencia**  | [84](https://github.com/oscar490/miespacio/issues/123) |
 
+| **R85**     | **Notificar al usuario miembro de un equipo.**           |
+| --------------: | :------------------- |
+| **Descripción** | Una vez que se haya añadido un usuario como miembro de un equipo, se le notificará por un mensaje que se mostrará en la página principal de su cuenta. También se le enviará un correo para notificarle también. Dicho correo tendrá un enlace a ese equipo que se le ha añadido.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+| **Incidencia**  | [84](https://github.com/oscar490/miespacio/issues/123) |
+
+| **R86**     | **Ver equipos de otros usuarios.**           |
+| --------------: | :------------------- |
+| **Descripción** | Desde la página principal, se podrá ver los equipos y su contenido de tableros, de otros usuarios, que han añadido al usuario como miembro.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+| **Incidencia**  | [86](https://github.com/oscar490/miespacio/issues/126) |
+
 
 ## Cuadro resumen
 
@@ -844,5 +864,7 @@
 | (**R80**) Añadir listas. | Importante | Funcional | Media | v2 | [80](https://github.com/oscar490/miespacio/issues/113) |
 | (**R81**) Modificar listas. | Importante | Funcional | Media | v2 | [81](https://github.com/oscar490/miespacio/issues/114) |
 | (**R82**) Eliminar listas. | Importante | Funcional | Media | v2 | [82](https://github.com/oscar490/miespacio/issues/115) |
-| (**R83**) Mostrar listas. | Importante | Funcional | Media | v3 | [83](https://github.com/oscar490/miespacio/issues/116) |
+| (**R83**) Mostrar listas. | Importante | Funcional | Media | v2 | [83](https://github.com/oscar490/miespacio/issues/116) |
 | (**R84**) Mostrar ususarios que pertenecen a un equipo. | Importante | Funcional | Media | v2 | [84](https://github.com/oscar490/miespacio/issues/123) |
+| (**R85**) Notificar al usuario miembro de un equipo. | Importante | Funcional | Media | v2 | [85](https://github.com/oscar490/miespacio/issues/125) |
+| (**R86**) Ver equipos de otros usuarios. | Importante | Funcional | Media | v2 | [85](https://github.com/oscar490/miespacio/issues/126) |

@@ -95,13 +95,19 @@ class MyHelpers
     public static function modal_begin($header, $label, $class,
         $id_modal, $size = Modal::SIZE_LARGE)
     {
+        if (!$label) {
+            $button = false;
+        } else {
+            $button = [
+                'label'=>$label,
+                'class'=>$class
+            ];
+        }
+
         return Modal::begin([
             'header'=>$header,
             'id'=>$id_modal,
-            'toggleButton'=>[
-                'label'=>$label,
-                'class'=>$class,
-            ],
+            'toggleButton'=>$button,
             'size'=>$size
         ]);
     }

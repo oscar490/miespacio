@@ -128,7 +128,7 @@ class Adjuntos extends \yii\db\ActiveRecord
         if ($adjunto !== null) {
             $adjunto->delete();
         }
-        
+
 
         return true;
     }
