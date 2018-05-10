@@ -6,6 +6,13 @@ use app\components\MyHelpers;
 use app\models\Equipos;
 use app\models\Usuarios;
 
+$css = <<<EOT
+    #modal_notificaciones > .modal-dialog {
+        
+    }
+EOT;
+
+$this->registerCss($css);
 
 ?>
 
@@ -24,6 +31,7 @@ use app\models\Usuarios;
         <?= $this->render('/notificaciones/view', [
             'notificaciones'=>Usuarios::findOne(Yii::$app->user->id)
                 ->getNotificaciones()
+
         ]) ?>
 
     <?php MyHelpers::modal_end() ?>

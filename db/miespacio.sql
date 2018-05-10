@@ -183,7 +183,8 @@ CREATE TABLE notificaciones
 (
        id         BIGSERIAL    PRIMARY KEY
     ,  contenido  VARCHAR(255)
-    ,  usuario_id BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
+    ,  miembro_id BIGINT       NOT NULL REFERENCES miembros (id) ON DELETE
                                CASCADE ON UPDATE CASCADE
     ,  created_at TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
+    ,  view_at    TIMESTAMP(0)
 )

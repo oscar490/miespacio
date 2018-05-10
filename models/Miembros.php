@@ -75,6 +75,15 @@ class Miembros extends \yii\db\ActiveRecord
         return $this->hasOne(Usuarios::className(), ['id' => 'usuario_id'])->inverseOf('miembros');
     }
 
+    /**
+    * @return \yii\db\ActiveQuery
+    */
+    public function getNotificaciones()
+    {
+        return $this->hasMany(Notificaciones::className(), ['miembro_id' => 'id'])
+            ->inverseOf('miembro');
+    }
+
     public function afterSave($insert, $changedAttributes)
     {
         if ($this->usuario->id === Yii::$app->user->id) {
@@ -82,9 +91,6 @@ class Miembros extends \yii\db\ActiveRecord
         }
 
         $enlace = $this->equipo->enlace;
-        $datos = $this->equipo->usuario->datosUsuarios;
-        $usuario = $datos->nombre_completo . ' '
-            . $datos->apellidos;
 
         (new Email([
             'asunto'=>'Añadido como miembro de un equipo',
@@ -94,8 +100,9 @@ class Miembros extends \yii\db\ActiveRecord
         ]))->send();
 
         (new Notificaciones([
-            'contenido'=>"$usuario te ha añadido al equipo $enlace",
-            'usuario_id'=>$this->usuario->id,
+            'contenido'=>"te ha añadido al equipo $enlace",
+            'miembro_id'=>$this->id
         ]))->save();
+
     }
 }

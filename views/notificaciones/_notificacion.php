@@ -5,7 +5,8 @@
 
 use yii\helpers\Html;
 
-$datos = $model->usuario->datosUsuarios;
+
+$datos = $model->miembro->equipo->usuario->datosUsuarios;
 ?>
 
 <div class='row'>
@@ -16,12 +17,13 @@ $datos = $model->usuario->datosUsuarios;
             <?=
                 Html::img(
                     $datos->url_imagen,
-                    ['class'=>'img-rounded logo-x2']
+                    ['class'=>'img-circle logo-x2']
                 )
             ?>
         </div>
 
-        <div class='col-xs-9 col-md-6'>
+        <!-- Descripción de notificación -->
+        <div class='col-xs-9 col-md-10'>
             <strong>
                 <?= $datos->nombre_completo ?>
                 <?= $datos->apellidos ?>
@@ -36,3 +38,5 @@ $datos = $model->usuario->datosUsuarios;
         </div>
     </div>
 </div>
+
+<hr>

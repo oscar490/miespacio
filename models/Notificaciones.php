@@ -9,9 +9,9 @@ use Yii;
  *
  * @property int $id
  * @property string $contenido
- * @property int $usuario_id
+ * @property int $miembro_id
  * @property string $created_at
- * @property string $asunto
+ * @property string $view_at
  *
  * @property Usuarios $usuario
  */
@@ -31,12 +31,18 @@ class Notificaciones extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['usuario_id'], 'required'],
-            [['usuario_id'], 'default', 'value' => null],
-            [['usuario_id'], 'integer'],
+            [['miembro_id'], 'required'],
+            [['miembro_id'], 'default', 'value' => null],
+            [['miembro_id'], 'integer'],
             [['created_at'], 'safe'],
             [['contenido'], 'string', 'max' => 255],
-            [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
+            [
+                ['miembro_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Miembros::className(),
+                'targetAttribute' => ['miembro_id' => 'id']
+            ],
         ];
     }
 
@@ -48,7 +54,6 @@ class Notificaciones extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'contenido' => 'Contenido',
-            'usuario_id' => 'Usuario ID',
             'created_at' => 'Created At',
         ];
     }
@@ -56,8 +61,9 @@ class Notificaciones extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUsuario()
+    public function getMiembro()
     {
-        return $this->hasOne(Usuarios::className(), ['id' => 'usuario_id'])->inverseOf('notificaciones');
+        return $this->hasOne(Miembros::className(), ['id' => 'miembro_id'])
+            ->inverseOf('notificaciones');
     }
 }
