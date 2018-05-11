@@ -48,41 +48,31 @@ EOT;
 $this->registerJS($js);
 
 ?>
-<div class="container">
 
-    <!-- Nombre del tablero -->
-    <div class='row'>
-        <div id='tablero_name' class='col-md-12'>
-            <h3>
-                <span class='label label-primary'>
-                    <strong>
-                        <?=
-                            Html::encode($model->denominacion);
-                        ?>
-                    </strong>
-                </span>
-            </h3>
-        </div>
-    </div>
-    <br>
+<!-- Título del tablero -->
+<div class='row'>
+    <?= $this->render('titulo_tablero', [
+        'model'=>$model
+    ]) ?>
+</div>
+<br>
 
-    <!-- Menú del Tablero, para crear lista y configurar tablero. -->
-    <div class='row'>
-            <?= $this->render('menu_view', [
-                'lista'=>$lista,
-                'model'=>$model,
-                'equipos'=>$equipos
-            ]) ?>
-    </div>
+<!-- Menú del Tablero, para crear lista y configurar tablero. -->
+<div class='row'>
+    <?= $this->render('menu_view', [
+        'lista'=>$lista,
+        'model'=>$model,
+        'equipos'=>$equipos
+    ]) ?>
+</div>
 
-    <!-- Listas que pertenecen al tablero -->
-    <div class='row'>
-        <div id='contenedor_general' class='col-md-12'>
-            <?= $this->render('listas_tablero', [
-                'model'=>$model,
-                'tarjeta'=>$tarjeta,
-                'adjunto'=>$adjunto,
-            ]) ?>
-        </div>
+<!-- Listas que pertenecen al tablero -->
+<div class='row'>
+    <div id='contenedor_general' class='col-md-12'>
+        <?= $this->render('listas_tablero', [
+            'model'=>$model,
+            'tarjeta'=>$tarjeta,
+            'adjunto'=>$adjunto,
+        ]) ?>
     </div>
 </div>
