@@ -4,7 +4,7 @@
     margin-bottom: 30px;
 }
 
-#btn_favorite {
+button[id^='btn_favorite'] {
     padding-top: 4px;
     padding-bottom: 4px;
 }
