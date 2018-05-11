@@ -3,3 +3,12 @@
     height: 600px;
     margin-bottom: 30px;
 }
+
+button[id^='btn_favorite'] {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+a#link_equipo {
+    text-decoration: none;
+}

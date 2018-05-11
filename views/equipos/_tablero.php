@@ -37,7 +37,7 @@ $this->registerCss($css);
                         'p',
                         Html::tag(
                             'strong',
-                            $model->denominacion
+                            Html::encode($model->denominacion)
                         )
                     ),
                     [

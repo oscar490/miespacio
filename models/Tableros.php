@@ -12,6 +12,7 @@ use Yii;
  * @property int $equipo_id
  *
  * @property Listas[] $listas
+ * @property Favoritos[] $favoritos
  * @property Equipos $equipo
  */
 class Tableros extends \yii\db\ActiveRecord
@@ -72,6 +73,17 @@ class Tableros extends \yii\db\ActiveRecord
         return '';
     }
 
+    public function getEsFavorito()
+    {
+        $favorita = Favoritos::find()
+            ->where([
+                'usuario_id'=>Yii::$app->user->id,
+                'tablero_id'=>$this->id
+            ])->one();
+
+        return $favorita !== null;
+    }
+
     /**
      * Comprueba si el tablero contiene alguna lista creada,
      * devolviendo true en caso de que si o false en caso
@@ -108,5 +120,14 @@ class Tableros extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Miembros::className(), ['tablero_id' => 'id'])
             ->inverseOf('tablero');
+    }
+
+    /**
+    * @return \yii\db\ActiveQuery
+    */
+    public function getFavoritos()
+    {
+       return $this->hasMany(Favoritos::className(), ['tablero_id' => 'id'])
+        ->inverseOf('tablero');
     }
 }
