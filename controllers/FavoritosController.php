@@ -8,6 +8,7 @@ use app\models\FavoritosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * FavoritosController implements the CRUD actions for Favoritos model.
@@ -67,12 +68,11 @@ class FavoritosController extends Controller
         $model = new Favoritos();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return $model->tablero->esFavorito;
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**
