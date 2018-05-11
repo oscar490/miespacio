@@ -308,4 +308,10 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             ->via('miembros');
     }
 
+    public function getFavoritos()
+    {
+        return $this->hasMany(Favoritos::className(), ['usuario_id'=>'id'])
+            ->inverseOf('usuario');
+    }
+
 }

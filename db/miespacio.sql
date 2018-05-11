@@ -187,4 +187,23 @@ CREATE TABLE notificaciones
                                CASCADE ON UPDATE CASCADE
     ,  created_at TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
     ,  view_at    TIMESTAMP(0)
-)
+);
+
+
+
+-- Tabla favoritos --
+
+DROP TABLE IF EXISTS favoritos CASCADE;
+
+CREATE TABLE favoritos
+(
+       id         BIGSERIAL PRIMARY KEY
+    ,  usuario_id BIGINT    NOT NULL REFERENCES usuarios (id) ON DELETE
+                            CASCADE ON UPDATE CASCADE
+    ,  tablero_id BIGINT    NOT NULL REFERENCES tableros (id) ON DELETE
+                            CASCADE ON UPDATE CASCADE
+    ,  UNIQUE (usuario_id, tablero_id)
+);
+
+INSERT INTO favoritos (usuario_id, tablero_id)
+        VALUES (1, 1), (1, 2);
