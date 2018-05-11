@@ -1,24 +1,14 @@
 
-
-
 function addEventBoton(id_tablero, es_favorito) {
     var boton_favorito = $(`#btn_favorite_${id_tablero}`);
 
     if (es_favorito) {
-        console.log('entra');
-        boton_favorito.css({color: "#f2d600"});
-
+        console.log('aqui')
+        console.log(boton_favorito.css('color',"#f2d600"));
     } else {
-        boton_favorito.hover(
-            function() {
-                $(this).css({color: "#f2d600"});
-
-            }, function() {
-                $(this).css({color: "black"});
-            }
-        )
-
+        boton_favorito.css('color',"black");
     }
+
 
 }
 

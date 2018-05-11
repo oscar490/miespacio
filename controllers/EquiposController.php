@@ -97,7 +97,7 @@ class EquiposController extends Controller
             'equipos' => $equipos,
             'tablero_crear'=> new Tableros(),
             'equipo'=> new Equipos(),
-            'favortios'=>$favoritos,
+            'favoritos'=>$favoritos,
         ]);
     }
 

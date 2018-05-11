@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
+use app\components\MyHelpers;
 
 /**
  * FavoritosController implements the CRUD actions for Favoritos model.
@@ -59,19 +60,33 @@ class FavoritosController extends Controller
     }
 
     /**
-     * Creates a new Favoritos model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
+     * Añade o elimina un tablero como favorito.
+     * @param  int $id_tablero ID del tablero.
+     * @return bool            Si el tablero es favorito o no.
      */
-    public function actionCreate()
+    public function actionCambiarFavorito($id_tablero = null)
     {
-        $model = new Favoritos();
+        $model = Favoritos::findOne(['tablero_id'=>$id_tablero]);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model === null) {
+            $model = new Favoritos();
+            $model->load(Yii::$app->request->post());
+            $tablero = $model->tablero;
+            $model->save();
+            $mensaje = "Se ha añadido como tablero favorito";
 
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return $model->tablero->esFavorito;
+
+        } else {
+            $tablero = $model->tablero;
+            $mensaje = "Se ha eliminado como tablero favorito";
+            $model->delete();
         }
+
+        MyHelpers::notification('success', $mensaje, 0);
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $tablero->esFavorito;
+
 
     }
 

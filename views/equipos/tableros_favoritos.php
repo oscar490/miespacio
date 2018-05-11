@@ -11,17 +11,17 @@ use yii\widgets\ListView;
 <div class='row'>
 
     <!-- Imágen -->
-    <div class='col-xs-3 col-md-1 col-lg-1 img_equipo'>
+    <div class='col-xs-3 col-md-1'>
         <?=
             Html::img(
-                'images/estrella.png',
-                ['class'=>'img-circle logo-equipo']
+                'images/estrella2.png',
+                ['class'=>' logo-equipo']
             );
         ?>
     </div>
 
     <!-- Título -->
-    <div id='texto_equipo' class='col-xs-8 col-md-11 col-lg-11'>
+    <div id='texto_equipo' class='col-xs-9 col-md-11'>
         <h4>
             <strong>
                 <?= Html::encode('Tableros favoritos') ?>

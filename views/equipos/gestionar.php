@@ -29,11 +29,13 @@ $this->registerCssFile(
 ?>
 
 <!-- Tableros favoritos -->
-<div>
-    <?= $this->render('tableros_favoritos', [
-        'favoritos'=>$favortios
-    ]) ?>
-</div>
+<?php if ($favoritos->query->all()): ?>
+    <div>
+        <?= $this->render('tableros_favoritos', [
+            'favoritos'=>$favoritos
+        ]) ?>
+    </div>
+<?php endif; ?>
 
 <!-- Listado de los equipos creados por el usuario -->
 <div class="equipos-index">

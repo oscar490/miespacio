@@ -14,15 +14,16 @@ $this->registerJsFile(
 
 $esFavorito = $model->esFavorito;
 
-$url_favorito = Url::to(['favoritos/create']);
+$url_favorito = Url::to(['favoritos/cambiar-favorito', 'id_tablero'=>$model->id]);
 $usuario_id = Yii::$app->user->id;
 
 $js = <<<EOT
     $(document).ready(function() {
-        addEventBoton('$model->id', '$esFavorito');
+        let es_favorito = '$esFavorito';
+        addEventBoton('$model->id', es_favorito);
 
         $(`#btn_favorite_$model->id`).on('click', function() {
-            addFavorito('$model->id', '$usuario_id', '$url_favorito');
+           addFavorito('$model->id', '$usuario_id', '$url_favorito');
         })
 
     })
@@ -55,6 +56,7 @@ $this->registerJs($js);
             )
         ?>
 
+        <!-- Botón para añadir a favorito -->
         <?=
             Html::button(
                 MyHelpers::icon('glyphicon glyphicon-star'),
