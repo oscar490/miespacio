@@ -28,18 +28,12 @@ $this->registerCssFile(
 
 ?>
 
-
-<!-- Vista de creación de equipo -->
-<div class='row'>
-    <div id='form_create_equipo'>
-        <?=
-            $this->render('create', [
-                'equipo' => $equipo,
-            ]);
-        ?>
-    </div>
+<!-- Tableros favoritos -->
+<div>
+    <?= $this->render('tableros_favoritos', [
+        'favoritos'=>$favortios
+    ]) ?>
 </div>
-<br>
 
 <!-- Listado de los equipos creados por el usuario -->
 <div class="equipos-index">

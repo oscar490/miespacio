@@ -12,6 +12,7 @@ use Yii;
  * @property int $equipo_id
  *
  * @property Listas[] $listas
+ * @property Favoritos[] $favoritos
  * @property Equipos $equipo
  */
 class Tableros extends \yii\db\ActiveRecord
@@ -70,6 +71,17 @@ class Tableros extends \yii\db\ActiveRecord
     public function formName()
     {
         return '';
+    }
+
+    public function getEsFavorito()
+    {
+        $favorita = Favoritos::find()
+            ->where([
+                'usuario_id'=>Yii::$app->user->id,
+                'tablero_id'=>$this->id
+            ])->one();
+
+        return $favorita !== null;
     }
 
     /**
