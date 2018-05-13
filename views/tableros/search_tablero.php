@@ -5,16 +5,12 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$css = <<<EOT
-    #result_search {
 
-    }
 
-    #img_search > img{
-        width: 150px;
-        height: 150px;
-    }
-EOT;
+$this->registerCssFile(
+    'css/search_tablero.css'
+);
+
 
 $url_search = Url::to(['tableros/search']);
 
@@ -36,7 +32,6 @@ $js = <<<EOT
 EOT;
 $this->registerJs($js);
 
-$this->registerCss($css);
 ?>
 
 
@@ -52,7 +47,7 @@ $this->registerCss($css);
 <br>
 
 <!-- Contenido resultante de búsqueda -->
-<div id='result_search' >
+<div id='result_search'>
     <p>
         <strong class='centrado'>
             Busca tus tableros creados desde aqui, para tener un acceso rápido a ellos.

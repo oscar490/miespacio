@@ -44,13 +44,14 @@ class TablerosSearch extends Tableros
         $query = Tableros::find()
             ->from('tableros t')
             ->joinWith('equipo e')
-            ->where(['e.propietario_id'=>Yii::$app->user->id]);
-
+            ->joinWith('miembros m')
+            ->where(['m.usuario_id'=>Yii::$app->user->id]);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+
         ]);
 
         $this->load($params);

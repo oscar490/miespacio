@@ -118,8 +118,8 @@ class Tableros extends \yii\db\ActiveRecord
     */
     public function getMiembros()
     {
-        return $this->hasMany(Miembros::className(), ['tablero_id' => 'id'])
-            ->inverseOf('tablero');
+        return $this->hasMany(Miembros::className(), ['equipo_id' => 'id'])
+            ->via('equipo');
     }
 
     /**

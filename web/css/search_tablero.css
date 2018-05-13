@@ -1,0 +1,14 @@
+
+#result_search {
+    margin-left: 20%;
+    margin-right: 20%;
+    overflow: scroll;
+    height: 400px;
+    padding-right: 20px;
+    margin-bottom: 40px;
+}
+
+#img_search > img{
+    width: 150px;
+    height: 150px;
+}
