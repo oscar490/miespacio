@@ -161,10 +161,12 @@ echo Nav::widget([
     'items'=>$items_right,
 ]);
 
-echo Nav::widget([
-    'options' => ['class' => 'navbar-nav navbar-left item-estilo'],
-    'items'=>$items_left,
-]);
+if (isset($items_left)) {
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-left item-estilo'],
+        'items'=>$items_left,
+    ]);
+}
 
 
 NavBar::end();

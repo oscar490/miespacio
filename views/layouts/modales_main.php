@@ -17,8 +17,9 @@ $this->registerCss($css);
 
 ?>
 
-<?php if (Yii::$app->user->identity !== null): ?>
 
+
+<?php if (!Yii::$app->user->isGuest): ?>
     <!-- Modal de Notificaciones de Usuario -->
     <?php
         MyHelpers::modal_begin(
@@ -37,6 +38,7 @@ $this->registerCss($css);
 
     <?php MyHelpers::modal_end() ?>
 <?php endif; ?>
+
 
 
 <!-- Modal de creación de nuevo equipo -->
@@ -64,7 +66,9 @@ $this->registerCss($css);
         'modal_tableros_search'
     )
 ?>
-    <?= $this->render('/tableros/search_tablero', [
-        'search'=> new TablerosSearch(),
-    ]) ?>
+    <?=
+        $this->render('/tableros/search_tablero', [
+            'search'=> new TablerosSearch(),
+        ])
+    ?>
 <?php MyHelpers::modal_end() ?>

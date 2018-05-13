@@ -71,9 +71,12 @@ $datosUsuario = DatosUsuarios::findOne([
                 })
             ");
         }
+
+
     ?>
 
-    <?= $this->render('modales_main') ?>
+    <!-- Ventanas modales -->
+    <?= $this->render('modales_main');?>
 
     <div class="container">
         <?= Breadcrumbs::widget([

@@ -3,10 +3,11 @@
 
 /* @var $search app\models\TablerosSearch */
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $css = <<<EOT
     #result_search {
-        height: 200px;
+
     }
 
     #img_search > img{
@@ -15,11 +16,20 @@ $css = <<<EOT
     }
 EOT;
 
+$url_search = Url::to(['tableros/search']);
+
 $js = <<<EOT
     $(document).ready(function() {
         let input = $('#search_tablero').find('#denominacion');
         input.on('keyup', function() {
-            console.log($(this).val());
+
+            datos = {
+                denominacion: $(this).val()
+            };
+
+            sendAjax('$url_search', 'GET', datos, function(data) {
+                $("#result_search").html(data);
+            })
         })
     })
 
@@ -39,23 +49,20 @@ $this->registerCss($css);
     </div>
 </div>
 
-<div class='row'>
-    <div class='col-md-8 col-md-offset-2'>
-            <div id='result_search' >
-                <p>
-                    <strong class='centrado'>
-                        Busca tus tableros creados desde aqui, para tener un acceso rápido a él.
-                    </strong>
-                </p>
+<br>
 
-                <div id='img_search' class='centrado'>
-                    <?= Html::img(
-                        'images/search.png',
-                        ['alt'=>'img_search']
-                    ) ?>
-                </div>
-            </div>
+<!-- Contenido resultante de búsqueda -->
+<div id='result_search' >
+    <p>
+        <strong class='centrado'>
+            Busca tus tableros creados desde aqui, para tener un acceso rápido a ellos.
+        </strong>
+    </p>
 
-        </div>
+    <div id='img_search' class='centrado'>
+        <?= Html::img(
+            'images/search.png',
+            ['alt'=>'img_search']
+        ) ?>
     </div>
 </div>

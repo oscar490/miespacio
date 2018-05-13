@@ -3,7 +3,19 @@
 
 /* @var $model app\models\Tableros */
 
+use yii\helpers\Html;
 ?>
 
-<h1><?= $model->denominacion ?></h1>
-<h2><?= $model->equipo->denominacion ?></h2>
+<div class='row'>
+    <div class='col-md-3'>
+        <strong>
+            <?= Html::encode($model->denominacion) ?>
+        </strong>
+
+        <div class='row'>
+            <div class='col-md-3'>
+                <?= Html::encode($model->equipo->denominacion) ?>
+            </div>
+        </div>
+    </div>
+</div>
