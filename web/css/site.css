@@ -156,6 +156,7 @@ a.desc:after {
 .navbar-inverse .navbar-nav > .active > a:hover {
     background-color: #75a4c1;
     color: white;
+    border-radius: 6px;
 }
 
 
@@ -175,8 +176,8 @@ a.desc:after {
 }
 
 .logo-nav {
-    width: 53px;
-    height: 48px;
+    width: 47px;
+    height: 42px;
 }
 
 .breadcrumb > li > a {
@@ -208,7 +209,7 @@ a.desc:after {
 
 li.dropdown > a#avatar_user {
     padding-top: 4px;
-    padding-bottom: 3px;
+    padding-bottom: 4px;
 }
 
 ul.breadcrumb  {
@@ -229,4 +230,8 @@ ul.breadcrumb  {
 
 .modal-content {
     border-radius: 10px;
+}
+
+.aviso {
+    background-color: red;
 }

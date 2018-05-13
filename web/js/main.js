@@ -6,14 +6,14 @@ function indicarNotificaciones(num_notificaciones, url_send) {
 
     if (num_notificaciones > 0) {
 
-        enlace.css('backgroundColor','red');
+        enlace.addClass('aviso');
         num.addClass('badge');
         enlace.append(num);
 
         eventoModal(url_send);
 
     } else {
-        enlace.css('backgroundColor','#0266a0');
+        enlace.removeClass('aviso');
         enlace.find('.badge').remove();
     }
 

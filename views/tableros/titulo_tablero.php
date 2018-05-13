@@ -7,6 +7,15 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use app\components\MyHelpers;
 
+$this->registerCssFile(
+    '/css/jquery.notice.css'
+);
+
+$this->registerJsFile(
+    '/js/jquery.notice.js',
+    ['depends'=>[\yii\web\JqueryAsset::className()]]
+);
+
 $this->registerJsFile(
     '/js/titulo_tablero.js',
     ['depends'=>[\yii\web\JqueryAsset::className()]]
@@ -21,6 +30,7 @@ $js = <<<EOT
     $(document).ready(function() {
         let es_favorito = '$esFavorito';
         addEventBoton('$model->id', es_favorito);
+         $(`#btn_favorite_$model->id`).tooltip();
 
         $(`#btn_favorite_$model->id`).on('click', function() {
            addFavorito('$model->id', '$usuario_id', '$url_favorito');
@@ -62,7 +72,10 @@ $this->registerJs($js);
                 MyHelpers::icon('glyphicon glyphicon-star'),
                 [
                     'class'=>'btn btn-md btn-default',
-                    'id'=>"btn_favorite_$model->id"
+                    'id'=>"btn_favorite_$model->id",
+                    'tittle'=>'Selecciona para marcarlo o desmarcarlo como tablero favorito',
+                    'data-toggle'=>"tooltip",
+                    'data-placement'=>'right'
                 ]
             )
         ?>

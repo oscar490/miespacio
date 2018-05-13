@@ -32,7 +32,7 @@ AppAsset::register($this);
 <?php
     $items[] = [
 
-        'label'=>MyHelpers::icon('glyphicon glyphicon-home icono-x2')
+        'label'=>MyHelpers::icon('glyphicon glyphicon-home')
             . ' Inicio',
         'url'=>['site/index'],
         'encode'=>false,
@@ -49,7 +49,7 @@ AppAsset::register($this);
                 'label'=>Html::tag(
                     'span',
                     '',
-                    ['class'=>'glyphicon glyphicon-log-in icono-x2']
+                    ['class'=>'glyphicon glyphicon-log-in ']
                 ) . '  Iniciar sesión',
                 'url'=>['site/login'],
                 'encode'=>false,
@@ -59,7 +59,7 @@ AppAsset::register($this);
                 'label'=>Html::tag(
                     'span',
                     '',
-                    ['class'=>'glyphicon glyphicon-registration-mark icono-x2']
+                    ['class'=>'glyphicon glyphicon-registration-mark ']
                 ) . '  Registrarse',
                 'url'=>['usuarios/create'],
                 'encode'=>false,
@@ -68,7 +68,7 @@ AppAsset::register($this);
         $items[] =
             [
                 'label'=> MyHelpers::icon(
-                    'glyphicon glyphicon-align-justify icono-x2'
+                    'glyphicon glyphicon-align-justify '
                 ) . ' Mis Tableros',
                 'url'=>['equipos/gestionar-tableros'],
                 'encode'=>false
@@ -78,7 +78,7 @@ AppAsset::register($this);
 
         $items[] =
             [
-                'label'=>MyHelpers::icon('glyphicon glyphicon-plus icono-x2')
+                'label'=>MyHelpers::icon('glyphicon glyphicon-plus ')
                     . ' Crear Equipo',
 
                 'linkOptions'=>[
@@ -90,7 +90,7 @@ AppAsset::register($this);
 
         $items[] =
             [
-                'label'=>MyHelpers::icon('glyphicon glyphicon-bell icono-x2'),
+                'label'=>MyHelpers::icon('glyphicon glyphicon-bell '),
 
                 'linkOptions'=>[
                     'data-toggle'=>'modal',
@@ -123,7 +123,7 @@ AppAsset::register($this);
                         'label'=>Html::tag(
                             'span',
                             ' ',
-                            ['class'=>'glyphicon glyphicon-list icono-x2']
+                            ['class'=>'glyphicon glyphicon-list ']
                         ) . ' Perfil',
                         'url'=>['datos-usuarios/view'],
                         'encode'=>false,
@@ -132,7 +132,7 @@ AppAsset::register($this);
                         'label'=>Html::tag(
                             'span',
                             ' ',
-                            ['class'=>'glyphicon glyphicon-off icono-x2']
+                            ['class'=>'glyphicon glyphicon-off ']
                         ) . ' Cerrar sesión',
                         'url'=>['site/logout'],
                         'linkOptions'=>['data-method'=>'POST'],
