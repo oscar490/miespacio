@@ -5,10 +5,11 @@ use yii\helpers\Html;
 use app\components\MyHelpers;
 use app\models\Equipos;
 use app\models\Usuarios;
+use app\models\TablerosSearch;
 
 $css = <<<EOT
     #modal_notificaciones > .modal-dialog {
-        
+
     }
 EOT;
 
@@ -53,4 +54,17 @@ $this->registerCss($css);
         ]);
     ?>
 
+<?php MyHelpers::modal_end() ?>
+
+<?php
+    MyHelpers::modal_begin(
+        '',
+        false,
+        '',
+        'modal_tableros_search'
+    )
+?>
+    <?= $this->render('/tableros/search_tablero', [
+        'search'=> new TablerosSearch(),
+    ]) ?>
 <?php MyHelpers::modal_end() ?>

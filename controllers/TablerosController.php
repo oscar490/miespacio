@@ -41,7 +41,7 @@ class TablerosController extends Controller
      * Lists all Tableros models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionSearch()
     {
         $searchModel = new TablerosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);

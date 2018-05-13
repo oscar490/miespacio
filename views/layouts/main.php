@@ -30,154 +30,19 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <?php
-    $items[] = [
-
-        'label'=>MyHelpers::icon('glyphicon glyphicon-home')
-            . ' Inicio',
-        'url'=>['site/index'],
-        'encode'=>false,
-
-    ];
-
-    $datosUsuario = DatosUsuarios::findOne([
-        'usuario_id'=>Yii::$app->user->id,
-    ]);
-
-    if (Yii::$app->user->isGuest) {
-        $items[] =
-            [
-                'label'=>Html::tag(
-                    'span',
-                    '',
-                    ['class'=>'glyphicon glyphicon-log-in ']
-                ) . '  Iniciar sesión',
-                'url'=>['site/login'],
-                'encode'=>false,
-            ];
-        $items[] =
-            [
-                'label'=>Html::tag(
-                    'span',
-                    '',
-                    ['class'=>'glyphicon glyphicon-registration-mark ']
-                ) . '  Registrarse',
-                'url'=>['usuarios/create'],
-                'encode'=>false,
-            ];
-    } else {
-        $items[] =
-            [
-                'label'=> MyHelpers::icon(
-                    'glyphicon glyphicon-align-justify '
-                ) . ' Mis Tableros',
-                'url'=>['equipos/gestionar-tableros'],
-                'encode'=>false
-
-
-            ];
-
-        $items[] =
-            [
-                'label'=>MyHelpers::icon('glyphicon glyphicon-plus ')
-                    . ' Crear Equipo',
-
-                'linkOptions'=>[
-                    'data-toggle'=>'modal',
-                    'data-target'=>'#modal_create_equipo'
-                ],
-                'encode'=>false,
-            ];
-
-        $items[] =
-            [
-                'label'=>MyHelpers::icon('glyphicon glyphicon-bell '),
-
-                'linkOptions'=>[
-                    'data-toggle'=>'modal',
-                    'data-target'=>'#modal_notificaciones'
-                ],
-                'encode'=>false,
-            ];
-
-
-        $items[] =
-            [
-                'label'=>Html::img(
-                    'images/cargando.gif',
-                    ['class'=>'img-circle logo-nav']
-                ),
-                'items' => [
-                    Html::tag(
-                        'li',
-                        $datosUsuario->nombre_completo
-                        . ' ' . $datosUsuario->apellidos
-                        . ' (' . Yii::$app->user->identity->nombre . ')',
-                        ['class'=>'dropdown-header icono-x1']
-                    ),
-                    Html::tag(
-                        'li',
-                        '',
-                        ['class'=>'divider']
-                    ),
-                    [
-                        'label'=>Html::tag(
-                            'span',
-                            ' ',
-                            ['class'=>'glyphicon glyphicon-list ']
-                        ) . ' Perfil',
-                        'url'=>['datos-usuarios/view'],
-                        'encode'=>false,
-                    ],
-                    [
-                        'label'=>Html::tag(
-                            'span',
-                            ' ',
-                            ['class'=>'glyphicon glyphicon-off ']
-                        ) . ' Cerrar sesión',
-                        'url'=>['site/logout'],
-                        'linkOptions'=>['data-method'=>'POST'],
-                        'encode'=>false,
-                    ],
-
-                ],
-                'encode'=>false,
-                'linkOptions'=>[
-                    'id'=>'avatar_user'
-                ]
-
-            ];
-
-
-    }
+$datosUsuario = DatosUsuarios::findOne([
+    'usuario_id'=>Yii::$app->user->id,
+]);
 
 ?>
 
 <div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' =>
-            Html::tag(
-                'p',
-                Html::img(
-                    '/images/logotipo.png',
-                    [
-                        'alt'=>'logotipo',
-                        'class'=>'logo',
-                    ]
-                ) .  ' ' . Yii::$app->name
-            ),
-        'brandUrl' => ['equipos/gestionar-tableros'],
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
 
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right item-estilo'],
-        'items'=>$items,
-    ]);
-    NavBar::end();
-    ?>
+    <!-- Secciones de la barra de navegación -->
+    <?= $this->render('items_nav', [
+        'datosUsuario'=>$datosUsuario
+    ]) ?>
+
 
     <?php
 

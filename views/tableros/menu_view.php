@@ -31,7 +31,7 @@ $this->registerCssFile('/css/menu_view.css')
 ?>
 
 <!-- Formulario de creación de lista -->
-<div class='col-md-3'>
+<div class='col-md-2'>
     <?= $this->render('/listas/create', [
         'lista'=>$lista,
         'tablero'=>$model,
@@ -39,7 +39,7 @@ $this->registerCssFile('/css/menu_view.css')
 </div>
 
 <!-- Modificar las propiedades del tablero -->
-<div class='col-md-3'>
+<div class='col-md-2'>
     <?= $this->render('update', [
         'model'=>$model,
         'equipos'=>$equipos,
