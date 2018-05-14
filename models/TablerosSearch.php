@@ -19,7 +19,7 @@ class TablerosSearch extends Tableros
     {
         return [
             [['id', 'equipo_id'], 'integer'],
-            [['denominacion'], 'safe'],
+            [['denominacion'], 'required'],
         ];
     }
 
@@ -41,12 +41,17 @@ class TablerosSearch extends Tableros
      */
     public function search($params)
     {
-        $query = Tableros::find();
+        $query = Tableros::find()
+            ->from('tableros t')
+            ->joinWith('equipo e')
+            ->joinWith('miembros m')
+            ->where(['m.usuario_id'=>Yii::$app->user->id]);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+
         ]);
 
         $this->load($params);
@@ -58,12 +63,13 @@ class TablerosSearch extends Tableros
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'equipo_id' => $this->equipo_id,
-        ]);
+        // $query->andFilterWhere([
+        //     'id' => $this->id,
+        //     'equipo_id' => $this->equipo_id,
+        // ]);
 
-        $query->andFilterWhere(['ilike', 'denominacion', $this->denominacion]);
+        $query->andFilterWhere(['ilike', 't.denominacion', $this->denominacion]);
+
 
         return $dataProvider;
     }

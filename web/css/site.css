@@ -235,3 +235,8 @@ ul.breadcrumb  {
 .aviso {
     background-color: red;
 }
+
+
+a:link {
+    text-decoration: none;
+}

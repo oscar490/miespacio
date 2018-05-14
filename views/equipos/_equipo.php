@@ -66,8 +66,4 @@ $this->registerCssFile('/css/equipo.css');
     'tablero_crear'=>$tablero_crear,
 ]) ?>
 
-
-<!-- Enlace a los tableros del equipo actual -->
-
-
 <hr>

@@ -10,11 +10,13 @@ use app\components\MyHelpers;
 
 <div class='panel panel-default'>
     <div id='header_menu' class='panel-heading'>
-        <?=
-            MyHelpers::icon('glyphicon glyphicon-plus') . ' ' .
-            Html::encode('Crear lista ');
-        ?>
-        <small>(click aquí)</small>
+        <strong>
+            <?=
+                MyHelpers::icon('glyphicon glyphicon-plus') . ' ' .
+                Html::encode('Crear lista ');
+            ?>
+        </strong>
+
     </div>
     <div class='panel-body'>
         <?= $this->render('_form', [
