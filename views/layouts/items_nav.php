@@ -79,6 +79,18 @@ if (Yii::$app->user->isGuest) {
             'encode'=>false,
         ];
 
+    $items_left[] =
+        [
+            //  Notificaciones.
+            'label'=>MyHelpers::icon('glyphicon glyphicon-tint')
+                . ' Estilo',
+            'linkOptions'=>[
+                'id'=>'ventana_estilos'
+            ],
+
+            'encode'=>false,
+        ];
+
 
     $items_right[] =
         [

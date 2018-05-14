@@ -64,10 +64,14 @@ $datosUsuario = DatosUsuarios::findOne([
                 'id_usuario'=>Yii::$app->user->id
             ]);
 
+
             $this->registerJs("
                 $(document).ready(function() {
                     $('img.logo-nav').attr('src', '$img');
                     indicarNotificaciones('$num_notifi', '$url_observar');
+                    iniciarGestionVentanas(400, 400, 80);
+
+                    establecerEstilo();
                 })
             ");
         }
