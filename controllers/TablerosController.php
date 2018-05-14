@@ -45,9 +45,11 @@ class TablerosController extends Controller
     {
         $searchModel = new TablerosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $busqueda = $searchModel->denominacion;
 
         return $this->renderAjax('lista_tableros_encontrados', [
             'dataProvider' => $dataProvider,
+            'busqueda'=>$busqueda,
         ]);
     }
 
@@ -145,6 +147,17 @@ class TablerosController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+    }
+
+    /**
+     * Renderia en contenido de búsqueda de tableros.
+     * @return [type] [description]
+     */
+    public function actionLoadContent()
+    {
+        return $this->renderAjax('search_tablero', [
+            'search'=>new TablerosSearch(),
+        ]);
     }
 
     /**

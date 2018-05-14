@@ -7,10 +7,14 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use app\components\MyHelpers;
 
+$js = <<<EOT
+    desactivarBotonForm($('#form_create_tablero'));
+EOT;
 
+$this->registerJs($js);
 
 if ($tablero->isNewRecord) {
-    $label = 'Crear';
+    $label = 'Crear tablero';
     $action = ['tableros/create'];
 }
 
@@ -19,6 +23,7 @@ if ($tablero->isNewRecord) {
 <?php $form = ActiveForm::begin([
     'action'=>$action,
     'enableAjaxValidation' => true,
+    'id'=>'form_create_tablero',
 ]); ?>
 
     <?= $form->field(
@@ -38,7 +43,7 @@ if ($tablero->isNewRecord) {
         <?=
             $form->field($tablero, 'equipo_id')->dropdownList([
                 'Equipos'=>$equipos
-            ]);
+            ])->label(false);
         ?>
 
     <?php endif; ?>

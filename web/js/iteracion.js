@@ -123,6 +123,19 @@ function sendAjax(url_p, type_p, data_p, success_p = null,
     });
 }
 
+function desactivarBotonForm(form) {
+    let boton = form.find("button[type='submit']");
+
+    form.on('submit', function() {
+
+        if (!$(this).find('.has-error').length) {
+            boton.attr('disabled', "true");
+        }
+
+    });
+
+}
+
 /**
  * Valida formulario y envia archivos por AJAX.
  * @param  {[type]} url_send         Dirección URL para enviar.

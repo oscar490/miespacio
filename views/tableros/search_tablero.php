@@ -24,7 +24,17 @@ $js = <<<EOT
             };
 
             sendAjax('$url_search', 'GET', datos, function(data) {
-                $("#result_search").html(data);
+                let content_resultado = $("#result_search");
+                content_resultado.html(data);
+
+                if (content_resultado.find('form').length == 1) {
+                    content_resultado.removeClass('content-scroll');
+                    content_resultado.css('height', '200px');
+
+                } else {
+                    content_resultado.addClass('content-scroll');
+                    content_resultado.css('height', '300px');
+                }
             })
         })
     })
@@ -51,10 +61,13 @@ $this->registerJs($js);
     <p>
         <strong class='centrado'>
             Busca tus tableros creados desde aqui, para tener un acceso rápido a ellos.
+            En el caso de que no exista el tablero buscado, se podrá crear como nuevo
+            desde esta sección.
         </strong>
     </p>
 
     <div id='img_search' class='centrado'>
+        <br>
         <?= Html::img(
             'images/search.png',
             ['alt'=>'img_search']

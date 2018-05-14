@@ -14,14 +14,8 @@ if ($equipo->id !== null) {
 }
 
 $js = <<<EOT
-    $(document).ready(function() {
-        $('#create_equipo').on('beforeSubmit', function() {
-            let loading = $('<img>');
-            loading.attr('src', 'images/cargando_green.gif');
+    desactivarBotonForm($("#create_equipo"));
 
-            $('#btn_create_equipo').replaceWith(loading);
-        })
-    })
 EOT;
 
 $this->registerJs($js);
