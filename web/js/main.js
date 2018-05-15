@@ -43,16 +43,16 @@ function iniciarGestionVentanas(p_width, p_height, p_top, user_name) {
     })
 }
 
-// function establecerEstilo(user_name) {
-//     let color = localStorage.getItem(user_name);
-//
-//     changeColorTableros(color);
-//     changeColorElem($('.navbar-inverse'), color);
-//     changeColorElem($('.footer'), color);
-//     changeColorElem($('.label-primary'), color);
-//     changeColorRuta(color);
-//
-// }
+function establecerEstilo(user_name) {
+    let color = localStorage.getItem(user_name);
+
+    changeColorTableros(color);
+    changeColorElem($('.navbar-inverse'), color);
+    changeColorElem($('.footer'), color);
+    changeColorElem($('.label-primary'), color);
+    changeColorRuta(color);
+
+}
 
 function changeColorTableros(color) {
     $("div[id='tablero']").css('backgroundColor', color);

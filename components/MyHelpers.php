@@ -8,6 +8,7 @@ use yii\helpers\Html;
 use yii\web\View;
 use yii\bootstrap\Modal;
 use kartik\growl\Growl;
+use Yii;
 
 class MyHelpers
 {
@@ -83,6 +84,26 @@ class MyHelpers
         ) . ' ' . $nombre;
 
         return Html::submitButton($label, $options);
+    }
+
+    /**
+     * Comprueba si existe la cookie para establecer el color
+     * de interface.
+     * @return string   El color para la interface.
+     */
+    public static function establecer_color()
+    {
+        $nombre_user = Yii::$app->user->identity->nombre;
+        $existe = array_key_exists($nombre_user, $_COOKIE);
+
+        if ($existe) {
+            $color = $_COOKIE[$nombre_user];
+
+        } else {
+            $color = '#337ab7';
+        }
+
+        return $color;
     }
 
     /**

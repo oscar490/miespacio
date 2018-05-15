@@ -5,6 +5,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\components\MyHelpers;
+
 
 $css = <<<EOT
     a:link {
@@ -14,6 +16,8 @@ $css = <<<EOT
     .sombra {
         box-shadow: 10px 10px 10px #75a4c1;
     }
+
+
 EOT;
 
 $this->registerJsFile(

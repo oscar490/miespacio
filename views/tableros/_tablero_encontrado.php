@@ -15,9 +15,9 @@ $js = <<<EOT
 
     $("#tablero_encontrado_$model->id").hover(
         function() {
-            changedColor($(this), '#75a4c1');
+            $(this).css({opacity: 0.8});
         }, function() {
-            changedColor($(this), '#337ab7');
+            $(this).css({opacity: 1});
         }
     );
 EOT;
@@ -50,7 +50,7 @@ $url_tablero = Url::to(['tableros/view', 'id'=>$model->id]);
                 </div>
             </div>
         </a>
-        
+
     </div>
 </div>
 
