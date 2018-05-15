@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="/css/colores.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="../js/jquery.cookie.js"></script>
         <script>
             $(document).ready(function() {
 
@@ -24,19 +25,17 @@
                     let label = window.opener.$(".label-primary");
                     let migas = window.opener.$("ul.breadcrumb li > a");
 
-                    console.log(opener.document);
-
                     tableros.css('backgroundColor', color);
                     tableros.css('borderColor', color);
                     tableros.parent().css('borderColor', color);
+
                     changeColorElem(navBar, color);
                     changeColorElem(footer, color);
                     changeColorElem(label, color);
+
                     migas.css('color', color);
 
-
-
-                    window.localStorage.setItem('<?= $user_name ?>', color);
+                    opener.$.cookie('<?= $user_name ?>', color);
 
                 });
 
@@ -65,25 +64,25 @@
                         <div class='panel-body'>
                             <button type="button" class='btn btn-success btn-block'
                                 data-color="#5cb85c">
-                                Estilo 1
+                                <span class="glyphicon glyphicon-tint"></span>
                             </button>
                             <hr>
 
                             <button type="button" class='btn btn-primary btn-block'
                                 data-color="#0266a0">
-                                Estilo 2
+                                <span class="glyphicon glyphicon-tint"></span>
                             </button>
                             <hr>
 
                             <button type="button" class='btn btn-info btn-block'
                                 data-color="#31b0d5">
-                                Estilo 3
+                                <span class="glyphicon glyphicon-tint"></span>
                             </button>
                             <hr>
 
                             <button type="button" class='btn btn-warning btn-block'
                                 data-color="#f0ad4e">
-                                Estilo 4
+                                <span class="glyphicon glyphicon-tint"></span>
                             </button>
                         </div>
                     </div>

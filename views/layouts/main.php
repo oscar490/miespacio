@@ -14,6 +14,11 @@ use app\assets\AppAsset;
 use yii\helpers\Url;
 
 AppAsset::register($this);
+
+$datosUsuario = DatosUsuarios::findOne([
+    'usuario_id'=>Yii::$app->user->id,
+]);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -26,15 +31,10 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
+
+
 <body>
 <?php $this->beginBody() ?>
-
-<?php
-$datosUsuario = DatosUsuarios::findOne([
-    'usuario_id'=>Yii::$app->user->id,
-]);
-
-?>
 
 <div class="wrap">
 
@@ -43,53 +43,10 @@ $datosUsuario = DatosUsuarios::findOne([
         'datosUsuario'=>$datosUsuario
     ]) ?>
 
-
-    <?php
-
-        $this->registerJsFile(
-            '/js/main.js',
-            ['depends'=>[\yii\web\JqueryAsset::className()]]
-        );
-
-
-        if (!Yii::$app->user->isGuest) {
-            $img = $datosUsuario->url_imagen;
-            $num_notifi = Yii::$app->user->identity
-                ->getNotificaciones()
-                ->where(['view_at'=>null])
-                ->count();
-
-            $url_observar = Url::to([
-                'notificaciones/observar',
-                'id_usuario'=>Yii::$app->user->id
-            ]);
-
-            $user_name = Yii::$app->user->identity->nombre;
-
-            $this->registerJs("
-                $(document).ready(function() {
-                    $('img.logo-nav').attr('src', '$img');
-                    establecerEstilo('$user_name');
-                    indicarNotificaciones('$num_notifi', '$url_observar');
-                    iniciarGestionVentanas(400, 400, 80, '$user_name');
-
-                })
-
-                function establecerEstilo(user_name) {
-                    let color = localStorage.getItem(user_name);
-
-                    changeColorTableros(color);
-                    changeColorElem($('.navbar-inverse'), color);
-                    changeColorElem($('.footer'), color);
-                    changeColorElem($('.label-primary'), color);
-                    changeColorRuta(color);
-
-                }
-            ");
-        }
-
-
-    ?>
+    <!-- Registro de código JavaScript -->
+    <?= $this->render('register_js', [
+        'datosUsuario'=>$datosUsuario,
+    ]) ?>
 
     <!-- Ventanas modales -->
     <?= $this->render('modales_main');?>

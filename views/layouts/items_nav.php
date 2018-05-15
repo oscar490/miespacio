@@ -9,6 +9,43 @@ use yii\bootstrap\NavBar;
 use app\components\MyHelpers;
 use yii\helpers\Html;
 
+if (!Yii::$app->user->isGuest) {
+
+$color = MyHelpers::establecer_color();
+
+$css = <<<EOT
+    .navbar-inverse {
+        background-color: $color;
+        border-color: $color;
+    }
+
+    .footer {
+        background-color: $color;
+    }
+
+    .label-primary {
+        background-color: $color;
+    }
+
+    ul.breadcrumb li > a {
+        color: $color;
+    }
+
+    #tablero, .panel-primary > .panel-heading {
+        background-color: $color;
+        border-color: $color;
+    }
+
+    .panel-primary {
+        border-color: $color;
+    }
+
+
+EOT;
+
+$this->registerCss($css);
+}
+
 $items_right[] = [
     //  Página de inicio.
     'label'=>MyHelpers::icon('glyphicon glyphicon-home') . ' Inicio',
