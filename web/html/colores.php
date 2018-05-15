@@ -1,3 +1,7 @@
+<?php
+
+    $user_name = $_GET['user_name'];
+?>
 <!DOCTYPE html>
 <html lang="es-ES">
     <head>
@@ -5,16 +9,51 @@
         <title>
             Colores
         </title>
-        <link href="/assets/c4e409e4/css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="/css/colores.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src='/js/colores.js'></script>
+        <script>
+            $(document).ready(function() {
+
+                $('button').on('click', function() {
+                    let color = $(this).data('color');
+                    let tableros = window.opener.$("div[id='tablero']");
+                    let otros = window.opener.$("div[class='panel-primary']");
+                    let navBar = window.opener.$(".navbar-inverse");
+                    let footer = window.opener.$(".footer");
+                    let label = window.opener.$(".label-primary");
+                    let migas = window.opener.$("ul.breadcrumb li > a");
+
+                    console.log(opener.document);
+
+                    tableros.css('backgroundColor', color);
+                    tableros.css('borderColor', color);
+                    tableros.parent().css('borderColor', color);
+                    changeColorElem(navBar, color);
+                    changeColorElem(footer, color);
+                    changeColorElem(label, color);
+                    migas.css('color', color);
+
+
+
+                    window.localStorage.setItem('<?= $user_name ?>', color);
+
+                });
+
+            })
+
+            function changeColorElem(elem, color) {
+                elem.css({
+                    'backgroundColor': color,
+                    'borderColor': color,
+                });
+            }
+
+
+        </script>
     </head>
 
-
-
     <body>
-
         <div class='container'>
             <div class='row'>
                 <div class='col-xs-12 col-md-6'>

@@ -64,15 +64,27 @@ $datosUsuario = DatosUsuarios::findOne([
                 'id_usuario'=>Yii::$app->user->id
             ]);
 
+            $user_name = Yii::$app->user->identity->nombre;
 
             $this->registerJs("
                 $(document).ready(function() {
                     $('img.logo-nav').attr('src', '$img');
+                    establecerEstilo('$user_name');
                     indicarNotificaciones('$num_notifi', '$url_observar');
-                    iniciarGestionVentanas(400, 400, 80);
+                    iniciarGestionVentanas(400, 400, 80, '$user_name');
 
-                    establecerEstilo();
                 })
+
+                function establecerEstilo(user_name) {
+                    let color = localStorage.getItem(user_name);
+
+                    changeColorTableros(color);
+                    changeColorElem($('.navbar-inverse'), color);
+                    changeColorElem($('.footer'), color);
+                    changeColorElem($('.label-primary'), color);
+                    changeColorRuta(color);
+
+                }
             ");
         }
 
