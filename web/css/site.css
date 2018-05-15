@@ -240,3 +240,23 @@ ul.breadcrumb  {
 a:link {
     text-decoration: none;
 }
+
+.estilo_1 {
+    background-color: #5cb85c;
+    border-color: #5cb85c;
+}
+
+.estilo_2 {
+    background-color: #0266a0;
+    border-color: #0266a0;
+}
+
+.estilo_3 {
+    background-color: #31b0d5;
+    border-color: #31b0d5;
+}
+
+.estilo_4 {
+    background-color: #f0ad4e;
+    border-color: #f0ad4e;
+}
