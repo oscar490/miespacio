@@ -41,8 +41,10 @@
 <a class="list-group-item" href="#navigation-112" data-toggle="collapse" data-parent="#navigation">app\controllers <b class="caret"></b></a><div id="navigation-112" class="submenu panel-collapse collapse"><a class="list-group-item" href="./app-controllers-adjuntoscontroller.html">AdjuntosController</a>
 <a class="list-group-item" href="./app-controllers-datosusuarioscontroller.html">DatosUsuariosController</a>
 <a class="list-group-item" href="./app-controllers-equiposcontroller.html">EquiposController</a>
+<a class="list-group-item" href="./app-controllers-favoritoscontroller.html">FavoritosController</a>
 <a class="list-group-item" href="./app-controllers-listascontroller.html">ListasController</a>
 <a class="list-group-item" href="./app-controllers-miembroscontroller.html">MiembrosController</a>
+<a class="list-group-item" href="./app-controllers-notificacionescontroller.html">NotificacionesController</a>
 <a class="list-group-item" href="./app-controllers-sitecontroller.html">SiteController</a>
 <a class="list-group-item" href="./app-controllers-tableroscontroller.html">TablerosController</a>
 <a class="list-group-item" href="./app-controllers-tarjetascontroller.html">TarjetasController</a>
@@ -52,15 +54,19 @@
 <a class="list-group-item" href="./app-models-contactform.html">ContactForm</a>
 <a class="list-group-item" href="./app-models-datosusuarios.html">DatosUsuarios</a>
 <a class="list-group-item" href="./app-models-datosusuariossearch.html">DatosUsuariosSearch</a>
+<a class="list-group-item" href="./app-models-email.html">Email</a>
 <a class="list-group-item" href="./app-models-equipos.html">Equipos</a>
 <a class="list-group-item" href="./app-models-equipossearch.html">EquiposSearch</a>
 <a class="list-group-item" href="./app-models-establecerpasswordform.html">EstablecerPasswordForm</a>
+<a class="list-group-item" href="./app-models-favoritos.html">Favoritos</a>
+<a class="list-group-item" href="./app-models-favoritossearch.html">FavoritosSearch</a>
 <a class="list-group-item" href="./app-models-listas.html">Listas</a>
 <a class="list-group-item" href="./app-models-listassearch.html">ListasSearch</a>
 <a class="list-group-item" href="./app-models-loginform.html">LoginForm</a>
 <a class="list-group-item" href="./app-models-miembros.html">Miembros</a>
 <a class="list-group-item active" href="./app-models-miembrossearch.html">MiembrosSearch</a>
-<a class="list-group-item" href="./app-models-subidassearch.html">SubidasSearch</a>
+<a class="list-group-item" href="./app-models-notificaciones.html">Notificaciones</a>
+<a class="list-group-item" href="./app-models-notificacionessearch.html">NotificacionesSearch</a>
 <a class="list-group-item" href="./app-models-tableros.html">Tableros</a>
 <a class="list-group-item" href="./app-models-tablerossearch.html">TablerosSearch</a>
 <a class="list-group-item" href="./app-models-tarjetas.html">Tarjetas</a>
@@ -171,6 +177,12 @@
         <td><a href="http://www.php.net/class.arrayiterator">ArrayIterator</a></td>
         <td>An iterator for traversing the items in the list.</td>
         <td><a href="yii-base-model.html">yii\base\Model</a></td>
+    </tr>
+            <tr class="inherited" id="$notificaciones">
+        <td><a href="app-models-miembros.html#$notificaciones-detail">$notificaciones</a></td>
+        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
+        <td></td>
+        <td><a href="app-models-miembros.html">app\models\Miembros</a></td>
     </tr>
             <tr class="inherited" id="$oldAttributes">
         <td><a href="yii-db-baseactiverecord.html#$oldAttributes-detail">$oldAttributes</a></td>
@@ -299,9 +311,9 @@
         <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
     </tr>
             <tr class="inherited" id="afterSave()">
-        <td><a href="yii-db-baseactiverecord.html#afterSave()-detail">afterSave()</a></td>
-        <td>This method is called at the end of inserting or updating a record.</td>
-        <td><a href="yii-db-baseactiverecord.html">yii\db\BaseActiveRecord</a></td>
+        <td><a href="app-models-miembros.html#afterSave()-detail">afterSave()</a></td>
+        <td></td>
+        <td><a href="app-models-miembros.html">app\models\Miembros</a></td>
     </tr>
             <tr class="inherited" id="afterValidate()">
         <td><a href="yii-base-model.html#afterValidate()-detail">afterValidate()</a></td>
@@ -527,6 +539,11 @@
         <td><a href="yii-base-model.html#getIterator()-detail">getIterator()</a></td>
         <td>Returns an iterator for traversing the attributes in the model.</td>
         <td><a href="yii-base-model.html">yii\base\Model</a></td>
+    </tr>
+            <tr class="inherited" id="getNotificaciones()">
+        <td><a href="app-models-miembros.html#getNotificaciones()-detail">getNotificaciones()</a></td>
+        <td></td>
+        <td><a href="app-models-miembros.html">app\models\Miembros</a></td>
     </tr>
             <tr class="inherited" id="getOldAttribute()">
         <td><a href="yii-db-baseactiverecord.html#getOldAttribute()-detail">getOldAttribute()</a></td>
@@ -917,7 +934,7 @@ The previous example would extract "id".</td>
         <td>Finds ActiveRecord instance(s) by the given condition.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
     </tr>
-                                                                                                                                                                        <tr class="inherited" id="insertInternal()">
+                                                                                                                                                                            <tr class="inherited" id="insertInternal()">
         <td><a href="yii-db-activerecord.html#insertInternal()-detail">insertInternal()</a></td>
         <td>Inserts an ActiveRecord into DB without considering transaction.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
@@ -1281,7 +1298,7 @@ are being validated by the validation rules that apply to the scenario.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Mon, 07 May 2018 19:06:00 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Tue, 15 May 2018 22:00:49 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

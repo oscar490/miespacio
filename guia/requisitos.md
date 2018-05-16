@@ -777,6 +777,15 @@ pertenece.          |
 | **Entrega**     | v2             |
 | **Incidencia**  | [86](https://github.com/oscar490/miespacio/issues/126) |
 
+| **R87**     | **Personalizar tableros.**           |
+| --------------: | :------------------- |
+| **Descripción** | Se dará la posibilidad de modificar el color de los tableros, barra de navegación y demás elementos visuales de la aplicación. Mediante una ventana que se abrirá, se podrá elegir el color de estilo.             |
+| **Prioridad**   | Importante           |
+| **Tipo**        | Funcional                |
+| **Complejidad** | Media         |
+| **Entrega**     | v2             |
+| **Incidencia**  | [87](https://github.com/oscar490/miespacio/issues/130) |
+
 
 ## Cuadro resumen
 
@@ -867,4 +876,5 @@ pertenece.          |
 | (**R83**) Mostrar listas. | Importante | Funcional | Media | v2 | [83](https://github.com/oscar490/miespacio/issues/116) |
 | (**R84**) Mostrar ususarios que pertenecen a un equipo. | Importante | Funcional | Media | v2 | [84](https://github.com/oscar490/miespacio/issues/123) |
 | (**R85**) Notificar al usuario miembro de un equipo. | Importante | Funcional | Media | v2 | [85](https://github.com/oscar490/miespacio/issues/125) |
-| (**R86**) Ver equipos de otros usuarios. | Importante | Funcional | Media | v2 | [85](https://github.com/oscar490/miespacio/issues/126) |
+| (**R86**) Ver equipos de otros usuarios. | Importante | Funcional | Media | v2 | [86](https://github.com/oscar490/miespacio/issues/126) |
+| (**R87**) Personalizar tableros. | Importante | Funcional | Media | v2 | [87](https://github.com/oscar490/miespacio/issues/130) |

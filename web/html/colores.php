@@ -24,10 +24,13 @@
                     let footer = window.opener.$(".footer");
                     let label = window.opener.$(".label-primary");
                     let migas = window.opener.$("ul.breadcrumb li > a");
+                    let paneles = window.opener.$(".panel-heading");
 
                     tableros.css('backgroundColor', color);
                     tableros.css('borderColor', color);
                     tableros.parent().css('borderColor', color);
+                    paneles.css('backgroundColor', color);
+                    paneles.parent().css('borderColor', color);
 
                     changeColorElem(navBar, color);
                     changeColorElem(footer, color);

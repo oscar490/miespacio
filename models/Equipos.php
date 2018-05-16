@@ -167,12 +167,9 @@ class Equipos extends \yii\db\ActiveRecord
             'usuario_id'=>Yii::$app->user->id,
         ]);
 
-        if (!$miembro->validate()) {
-            var_dump($miembro->errors);
-            die();
-        } else {
-            $miembro->save();
-        }
+        $miembro->save();
+
+
 
 
     }
