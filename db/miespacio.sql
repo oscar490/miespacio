@@ -155,23 +155,40 @@ INSERT INTO adjuntos (nombre, url_direccion, tarjeta_id)
 
 
 
+-- Table tipos_miembros --
+
+DROP TABLE IF EXISTS tipos_miembros CASCADE;
+
+CREATE TABLE tipos_miembros
+(
+       id   BIGSERIAL    PRIMARY KEY
+    ,  tipo VARCHAR(255) NOT NULL
+);
+
+INSERT INTO tipos_miembros (tipo)
+    VALUES ('Popietario'), ('Miembro');
+
+
+
 -- Tabla miembros --
 
 DROP TABLE IF EXISTS miembros CASCADE;
 
 CREATE TABLE miembros
 (
-       id         BIGSERIAL    PRIMARY KEY
-    ,  usuario_id BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
-                               CASCADE ON UPDATE CASCADE
-    ,  equipo_id BIGINT        NOT NULL REFERENCES equipos (id) ON DELETE
-                               CASCADE ON UPDATE CASCADE
-    ,  created_at TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
+       id         BIGSERIAL     PRIMARY KEY
+    ,  usuario_id BIGINT        NOT NULL REFERENCES usuarios (id) ON DELETE
+                                CASCADE ON UPDATE CASCADE
+    ,  tipo_id    BIGINT        NOT NULL DEFAULT 2 REFERENCES tipos_miembros (id) ON DELETE
+                                CASCADE ON UPDATE CASCADE
+    ,  equipo_id  BIGINT        NOT NULL REFERENCES equipos (id) ON DELETE
+                                CASCADE ON UPDATE CASCADE
+    ,  created_at TIMESTAMP(0)  NOT NULL DEFAULT LOCALTIMESTAMP
     ,  UNIQUE (usuario_id, equipo_id)
 );
 
-INSERT INTO miembros (usuario_id, equipo_id)
-    VALUES (1, 1), (1, 2), (2, 1);
+INSERT INTO miembros (usuario_id, equipo_id, tipo_id)
+    VALUES (1, 1, 1), (1, 2, 1), (2, 1, default);
 
 
 

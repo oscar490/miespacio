@@ -10,6 +10,7 @@ use app\models\Email;
  *
  * @property int $id
  * @property int $usuario_id
+ * @property int $tipo_id
  * @property int $equipo_id
  * @property string $created_at
  *
@@ -82,6 +83,15 @@ class Miembros extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Notificaciones::className(), ['miembro_id' => 'id'])
             ->inverseOf('miembro');
+    }
+
+    /**
+    * @return \yii\db\ActiveQuery
+    */
+    public function getTipo()
+    {
+        return $this->hasOne(TiposMiembros::className(), ['id' => 'tipo_id'])
+            ->inverseOf('miembros');
     }
 
     public function afterSave($insert, $changedAttributes)
