@@ -179,7 +179,7 @@ CREATE TABLE miembros
        id         BIGSERIAL     PRIMARY KEY
     ,  usuario_id BIGINT        NOT NULL REFERENCES usuarios (id) ON DELETE
                                 CASCADE ON UPDATE CASCADE
-    ,  tipo_id    BIGINT        NOT NULL DEFAULT 2 REFERENCES tipos_miembros (id) ON DELETE
+    ,  tipo_id    BIGINT        NOT NULL REFERENCES tipos_miembros (id) ON DELETE
                                 CASCADE ON UPDATE CASCADE
     ,  equipo_id  BIGINT        NOT NULL REFERENCES equipos (id) ON DELETE
                                 CASCADE ON UPDATE CASCADE
@@ -188,7 +188,7 @@ CREATE TABLE miembros
 );
 
 INSERT INTO miembros (usuario_id, equipo_id, tipo_id)
-    VALUES (1, 1, 1), (1, 2, 1), (2, 1, default);
+    VALUES (1, 1, 1), (1, 2, 1);
 
 
 

@@ -34,6 +34,7 @@ class Miembros extends \yii\db\ActiveRecord
     {
         return [
             [['usuario_id', 'equipo_id'], 'required'],
+            [['tipo_id'], 'filter', 'filter'=>'intval'],
             [['usuario_id', 'equipo_id'], 'default', 'value' => null],
             [['usuario_id', 'equipo_id'], 'integer'],
             [['created_at'], 'safe'],
@@ -58,6 +59,11 @@ class Miembros extends \yii\db\ActiveRecord
     public function formName()
     {
         return '';
+    }
+
+    public function getEsPropietario()
+    {
+        return $this->tipo->id === 1;
     }
 
     /**

@@ -165,8 +165,8 @@ class Equipos extends \yii\db\ActiveRecord
         $miembro = new Miembros([
             'equipo_id'=>$this->id,
             'usuario_id'=>Yii::$app->user->id,
+            'tipo_id'=>1,
         ]);
-
         $miembro->save();
 
 

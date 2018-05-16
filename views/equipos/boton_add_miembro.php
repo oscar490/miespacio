@@ -9,12 +9,15 @@ use yii\helpers\Url;
 use app\components\MyHelpers;
 use app\models\Miembros;
 use app\models\TiposMiembros;
-use yii\widgets\ActiveForm;
 
 
 $miembro = Miembros::find()
-    ->where(['usuario_id'=>$model->id])
+    ->where([
+        'usuario_id'=>$model->id,
+        'equipo_id'=>$equipo->id,
+    ])
     ->one();
+
 
 //  Tipos de miembros.
 $tipos_miembros = TiposMiembros::find()
@@ -32,7 +35,8 @@ $js = <<<EOT
 
             datos = {
                 usuario_id: '$model->id',
-                equipo_id: '$equipo->id'
+                equipo_id: '$equipo->id',
+                tipo_id: 2,
             };
 
             imagen.attr('src','images/cargando.gif');
@@ -53,18 +57,10 @@ $esMiembro = !empty($model->getMiembros()
 
 <!-- Lista select de tipo de miembro -->
 <?php if ($esMiembro): ?>
-
-    <?php $form = ActiveForm::begin() ?>
-        <div class='row'>
-            <div class='col-md-9'>
-                <?= $form->field($miembro, 'tipo_id')->dropdownList([
-                        'Tipo de miembro'=>$tipos_miembros
-                ])->label(false) ?>
-            </div>
-        </div>
-    <?php ActiveForm::end() ?>
-
-
+    <?= $this->render('form_select_miembros', [
+        'tipos_miembros'=>$tipos_miembros,
+        'miembro'=>$miembro
+    ]) ?>
 
 <?php else: ?>
     <div id='boton_add'>
