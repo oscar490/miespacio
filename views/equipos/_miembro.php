@@ -53,7 +53,7 @@ $this->registerJs($js);
     <div class='col-xs-4 col-md-5'>
         <?= $this->render('boton_add_miembro', [
             'model'=>$model,
-            'equipo'=>$equipo
+            'equipo'=>$equipo,
         ]) ?>
     </div>
 
