@@ -24,13 +24,19 @@
                     let footer = window.opener.$(".footer");
                     let label = window.opener.$(".label-primary");
                     let migas = window.opener.$("ul.breadcrumb li > a");
+<<<<<<< HEAD
                     let paneles = window.opener.$(".panel-heading");
+=======
+>>>>>>> f92bd24f8157378d936f9d4ec301616dc06eef1d
 
                     tableros.css('backgroundColor', color);
                     tableros.css('borderColor', color);
                     tableros.parent().css('borderColor', color);
+<<<<<<< HEAD
                     paneles.css('backgroundColor', color);
                     paneles.parent().css('borderColor', color);
+=======
+>>>>>>> f92bd24f8157378d936f9d4ec301616dc06eef1d
 
                     changeColorElem(navBar, color);
                     changeColorElem(footer, color);
