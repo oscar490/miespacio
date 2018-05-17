@@ -7,7 +7,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$disable = $miembro->esPropietario;
+$disable = $miembro->esPropietario || !$miembro_login->esPropietario;
 
 ?>
 

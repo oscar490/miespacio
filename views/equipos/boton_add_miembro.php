@@ -10,10 +10,18 @@ use app\components\MyHelpers;
 use app\models\Miembros;
 use app\models\TiposMiembros;
 
-
+//  Usuario miembro.
 $miembro = Miembros::find()
     ->where([
         'usuario_id'=>$model->id,
+        'equipo_id'=>$equipo->id,
+    ])
+    ->one();
+
+//  Usuario logueado miembro.
+$miembro_login = Miembros::find()
+    ->where([
+        'usuario_id'=>Yii::$app->user->id,
         'equipo_id'=>$equipo->id,
     ])
     ->one();
@@ -53,27 +61,33 @@ $this->registerJs($js);
 
 $esMiembro = !empty($model->getMiembros()
     ->where(['equipo_id'=>$equipo->id])->all());
+
+
 ?>
 
 <!-- Lista select de tipo de miembro -->
 <?php if ($esMiembro): ?>
     <?= $this->render('form_select_miembros', [
         'tipos_miembros'=>$tipos_miembros,
-        'miembro'=>$miembro
+        'miembro'=>$miembro,
+        'miembro_login'=>$miembro_login,
     ]) ?>
 
 <?php else: ?>
-    <div id='boton_add'>
-        <?=
-            Html::button(
-                MyHelpers::icon('glyphicon glyphicon-plus') .
-                ' ' . 'Añadir',
-                [
-                    'class'=>'btn btn-md btn-success',
-                    'id'=>"boton_add_user_$model->id"
-                ]
-            )
-        ?>
-    </div>
+    <?php if ($miembro_login->esPropietario): ?>
+        <div id='boton_add'>
+            <?=
+                Html::button(
+                    MyHelpers::icon('glyphicon glyphicon-plus') .
+                    ' ' . 'Añadir',
+                    [
+                        'class'=>'btn btn-md btn-success',
+                        'id'=>"boton_add_user_$model->id"
+                    ]
+                )
+            ?>
+        </div>
+
+    <?php endif; ?>
 
 <?php endif; ?>

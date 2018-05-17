@@ -30,7 +30,7 @@ $this->registerJs($js);
         ?>
     </div>
     <!-- Nombre completo -->
-    <div class='col-xs-5 col-md-4'>
+    <div class='col-xs-8 col-md-4'>
         <strong>
             <?=
                 Html::encode(
@@ -39,7 +39,7 @@ $this->registerJs($js);
                 );
             ?>
         </strong>
-
+        <br>
         <!-- Nombre de usuario -->
         <div class='row'>
             <div id='name_user' class='col-md-5'>
@@ -50,7 +50,7 @@ $this->registerJs($js);
 
     <!-- Tipo de usuario: Propietario o miembro -->
     <!-- Botón para añadir usuario si no es miembro del equipo -->
-    <div class='col-xs-4 col-md-5'>
+    <div class='col-xs-6 col-md-4'>
         <?= $this->render('boton_add_miembro', [
             'model'=>$model,
             'equipo'=>$equipo,

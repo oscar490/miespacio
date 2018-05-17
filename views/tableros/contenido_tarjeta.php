@@ -7,6 +7,14 @@
 
 use app\components\MyHelpers;
 use yii\helpers\Html;
+use app\models\Miembros;
+
+$miembro = Miembros::find()
+    ->where([
+        'equipo_id'=>$tarjeta->lista
+            ->tablero->equipo->id,
+        'usuario_id'=>Yii::$app->user->id
+    ])->one();
 
 ?>
 <!-- Modal contenido tarjeta -->
@@ -25,13 +33,16 @@ use yii\helpers\Html;
 
 <?php MyHelpers::modal_end() ?>
 
-<!-- Botón de eliminar tarjeta -->
-<?=
-    Html::button(
-        MyHelpers::icon('glyphicon glyphicon-remove'),
-        [
-            'class'=>'btn btn-xs btn-default',
-            'id'=>"btn_delete_tarjeta_$tarjeta->id",
-        ]
-    );
-?>
+<?php if ($miembro->esPropietario): ?>
+    <!-- Botón de eliminar tarjeta -->
+    <?=
+        Html::button(
+            MyHelpers::icon('glyphicon glyphicon-remove'),
+            [
+                'class'=>'btn btn-xs btn-default',
+                'id'=>"btn_delete_tarjeta_$tarjeta->id",
+            ]
+        );
+    ?>
+
+<?php endif; ?>

@@ -8,6 +8,7 @@ use yii\helpers\Url;
 
 $url_update_lista = Url::to(['listas/update-ajax', 'id'=>$lista->id]);
 
+//  Modificación del nombre de la lista.
 $js = <<<EOT
     $(document).ready(function() {
         let formulario = $("#form_lista_$lista->id");

@@ -19,7 +19,6 @@ class UsuariosSearch extends Usuarios
     {
         return [
             [['id'], 'integer'],
-            [['nombre'], 'required'],
             [['nombre'], 'default'],
             [['nombre'], 'filter', 'filter' => function ($value) {
                 if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
@@ -61,8 +60,9 @@ class UsuariosSearch extends Usuarios
         ]);
 
         $this->load($params);
+        $this->validate();
 
-        if (!$this->validate()) {
+        if ($this->nombre === null) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
 

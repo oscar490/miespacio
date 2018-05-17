@@ -4,9 +4,17 @@
 /* @var $model app\models\Adjuntos */
 use yii\helpers\Html;
 use yii\helpers\Url;
+use app\models\Miembros;
 
 $url_delete = Url::to(['adjuntos/delete', 'id'=>$model->id]);
 $tarjeta = $model->tarjeta;
+
+$miembro = Miembros::find()
+    ->where([
+        'equipo_id'=>$model->tarjeta->lista
+            ->tablero->equipo->id,
+        'usuario_id'=>Yii::$app->user->id
+    ])->one();
 
 $js = <<<EOT
     $("#btn_update_adjunto_$model->id").on('click', function() {
@@ -34,33 +42,36 @@ $this->registerJs($js);
         'adjunto'=>$model,
     ]) ?>
 
-    <!-- Botón de delete -->
-    <?=
-        Html::button(
-            Html::tag(
-                'span',
-                '',
-                ['class'=>'glyphicon glyphicon-remove']
-            ),
-            [
-                'class'=>'btn btn-default',
-                'id'=>"btn_delete_adjunto_$model->id"
-            ]
-        );
-    ?>
+    <?php if ($miembro->esPropietario): ?>
+        <!-- Botón de delete -->
+        <?=
+            Html::button(
+                Html::tag(
+                    'span',
+                    '',
+                    ['class'=>'glyphicon glyphicon-remove']
+                ),
+                [
+                    'class'=>'btn btn-default',
+                    'id'=>"btn_delete_adjunto_$model->id"
+                ]
+            );
+        ?>
 
-    <!-- Botón de update -->
-    <?=
-        Html::button(
-            Html::tag(
-                'span',
-                '',
-                ['class'=>'glyphicon glyphicon-pencil']
-            ),
-            [
-                'class'=>'btn btn-default',
-                'id'=>"btn_update_adjunto_$model->id"
-            ]
-        );
-    ?>
+        <!-- Botón de update -->
+        <?=
+            Html::button(
+                Html::tag(
+                    'span',
+                    '',
+                    ['class'=>'glyphicon glyphicon-pencil']
+                ),
+                [
+                    'class'=>'btn btn-default',
+                    'id'=>"btn_update_adjunto_$model->id"
+                ]
+            );
+        ?>
+
+    <?php endif; ?>
 </div>
