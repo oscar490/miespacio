@@ -78,7 +78,7 @@ class MiembrosController extends Controller
                 'Se ha añadido al equipo correctamente',
                 0
             );
-            
+
             return $this->renderAjax('/equipos/miembros', [
                 'miembros' => new ActiveDataProvider([
                     'query'=>Usuarios::find()

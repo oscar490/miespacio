@@ -72,7 +72,7 @@
                             <hr>
 
                             <button type="button" class='btn btn-primary btn-block'
-                                data-color="#0266a0">
+                                data-color="#337ab7">
                                 <span class="glyphicon glyphicon-tint"></span>
                             </button>
                             <hr>

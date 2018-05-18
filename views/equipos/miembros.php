@@ -91,8 +91,12 @@ $this->registerJs($js);
     <!-- Descripción -->
     <div class='col-xs-12 col-md-6 col-md-offset-3'>
         <div id='panel_definicion'>
-            Añade a otros usuarios a tu equipos y de esa manera ellos tendrán
-            acceso a él y para trabajar de forma colaborativa contigo.
+            <div class='panel panel-primary'>
+                <div class='panel-heading'>
+                    Invita a otros usuarios a tu equipos y de esa manera ellos tendrán
+                    acceso a él y para trabajar de forma colaborativa contigo.
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -7,15 +7,31 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use app\components\MyHelpers;
+use app\models\Miembros;
+use app\models\TiposMiembros;
 
-if ($model->id == $equipo->propietario_id) {
-    $class = 'default';
-    $contenido = Html::encode('Propietario');
+//  Usuario miembro.
+$miembro = Miembros::find()
+    ->where([
+        'usuario_id'=>$model->id,
+        'equipo_id'=>$equipo->id,
+    ])
+    ->one();
 
-} else {
-    $class = 'primary';
-    $contenido = Html::encode('Miembro');
-}
+//  Usuario logueado miembro.
+$miembro_login = Miembros::find()
+    ->where([
+        'usuario_id'=>Yii::$app->user->id,
+        'equipo_id'=>$equipo->id,
+    ])
+    ->one();
+
+
+//  Tipos de miembros.
+$tipos_miembros = TiposMiembros::find()
+    ->select(['tipo'])
+    ->indexBy('id')
+    ->column();
 
 $url_add_miembro = Url::to(['miembros/create']);
 
@@ -27,7 +43,8 @@ $js = <<<EOT
 
             datos = {
                 usuario_id: '$model->id',
-                equipo_id: '$equipo->id'
+                equipo_id: '$equipo->id',
+                tipo_id: 2,
             };
 
             imagen.attr('src','images/cargando.gif');
@@ -44,25 +61,33 @@ $this->registerJs($js);
 
 $esMiembro = !empty($model->getMiembros()
     ->where(['equipo_id'=>$equipo->id])->all());
+
+
 ?>
 
+<!-- Lista select de tipo de miembro -->
 <?php if ($esMiembro): ?>
-    <h4>
-        <?= MyHelpers::label($class, $contenido) ?>
-    </h4>
+    <?= $this->render('form_select_miembros', [
+        'tipos_miembros'=>$tipos_miembros,
+        'miembro'=>$miembro,
+        'miembro_login'=>$miembro_login,
+    ]) ?>
 
 <?php else: ?>
-    <div id='boton_add'>
-        <?=
-            Html::button(
-                MyHelpers::icon('glyphicon glyphicon-plus') .
-                ' ' . 'Añadir',
-                [
-                    'class'=>'btn btn-md btn-success',
-                    'id'=>"boton_add_user_$model->id"
-                ]
-            )
-        ?>
-    </div>
+    <?php if ($miembro_login->esPropietario): ?>
+        <div id='boton_add'>
+            <?=
+                Html::button(
+                    MyHelpers::icon('glyphicon glyphicon-user') .
+                    ' ' . 'Invitar',
+                    [
+                        'class'=>'btn btn-md btn-success',
+                        'id'=>"boton_add_user_$model->id"
+                    ]
+                )
+            ?>
+        </div>
+
+    <?php endif; ?>
 
 <?php endif; ?>

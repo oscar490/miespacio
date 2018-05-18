@@ -36,6 +36,8 @@ function updateLista(elem, url_envio, url_render, url_refrescar) {
     let url = url_envio + '&id_tarjeta=' + id_tarjeta_p;
     let data = {lista_id: id_lista};
 
+    $("button[data-toggle='modal']").attr('disabled', true);
+
     sendAjax(url, 'POST', data, function (data) {
 
         sendAjax(url_render, 'GET', {}, function(data) {

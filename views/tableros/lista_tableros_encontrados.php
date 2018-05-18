@@ -11,6 +11,8 @@ use app\components\MyHelpers;
 $equipos = Equipos::find()
     ->select(['denominacion'])
     ->indexBy('id')
+    ->joinWith('miembros')
+    ->where(['usuario_id'=>Yii::$app->user->id])
     ->column();
 
 ?>

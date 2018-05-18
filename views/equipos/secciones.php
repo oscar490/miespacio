@@ -11,7 +11,11 @@
 
 use yii\helpers\Html;
 use app\components\MyHelpers;
+use app\models\Miembros;
 
+$miembro = Miembros::find()
+    ->where(['equipo_id'=>$model->id,'usuario_id'=>Yii::$app->user->id])
+    ->one();
 
 //  Secciones
 $items = [
@@ -25,25 +29,7 @@ $items = [
             'equipo'=>$model,
         ]),
     ],
-    [
-        //  Modificación del equipo.
-        'label'=>MyHelpers::icon('glyphicon glyphicon-wrench')
-                . ' ' . 'Configuración',
-        'content'=> $this->render('update', [
-            'equipo'=>$model,
-        ]),
-        'linkOptions'=>[
-            'id'=>'config_tableros'
-        ]
-    ],
-    [
-        //  Modificación de imágen.
-        'label'=>MyHelpers::icon('glyphicon glyphicon-picture')
-                . ' ' . 'Imágen',
-        'content'=> $this->render('form_imagen', [
-            'equipo'=>$model,
-        ])
-    ],
+
     [
         //  Miembros del equipo
         'label'=>MyHelpers::icon('glyphicon glyphicon-user')
@@ -53,8 +39,35 @@ $items = [
             'miembros'=>$miembros,
             'usuario_search'=>$usuario_search,
         ]),
-    ],
+    ]
+
 ];
+
+if ($miembro->esPropietario) {
+
+    $items[] = [
+
+        //  Modificación de imágen.
+        'label'=>MyHelpers::icon('glyphicon glyphicon-picture')
+                . ' ' . 'Imágen',
+        'content'=> $this->render('form_imagen', [
+            'equipo'=>$model,
+        ]),
+
+    ];
+
+    $items[] = [
+        //  Modificación del equipo.
+        'label'=>MyHelpers::icon('glyphicon glyphicon-wrench')
+                . ' ' . 'Configuración',
+        'content'=> $this->render('update', [
+            'equipo'=>$model,
+        ]),
+
+    ];
+
+}
+
 ?>
 
 <!-- Pestañas de selección -->

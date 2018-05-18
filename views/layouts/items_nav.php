@@ -23,7 +23,7 @@ $css = <<<EOT
         background-color: $color;
     }
 
-    .label-primary {
+    .label-primary, .panel-heading {
         background-color: $color;
     }
 

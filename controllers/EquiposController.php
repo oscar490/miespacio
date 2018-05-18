@@ -18,6 +18,7 @@ use yii\web\UploadedFile;
 use app\models\UploadFiles;
 use app\models\UsuariosSearch;
 use app\models\Miembros;
+use app\models\TiposMiembros;
 
 /**
  * EquiposController implements the CRUD actions for Equipos model.

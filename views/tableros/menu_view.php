@@ -7,8 +7,15 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use app\models\Miembros;
 
 $url_create = Url::to(['listas/create']);
+
+$miembro = Miembros::find()
+    ->where([
+        'equipo_id'=>$model->equipo->id,
+        'usuario_id'=>Yii::$app->user->id
+    ])->one();
 
 //  JavaScript.
 $this->registerJsFile(
@@ -38,10 +45,13 @@ $this->registerCssFile('/css/menu_view.css')
     ]) ?>
 </div>
 
-<!-- Modificar las propiedades del tablero -->
-<div class='col-md-3'>
-    <?= $this->render('update', [
-        'model'=>$model,
-        'equipos'=>$equipos,
-    ]) ?>
-</div>
+<?php if ($miembro->esPropietario): ?>
+    <!-- Modificar las propiedades del tablero -->
+    <div class='col-md-3'>
+        <?= $this->render('update', [
+            'model'=>$model,
+            'equipos'=>$equipos,
+        ]) ?>
+    </div>
+
+<?php endif; ?>

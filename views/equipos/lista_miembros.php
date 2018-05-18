@@ -25,7 +25,7 @@ $contieneResultados = !empty($miembros->query->all());
         'dataProvider'=>$miembros,
         'itemView'=>'_miembro',
         'viewParams'=> [
-            'equipo'=>$model
+            'equipo'=>$model,
         ],
         'summary'=>'',
     ]); ?>
