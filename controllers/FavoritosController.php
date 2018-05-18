@@ -66,7 +66,10 @@ class FavoritosController extends Controller
      */
     public function actionCambiarFavorito($id_tablero = null)
     {
-        $model = Favoritos::findOne(['tablero_id'=>$id_tablero]);
+        $model = Favoritos::findOne([
+            'tablero_id'=>$id_tablero,
+            'usuario_id'=>Yii::$app->user->id
+        ]);
 
         if ($model === null) {
             $model = new Favoritos();

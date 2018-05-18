@@ -30,7 +30,7 @@ $js = <<<EOT
     $(document).ready(function() {
         let es_favorito = '$esFavorito';
         addEventBoton('$model->id', es_favorito);
-         $(`#btn_favorite_$model->id`).tooltip();
+    
 
         $(`#btn_favorite_$model->id`).on('click', function() {
            addFavorito('$model->id', '$usuario_id', '$url_favorito');
@@ -73,7 +73,7 @@ $this->registerJs($js);
                 [
                     'class'=>'btn btn-md btn-default',
                     'id'=>"btn_favorite_$model->id",
-                    'tittle'=>'Selecciona para marcarlo o desmarcarlo como tablero favorito',
+                    'title'=>'Selecciona para marcarlo o desmarcarlo como tablero favorito',
                     'data-toggle'=>"tooltip",
                     'data-placement'=>'right'
                 ]
