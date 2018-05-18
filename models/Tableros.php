@@ -14,6 +14,7 @@ use Yii;
  * @property Listas[] $listas
  * @property Favoritos[] $favoritos
  * @property Equipos $equipo
+ * @property TiposVisibilidad $visibilidad
  */
 class Tableros extends \yii\db\ActiveRecord
 {
@@ -129,5 +130,14 @@ class Tableros extends \yii\db\ActiveRecord
     {
        return $this->hasMany(Favoritos::className(), ['tablero_id' => 'id'])
         ->inverseOf('tablero');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVisibilidad()
+    {
+        return $this->hasOne(TiposVisibilidad::className(), ['id'=>'visibilidad_id'])
+            ->inverseOf('tableros');
     }
 }
