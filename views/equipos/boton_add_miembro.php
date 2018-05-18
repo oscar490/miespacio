@@ -78,8 +78,8 @@ $esMiembro = !empty($model->getMiembros()
         <div id='boton_add'>
             <?=
                 Html::button(
-                    MyHelpers::icon('glyphicon glyphicon-plus') .
-                    ' ' . 'Añadir',
+                    MyHelpers::icon('glyphicon glyphicon-user') .
+                    ' ' . 'Invitar',
                     [
                         'class'=>'btn btn-md btn-success',
                         'id'=>"boton_add_user_$model->id"
