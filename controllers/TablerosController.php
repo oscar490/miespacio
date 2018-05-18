@@ -16,6 +16,7 @@ use yii\filters\VerbFilter;
 use yii\widgets\ActiveForm;
 use yii\grid\GridView;
 use yii\web\Response;
+use app\models\TiposVisibilidad;
 
 /**
  * TablerosController implements the CRUD actions for Tableros model.
@@ -158,6 +159,27 @@ class TablerosController extends Controller
         return $this->renderAjax('search_tablero', [
             'search'=>new TablerosSearch(),
         ]);
+    }
+
+    /**
+     * Cambia la visibilidad del tablero.
+     * @param  int $id ID del tablero;
+     * @return [type]     [description]
+     */
+    public function actionChangedVisibilidad($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->visibilidad->id === 1) {
+            $model->visibilidad_id = 2;
+
+        } else {
+            $model->visibilidad_id = 1;
+        }
+
+        $model->save();
+
+        return $model->visibilidad->id;
     }
 
     /**

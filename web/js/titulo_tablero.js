@@ -36,3 +36,23 @@ function addFavorito(id_tablero, id_usuario, url_send) {
 
     })
 }
+
+function changeVisible(id_tablero, url_send, boton) {
+
+    sendAjax(url_send, 'POST', {}, function(data) {
+        let nombre = ' Público';
+        let icon = 'glyphicon glyphicon-globe';
+
+        if (data == 2) {
+            nombre = ' Privado';
+            icon = 'glyphicon glyphicon-lock';
+        }
+
+        
+        let elem_span = $('<span></span>');
+        elem_span.addClass(icon);
+
+        boton.children('span').replaceWith(elem_span);
+
+    })
+}
