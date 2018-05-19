@@ -46,14 +46,19 @@ class TablerosController extends Controller
                         'roles'=>['@'],
                         'matchCallback'=>function($rule, $action) {
 
-                            $tablero = Tableros::findOne(
+                            $tablero = $this->findModel(
                                 Yii::$app->request->get('id')
                             );
 
-                            $miembro = $tablero->equipo
-                                ->getMiembros()
-                                ->where(['usuario_id'=>Yii::$app->user->id])
-                                ->one();
+                            if ($tablero !== null) {
+
+                            }
+
+
+                                $miembro = $tablero->equipo
+                                    ->getMiembros()
+                                    ->where(['usuario_id'=>Yii::$app->user->id])
+                                    ->one();
 
                             return $miembro !== null && !$tablero->esPrivado;
 
