@@ -44,28 +44,28 @@ Array
 
     [6] => Array
         (
-            [line] => 25
+            [line] => 26
             [file] => ./assets/AppAsset.php
             [message] => No docblock for element '$js'
         )
 
     [7] => Array
         (
-            [line] => 25
+            [line] => 26
             [file] => ./assets/AppAsset.php
             [message] => No short description for element '$js'
         )
 
     [8] => Array
         (
-            [line] => 28
+            [line] => 30
             [file] => ./assets/AppAsset.php
             [message] => No docblock for element '$depends'
         )
 
     [9] => Array
         (
-            [line] => 28
+            [line] => 30
             [file] => ./assets/AppAsset.php
             [message] => No short description for element '$depends'
         )
@@ -128,7 +128,7 @@ Array
 
     [18] => Array
         (
-            [line] => 161
+            [line] => 165
             [file] => ./controllers/EquiposController.php
             [message] => No docblock for element 'actionEnlaceEquipo'
         )
@@ -443,37 +443,37 @@ Array
 
     [63] => Array
         (
-            [line] => 57
+            [line] => 59
             [file] => ./models/Miembros.php
             [message] => No docblock for element 'formName'
         )
 
     [64] => Array
         (
-            [line] => 87
+            [line] => 64
+            [file] => ./models/Miembros.php
+            [message] => No docblock for element 'getEsPropietario'
+        )
+
+    [65] => Array
+        (
+            [line] => 103
             [file] => ./models/Miembros.php
             [message] => No docblock for element 'afterSave'
         )
 
-    [65] => Array
+    [66] => Array
         (
             [line] => 61
             [file] => ./models/Notificaciones.php
             [message] => No docblock for element 'getObservada'
         )
 
-    [66] => Array
-        (
-            [line] => 71
-            [file] => ./models/Tableros.php
-            [message] => No docblock for element 'formName'
-        )
-
     [67] => Array
         (
-            [line] => 76
+            [line] => 72
             [file] => ./models/Tableros.php
-            [message] => No docblock for element 'getEsFavorito'
+            [message] => No docblock for element 'formName'
         )
 
     [68] => Array

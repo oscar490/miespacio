@@ -71,6 +71,8 @@
 <a class="list-group-item" href="./app-models-tablerossearch.html">TablerosSearch</a>
 <a class="list-group-item" href="./app-models-tarjetas.html">Tarjetas</a>
 <a class="list-group-item" href="./app-models-tarjetassearch.html">TarjetasSearch</a>
+<a class="list-group-item" href="./app-models-tiposmiembros.html">TiposMiembros</a>
+<a class="list-group-item" href="./app-models-tiposvisibilidad.html">TiposVisibilidad</a>
 <a class="list-group-item" href="./app-models-uploadfiles.html">UploadFiles</a>
 <a class="list-group-item" href="./app-models-user.html">User</a>
 <a class="list-group-item" href="./app-models-usuarios.html">Usuarios</a>
@@ -169,8 +171,14 @@
     </tr>
             <tr id="$esFavorito">
         <td><a href="app-models-tableros.html#$esFavorito-detail">$esFavorito</a></td>
-        <td></td>
-        <td></td>
+        <td><a href="http://www.php.net/language.types.boolean">boolean</a></td>
+        <td>True en caso que si, false en caso contrario.</td>
+        <td><a href="app-models-tableros.html">app\models\Tableros</a></td>
+    </tr>
+            <tr id="$esPrivado">
+        <td><a href="app-models-tableros.html#$esPrivado-detail">$esPrivado</a></td>
+        <td><a href="http://www.php.net/language.types.boolean">boolean</a></td>
+        <td>True si es privado y false en caso contrario.</td>
         <td><a href="app-models-tableros.html">app\models\Tableros</a></td>
     </tr>
             <tr id="$favoritos">
@@ -244,6 +252,12 @@
         <td><a href="http://www.php.net/class.arrayobject">ArrayObject</a>|<a href="yii-validators-validator.html">yii\validators\Validator</a>[]</td>
         <td>All the validators declared in the model.</td>
         <td><a href="yii-base-model.html">yii\base\Model</a></td>
+    </tr>
+            <tr id="$visibilidad">
+        <td><a href="app-models-tableros.html#$visibilidad-detail">$visibilidad</a></td>
+        <td><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></td>
+        <td></td>
+        <td><a href="app-models-tableros.html">app\models\Tableros</a></td>
     </tr>
     </table>
 </div>
@@ -548,7 +562,12 @@ contrario.</td>
     </tr>
             <tr id="getEsFavorito()">
         <td><a href="app-models-tableros.html#getEsFavorito()-detail">getEsFavorito()</a></td>
-        <td></td>
+        <td>Comprueba si el tablero es favorito o no.</td>
+        <td><a href="app-models-tableros.html">app\models\Tableros</a></td>
+    </tr>
+            <tr id="getEsPrivado()">
+        <td><a href="app-models-tableros.html#getEsPrivado()-detail">getEsPrivado()</a></td>
+        <td>Comprueba si el tablero es privado o público.</td>
         <td><a href="app-models-tableros.html">app\models\Tableros</a></td>
     </tr>
             <tr id="getFavoritos()">
@@ -630,6 +649,11 @@ contrario.</td>
         <td><a href="yii-base-model.html#getValidators()-detail">getValidators()</a></td>
         <td>Returns all the validators declared in <a href="yii-base-model.html#rules()-detail">rules()</a>.</td>
         <td><a href="yii-base-model.html">yii\base\Model</a></td>
+    </tr>
+            <tr id="getVisibilidad()">
+        <td><a href="app-models-tableros.html#getVisibilidad()-detail">getVisibilidad()</a></td>
+        <td></td>
+        <td><a href="app-models-tableros.html">app\models\Tableros</a></td>
     </tr>
             <tr class="inherited" id="hasAttribute()">
         <td><a href="yii-db-baseactiverecord.html#hasAttribute()-detail">hasAttribute()</a></td>
@@ -965,7 +989,7 @@ The previous example would extract "id".</td>
         <td>Finds ActiveRecord instance(s) by the given condition.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
     </tr>
-                                                                                                                                                                                        <tr class="inherited" id="insertInternal()">
+                                                                                                                                                                                                <tr class="inherited" id="insertInternal()">
         <td><a href="yii-db-activerecord.html#insertInternal()-detail">insertInternal()</a></td>
         <td>Inserts an ActiveRecord into DB without considering transaction.</td>
         <td><a href="yii-db-activerecord.html">yii\db\ActiveRecord</a></td>
@@ -1191,10 +1215,29 @@ This is a shortcut of the expression: OP_INSERT | OP_UPDATE | OP_DELETE.        
 
     
     <div class="doc-description">
-        
+        <p>True en caso que si, false en caso contrario.</p>
+
             </div>
 
-    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="app-models-tableros.html#getEsFavorito()-detail">getEsFavorito</a></strong> ( )</div>
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <strong><a href="app-models-tableros.html#getEsFavorito()-detail">getEsFavorito</a></strong> ( )</div>
+
+
+    <div class="detail-header h3" id="$esPrivado-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-models-tableros.html#$esPrivado-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $esPrivado        <span class="detail-header-tag small">
+            public                         <em>read-only</em>                         property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p>True si es privado y false en caso contrario.</p>
+
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <strong><a href="app-models-tableros.html#getEsPrivado()-detail">getEsPrivado</a></strong> ( )</div>
 
 
     <div class="detail-header h3" id="$favoritos-detail">
@@ -1246,6 +1289,23 @@ This is a shortcut of the expression: OP_INSERT | OP_UPDATE | OP_DELETE.        
             </div>
 
     <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-tableros.html#getMiembros()-detail">getMiembros</a></strong> ( )</div>
+
+
+    <div class="detail-header h3" id="$visibilidad-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-models-tableros.html#$visibilidad-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        $visibilidad        <span class="detail-header-tag small">
+            public                         <em>read-only</em>                         property
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        
+            </div>
+
+    <div class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-tableros.html#getVisibilidad()-detail">getVisibilidad</a></strong> ( )</div>
 
 </div>
 <h2>Method Details</h2>
@@ -1379,14 +1439,49 @@ contrario.</strong></p>
 
     
     <div class="doc-description">
-        <p><strong></strong></p>
+        <p><strong>Comprueba si el tablero es favorito o no.</strong></p>
 
         
             </div>
 
     <table class="detail-table table table-striped table-bordered table-hover">
-        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type">void</span> <strong><a href="app-models-tableros.html#getEsFavorito()-detail">getEsFavorito</a></strong> ( )</td></tr>
-            </table>
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <strong><a href="app-models-tableros.html#getEsFavorito()-detail">getEsFavorito</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.boolean">boolean</a></td>
+                  <td class="param-desc-col"><p>True en caso que si, false en caso contrario.</p>
+</td>
+                </tr>
+                                    </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getEsPrivado()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-models-tableros.html#getEsPrivado()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getEsPrivado()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong>Comprueba si el tablero es privado o público.</strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="http://www.php.net/language.types.boolean">boolean</a></span> <strong><a href="app-models-tableros.html#getEsPrivado()-detail">getEsPrivado</a></strong> ( )</td></tr>
+                                                <tr>
+                  <th class="param-name-col">return</th>
+                  <td class="param-type-col"><a href="http://www.php.net/language.types.boolean">boolean</a></td>
+                  <td class="param-desc-col"><p>True si es privado y false en caso contrario.</p>
+</td>
+                </tr>
+                                    </table>
 
 <!--	-->
 
@@ -1455,6 +1550,29 @@ contrario.</strong></p>
 
     <table class="detail-table table table-striped table-bordered table-hover">
         <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-tableros.html#getMiembros()-detail">getMiembros</a></strong> ( )</td></tr>
+            </table>
+
+<!--	-->
+
+    <div class="detail-header h3" id="getVisibilidad()-detail">
+        <a href="#" class="tool-link" title="go to top"><span class="glyphicon glyphicon-arrow-up"></span></a>
+        <a class="tool-link hash" href="app-models-tableros.html#getVisibilidad()-detail" title="direct link to this method"><span class="glyphicon icon-hash"></span></a>
+        
+        getVisibilidad()
+        <span class="detail-header-tag small">
+            public                                    method
+                    </span>
+    </div>
+
+    
+    <div class="doc-description">
+        <p><strong></strong></p>
+
+        
+            </div>
+
+    <table class="detail-table table table-striped table-bordered table-hover">
+        <tr><td colspan="3" class="signature"><span class="signature-defs">public</span> <span class="signature-type"><a href="yii-db-activequery.html">yii\db\ActiveQuery</a></span> <strong><a href="app-models-tableros.html#getVisibilidad()-detail">getVisibilidad</a></strong> ( )</td></tr>
             </table>
 
 <!--	-->
@@ -1606,7 +1724,7 @@ if the table is not named after this convention.</p>
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Tue, 15 May 2018 22:00:45 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Sat, 19 May 2018 18:15:11 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

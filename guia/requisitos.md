@@ -536,7 +536,7 @@ pertenece.          |
 
 | **R60**     | **Gestión de permisos de usuarios **           |
 | --------------: | :------------------- |
-| **Descripción** | Se tendrá la posibilidad de dar diferentes tipos de permisos a los usuarios añadidos como miembros del tablero. Para los usuarios miembros, no podrán configurar el equipo ni el tablero. Tampoco podrán añadir a otros miembros al equipo, y ni podrán eliminar listas, tarjetas y tableros. Si podrán crear tarjetas, listas y tableros, añadir archivos a las tarjetas y cambiar el nombre de la tarjeta. Los usuarios propietarios del equipo podrán hacer todo lo que sea posible, ya que son propietarios del equipo.            |
+| **Descripción** | Se tendrá la posibilidad de dar diferentes tipos de permisos a los usuarios añadidos como miembros del tablero. Para los usuarios miembros, no podrán configurar el equipo ni el tablero. Tampoco podrán añadir a otros miembros al equipo, y ni podrán eliminar listas, tarjetas y tableros, ni crear tableros. Si podrán crear tarjetas y listas , añadir archivos a las tarjetas y cambiar el nombre de la tarjeta. Los usuarios propietarios del equipo podrán hacer todo lo que sea posible, ya que son propietarios del equipo.            |
 | **Prioridad**   | Importante           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
