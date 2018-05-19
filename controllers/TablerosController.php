@@ -50,17 +50,14 @@ class TablerosController extends Controller
                                 Yii::$app->request->get('id')
                             );
 
-                            if ($tablero !== null) {
+                            $miembro = $tablero->equipo
+                                ->getMiembros()
+                                ->where(['usuario_id'=>Yii::$app->user->id])
+                                ->one();
 
-                            }
-
-
-                                $miembro = $tablero->equipo
-                                    ->getMiembros()
-                                    ->where(['usuario_id'=>Yii::$app->user->id])
-                                    ->one();
-
-                            return $miembro !== null && !$tablero->esPrivado;
+                            return $miembro !== null &&
+                                (!$tablero->esPrivado || $miembro->equipo
+                                    ->propietario_id === Yii::$app->user->id);
 
                         }
                     ]
