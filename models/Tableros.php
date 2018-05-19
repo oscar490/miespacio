@@ -14,6 +14,7 @@ use Yii;
  * @property Listas[] $listas
  * @property Favoritos[] $favoritos
  * @property Equipos $equipo
+ * @property TiposVisibilidad $visibilidad
  */
 class Tableros extends \yii\db\ActiveRecord
 {
@@ -34,7 +35,7 @@ class Tableros extends \yii\db\ActiveRecord
             [['denominacion', 'equipo_id'], 'required'],
             [['equipo_id'], 'default', 'value' => null],
             [
-                ['equipo_id'],
+                ['equipo_id', 'visibilidad_id'],
                 'filter',
                 'filter'=>'intval',
             ],
@@ -73,6 +74,10 @@ class Tableros extends \yii\db\ActiveRecord
         return '';
     }
 
+    /**
+     * Comprueba si el tablero es favorito o no.
+     * @return bool True en caso que si, false en caso contrario.
+     */
     public function getEsFavorito()
     {
         $favorita = Favoritos::find()
@@ -96,6 +101,14 @@ class Tableros extends \yii\db\ActiveRecord
         return count($this->getListas()->all()) !== 0;
     }
 
+    /**
+     * Comprueba si el tablero es privado o público.
+     * @return bool True si es privado y false en caso contrario.
+     */
+    public function getEsPrivado()
+    {
+        return $this->visibilidad_id === 1;
+    }
 
     /**
      * @return \yii\db\ActiveQuery
@@ -129,5 +142,14 @@ class Tableros extends \yii\db\ActiveRecord
     {
        return $this->hasMany(Favoritos::className(), ['tablero_id' => 'id'])
         ->inverseOf('tablero');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVisibilidad()
+    {
+        return $this->hasOne(TiposVisibilidad::className(), ['id'=>'visibilidad_id'])
+            ->inverseOf('tableros');
     }
 }

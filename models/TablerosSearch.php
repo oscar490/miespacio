@@ -19,7 +19,7 @@ class TablerosSearch extends Tableros
     {
         return [
             [['id', 'equipo_id'], 'integer'],
-            [['denominacion'], 'required'],
+            [['denominacion'], 'default'],
         ];
     }
 
@@ -45,7 +45,11 @@ class TablerosSearch extends Tableros
             ->from('tableros t')
             ->joinWith('equipo e')
             ->joinWith('miembros m')
-            ->where(['m.usuario_id'=>Yii::$app->user->id]);
+            ->where([
+                'm.usuario_id'=>Yii::$app->user->id,
+            ]);
+
+
 
         // add conditions that should always apply here
 
@@ -56,7 +60,9 @@ class TablerosSearch extends Tableros
 
         $this->load($params);
 
-        if (!$this->validate()) {
+
+        if ($this->denominacion === null) {
+
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
@@ -70,7 +76,7 @@ class TablerosSearch extends Tableros
 
         $query->andFilterWhere(['ilike', 't.denominacion', $this->denominacion]);
 
-
+        
         return $dataProvider;
     }
 }

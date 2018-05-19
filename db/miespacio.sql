@@ -67,23 +67,38 @@ INSERT INTO equipos (denominacion, propietario_id, url_imagen)
 
 
 
+-- Tipos visibilidad --
+
+DROP TABLE IF EXISTS tipos_visibilidad CASCADE;
+
+CREATE TABLE tipos_visibilidad
+(
+       id          BIGSERIAL    PRIMARY KEY
+    ,  visibilidad VARCHAR(255) NOT NULL
+);
+
+INSERT INTO tipos_visibilidad (visibilidad)
+    VALUES ('Privado'), ('Público');
+
 -- Tabla tableros --
 
 DROP TABLE IF EXISTS tableros CASCADE;
 
 CREATE TABLE tableros
 (
-      id           BIGSERIAL     PRIMARY KEY
-    , denominacion VARCHAR(255)  NOT NULL
-    , equipo_id    BIGINT        NOT NULL REFERENCES equipos (id) ON DELETE
-                                 CASCADE ON UPDATE CASCADE
+      id            BIGSERIAL     PRIMARY KEY
+    , denominacion  VARCHAR(255)  NOT NULL
+    , equipo_id     BIGINT        NOT NULL REFERENCES equipos (id) ON DELETE
+                                  CASCADE ON UPDATE CASCADE
+    , visibilidad_id BIGINT       NOT NULL REFERENCES tipos_visibilidad (id) ON DELETE
+                                  CASCADE ON UPDATE CASCADE
 
     , UNIQUE (denominacion, equipo_id)
 
 );
 
-INSERT INTO tableros (denominacion, equipo_id)
-    VALUES ('DWEC', 1), ('DWES', 1), ('MOMAE', 2), ('DIW', 1);
+INSERT INTO tableros (denominacion, equipo_id, visibilidad_id)
+    VALUES ('DWEC', 1, 2), ('DWES', 1, 2), ('MOMAE', 2, 2), ('DIW', 1, 2);
 
 
 

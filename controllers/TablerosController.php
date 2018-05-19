@@ -16,6 +16,8 @@ use yii\filters\VerbFilter;
 use yii\widgets\ActiveForm;
 use yii\grid\GridView;
 use yii\web\Response;
+use app\models\TiposVisibilidad;
+use yii\filters\AccessControl;
 
 /**
  * TablerosController implements the CRUD actions for Tableros model.
@@ -34,6 +36,31 @@ class TablerosController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access'=>[
+                'class'=>AccessControl::className(),
+                'only'=>['view'],
+                'rules'=>[
+                    [
+                        'allow'=>true,
+                        'actions'=>['view'],
+                        'roles'=>['@'],
+                        'matchCallback'=>function($rule, $action) {
+
+                            $tablero = Tableros::findOne(
+                                Yii::$app->request->get('id')
+                            );
+
+                            $miembro = $tablero->equipo
+                                ->getMiembros()
+                                ->where(['usuario_id'=>Yii::$app->user->id])
+                                ->one();
+
+                            return $miembro !== null && !$tablero->esPrivado;
+
+                        }
+                    ]
+                ],
+            ]
         ];
     }
 
@@ -158,6 +185,27 @@ class TablerosController extends Controller
         return $this->renderAjax('search_tablero', [
             'search'=>new TablerosSearch(),
         ]);
+    }
+
+    /**
+     * Cambia la visibilidad del tablero.
+     * @param  int $id ID del tablero;
+     * @return [type]     [description]
+     */
+    public function actionChangedVisibilidad($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->visibilidad->id === 1) {
+            $model->visibilidad_id = 2;
+
+        } else {
+            $model->visibilidad_id = 1;
+        }
+
+        $model->save();
+
+        return $model->visibilidad->id;
     }
 
     /**

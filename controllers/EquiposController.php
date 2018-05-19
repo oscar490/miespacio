@@ -91,7 +91,10 @@ class EquiposController extends Controller
         $favoritos = new ActiveDataProvider([
             'query'=>Tableros::find()
                 ->joinWith('favoritos')
-                ->where(['usuario_id'=>Yii::$app->user->id])
+                ->where([
+                    'usuario_id'=>Yii::$app->user->id,
+                    'visibilidad_id'=>2,
+                ])
         ]);
 
         return $this->render('gestionar', [

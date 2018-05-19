@@ -51,8 +51,9 @@ $js = <<<EOT
             $('#boton_add').find('button').remove();
 
             $('#boton_add').append(imagen);
-            sendAjax('$url_add_miembro', 'POST', datos, function (data) {
+                sendAjax('$url_add_miembro', 'POST', datos, function (data) {
                 $('.in').html(data);
+                growl_success("Se ha añadido un nuevo usuario como miembro");
             })
         })
     })
