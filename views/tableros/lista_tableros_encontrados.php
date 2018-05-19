@@ -15,9 +15,11 @@ $equipos = Equipos::find()
     ->where(['usuario_id'=>Yii::$app->user->id])
     ->column();
 
+$tableros_encontrados = $dataProvider->query->all();
+
 ?>
 
-<?php if (!empty($dataProvider->query->all())): ?>
+<?php if (!empty($tableros_encontrados)): ?>
     <?= ListView::widget([
         'dataProvider'=> $dataProvider,
         'itemView'=>'_tablero_encontrado',

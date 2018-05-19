@@ -17,6 +17,7 @@ use yii\widgets\ActiveForm;
 use yii\grid\GridView;
 use yii\web\Response;
 use app\models\TiposVisibilidad;
+use yii\filters\AccessControl;
 
 /**
  * TablerosController implements the CRUD actions for Tableros model.
@@ -35,6 +36,31 @@ class TablerosController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access'=>[
+                'class'=>AccessControl::className(),
+                'only'=>['view'],
+                'rules'=>[
+                    [
+                        'allow'=>true,
+                        'actions'=>['view'],
+                        'roles'=>['@'],
+                        'matchCallback'=>function($rule, $action) {
+
+                            $tablero = Tableros::findOne(
+                                Yii::$app->request->get('id')
+                            );
+
+                            $miembro = $tablero->equipo
+                                ->getMiembros()
+                                ->where(['usuario_id'=>Yii::$app->user->id])
+                                ->one();
+
+                            return $miembro !== null && !$tablero->esPrivado;
+
+                        }
+                    ]
+                ],
+            ]
         ];
     }
 

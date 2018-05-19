@@ -26,13 +26,7 @@ function addFavorito(id_tablero, id_usuario, url_send) {
             mensaje = "Se ha borrado como tablero favorito";
         }
 
-        jQuery.noticeAdd({
-            text: mensaje,
-            stay: false,
-            type: 'notice'
-        });
-
-
+        growl_success(mensaje);
 
     })
 }
@@ -40,19 +34,26 @@ function addFavorito(id_tablero, id_usuario, url_send) {
 function changeVisible(id_tablero, url_send, boton) {
 
     sendAjax(url_send, 'POST', {}, function(data) {
-        let nombre = ' Público';
-        let icon = 'glyphicon glyphicon-globe';
 
-        if (data == 2) {
-            nombre = ' Privado';
-            icon = 'glyphicon glyphicon-lock';
+        boton.empty();
+
+        let nombre = $('<span></span>');
+        let icono = $('<span></span>');
+
+        let clase = 'glyphicon glyphicon-globe';
+        let texto = ' Público';
+
+        if (data == '1') {
+            texto = ' Privado';
+            clase = 'glyphicon glyphicon-lock';
         }
 
-        
-        let elem_span = $('<span></span>');
-        elem_span.addClass(icon);
+        nombre.text(texto);
+        icono.addClass(clase);
 
-        boton.children('span').replaceWith(elem_span);
+        boton.append(icono, nombre);
+
+        growl_success(`Este tablero es ha establecido como ${texto}`);
 
     })
 }

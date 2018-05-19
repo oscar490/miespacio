@@ -72,13 +72,7 @@ class MiembrosController extends Controller
         $model = new Miembros();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-            MyHelpers::notification(
-                'success',
-                'Se ha añadido al equipo correctamente',
-                0
-            );
-
+            
             return $this->renderAjax('/equipos/miembros', [
                 'miembros' => new ActiveDataProvider([
                     'query'=>Usuarios::find()

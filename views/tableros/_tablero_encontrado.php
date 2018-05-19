@@ -5,6 +5,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use app\components\MyHelpers;
 
 $js = <<<EOT
     function changedColor(elem, color) {
@@ -24,7 +25,22 @@ EOT;
 
 $this->registerJs($js);
 
+
+$icono = 'glyphicon glyphicon-globe';
 $url_tablero = Url::to(['tableros/view', 'id'=>$model->id]);
+
+if ($model->esPrivado) {
+    $icono = 'glyphicon glyphicon-lock';
+
+    $miembro = $model->equipo->getMiembros()
+        ->where(['usuario_id'=>Yii::$app->user->id])
+        ->one();
+
+    if (!$miembro->esPropietario) {
+        $url_tablero = '#';
+    }
+
+}
 ?>
 
 <div class='row'>
@@ -44,6 +60,14 @@ $url_tablero = Url::to(['tableros/view', 'id'=>$model->id]);
                     <div class='row'>
                         <div class='col-md-6'>
                             <?= Html::encode($model->equipo->denominacion) ?>
+                            &nbsp;
+                            <?=
+                                MyHelpers::icon($icono) . ' ' .
+                                Html::encode($model->visibilidad->visibilidad)
+                            ?>
+                        </div>
+                        <div class='col-md-5'>
+
                         </div>
                     </div>
 

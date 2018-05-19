@@ -27,6 +27,10 @@ $url_favorito = Url::to(['favoritos/cambiar-favorito', 'id_tablero'=>$model->id]
 $url_visible = Url::to(['tableros/changed-visibilidad', 'id'=>$model->id]);
 $usuario_id = Yii::$app->user->id;
 
+$miembro = $model->equipo->getMiembros()
+    ->where(['usuario_id'=>Yii::$app->user->id])
+    ->one();
+
 $js = <<<EOT
     $(document).ready(function() {
         let es_favorito = '$esFavorito';
@@ -85,20 +89,23 @@ $this->registerJs($js);
                 )
             ?>
 
-            <?=
-                Html::button(
-                    MyHelpers::icon(
-                        $model->visibilidad->id === 2
-                            ? 'glyphicon glyphicon-globe'
-                            : 'glyphicon glyphicon-lock'
+            <?php if ($miembro->esPropietario): ?>
+                <!-- Botón para cambiar tipo de visibilidad -->
+                <?=
+                    Html::button(
+                        MyHelpers::icon(
+                            $model->visibilidad->id === 2
+                                ? 'glyphicon glyphicon-globe'
+                                : 'glyphicon glyphicon-lock'
+                        )
+                            . ' ' . $model->visibilidad->visibilidad,
+                        [
+                            'class'=>'btn btn-md btn-default',
+                            'id'=>"btn_visibilidad_$model->id"
+                        ]
                     )
-                        . ' ' . $model->visibilidad->visibilidad,
-                    [
-                        'class'=>'btn btn-md btn-default',
-                        'id'=>"btn_visibilidad_$model->id"
-                    ]
-                )
-            ?>
+                ?>
+            <?php endif; ?>
         </div>
 
 

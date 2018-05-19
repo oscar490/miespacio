@@ -26,6 +26,7 @@ if ($tablero->isNewRecord) {
     'id'=>'form_create_tablero',
 ]); ?>
 
+    <!-- Denominación -->
     <?= $form->field(
             $tablero,
             'denominacion',
@@ -36,6 +37,10 @@ if ($tablero->isNewRecord) {
         ])->label(false);
     ?>
 
+    <!-- Tipo de visibilidad -->
+    <?= Html::hiddenInput('visibilidad_id', 2) ?>
+
+    <!-- Equipo -->
     <?php if (!isset($equipos)): ?>
         <?= Html::hiddenInput('equipo_id', $equipo->id) ?>
 
@@ -48,6 +53,7 @@ if ($tablero->isNewRecord) {
 
     <?php endif; ?>
 
+    <!-- Botón de submit -->
     <div class="form-group">
         <?= MyHelpers::submit($label, [
             'class' => 'btn btn-success btn-block'

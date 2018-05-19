@@ -157,3 +157,15 @@ function sendAjaxFile(url_send, form_p, type_p, success_p = null) {
     });
 
 }
+
+/**
+ * Muestra un mensaje growl de tipo success.
+ * @param  {[type]} mensaje Contenido del mensaje.
+ * @return {[type]}         [description]
+ */
+function growl_success(mensaje) {
+    $.growl.notice({
+        title: "¡Muy bién!",
+        message: mensaje,
+    });
+}
