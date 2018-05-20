@@ -217,6 +217,8 @@ CREATE TABLE notificaciones
     ,  contenido  VARCHAR(255)
     ,  miembro_id BIGINT       NOT NULL REFERENCES miembros (id) ON DELETE
                                CASCADE ON UPDATE CASCADE
+    ,  tablero_id BIGINT       REFERENCES tableros (id) ON DELETE
+                               CASCADE ON UPDATE CASCADE
     ,  created_at TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
     ,  view_at    TIMESTAMP(0)
 );
@@ -239,3 +241,20 @@ CREATE TABLE favoritos
 
 INSERT INTO favoritos (usuario_id, tablero_id)
         VALUES (1, 1), (1, 2);
+
+
+
+
+-- Table Actividades --
+/*
+DROP TABLE IF EXISTS actividades CASCADE;
+
+CREATE TABLE actividades
+(
+       id         BIGSERIAL    PRIMARY KEY
+    ,  contenido  VARCHAR(255) NOT NULL
+    ,  tablero_id BIGINT       NOT NULL REFERENCES tableros (id) ON DELETE
+                               CASCADE ON UPDATE CASCADE
+    ,  usuario_id BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
+                               CASCADE ON UPDATE CASCADE
+); */

@@ -23,6 +23,13 @@ $this->registerJsFile(
     ['depends'=>[\yii\web\JqueryAsset::className()]]
 );
 
+$css = <<<EOT
+    #notificaciones {
+        height: 210px;
+    }
+EOT;
+$this->registerCss($css);
+
 $js = <<<EOT
     $(document).ready(function() {
 
@@ -55,3 +62,21 @@ $this->registerCssFile('/css/menu_view.css')
     </div>
 
 <?php endif; ?>
+
+<div class='col-md-6'>
+    <div class='panel panel-default'>
+        <div class='panel-heading'>
+            <strong>
+                <?=
+                    Html::encode("Actividades")
+                ?>
+            </strong>
+        </div>
+        <div id='notificaciones' class='panel-body content-scroll'>
+            <?= $this->render('/notificaciones/lista_notificaciones', [
+                'notificaciones'=>$miembro->getNotificaciones()
+                    ->where(['tablero_id'=>$model->id])
+            ]) ?>
+        </div>
+    </div>
+</div>

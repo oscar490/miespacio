@@ -24,8 +24,6 @@ $this->registerJs($js);
 
 ?>
 
-
-
 <?php if (!Yii::$app->user->isGuest): ?>
     <!-- Modal de Notificaciones de Usuario -->
     <?php
@@ -40,6 +38,7 @@ $this->registerJs($js);
         <?= $this->render('/notificaciones/view', [
             'notificaciones'=>Usuarios::findOne(Yii::$app->user->id)
                 ->getNotificaciones()
+                ->where(['tablero_id'=>null]),
 
         ]) ?>
 

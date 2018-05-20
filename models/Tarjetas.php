@@ -98,5 +98,64 @@ class Tarjetas extends \yii\db\ActiveRecord
         return $this->hasMany(Adjuntos::className(), ['tarjeta_id' => 'id'])->inverseOf('tarjeta');
     }
 
+    public function afterDelete()
+    {
+        $equipo = $this->lista->tablero->equipo;
+
+        $miembro = $equipo->getMiembros()
+            ->where([
+                'usuario_id'=>Yii::$app->user->id
+            ])->one();
+
+        (new Notificaciones([
+            'contenido'=>"ha eliminado la tarjeta <strong>$this->denominacion</strong>",
+            'miembro_id'=>$miembro->id,
+            'tablero_id'=>$this->lista->tablero->id,
+        ]))->save();
+    }
+
+    /**
+     * Crea una notificaciñon al crear o modificar una tarjeta.
+     * @param  [type] $insert            [description]
+     * @param  [type] $changedAttributes [description]
+     * @return [type]                    [description]
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        $lista_nueva = $this->lista;
+
+        if (!$insert) { //  Update
+            $contenido = "ha modificado el nombre o la descripción" .
+                " de la tarjeta <storng>$this->denominacion</storng>";
+
+            $lista_antigua = $changedAttributes['lista_id'];
+
+
+            if ($lista_antigua !== $this->lista->id) {
+                $contenido = "ha movido la tarjeta <strong>$this->denominacion</strong>" .
+                    " a la lista <storng>$lista_nueva->denominacion</storng>.";
+            }
+
+        } else {   //   Insert
+            $contenido = "ha creado la tarjeta <strong>$this->denominacion</strong>" .
+                " en la lista <strong>$lista_nueva->denominacion</strong>.";
+        }
+
+        $equipo = $this->lista->tablero->equipo;
+
+        $miembro = $equipo->getMiembros()
+            ->where([
+                'usuario_id'=>Yii::$app->user->id,
+            ])->one();
+
+        (new Notificaciones([
+            'contenido'=>$contenido,
+            'miembro_id'=>$miembro->id,
+            'tablero_id'=>$this->lista->tablero->id,
+        ]))->save();
+
+
+    }
+
 
 }

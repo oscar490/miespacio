@@ -71,4 +71,16 @@ class Notificaciones extends \yii\db\ActiveRecord
         return $this->hasOne(Miembros::className(), ['id' => 'miembro_id'])
             ->inverseOf('notificaciones');
     }
+
+    public function getTablero()
+    {
+        return $this->hasOne(Tableros::className(), ['id'=>'tablero_id'])
+            ->inverseOf('notificaciones');
+    }
+
+    public function getNotificaciones()
+    {
+        return $this->hasMany(Notificaciones::className(), ['tablero_id'=>'id'])
+            ->inverseOf('tablero');
+    }
 }
