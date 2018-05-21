@@ -51,62 +51,58 @@ EOT;
 $this->registerJs($js);
 ?>
 
+<div class='col-xs-12 col-md-12'>
+    <!-- Nombre del tablero -->
     <h3>
-        <div class='col-xs-12 col-md-12'>
-            <!-- Nombre del tablero -->
-            <strong>
-                <?=
-                    MyHelpers::label(
-                        'primary',
-                        $model->denominacion
-                    )
-                ?>
-            </strong>
-
-            <!-- Nombre del equipo -->
+        <strong>
             <?=
-                Html::a(
-                    MyHelpers::label(
-                        'primary',
-                        $model->equipo->denominacion
-                    ),
-                    ['equipos/view', 'id'=>$model->equipo->id],
-                    ['id'=>'link_equipo']
+                MyHelpers::label(
+                    'primary',
+                    $model->denominacion
                 )
             ?>
+        </strong>
 
-            <!-- Botón para añadir a favorito -->
+        <!-- Botón para añadir a favorito -->
+        <?=
+            Html::button(
+                MyHelpers::icon('glyphicon glyphicon-star'),
+                [
+                    'class'=>'btn btn-md btn-default molde_button',
+                    'id'=>"btn_favorite_$model->id",
+                    'title'=>'Selecciona para marcarlo o desmarcarlo como tablero favorito',
+                ]
+            )
+        ?>
+
+        <!-- Nombre del equipo -->
+        <?=
+            Html::a(
+                MyHelpers::label(
+                    'primary',
+                    $model->equipo->denominacion
+                ),
+                ['equipos/view', 'id'=>$model->equipo->id],
+                ['id'=>'link_equipo']
+            )
+        ?>
+
+        <?php if ($miembro->esPropietario): ?>
+            <!-- Botón para cambiar tipo de visibilidad -->
             <?=
                 Html::button(
-                    MyHelpers::icon('glyphicon glyphicon-star'),
+                    MyHelpers::icon(
+                        $model->visibilidad->id === 2
+                            ? 'glyphicon glyphicon-globe'
+                            : 'glyphicon glyphicon-lock'
+                    )
+                        . ' ' . $model->visibilidad->visibilidad,
                     [
-                        'class'=>'btn btn-md btn-default',
-                        'id'=>"btn_favorite_$model->id",
-                        'title'=>'Selecciona para marcarlo o desmarcarlo como tablero favorito',
-                        'data-toggle'=>"tooltip",
-                        'data-placement'=>'right'
+                        'class'=>'btn btn-md btn-default molde_button',
+                        'id'=>"btn_visibilidad_$model->id"
                     ]
                 )
             ?>
-
-            <?php if ($miembro->esPropietario): ?>
-                <!-- Botón para cambiar tipo de visibilidad -->
-                <?=
-                    Html::button(
-                        MyHelpers::icon(
-                            $model->visibilidad->id === 2
-                                ? 'glyphicon glyphicon-globe'
-                                : 'glyphicon glyphicon-lock'
-                        )
-                            . ' ' . $model->visibilidad->visibilidad,
-                        [
-                            'class'=>'btn btn-md btn-default',
-                            'id'=>"btn_visibilidad_$model->id"
-                        ]
-                    )
-                ?>
-            <?php endif; ?>
-        </div>
-
-
+        <?php endif; ?>
     </h3>
+</div>

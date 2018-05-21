@@ -74,9 +74,11 @@ $this->registerCssFile('/css/menu_view.css')
 <div class='col-md-3'>
     <?php
         MyHelpers::modal_begin(
-            'Actividades',
-            'Actividades',
-            'btn btn-default',
+            MyHelpers::icon('glyphicon glyphicon-align-right')
+                . ' <strong>Actividades</strong>',
+            MyHelpers::icon('glyphicon glyphicon-align-right')
+                . ' <strong>Actividades</strong>',
+            'btn btn-md btn-default',
             'modal_actividades'
         )
     ?>

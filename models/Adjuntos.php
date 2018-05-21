@@ -133,6 +133,25 @@ class Adjuntos extends \yii\db\ActiveRecord
         return true;
     }
 
+    public function afterDelete()
+    {
+        $tablero = $this->tarjeta->lista->tablero;
+        $equipo = $tablero->equipo;
+
+        $miembro = Miembros::find()
+            ->where([
+                'usuario_id'=>Yii::$app->user->id,
+                'equipo_id'=>$equipo->id,
+            ])->one();
+
+        (new Notificaciones([
+            'contenido'=>"ha eliminado el adjunto" .
+                " <strong>$this->nombre</strong>",
+            'miembro_id'=>$miembro->id,
+            'tablero_id'=>$tablero->id
+        ]))->save();
+    }
+
     public function afterSave($insert, $changedAttributes)
     {
         if (!$insert) {
@@ -149,7 +168,7 @@ class Adjuntos extends \yii\db\ActiveRecord
             ])->one();
 
         (new Notificaciones([
-            'contenido'=>"ha añadido el adjunto <strong>$this->nombre</strong>" .
+            'contenido'=>"ha añadido un nuevo adjunto" .
                 " en la tarjeta <strong>$tarjeta->denominacion</strong>",
             'miembro_id'=>$miembro->id,
             'tablero_id'=>$tablero->id,

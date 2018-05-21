@@ -123,6 +123,7 @@ class DatosUsuarios extends \yii\db\ActiveRecord
             (new Tableros([
                 'denominacion'=>'Tablero de Bienvenida',
                 'equipo_id'=>$equipo->id,
+                'visibilidad_id'=>2,
             ]))->save();
         }
     }

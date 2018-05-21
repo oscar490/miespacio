@@ -31,9 +31,9 @@ $contenido = $datos->nombre_completo . ' ' .
 
         <!-- Descripción de notificación -->
         <div class='col-xs-9 col-md-10'>
-                <strong>
-                    <?= $contenido ?>
-                </strong>
+            <strong>
+                <?= $contenido ?>
+            </strong>
 
 
             <div class='row'>

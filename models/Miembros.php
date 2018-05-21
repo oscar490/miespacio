@@ -100,9 +100,16 @@ class Miembros extends \yii\db\ActiveRecord
             ->inverseOf('miembros');
     }
 
+    /**
+     * Cuando se añade un usuario como miembro de un equipo, se le envía
+     * un correo para notificarle. También se crea una notificación para
+     * que se muestre en la página principal.
+     * @param  string $insert            True si es insert.
+     * @param  array $changedAttributes Atributos antiguos.
+     */
     public function afterSave($insert, $changedAttributes)
     {
-        if ($this->usuario->id === Yii::$app->user->id) {
+        if ($this->equipo->propietario_id === $this->usuario->id) {
             return false;
         }
 
