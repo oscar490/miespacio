@@ -1,3 +1,7 @@
 div#header_menu + div {
     display: none;
 }
+
+#content-actividades {
+    height: 200px;
+}

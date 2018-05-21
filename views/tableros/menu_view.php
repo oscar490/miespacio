@@ -8,8 +8,11 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use app\models\Miembros;
+use app\components\MyHelpers;
 
 $url_create = Url::to(['listas/create']);
+
+$url_recargar_actividades = Url::to(['tableros/recargar-actividades', 'id'=>$model->id]);
 
 $miembro = Miembros::find()
     ->where([
@@ -35,6 +38,9 @@ $js = <<<EOT
 
         iteracionMenu();
         createLista('$url_create');
+
+        let modal_actividades = $("#modal_actividades");
+        recargar_actividades(modal_actividades, '$url_recargar_actividades');
     })
 EOT;
 
@@ -63,20 +69,23 @@ $this->registerCssFile('/css/menu_view.css')
 
 <?php endif; ?>
 
-<div class='col-md-6'>
-    <div class='panel panel-default'>
-        <div class='panel-heading'>
-            <strong>
-                <?=
-                    Html::encode("Actividades")
-                ?>
-            </strong>
-        </div>
-        <div id='notificaciones' class='panel-body content-scroll'>
+<!-- Panel de Actividades sobre el tablero -->
+
+<div class='col-md-3'>
+    <?php
+        MyHelpers::modal_begin(
+            'Actividades',
+            'Actividades',
+            'btn btn-default',
+            'modal_actividades'
+        )
+    ?>
+        <div id="content-actividades" class='content-scroll'>
             <?= $this->render('/notificaciones/lista_notificaciones', [
-                'notificaciones'=>$miembro->getNotificaciones()
-                    ->where(['tablero_id'=>$model->id])
+                'notificaciones'=>$model->getNotificaciones(),
             ]) ?>
         </div>
-    </div>
+    <?php
+        MyHelpers::modal_end();
+    ?>
 </div>

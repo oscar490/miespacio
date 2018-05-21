@@ -189,6 +189,15 @@ class TablerosController extends Controller
         ]);
     }
 
+    public function actionRecargarActividades($id)
+    {
+        $model = $this->findModel($id);
+
+        return $this->renderAjax('/notificaciones/lista_notificaciones', [
+            'notificaciones'=>$model->getNotificaciones(),
+        ]);
+    }
+
     /**
      * Cambia la visibilidad del tablero.
      * @param  int $id ID del tablero;

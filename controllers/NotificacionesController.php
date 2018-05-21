@@ -58,7 +58,6 @@ class NotificacionesController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
-
     /**
      * Creates a new Notificaciones model.
      * If creation is successful, the browser will be redirected to the 'view' page.
