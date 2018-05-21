@@ -8,6 +8,10 @@ use app\components\MyHelpers;
 
 $datos = $model->miembro->equipo->usuario->datosUsuarios;
 
+if ($model->tablero_id !== null) {
+    $datos = $model->miembro->usuario->datosUsuarios;
+}
+
 $contenido = $datos->nombre_completo . ' ' .
     ' ' . $datos->apellidos . ' ' . $model->contenido;
 ?>
@@ -26,10 +30,10 @@ $contenido = $datos->nombre_completo . ' ' .
         </div>
 
         <!-- Descripción de notificación -->
-        <div class='col-xs-9 col-md-7'>
-                <strong>
-                    <?= $contenido ?>
-                </strong>
+        <div class='col-xs-9 col-md-10'>
+            <strong>
+                <?= $contenido ?>
+            </strong>
 
 
             <div class='row'>

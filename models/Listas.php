@@ -86,4 +86,59 @@ class Listas extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Tarjetas::className(), ['lista_id' => 'id'])->inverseOf('lista');
     }
+
+    /**
+     * Cada vez que se crea una nueva lista, o se modifica, se crea una
+     * una notificación.
+     * @param  bool $insert            True si es insert, false si es update.
+     * @param  array $changedAttributes Atributos cambiados.
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        if (!$insert) { //  Update
+            $antiguo = $changedAttributes['denominacion'];
+            $nuevo = $this->denominacion;
+
+            $contenido = "ha cambiado el nombre de la lista," .
+                " de <strong>$antiguo</strong> a <strong>$nuevo</strong>";
+        }
+
+        if ($insert) { // Insert
+            $contenido = "ha creado la lista" .
+            " <strong>$this->denominacion</strong>";
+
+        }
+
+        $miembro = Miembros::find()
+            ->where([
+                'usuario_id'=>Yii::$app->user->id,
+                'equipo_id'=>$this->tablero->equipo->id,
+            ])->one();
+
+        (new Notificaciones([
+            'contenido'=>$contenido,
+            'miembro_id'=>$miembro->id,
+            'tablero_id'=>$this->tablero->id,
+        ]))->save();
+    }
+
+    /**
+     * Cuando se elimina una lista, se crea una notificación.
+     * @return [type] [description]
+     */
+    public function afterDelete()
+    {
+        //  Delete
+        $miembro = Miembros::find()
+            ->where([
+                'usuario_id'=>Yii::$app->user->id,
+                'equipo_id'=>$this->tablero->equipo->id,
+            ])->one();
+
+        (new Notificaciones([
+            'contenido'=>"ha eliminado la lista <strong>$this->denominacion</strong>",
+            'miembro_id'=>$miembro->id,
+            'tablero_id'=>$this->tablero->equipo->id,
+        ]))->save();
+    }
 }

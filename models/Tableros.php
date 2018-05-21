@@ -152,4 +152,13 @@ class Tableros extends \yii\db\ActiveRecord
         return $this->hasOne(TiposVisibilidad::className(), ['id'=>'visibilidad_id'])
             ->inverseOf('tableros');
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNotificaciones()
+    {
+        return $this->hasMany(Notificaciones::className(), ['tablero_id'=>'id'])
+            ->inverseOf('tablero');
+    }
 }

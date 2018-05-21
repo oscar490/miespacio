@@ -3,9 +3,9 @@
     margin-bottom: 30px;
 }
 
-button[id^='btn_favorite'], button[id^='btn_visibilidad'] {
-    padding-top: 4px;
-    padding-bottom: 4px;
+.molde_button {
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
 }
 
 a#link_equipo {

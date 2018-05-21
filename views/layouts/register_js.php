@@ -18,7 +18,10 @@ if (!Yii::$app->user->isGuest) {
     $img = $datosUsuario->url_imagen;
     $num_notifi = Yii::$app->user->identity
         ->getNotificaciones()
-        ->where(['view_at'=>null])
+        ->where([
+            'view_at'=>null,
+            'tablero_id'=>null,
+        ])
         ->count();
 
     $url_observar = Url::to([

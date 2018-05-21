@@ -27,6 +27,15 @@ function iteracionMenu() {
     })
 }
 
+function recargar_actividades(modal, url_send) {
+    modal.on("show.bs.modal", function() {
+        sendAjax(url_send, 'GET', {}, function (data) {
+            $("#content-actividades").html(data);
+        })
+
+    })
+}
+
 /**
  * Usando AJAX, crea una lista.
  * @param  {[type]} url_p Dirección URL para realizar la petición.
