@@ -47,7 +47,7 @@ function updateImagen(url_send, id_equipo) {
         }
     });
     $(`#form_imagen_${id_equipo}`).on('submit', function(e) {
-        console.log(enviar);
+
         if (enviar && (!en_proceso)) {
             en_proceso = true;
             $.ajax({

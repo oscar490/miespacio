@@ -115,7 +115,7 @@
 | **Prioridad**   | Opcional           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
-| **Entrega**     | v2             |
+| **Entrega**     | v3             |
 | **Incidencia**  | [13](https://github.com/oscar490/miespacio/issues/13) |
 
 | **R14**     | **Mostrar tableros.**           |
@@ -567,7 +567,7 @@ pertenece.          |
 | **Prioridad**   | Opcional           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Difícil         |
-| **Entrega**     | v2             |
+| **Entrega**     | v3             |
 | **Incidencia**  | [63](https://github.com/oscar490/miespacio/issues/63) |
 
 | **R64**     | **Personalizar tableros.**           |
