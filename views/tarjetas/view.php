@@ -15,10 +15,6 @@ use yii\bootstrap\Modal;
 
 $url_adjunto = Url::to(['adjuntos/create-ajax']);
 
-// $this->registerJsFile(
-//     '/js/view_tarjeta.js',
-//     ['depends'=>[\yii\web\JqueryAsset::className()]]
-// );
 
 $this->registerCssFile(
     'css/view_tarjeta.css'
@@ -53,7 +49,7 @@ $this->registerJs($js);
 
     <!-- Formulario de adjuntar -->
     <div class='col-md-4'>
-        
+
         <!-- Enlace -->
         <?= $this->render('/adjuntos/create', [
             'model'=>$adjunto,
