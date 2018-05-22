@@ -138,7 +138,7 @@ class Listas extends \yii\db\ActiveRecord
         (new Notificaciones([
             'contenido'=>"ha eliminado la lista <strong>$this->denominacion</strong>",
             'miembro_id'=>$miembro->id,
-            'tablero_id'=>$this->tablero->equipo->id,
+            'tablero_id'=>$this->tablero->id,
         ]))->save();
     }
 }
