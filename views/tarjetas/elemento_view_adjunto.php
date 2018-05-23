@@ -6,12 +6,7 @@
 use yii\helpers\Html;
 use app\components\MyHelpers;
 
-$js = <<<EOT
 
-    $("#btn_adjunto_view_$adjunto->id").on('click', function() {
-        alert('hola $adjunto->id')
-    })
-EOT;
 
 
 //  Se modifica la dirección URL para ver el Contenido
@@ -23,14 +18,22 @@ $direccion .= '0';
 $icono = MyHelpers::icon('glyphicon glyphicon-eye-open');
 $class = 'btn btn btn-default';
 
+$js = <<<EOT
+    $("#btn_view_file_tarjeta_$adjunto->id").on('click', function(e) {
+        e.preventDefault();
+        mostrar_imagen('$adjunto->url_direccion');
+    })
+EOT;
+
+$this->registerJs($js);
+
 ?>
 
-<?= Html::a(
+<?= Html::button(
     $icono,
-    (!$adjunto->es_imagen)
-        ? $adjunto->url_direccion : $direccion,
     [
         'class'=>$class,
-        'target'=>'_blank'
+        'target'=>'_blank',
+        'id'=>"btn_view_file_tarjeta_$adjunto->id"
     ])
 ?>

@@ -136,6 +136,17 @@ function desactivarBotonForm(form) {
 
 }
 
+function mostrar_imagen(url) {
+    let imagen = $("<img>");
+    imagen.attr('src', url);
+    imagen.css({
+        width: '400px',
+        height: '300px',
+    })
+
+    krajeeDialog.alert(imagen);
+}
+
 /**
  * Valida formulario y envia archivos por AJAX.
  * @param  {[type]} url_send         Dirección URL para enviar.

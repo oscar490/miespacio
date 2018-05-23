@@ -17,6 +17,7 @@ use app\components\MyHelpers;
         </strong>
     </div>
 
+    <!-- Lista de adjunto -->
     <div id='lista_adjuntos_<?= $model->id ?>'class='panel-body'>
         <?= $this->render('lista_adjuntos', [
             'model'=>$model,

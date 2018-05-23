@@ -15,7 +15,7 @@ use yii\helpers\Html;
             'images/cargando.gif',
             [
                 'alt'=>'adjunto',
-                'class'=>'img-rounded'
+                'class'=>'img-rounded image-link'
             ]
         )
     ?>

@@ -111,6 +111,15 @@ class Adjuntos extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTipo()
+    {
+        return $this->hasOne(TiposAdjuntos::className(), ['id'=>'tipo_id'])
+            ->inverseOf('adjuntos');
+    }
+
+    /**
      * Almacena el tipo de archivo adjuntado. En el caso que ya
      * exista, lo sobrescribe.
      * @param  [type] $insert [description]
