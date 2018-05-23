@@ -11,3 +11,18 @@ div[id^='lista_adjuntos'] {
     height: 300px;
     overflow: scroll;
 }
+
+button[id^='btn_ocultar_tarjeta'] {
+    float: right;
+}
+
+@media (max-width: 990px) {
+    button[id^='btn_ocultar_tarjeta'] {
+        float: left;
+        margin-bottom: 10px;
+    }
+
+    div.titulo {
+        margin-bottom: 0px;
+    }
+}

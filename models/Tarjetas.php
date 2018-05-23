@@ -12,6 +12,8 @@ use app\models\Adjuntos;
  * @property string $denominacion
  * @property string $descripcion
  * @property int $lista_id
+ * @property string $created_at
+ * @property bool $esta_oculta
  *
  * @property Adjuntos[] $adjuntos
  * @property Listas $lista
@@ -125,7 +127,7 @@ class Tarjetas extends \yii\db\ActiveRecord
         $lista_nueva = $this->lista;
 
         if (!$insert) { //  Update
-            $contenido = "ha modificado el nombre o la descripción" .
+            $contenido = "ha modificado las propiedades" .
                 " de la tarjeta <storng>$this->denominacion</storng>";
 
             $lista_antigua = $changedAttributes['lista_id'];

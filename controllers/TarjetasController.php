@@ -168,6 +168,32 @@ class TarjetasController extends Controller
     }
 
     /**
+     * Muestra u oculta una tarjeta, de manera que si está oculta
+     * sólo lo ve el propietario del tablero. En caso contrario, lo puede ver
+     * también los miembros del equipo.
+     * @param  integer $id Identificador de la tarjeta.
+     * @return boolean     True o false si está oculta o no.
+     */
+    public function actionOcultar($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->esta_oculta) {
+            $model->esta_oculta = false;
+
+        } else {
+            $model->esta_oculta = true;
+        }
+
+        $model->lista_id = Yii::$app->request->post('lista_id');
+        $model->save();
+        
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        return $model->esta_oculta;
+    }
+
+    /**
      * Deletes an existing Tarjetas model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id

@@ -20,7 +20,7 @@ $this->registerJs($js);
 
 <!-- Título de la tarjeta -->
 <div class='row'>
-    <div class='col-md-12 titulo'>
+    <div class='col-xs-12 col-md-10 titulo'>
         <h4>
             <strong>
                 <?= Html::encode($tarjeta->denominacion) ?>
@@ -32,6 +32,14 @@ $this->registerJs($js);
                 ?>
             </small>
         </h4>
+    </div>
+
+    <!-- Botón de ocultar tarjeta -->
+    <div class='col-xs-12 col-md-2'>
+        <?= $this->render('button_ocultar_tarjeta', [
+            'tarjeta'=>$tarjeta,
+        ]) ?>
+
     </div>
 </div>
 

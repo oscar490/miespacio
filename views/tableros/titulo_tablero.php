@@ -12,11 +12,6 @@ $this->registerCssFile(
 );
 
 $this->registerJsFile(
-    '/js/jquery.notice.js',
-    ['depends'=>[\yii\web\JqueryAsset::className()]]
-);
-
-$this->registerJsFile(
     '/js/titulo_tablero.js',
     ['depends'=>[\yii\web\JqueryAsset::className()]]
 );
