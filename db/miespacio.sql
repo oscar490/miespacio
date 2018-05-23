@@ -133,15 +133,17 @@ CREATE TABLE tarjetas
     , denominacion VARCHAR(255) NOT NULL
     , descripcion  VARCHAR(255)
     , created_at   TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
+    , esta_oculta  BOOLEAN
     , lista_id     BIGINT       NOT NULL REFERENCES listas (id) ON DELETE
                                 CASCADE ON UPDATE CASCADE
 
     , UNIQUE (denominacion, lista_id)
 );
 
-INSERT INTO tarjetas (denominacion, lista_id)
-    VALUES ('Desarrollo web', 1), ('Git', 1), ('Introducción a PHP', 1),
-            ('Enero', 1), ('Febrero', 2), ('Practica 0', 3), ('Practica 1', 3);
+INSERT INTO tarjetas (denominacion, lista_id, esta_oculta)
+    VALUES ('Desarrollo web', 1, false), ('Git', 1, false),
+            ('Introducción a PHP', 1, false), ('Enero', 1, false),
+            ('Febrero', 2, false), ('Practica 0', 3, false), ('Practica 1', 3, false);
 
 
 

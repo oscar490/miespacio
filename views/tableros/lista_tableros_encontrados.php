@@ -12,7 +12,9 @@ $equipos = Equipos::find()
     ->select(['denominacion'])
     ->indexBy('id')
     ->joinWith('miembros')
-    ->where(['usuario_id'=>Yii::$app->user->id])
+    ->where([
+        'usuario_id'=>Yii::$app->user->id,
+    ])
     ->column();
 
 $tableros_encontrados = $dataProvider->query->all();
