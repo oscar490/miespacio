@@ -97,6 +97,43 @@ class Adjuntos extends \yii\db\ActiveRecord
         ]);
     }
 
+    /**
+     * Devuelve el ID del tipo de archivo adjunto.
+     * @param  string $tipo Tipo de archivo.
+     * @return integer       ID del tipo de archivo.
+     */
+    public function getConsultarTipo($tipo)
+    {
+        switch ($tipo) {
+            case "image":
+                $id_tipo = 1;
+                break;
+
+            case "application":
+                $id_tipo = 2;
+                break;
+
+            default:
+                $id_tipo = 4;
+                break;
+        }
+
+        return $id_tipo;
+    }
+
+    /**
+     * Extrae una parte del tipo de archivo.
+     * @param  string $tipo Propiedad del archivo.
+     * @return string       Parte del tipo de archivo.
+     */
+    public static function extraerTipo($tipo)
+    {
+        $indice = strpos($tipo, '/');
+
+        return substr($tipo ,0,  $indice);
+    }
+    
+
     public function formName()
     {
         return '';

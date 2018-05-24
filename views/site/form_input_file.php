@@ -4,8 +4,6 @@ use kartik\file\FileInput;
 use yii\helpers\Html;
 use app\components\MyHelpers;
 
-
-
 ?>
 
 <?php $form = ActiveForm::begin([
@@ -24,11 +22,6 @@ use app\components\MyHelpers;
      ]);
      ?>
 
-    <?php /**
-    <?php if (isset($tarjeta)): ?>
-        <?= Html::hiddenInput('tarjeta_id', $tarjeta->id); ?>
-    <?php endif; ?>
-    **/ ?>
 
      <?= MyHelpers::submit($label, [
          'class'=>'btn btn-success btn-block',

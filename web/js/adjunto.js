@@ -1,43 +1,31 @@
 
-// $('#btn_delete_adjunto_$model->id').on('click', function() {
-//     krajeeDialog.confirm("¿Deseas de verdad eliminarlo?", function (result) {
-//         if (result) {
-//             $.ajax({
-//                 url: '$url_adjunto',
-//                 type: 'POST',
-//                 success: function(data) {
-//                     console.log(data);
-//                     let div_adjunto = $("div[data-key='$model->id']");
-//
-//                     div_adjunto.children('div.row').remove();
-//                     div_adjunto.find('hr').remove();
-//                 }
-//             })
-//         }
-//     });
-// })
-//
-// $('#btn_update_adjunto_$model->id').on('click', function() {
-//     let aqui = $(this).closest('div.row').next()
-//         .find('div#update_adjunto').fadeToggle();
-// });
-
-function cambiarImagenAdjunto(es_imagen, id_adjunto, url_direccion) {
+/**
+ * Cambiar la imágen una vez que se carga el documento.
+ * @param  {[type]} tipo_adjunto  ID de Tipo de adjunto.
+ * @param  {[type]} id_adjunto    ID de Adjunto.
+ * @param  {[type]} url_direccion Dirección URL del Adjunto.
+ */
+function cambiarImagenAdjunto(tipo_adjunto, id_adjunto, url_direccion) {
     let src = '';
 
-    switch(es_imagen) {
+    switch(tipo_adjunto) {
         case '1' :
             src = url_direccion;
             break;
 
-        case '0' :
+        case '2' :
             src = 'images/adjunto.png';
             break;
 
-        default:
+        case '3' :
             src = 'images/enlace.png';
             break;
+
+        default:
+            src = 'images/archivo.png';
+            break;
     };
+
     $(`#content_img_${id_adjunto} > img`).attr('src', src);
 }
 /**
@@ -60,6 +48,14 @@ function createAdjunto(form_p, url_send, id_tarjeta) {
     });
 }
 
+/**
+ * Sube un archivo a la aplicación. Una vez subida, renderiza el Formulario
+ * de subida de archivos.
+ * @param  {[type]} url_send   Dirección URL donde se envia el archivo.
+ * @param  {[type]} form_p     Formulario de subida archivos.
+ * @param  {[type]} id_tarjeta ID de tarjeta.
+ * @param  {[type]} url_render Dirección URL para renderizar.
+ */
 function subirArchivo(url_send, form_p, id_tarjeta, url_render) {
 
     let enviando = false;
@@ -70,32 +66,41 @@ function subirArchivo(url_send, form_p, id_tarjeta, url_render) {
             return false;
         }
 
-        if (!enviando) {
-            enviando = true;
+        $(this).find('button').attr('disabled', 'trie');
 
-            $.ajax({
-                url: url_send,
-                type: 'POST',
-                enctype: 'multipart/form-data',
-                data: new FormData(this),
-                success: function(data) {
-                    $(`div#lista_adjuntos_${id_tarjeta}`).html(data);
+        $.ajax({
+            url: url_send,
+            type: 'POST',
+            enctype: 'multipart/form-data',
+            data: new FormData(this),
+            success: function(data) {
 
-                    sendAjax(url_render, 'POST', {}, function (data) {
-                        $(`div#div_form_file_${id_tarjeta}`).html(data);
-                    });
+                let contenedor_adjuntos = $(`div#lista_adjuntos_${id_tarjeta}`);
+                contenedor_adjuntos.html(data);
+                let num_adjuntos = contenedor_adjuntos.find("div[data-key]").length;
+                console.log(num_adjuntos);
+                if (num_adjuntos > 2 && !contenedor_adjuntos.hasClass('content-scroll')) {
+                    contenedor_adjuntos.addClass('content-scroll');
+                }
 
-                },
-                beforeSend: function() {
-                    let imagen = $(`div#img_form_file_${id_tarjeta}`).find('img');
-                    imagen.attr('src', 'images/cargando.gif');
 
-                },
-                dataType: 'json',
-                contentType: false,
-                processData: false,
-            });
-        }
+
+
+                sendAjax(url_render, 'POST', {}, function (data) {
+                    $(`div#div_form_file_${id_tarjeta}`).html(data);
+                });
+
+            },
+            beforeSend: function() {
+                let imagen = $(`div#img_form_file_${id_tarjeta}`).find('img');
+                imagen.attr('src', 'images/cargando.gif');
+
+            },
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+        });
+
 
         return false;
     })

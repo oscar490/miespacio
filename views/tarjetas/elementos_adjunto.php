@@ -22,7 +22,7 @@ use yii\helpers\Html;
 </div>
 
 <!-- Nombre del adjunto -->
-<div class='col-xs-5 col-md-6'>
+<div class='col-xs-8 col-md-6'>
     <?php
         if ($model->nombre !== null) {
             $nombre = $model->nombre;

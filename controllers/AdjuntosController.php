@@ -103,7 +103,10 @@ class AdjuntosController extends Controller
 
     public function actionUploadFile($id_tarjeta)
     {
-        $model = new Adjuntos();
+        $model = new Adjuntos([
+            'tarjeta_id'=>$id_tarjeta,
+        ]);
+        
         $model->archivo = UploadedFile::getInstance($model, 'archivo');
 
         $upload = new UploadFiles([
@@ -113,18 +116,12 @@ class AdjuntosController extends Controller
 
         $model->nombre = $upload->nombre_archivo;
         $model->url_direccion = $upload->upload();
-        $model->tarjeta_id = $id_tarjeta;
 
-        $indice = strpos($model->archivo->type, '/');
-        $tipo = substr($model->archivo->type ,0,  $indice);
-
-        if ($tipo == 'image') {
-            $model->es_imagen = true;
-        } else {
-            $model->es_imagen = false;
-        }
-
+        $model->tipo_id = $model->getConsultarTipo(
+            Adjuntos::extraerTipo($model->archivo->type)
+        );
         $model->save();
+
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         return $this->renderAjax('/tarjetas/lista_adjuntos', [

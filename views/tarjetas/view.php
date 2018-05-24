@@ -1,4 +1,5 @@
 <?php
+/* Vista del contenido de una tarjeta */
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -14,7 +15,6 @@ use yii\bootstrap\Modal;
 
 
 $url_adjunto = Url::to(['adjuntos/create-ajax']);
-
 
 $this->registerCssFile(
     'css/view_tarjeta.css'

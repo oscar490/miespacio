@@ -9,7 +9,6 @@ div[id^='header_form_adjunto'] + div, div[id^='div_update_tarjeta'] {
 
 div[id^='lista_adjuntos'] {
     height: 300px;
-    overflow: scroll;
 }
 
 button[id^='btn_ocultar_tarjeta'] {

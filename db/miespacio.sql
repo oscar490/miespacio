@@ -159,7 +159,7 @@ CREATE TABLE tipos_adjuntos
 
 
 INSERT INTO tipos_adjuntos (tipo)
-        VALUES ('Imagen'), ('PDF'), ('Enlace'), ('Otro');
+        VALUES ('Imagen'), ('Archivo'), ('Enlace'), ('Otro');
 
 
 

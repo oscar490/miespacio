@@ -5,6 +5,13 @@
 
 use yii\helpers\Html;
 use app\components\MyHelpers;
+
+if ($model->getAdjuntos()->count() > 2) {
+    $scroll = 'content-scroll';
+
+} else {
+    $scroll = '';
+}
 ?>
 
 <div class='panel panel-default'>
@@ -18,7 +25,7 @@ use app\components\MyHelpers;
     </div>
 
     <!-- Lista de adjunto -->
-    <div id='lista_adjuntos_<?= $model->id ?>'class='panel-body'>
+    <div id='lista_adjuntos_<?= $model->id ?>'class='panel-body <?= $scroll ?>'>
         <?= $this->render('lista_adjuntos', [
             'model'=>$model,
         ]) ?>
