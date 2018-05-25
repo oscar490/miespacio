@@ -10,7 +10,7 @@ use yii\widgets\ListView;
     <?=
         ListView::widget([
             'dataProvider'=> new ActiveDataProvider([
-                'query'=>$model->getAdjuntos(),
+                'query'=>$model->getAdjuntos()->with('tarjeta'),
                 'sort'=>[
                     'defaultOrder'=>['created_at'=>SORT_DESC]
                 ]

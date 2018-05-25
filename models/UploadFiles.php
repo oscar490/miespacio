@@ -54,7 +54,7 @@ class UploadFiles extends Model
             ['requested_visibility'=>'public']
         );
 
-        return  substr($resultado['url'], 0, -1) . '1';
+        return substr($resultado['url'], 0, -4) . 'raw=1';
 
     }
 

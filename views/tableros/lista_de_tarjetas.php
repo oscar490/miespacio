@@ -6,7 +6,10 @@
 use yii\helpers\Html;
 use app\models\Miembros;
 
-$tarjetas = $lista->getTarjetas()->orderBy(['created_at'=>SORT_DESC])->all();
+$tarjetas = $lista->getTarjetas()
+    ->orderBy(['created_at'=>SORT_DESC])
+    ->all();
+    
 $miembro = Miembros::find()
     ->where([
         'usuario_id'=>Yii::$app->user->id,

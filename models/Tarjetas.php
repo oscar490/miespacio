@@ -40,7 +40,7 @@ class Tarjetas extends \yii\db\ActiveRecord
             [['denominacion'], 'string', 'max' => 40],
             [['descripcion'], 'string', 'max' => 200],
             [['descripcion'], 'default'],
-            ['esta_oculta', function ($attribute, $params, $validator) {
+            [['denominacion', 'descripcion'], function ($attribute, $params, $validator) {
                 $tablero = $this->lista->tablero;
 
                 $miembro = Miembros::find()
@@ -49,7 +49,7 @@ class Tarjetas extends \yii\db\ActiveRecord
                         'equipo_id'=>$tablero->equipo->id,
                     ])->one();
 
-                if (!$miembro->esPropietario && $this->$attribute) {
+                if (!$miembro->esPropietario && $this->esta_oculta) {
                     $this->addError($attribute, 'Esta tarjeta se encuentra en estado de oculta');
                 }
             }],

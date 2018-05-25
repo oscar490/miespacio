@@ -17,11 +17,16 @@ $direccion .= '0';
 
 $icono = MyHelpers::icon('glyphicon glyphicon-eye-open');
 $class = 'btn btn btn-default';
+$tarjeta = $adjunto->tarjeta;
 
 $js = <<<EOT
     $("#btn_view_file_tarjeta_$adjunto->id").on('click', function(e) {
-        e.preventDefault();
-        mostrar_imagen('$adjunto->url_direccion');
+        let imagen = $('<img>');
+        imagen.attr('src', '$adjunto->url_direccion');
+        imagen.hide();
+        $("#view_imagen_$tarjeta->id").html(imagen);
+        imagen.fadeIn();
+
     })
 EOT;
 
@@ -29,11 +34,20 @@ $this->registerJs($js);
 
 ?>
 
-<?= Html::button(
-    $icono,
-    [
-        'class'=>$class,
-        'target'=>'_blank',
-        'id'=>"btn_view_file_tarjeta_$adjunto->id"
-    ])
-?>
+<?php if (!$adjunto->esImagen): ?>
+    <?= Html::a(
+            $icono,
+            $direccion,
+            ['class'=>$class, 'target'=>'_blank']
+        );
+    ?>
+
+<?php else: ?>
+    <?= Html::button(
+        $icono,
+        [
+            'class'=>$class,
+            'id'=>"btn_view_file_tarjeta_$adjunto->id"
+        ])
+    ?>
+<?php endif; ?>

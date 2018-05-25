@@ -10,7 +10,9 @@ use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 
 $listas = $model->getListas()
-    ->orderBy(['created_at'=>SORT_DESC])->all();
+    ->orderBy(['created_at'=>SORT_DESC])
+    ->with('tablero')
+    ->all();
 
 ?>
 

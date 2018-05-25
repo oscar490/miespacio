@@ -106,7 +106,7 @@ class AdjuntosController extends Controller
         $model = new Adjuntos([
             'tarjeta_id'=>$id_tarjeta,
         ]);
-        
+
         $model->archivo = UploadedFile::getInstance($model, 'archivo');
 
         $upload = new UploadFiles([

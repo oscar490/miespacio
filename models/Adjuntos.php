@@ -121,6 +121,11 @@ class Adjuntos extends \yii\db\ActiveRecord
         return $id_tipo;
     }
 
+    public function getEsImagen()
+    {
+        return $this->tipo_id === 1;
+    }
+
     /**
      * Extrae una parte del tipo de archivo.
      * @param  string $tipo Propiedad del archivo.
@@ -132,7 +137,7 @@ class Adjuntos extends \yii\db\ActiveRecord
 
         return substr($tipo ,0,  $indice);
     }
-    
+
 
     public function formName()
     {

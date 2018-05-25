@@ -14,7 +14,7 @@ function cambiarImagenAdjunto(tipo_adjunto, id_adjunto, url_direccion) {
             break;
 
         case '2' :
-            src = 'images/adjunto.png';
+            src = 'images/archivo.png';
             break;
 
         case '3' :
@@ -58,8 +58,6 @@ function createAdjunto(form_p, url_send, id_tarjeta) {
  */
 function subirArchivo(url_send, form_p, id_tarjeta, url_render) {
 
-    let enviando = false;
-
     form_p.on('beforeSubmit', function(e) {
 
         if ($(this).find('.has-error').length) {
@@ -77,14 +75,7 @@ function subirArchivo(url_send, form_p, id_tarjeta, url_render) {
 
                 let contenedor_adjuntos = $(`div#lista_adjuntos_${id_tarjeta}`);
                 contenedor_adjuntos.html(data);
-                let num_adjuntos = contenedor_adjuntos.find("div[data-key]").length;
-                console.log(num_adjuntos);
-                if (num_adjuntos > 2 && !contenedor_adjuntos.hasClass('content-scroll')) {
-                    contenedor_adjuntos.addClass('content-scroll');
-                }
-
-
-
+                addScroll(contenedor_adjuntos);
 
                 sendAjax(url_render, 'POST', {}, function (data) {
                     $(`div#div_form_file_${id_tarjeta}`).html(data);
@@ -104,4 +95,12 @@ function subirArchivo(url_send, form_p, id_tarjeta, url_render) {
 
         return false;
     })
+}
+
+function addScroll(elem_contenedor) {
+    let num_adjuntos = elem_contenedor.find("div[data-key]").length;
+
+    if (num_adjuntos > 2 && !elem_contenedor.hasClass('content-scroll')) {
+        elem_contenedor.addClass('content-scroll');
+    }
 }

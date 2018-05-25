@@ -1,6 +1,12 @@
 
-div[id^='header_form_adjunto'] + div, div[id^='div_update_tarjeta'] {
+div[id^='div_update_tarjeta'] {
     display: none;
+}
+
+div[id^='view_imagen'] > img {
+    width: 530px;
+    height: 300px;
+    border-radius: 10px;
 }
 
 .titulo {
@@ -8,7 +14,7 @@ div[id^='header_form_adjunto'] + div, div[id^='div_update_tarjeta'] {
 }
 
 div[id^='lista_adjuntos'] {
-    height: 300px;
+    height: 230px;
 }
 
 button[id^='btn_ocultar_tarjeta'] {
@@ -19,6 +25,16 @@ button[id^='btn_ocultar_tarjeta'] {
     button[id^='btn_ocultar_tarjeta'] {
         float: left;
         margin-bottom: 10px;
+    }
+
+    div[id^='view_imagen'] > img {
+        width: 327px;
+        height: 300px;
+        border-radius: 10px;
+    }
+
+    div[id^='view_imagen'] {
+        text-align: center;
     }
 
     div.titulo {

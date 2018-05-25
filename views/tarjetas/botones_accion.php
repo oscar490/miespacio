@@ -27,6 +27,10 @@ $js = <<<EOT
                 sendAjax('$url_delete', 'POST', {}, function(data) {
                     $("#lista_adjuntos_$tarjeta->id").html(data);
                 })
+
+                if ('$model->esImagen') {
+                    $("#view_imagen_$tarjeta->id").empty();
+                }
             }
         });
 
