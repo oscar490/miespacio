@@ -4,9 +4,13 @@ div[id^='div_update_tarjeta'] {
 }
 
 div[id^='view_imagen'] > img {
-    width: 530px;
+    width: 330px;
     height: 300px;
     border-radius: 10px;
+}
+
+div[id^='view_imagen'] {
+    text-align: center;
 }
 
 .titulo {
@@ -28,13 +32,9 @@ button[id^='btn_ocultar_tarjeta'] {
     }
 
     div[id^='view_imagen'] > img {
-        width: 327px;
+        width: 277px;
         height: 300px;
         border-radius: 10px;
-    }
-
-    div[id^='view_imagen'] {
-        text-align: center;
     }
 
     div.titulo {

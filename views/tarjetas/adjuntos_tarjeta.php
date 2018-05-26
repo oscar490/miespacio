@@ -34,7 +34,7 @@ if ($model->getAdjuntos()->count() > 2) {
     </div>
 
     <!-- Lista de adjunto -->
-    <div id='lista_adjuntos_<?= $model->id ?>'class='panel-body <?= $scroll ?>'>
+    <div id='lista_adjuntos_<?= $model->id ?>'class='panel-body content-scroll'>
         <?= $this->render('lista_adjuntos', [
             'model'=>$model,
         ]) ?>

@@ -6,25 +6,32 @@
 use yii\helpers\Html;
 use app\components\MyHelpers;
 
-
-
-
 //  Se modifica la dirección URL para ver el Contenido
 //  del adjunto.
-$cadena = $adjunto->url_direccion;
-$direccion = substr($cadena, 0, strlen($cadena) - 1);
-$direccion .= '0';
+
+if (!$adjunto->esEnlace) {
+    $cadena = $adjunto->url_direccion;
+    $direccion = substr($cadena, 0, strlen($cadena) - 1);
+    $direccion .= '0';
+
+} else {
+    $direccion = $adjunto->url_direccion;
+}
 
 $icono = MyHelpers::icon('glyphicon glyphicon-eye-open');
 $class = 'btn btn btn-default';
 $tarjeta = $adjunto->tarjeta;
 
+//  Mostrar imagen ampliada.
 $js = <<<EOT
     $("#btn_view_file_tarjeta_$adjunto->id").on('click', function(e) {
+        let content = $("#view_imagen_$tarjeta->id");
+        content.empty();
+
         let imagen = $('<img>');
         imagen.attr('src', '$adjunto->url_direccion');
         imagen.hide();
-        $("#view_imagen_$tarjeta->id").html(imagen);
+        content.append(imagen);
         imagen.fadeIn();
 
     })

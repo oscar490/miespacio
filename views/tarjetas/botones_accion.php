@@ -41,7 +41,7 @@ $this->registerJs($js);
 ?>
 
 <!-- Botón de view -->
-<div class='col-xs-6 col-md-4'>
+<div class='col-xs-7 col-md-4'>
 
     <?= $this->render('elemento_view_adjunto', [
         'adjunto'=>$model,

@@ -24,7 +24,6 @@ class UploadFiles extends Model
      */
     public $archivo;
 
-
     /**
      * Subida de archivo a Dropbox.
      * @return [type] [description]
@@ -40,13 +39,13 @@ class UploadFiles extends Model
         $archivo = Yii::getAlias("@uploads/$this->nombre_archivo");
 
         //  Se elimina antes de subir.
-        $this->deleteDropbox();
+        self::deleteDropbox($this->nombre_archivo);
 
         //  Se sube a dropbox.
         $cliente->upload(
             $this->nombre_archivo,
             file_get_contents($archivo),
-            'overwrite'
+            'add'
         );
 
         $resultado = $cliente->createSharedLinkWithSettings(
@@ -62,12 +61,12 @@ class UploadFiles extends Model
      * Se elimina el archivo de Dropbox.
      * @return [type] [description]
      */
-    public function deleteDropbox()
+    public static function deleteDropbox($nombre_archivo)
     {
         $cliente = Yii::$app->params['dropbox'];
 
         try{
-            $cliente->delete($this->nombre_archivo);
+            $cliente->delete($nombre_archivo);
 
         } catch (BadRequest $e) {
             //  No hace nada.

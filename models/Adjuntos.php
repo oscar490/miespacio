@@ -46,7 +46,6 @@ class Adjuntos extends \yii\db\ActiveRecord
                 'default',
                 'value'=>null,
             ],
-
             [
                 ['archivo'],
                 'file',
@@ -126,6 +125,11 @@ class Adjuntos extends \yii\db\ActiveRecord
         return $this->tipo_id === 1;
     }
 
+    public function getEsEnlace()
+    {
+        return $this->tipo_id === 3;
+    }
+
     /**
      * Extrae una parte del tipo de archivo.
      * @param  string $tipo Propiedad del archivo.
@@ -162,30 +166,27 @@ class Adjuntos extends \yii\db\ActiveRecord
     }
 
     /**
-     * Almacena el tipo de archivo adjuntado. En el caso que ya
-     * exista, lo sobrescribe.
-     * @param  [type] $insert [description]
-     * @return [type]         [description]
+     * Cuando se elimina el adjunto, se elimina el archivo de
+     * Dropbox.
+     * @return [type] [description]
      */
-    public function beforeSave($insert)
-    {
-
-        if (!parent::beforeSave($insert)) {
-            return false;
-        }
-
-        $adjunto = Adjuntos::findOne(['nombre'=>$this->nombre]);
-
-        if ($adjunto !== null) {
-            $adjunto->delete();
-        }
-
-
-        return true;
-    }
-
     public function afterDelete()
     {
+        $cliente = Yii::$app->params['dropbox'];
+
+        if (!$this->esEnlace) {
+
+            $extension = substr(
+                $this->nombre,
+                strripos($this->nombre, '.')
+            );
+        
+            UploadFiles::deleteDropbox(
+                $nombre = 'adjunto' . $this->nombre . $this->tarjeta->id
+                    . $extension
+            );
+        }
+
         $tablero = $this->tarjeta->lista->tablero;
         $equipo = $tablero->equipo;
 

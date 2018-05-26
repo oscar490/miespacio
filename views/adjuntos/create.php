@@ -11,15 +11,21 @@ use app\components\MyHelpers;
 
 $url_create_adjunto = Url::to(['adjuntos/create']);
 
+$url_renderizar_form_enlace = Url::to([
+    'adjuntos/renderizar-form-enlace', 'id_tarjeta'=>$tarjeta->id
+]);
+
 $this->registerJsFile(
     '/js/adjunto.js',
     ['depends'=>[\yii\web\JqueryAsset::className()]]
 );
 
+//  Crear un nuevo adjunto sobre un enlace.
 $js = <<<EOT
     $(document).ready(function() {
         let form_adjunto = $("#form_adjunto_create_$tarjeta->id");
-        createAdjunto(form_adjunto, '$url_create_adjunto', '$tarjeta->id');
+        createAdjunto(form_adjunto, '$url_create_adjunto', '$tarjeta->id',
+            '$url_renderizar_form_enlace');
     })
 EOT;
 
@@ -35,6 +41,8 @@ $this->registerJs($js);
         </strong>
         <small>(click aquí)</small>
     </div>
+
+    <!-- Formulario de crear un nuevo adjunto -->
     <div class='panel-body'>
         <?= $this->render('_form', [
             'model' => $model,

@@ -180,3 +180,10 @@ function growl_success(mensaje) {
         message: mensaje,
     });
 }
+
+function growl_error(mensaje) {
+    $.growl.error({
+        title: "¡Lo siento!",
+        message: mensaje,
+    })
+}

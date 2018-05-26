@@ -1,5 +1,5 @@
 <?php
-/* Subida de archivos */
+/* Fromulario de subida de archivos */
 
 /* @var $model app\models\Adjuntos */
 /* @var $tarjeta app\models\Tarjetas */

@@ -78,6 +78,16 @@ class AdjuntosController extends Controller
 
     }
 
+    public function actionRenderizarFormEnlace($id_tarjeta)
+    {
+        $tarjeta = Tarjetas::findOne($id_tarjeta);
+
+        return $this->renderAjax('/adjuntos/create', [
+            'model'=> new Adjuntos(),
+            'tarjeta'=>$tarjeta,
+        ]);
+    }
+
     public function actionRenderContenido($id_adjunto)
     {
         $model = $this->findModel($id_adjunto);
@@ -89,7 +99,9 @@ class AdjuntosController extends Controller
 
     public function actionCreate()
     {
-        $model = new Adjuntos();
+        $model = new Adjuntos([
+            'tipo_id'=>3
+        ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -109,20 +121,31 @@ class AdjuntosController extends Controller
 
         $model->archivo = UploadedFile::getInstance($model, 'archivo');
 
+
         $upload = new UploadFiles([
-            'nombre_archivo'=> $model->archivo->name,
+            'nombre_archivo'=> 'adjunto' . $model->archivo->name . $id_tarjeta
+                . '.' . $model->archivo->extension,
             'archivo' => $model->archivo,
         ]);
 
-        $model->nombre = $upload->nombre_archivo;
-        $model->url_direccion = $upload->upload();
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $model->nombre = $model->archivo->name;
 
+        //  Comprueba si ya existe el archivo adjuntado.
+        if ((Adjuntos::findOne([
+                'nombre'=>$model->nombre,
+                'tarjeta_id'=>$id_tarjeta
+            ])) !== null)
+        {
+                return false;
+        }
+
+        $model->url_direccion = $upload->upload();
         $model->tipo_id = $model->getConsultarTipo(
             Adjuntos::extraerTipo($model->archivo->type)
         );
-        $model->save();
 
-        Yii::$app->response->format = Response::FORMAT_JSON;
+        $model->save();
 
         return $this->renderAjax('/tarjetas/lista_adjuntos', [
             'model'=>Tarjetas::findOne($id_tarjeta),

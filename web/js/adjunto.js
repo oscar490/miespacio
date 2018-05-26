@@ -29,21 +29,23 @@ function cambiarImagenAdjunto(tipo_adjunto, id_adjunto, url_direccion) {
     $(`#content_img_${id_adjunto} > img`).attr('src', src);
 }
 /**
- * Crea un nuevo adjunto por AJAX.
+ * Crea un nuevo adjunto por AJAX y renderiza el Formulario
+ * de subida de archivos.
  * @param  {[type]} form_p     Formulario a validar.
  * @param  {[type]} url_send   Dirección URL para la petición.
  * @param  {[type]} id_tarjeta ID de la tarjeta.
  * @return {[type]}            [description]
  */
-function createAdjunto(form_p, url_send, id_tarjeta) {
+function createAdjunto(form_p, url_send, id_tarjeta, url_render) {
 
     validarForm(form_p, url_send, 'POST', function(data) {
         $(`div#lista_adjuntos_${id_tarjeta}`).html(data);
-        let divs_form = form_p.find('div.has-success');
 
-        divs_form.removeClass('has-success');
-        divs_form.find('input').val('');
-        form_p.closest('.panel-body').hide();
+        addScroll($(`div#lista_adjuntos_${id_tarjeta}`));
+
+        sendAjax(url_render, 'GET', {}, function (data) {
+            $(`#div_form_enlace_${id_tarjeta}`).html(data);
+        })
 
     });
 }
@@ -73,9 +75,13 @@ function subirArchivo(url_send, form_p, id_tarjeta, url_render) {
             data: new FormData(this),
             success: function(data) {
 
-                let contenedor_adjuntos = $(`div#lista_adjuntos_${id_tarjeta}`);
-                contenedor_adjuntos.html(data);
-                addScroll(contenedor_adjuntos);
+                if (data) {
+                    let contenedor_adjuntos = $(`div#lista_adjuntos_${id_tarjeta}`);
+                    contenedor_adjuntos.html(data);
+                    addScroll(contenedor_adjuntos);
+                } else {
+                    growl_error('ya existe ese archivo adjuntado en la tarjeta.');
+                }
 
                 sendAjax(url_render, 'POST', {}, function (data) {
                     $(`div#div_form_file_${id_tarjeta}`).html(data);
