@@ -8,8 +8,11 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use app\components\MyHelpers;
+use app\models\Adjuntos;
 
 $url_create_adjunto = Url::to(['adjuntos/create']);
+
+$model->scenario = Adjuntos::ESCENARIO_URL;
 
 $url_renderizar_form_enlace = Url::to([
     'adjuntos/renderizar-form-enlace', 'id_tarjeta'=>$tarjeta->id

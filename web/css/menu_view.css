@@ -5,3 +5,14 @@ div#header_menu + div {
 #content-actividades {
     height: 200px;
 }
+
+#btn_modal_actividades, button[data-target='#modal_actividades'] {
+    float: right;
+}
+
+@media (max-width: 990px) {
+    #btn_modal_actividades, button[data-target='#modal_actividades'] {
+        float: left;
+        margin-bottom: 10px;
+    }
+}

@@ -178,6 +178,13 @@ class TablerosController extends Controller
 
     }
 
+    public function actionViewActividade($id)
+    {
+        $model = $this->findModel($id);
+
+        
+    }
+
     /**
      * Renderia en contenido de búsqueda de tableros.
      * @return [type] [description]

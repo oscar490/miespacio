@@ -178,7 +178,7 @@ CREATE TABLE adjuntos
                                    CASCADE ON UPDATE CASCADE
     ,  tipo_id       BIGINT        NOT NULL REFERENCES tipos_adjuntos (id) ON DELETE
                                    NO ACTION ON UPDATE CASCADE
-    ,  UNIQUE (nombre, tarjeta_id)
+
 );
 
 INSERT INTO adjuntos (nombre, url_direccion, tarjeta_id, tipo_id)

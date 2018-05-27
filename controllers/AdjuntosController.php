@@ -61,7 +61,7 @@ class AdjuntosController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
-
+    
     /**
      * Creates a new Adjuntos model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -117,16 +117,10 @@ class AdjuntosController extends Controller
     {
         $model = new Adjuntos([
             'tarjeta_id'=>$id_tarjeta,
+            'scenario'=>Adjuntos::ESCENARIO_FILE,
         ]);
 
         $model->archivo = UploadedFile::getInstance($model, 'archivo');
-
-
-        $upload = new UploadFiles([
-            'nombre_archivo'=> 'adjunto' . $model->archivo->name . $id_tarjeta
-                . '.' . $model->archivo->extension,
-            'archivo' => $model->archivo,
-        ]);
 
         Yii::$app->response->format = Response::FORMAT_JSON;
         $model->nombre = $model->archivo->name;
@@ -140,11 +134,19 @@ class AdjuntosController extends Controller
                 return false;
         }
 
-        $model->url_direccion = $upload->upload();
         $model->tipo_id = $model->getConsultarTipo(
             Adjuntos::extraerTipo($model->archivo->type)
         );
 
+        $model->save();
+
+        //  Se sube a Dropbox.
+        $upload = new UploadFiles([
+            'nombre_archivo'=> 'adjunto' . $model->id . $model->tarjeta->id
+                . '.' . $model->archivo->extension,
+            'archivo' => $model->archivo,
+        ]);
+        $model->url_direccion = $upload->upload();
         $model->save();
 
         return $this->renderAjax('/tarjetas/lista_adjuntos', [

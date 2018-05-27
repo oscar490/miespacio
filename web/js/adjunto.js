@@ -80,7 +80,8 @@ function subirArchivo(url_send, form_p, id_tarjeta, url_render) {
                     contenedor_adjuntos.html(data);
                     addScroll(contenedor_adjuntos);
                 } else {
-                    growl_error('ya existe ese archivo adjuntado en la tarjeta.');
+                    growl_error('ya existe ese archivo adjuntado con' +
+                        ' ese nombre en la tarjeta.');
                 }
 
                 sendAjax(url_render, 'POST', {}, function (data) {

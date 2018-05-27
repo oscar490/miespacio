@@ -38,8 +38,7 @@ $this->registerJs($js);
         <?= $this->render('/notificaciones/view', [
             'notificaciones'=>Usuarios::findOne(Yii::$app->user->id)
                 ->getNotificaciones()
-                ->where(['tablero_id'=>null]),
-
+                ->where(['tablero_id'=>null])
         ]) ?>
 
     <?php MyHelpers::modal_end() ?>

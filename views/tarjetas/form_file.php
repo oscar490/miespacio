@@ -7,6 +7,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use app\components\MyHelpers;
+use app\models\Adjuntos;
 
 $url_upload = Url::to(['adjuntos/upload-file', 'id_tarjeta'=>$tarjeta->id]);
 $url_render_form = Url::to(['tarjetas/render-form-file', 'id'=>$tarjeta->id]);
@@ -15,6 +16,8 @@ $this->registerJsFile(
     '/js/adjunto.js',
     ['depends'=>[\yii\web\JqueryAsset::className()]]
 );
+
+$model->scenario = Adjuntos::ESCENARIO_FILE;
 
 $js = <<<EOT
     $(document).ready(function() {

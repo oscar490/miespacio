@@ -79,8 +79,7 @@ class EquiposController extends Controller
         $equipos = new ActiveDataProvider([
             'query'=>Equipos::find()
                 ->joinWith('miembros')
-                ->where(['usuario_id'=>Yii::$app->user->id])
-                ->with('tableros'),
+                ->where(['usuario_id'=>Yii::$app->user->id]),
             'sort'=>[
                 'defaultOrder'=>['created_at'=>SORT_DESC],
             ],

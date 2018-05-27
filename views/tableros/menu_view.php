@@ -71,7 +71,7 @@ $this->registerCssFile('/css/menu_view.css')
 
 <!-- Panel de Actividades sobre el tablero -->
 
-<div class='col-md-3'>
+<div id='btn_modal_actividades' class='col-md-2'>
     <?php
         MyHelpers::modal_begin(
             MyHelpers::icon('glyphicon glyphicon-align-right')
