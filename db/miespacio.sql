@@ -146,6 +146,20 @@ INSERT INTO tarjetas (denominacion, lista_id, esta_oculta)
             ('Febrero', 2, false), ('Practica 0', 3, false), ('Practica 1', 3, false);
 
 
+-- Tabla tipos_adjuntos --
+
+DROP TABLE IF EXISTS tipos_adjuntos CASCADE;
+
+CREATE TABLE tipos_adjuntos
+(
+
+       id   BIGSERIAL     PRIMARY KEY
+    ,  tipo VARCHAR (255) NOT NULL
+);
+
+
+INSERT INTO tipos_adjuntos (tipo)
+        VALUES ('Imagen'), ('Archivo'), ('Enlace'), ('Otro');
 
 
 
@@ -157,17 +171,19 @@ CREATE TABLE adjuntos
 (
        id            BIGSERIAL     PRIMARY KEY
     ,  nombre        VARCHAR(255)
-    ,  url_direccion VARCHAR(255)  NOT NULL
+    ,  url_direccion VARCHAR(255)
     ,  es_imagen     BOOLEAN
     ,  created_at    TIMESTAMP(0)  NOT NULL DEFAULT LOCALTIMESTAMP
     ,  tarjeta_id    BIGINT        NOT NULL REFERENCES tarjetas (id) ON DELETE
                                    CASCADE ON UPDATE CASCADE
-    ,  UNIQUE (nombre, url_direccion, tarjeta_id)
+    ,  tipo_id       BIGINT        NOT NULL REFERENCES tipos_adjuntos (id) ON DELETE
+                                   NO ACTION ON UPDATE CASCADE
+
 );
 
-INSERT INTO adjuntos (nombre, url_direccion, tarjeta_id)
-    VALUES ('3dJuegos', 'https://www.3djuegos.com/', 1),
-            ('Ágora', 'http://agora.iesdonana.org/', 1);
+INSERT INTO adjuntos (nombre, url_direccion, tarjeta_id, tipo_id)
+    VALUES ('3dJuegos', 'https://www.3djuegos.com/', 1, 3),
+            ('Ágora', 'http://agora.iesdonana.org/', 1, 3);
 
 
 

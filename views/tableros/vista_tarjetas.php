@@ -11,7 +11,7 @@ use yii\data\ActiveDataProvider;
 <?php if ($model->contieneTarjetas): ?>
     <?= ListView::widget([
         'dataProvider'=>new ActiveDataProvider([
-            'query' => $model->getTarjetas(),
+            'query' => $model->getTarjetas()->with('lista'),
             'sort'=>[
                 'defaultOrder'=>['created_at'=>SORT_DESC]
             ]

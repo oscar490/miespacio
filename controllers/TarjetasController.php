@@ -187,7 +187,7 @@ class TarjetasController extends Controller
 
         $model->lista_id = Yii::$app->request->post('lista_id');
         $model->save();
-        
+
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         return $model->esta_oculta;

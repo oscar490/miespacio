@@ -5,7 +5,23 @@
 
 use yii\helpers\Html;
 use app\components\MyHelpers;
+
+if ($model->getAdjuntos()->count() > 2) {
+    $scroll = 'content-scroll';
+
+} else {
+    $scroll = '';
+}
 ?>
+
+<!-- Visor de imágen -->
+<div class='row'>
+    <div class='col-md-12'>
+        <?= $this->render('visor_imagenes', [
+            'tarjeta'=>$model,
+        ]) ?>
+    </div>
+</div>
 
 <div class='panel panel-default'>
     <div class='panel-heading'>
@@ -17,7 +33,8 @@ use app\components\MyHelpers;
         </strong>
     </div>
 
-    <div id='lista_adjuntos_<?= $model->id ?>'class='panel-body'>
+    <!-- Lista de adjunto -->
+    <div id='lista_adjuntos_<?= $model->id ?>'class='panel-body content-scroll'>
         <?= $this->render('lista_adjuntos', [
             'model'=>$model,
         ]) ?>

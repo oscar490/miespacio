@@ -19,10 +19,11 @@ $this->registerCssFile(
 );
 
 $url_adjunto = Url::to(['adjuntos/delete', 'id'=>$model->id]);
+$tipo = $model->tipo;
 $js = <<<EOT
 
     $(document).ready(function() {
-        cambiarImagenAdjunto('$model->es_imagen', '$model->id',
+        cambiarImagenAdjunto('$tipo->id', '$model->id',
             '$model->url_direccion');
     })
 

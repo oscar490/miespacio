@@ -27,6 +27,10 @@ $js = <<<EOT
                 sendAjax('$url_delete', 'POST', {}, function(data) {
                     $("#lista_adjuntos_$tarjeta->id").html(data);
                 })
+
+                if ('$model->esImagen') {
+                    $("#view_imagen_$tarjeta->id").empty();
+                }
             }
         });
 
@@ -37,7 +41,8 @@ $this->registerJs($js);
 ?>
 
 <!-- Botón de view -->
-<div class='col-xs-4 col-md-4'>
+<div class='col-xs-7 col-md-4'>
+
     <?= $this->render('elemento_view_adjunto', [
         'adjunto'=>$model,
     ]) ?>

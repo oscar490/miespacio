@@ -1,4 +1,5 @@
 <?php
+/* Vista del contenido de una tarjeta */
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -14,7 +15,6 @@ use yii\bootstrap\Modal;
 
 
 $url_adjunto = Url::to(['adjuntos/create-ajax']);
-
 
 $this->registerCssFile(
     'css/view_tarjeta.css'
@@ -51,10 +51,12 @@ $this->registerJs($js);
     <div class='col-md-4'>
 
         <!-- Enlace -->
-        <?= $this->render('/adjuntos/create', [
-            'model'=>$adjunto,
-            'tarjeta'=>$model
-        ]) ?>
+        <div id='div_form_enlace_<?= $model->id ?>'>
+            <?= $this->render('/adjuntos/create', [
+                'model'=>$adjunto,
+                'tarjeta'=>$model
+            ]) ?>
+        </div>
 
         <!-- Archivo -->
         <div id='div_form_file_<?= $model->id ?>'>

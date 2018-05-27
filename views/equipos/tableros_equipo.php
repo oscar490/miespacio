@@ -61,6 +61,6 @@ $miembro = $equipo->getMiembros()
                 <?php Modal::end() ?>
             </div>
         </div>
-        
+
     <?php endif; ?>
 </div>

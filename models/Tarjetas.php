@@ -36,9 +36,23 @@ class Tarjetas extends \yii\db\ActiveRecord
         return [
             [['denominacion', 'lista_id'], 'required'],
             [['lista_id'], 'integer'],
+            [['esta_oculta'], 'safe'],
             [['denominacion'], 'string', 'max' => 40],
             [['descripcion'], 'string', 'max' => 200],
             [['descripcion'], 'default'],
+            [['denominacion', 'descripcion'], function ($attribute, $params, $validator) {
+                $tablero = $this->lista->tablero;
+
+                $miembro = Miembros::find()
+                    ->where([
+                        'usuario_id'=>Yii::$app->user->id,
+                        'equipo_id'=>$tablero->equipo->id,
+                    ])->one();
+
+                if (!$miembro->esPropietario && $this->esta_oculta) {
+                    $this->addError($attribute, 'Esta tarjeta se encuentra en estado de oculta');
+                }
+            }],
             [
                 ['denominacion', 'lista_id'],
                 'unique',
