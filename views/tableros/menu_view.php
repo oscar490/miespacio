@@ -70,7 +70,6 @@ $this->registerCssFile('/css/menu_view.css')
 <?php endif; ?>
 
 <!-- Panel de Actividades sobre el tablero -->
-
 <div id='btn_modal_actividades' class='col-md-2'>
     <?php
         MyHelpers::modal_begin(
@@ -85,6 +84,7 @@ $this->registerCssFile('/css/menu_view.css')
         <div id="content-actividades" class='content-scroll'>
             <?= $this->render('/notificaciones/lista_notificaciones', [
                 'notificaciones'=>$model->getNotificaciones(),
+                'id_tablero'=>$model->id,
             ]) ?>
         </div>
     <?php

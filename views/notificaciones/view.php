@@ -18,7 +18,8 @@ $this->registerCss($css);
 
 <div id='content_notificaciones' class='content-scroll'>
     <?= $this->render('lista_notificaciones', [
-        'notificaciones'=>$notificaciones
+        'notificaciones'=>$notificaciones,
+        'id_tablero'=>null,
 
     ]) ?>
 </div>

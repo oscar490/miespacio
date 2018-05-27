@@ -18,6 +18,7 @@ use yii\grid\GridView;
 use yii\web\Response;
 use app\models\TiposVisibilidad;
 use yii\filters\AccessControl;
+use app\models\Notificaciones;
 
 /**
  * TablerosController implements the CRUD actions for Tableros model.
@@ -178,11 +179,26 @@ class TablerosController extends Controller
 
     }
 
-    public function actionViewActividade($id)
+    public function actionViewNotificaciones($id_tablero = null)
     {
-        $model = $this->findModel($id);
 
-        
+        if ($id_tablero !== null) {
+            $query = $this->findModel($id_tablero)
+                ->getNotificaciones();
+
+        } else {
+            $query = Notificaciones::find()
+                ->where([
+                    'miembro_id'=>Yii::$app->user->id,
+                    'tablero_id' => null,
+                ]);
+        }
+
+        return $this->render('/notificaciones/notificaciones_tablero', [
+            'query_mas_notificaciones'=>$query,
+            'action'=>$this->action->id,
+        ]);
+
     }
 
     /**
@@ -196,12 +212,20 @@ class TablerosController extends Controller
         ]);
     }
 
+    /**
+     * Renderiza, por ajax, una vista de las notificaciones
+     * de un tablero.
+     * @param  integer $id ID del tablero.
+     * @return [type]     Renderización de notificaciones
+     *                    de un tablero.
+     */
     public function actionRecargarActividades($id)
     {
         $model = $this->findModel($id);
 
         return $this->renderAjax('/notificaciones/lista_notificaciones', [
             'notificaciones'=>$model->getNotificaciones(),
+            'id_tablero'=>$model->id,
         ]);
     }
 
