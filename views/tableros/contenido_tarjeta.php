@@ -23,7 +23,7 @@ $miembro = Miembros::find()
         ' ' . '<strong>Contenido de tarjeta</strong>',
         MyHelpers::icon('glyphicon glyphicon-eye-open'),
         'btn btn-xs btn-default',
-        $tarjeta->id
+        "modal_view_tarjeta_$tarjeta->id"
 ); ?>
 
     <?= $this->render('/tarjetas/view',[

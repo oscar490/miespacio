@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\components\MyHelpers;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Comentarios */
@@ -10,17 +11,26 @@ use yii\widgets\ActiveForm;
 
 <div class="comentarios-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'action'=>['comentarios/create']
+    ]); ?>
 
-    <?= $form->field($model, 'contenido')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'contenido')->textarea([
+        'rows'=>5,
+        'placeholder'=>'Escribe aqui tu comentario...',
+    ])->label(false) ?>
 
-    <?= $form->field($model, 'tarjeta_id')->textInput() ?>
+    <?= Html::hiddenInput('tarjeta_id', $tarjeta->id) ?>
 
-    <?= $form->field($model, 'usuario_id')->textInput() ?>
+    <?= Html::hiddenInput('usuario_id', \Yii::$app->user->id) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-    </div>
+
+    <?=
+        MyHelpers::submit(
+            'Guardar',
+            ['class'=>'btn btn-success']
+        );
+    ?>
 
     <?php ActiveForm::end(); ?>
 

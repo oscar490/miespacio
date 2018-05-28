@@ -7,24 +7,16 @@ use yii\helpers\Html;
 $datos_usuario = $model->usuario->datosUsuarios;
 
 
-$css = <<<EOT
-    #content_comentario {
-        margin-top: 10px;
-    }
+$this->registerCssFile(
+    '/css/comentarios.css'
+);
 
-    #img_usuario {
-        width: 47px;
-        height: 42px;
-    }
-EOT;
-
-$this->registerCss($css);
 ?>
 
 <div id='content_comentario'>
     <div class='row'>
         <!-- Imagen de usuario -->
-        <div class='col-md-1'>
+        <div class='col-xs-2 col-md-1'>
             <?=
                 Html::img(
                     $datos_usuario->url_imagen,
@@ -37,7 +29,7 @@ $this->registerCss($css);
         </div>
 
         <!-- Nombre completo de usuario comentario -->
-        <div class='col-md-9'>
+        <div id="cuerpo_comentario" class='col-xs-9 col-md-9'>
             <strong>
                 <?= Html::encode($datos_usuario->nombre_completo) ?>&nbsp;
 
@@ -48,10 +40,10 @@ $this->registerCss($css);
 
             <!-- Contenido del comentario -->
             <div class='row'>
-                <div class='col-md-12'>
-                    <p>
-                        <?= Html::encode($model->contenido) ?>
-                    </p>
+                <div id='bocadillo' class='col-md-9'>
+                    <?= Html::encode($model->contenido) ?>
+                </div>
+                <div id='triangulo'>
                 </div>
             </div>
         </div>

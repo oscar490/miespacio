@@ -261,3 +261,7 @@ a:link {
     background-color: #f0ad4e;
     border-color: #f0ad4e;
 }
+
+div[id^='modal_view_tarjeta'] .modal-body {
+    background-color: #edeff0;
+}

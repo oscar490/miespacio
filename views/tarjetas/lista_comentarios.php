@@ -9,7 +9,11 @@ use yii\data\ActiveDataProvider;
 
 <?= ListView::widget([
     'dataProvider'=>new ActiveDataProvider([
-        'query'=>$comentarios,
+        'query'=>$comentarios->limit(5),
+        'pagination'=>false,
+        'sort'=>[
+            'defaultOrder'=>['created_at'=>SORT_DESC]
+        ],
     ]),
     'itemView'=>'/comentarios/view',
     'summary'=>''

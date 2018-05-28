@@ -1,21 +1,29 @@
 <?php
-
+/* Creación de un nuevo comentario */
 use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Comentarios */
+$css = <<<EOT
+    textarea#contenido {
+        border-radius: 10px;
+    }
 
-$this->title = 'Create Comentarios';
-$this->params['breadcrumbs'][] = ['label' => 'Comentarios', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+    .comentarios-form {
+        margin-bottom: 20px;
+    }
+EOT;
+
+$this->registerCss($css);
+
 ?>
-<div class="comentarios-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+<div class='row'>
+    <div class='col-md-8 col-md-offset-1'>
+        <?= $this->render('_form', [
+            'model' => $model,
+            'tarjeta'=>$tarjeta,
+        ]) ?>
+    </div>
 </div>
