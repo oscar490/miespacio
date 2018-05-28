@@ -11,9 +11,11 @@ use yii\helpers\Html;
 ?>
 
 <!-- Lista de comentarios -->
-<?= $this->render('lista_comentarios', [
-    'comentarios'=>$comentarios,
-]) ?>
+<div id='container_comentarios_<?= $tarjeta->id ?>'>
+    <?= $this->render('lista_comentarios', [
+        'comentarios'=>$comentarios,
+    ]) ?>
+</div>
 
 <!-- Formulario de crear un comentario -->
 <?= $this->render('/comentarios/create', [

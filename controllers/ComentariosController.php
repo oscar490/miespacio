@@ -8,6 +8,8 @@ use app\models\ComentariosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\widgets\ActiveForm;
+use yii\web\Response;
 
 /**
  * ComentariosController implements the CRUD actions for Comentarios model.
@@ -66,13 +68,17 @@ class ComentariosController extends Controller
     {
         $model = new Comentarios();
 
+        // if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+        //     Yii::$app->response->format = Response::FORMAT_JSON;
+        //     return ActiveForm::validate($model);
+        // }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->renderAjax('/tarjetas/lista_comentarios', [
+                'comentarios'=>$model->tarjeta->getComentarios(),
+            ]);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**

@@ -12,13 +12,17 @@ use app\components\MyHelpers;
 <div class="comentarios-form">
 
     <?php $form = ActiveForm::begin([
-        'action'=>['comentarios/create']
+        'action'=>['comentarios/create'],
+        'enableAjaxValidation' => true,
+        'id'=>"form_create_comentario_$tarjeta->id",
     ]); ?>
 
-    <?= $form->field($model, 'contenido')->textarea([
-        'rows'=>5,
-        'placeholder'=>'Escribe aqui tu comentario...',
-    ])->label(false) ?>
+    <?= $form->field($model, 'contenido', ['enableAjaxValidation' => true])
+        ->textarea([
+            'rows'=>5,
+            'placeholder'=>'Escribe aqui tu comentario...',
+        ])->label(false)
+    ?>
 
     <?= Html::hiddenInput('tarjeta_id', $tarjeta->id) ?>
 
@@ -28,7 +32,10 @@ use app\components\MyHelpers;
     <?=
         MyHelpers::submit(
             'Guardar',
-            ['class'=>'btn btn-success']
+            [
+                'class'=>'btn btn-success',
+                'id'=>'btn_add_comentario'
+            ]
         );
     ?>
 

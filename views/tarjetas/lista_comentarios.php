@@ -9,7 +9,7 @@ use yii\data\ActiveDataProvider;
 
 <?= ListView::widget([
     'dataProvider'=>new ActiveDataProvider([
-        'query'=>$comentarios->limit(5),
+        'query'=>$comentarios->limit(4),
         'pagination'=>false,
         'sort'=>[
             'defaultOrder'=>['created_at'=>SORT_DESC]
