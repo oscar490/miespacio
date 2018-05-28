@@ -20,7 +20,9 @@ $items = [
     [
         'label'=>MyHelpers::icon('glyphicon glyphicon-comment') .
             ' ' . '<strong>Comentarios</strong>',
-        'content'=>'pepe',
+        'content'=>$this->render('content_comentarios', [
+            'comentarios'=>$model->getComentarios(),
+        ]),
     ]
 ];
 

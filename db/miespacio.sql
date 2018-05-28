@@ -271,6 +271,7 @@ CREATE TABLE comentarios
 (
        id         BIGSERIAL    PRIMARY KEY
     ,  contenido  VARCHAR(255) NOT NULL
+    ,  created_at TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
     ,  tarjeta_id BIGINT       NOT NULL REFERENCES tarjetas (id) ON DELETE
                                CASCADE ON UPDATE CASCADE
     ,  usuario_id BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE

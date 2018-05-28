@@ -114,6 +114,15 @@ class Tarjetas extends \yii\db\ActiveRecord
         return $this->hasMany(Adjuntos::className(), ['tarjeta_id' => 'id'])->inverseOf('tarjeta');
     }
 
+    /**
+    * @return \yii\db\ActiveQuery
+    */
+    public function getComentarios()
+    {
+        return $this->hasMany(Comentarios::className(), ['tarjeta_id' => 'id'])
+            ->inverseOf('tarjeta');
+    }
+
     public function afterDelete()
     {
         $equipo = $this->lista->tablero->equipo;

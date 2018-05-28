@@ -1,38 +1,64 @@
 <?php
+/* Vista parcial de un comentario */
 
-use yii\helpers\Html;
-use yii\widgets\DetailView;
-
-/* @var $this yii\web\View */
 /* @var $model app\models\Comentarios */
+use yii\helpers\Html;
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Comentarios', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$datos_usuario = $model->usuario->datosUsuarios;
+
+
+$css = <<<EOT
+    #content_comentario {
+        margin-top: 10px;
+    }
+
+    #img_usuario {
+        width: 47px;
+        height: 42px;
+    }
+EOT;
+
+$this->registerCss($css);
 ?>
-<div class="comentarios-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div id='content_comentario'>
+    <div class='row'>
+        <!-- Imagen de usuario -->
+        <div class='col-md-1'>
+            <?=
+                Html::img(
+                    $datos_usuario->url_imagen,
+                    [
+                        'class'=>'img-circle logo-x2',
+                        'id'=>'img_usuario',
+                    ]
+                )
+            ?>
+        </div>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+        <!-- Nombre completo de usuario comentario -->
+        <div class='col-md-9'>
+            <strong>
+                <?= Html::encode($datos_usuario->nombre_completo) ?>&nbsp;
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'contenido',
-            'tarjeta_id',
-            'usuario_id',
-        ],
-    ]) ?>
+                <?= Html::encode($datos_usuario->apellidos) ?>&nbsp;
 
+                <?= \Yii::$app->formatter->asRelativeTime($model->created_at) ?>
+            </strong>
+
+            <!-- Contenido del comentario -->
+            <div class='row'>
+                <div class='col-md-12'>
+                    <p>
+                        <?= Html::encode($model->contenido) ?>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
 </div>
+
+<hr>

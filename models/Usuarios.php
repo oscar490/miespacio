@@ -22,6 +22,7 @@ use yii\web\IdentityInterface;
  *
  * @property DatosUsuarios $datosUsuarios
  * @property Equipos[] $equipos
+ * @property Comentarios[] $comentarios
  */
 class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -302,16 +303,32 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             ->inverseOf('usuario');
     }
 
+    /**
+    * @return \yii\db\ActiveQuery
+    */
     public function getNotificaciones()
     {
         return $this->hasMany(Notificaciones::className(), ['miembro_id'=>'id'])
             ->via('miembros');
     }
 
+    /**
+    * @return \yii\db\ActiveQuery
+    */
     public function getFavoritos()
     {
         return $this->hasMany(Favoritos::className(), ['usuario_id'=>'id'])
             ->inverseOf('usuario');
     }
+
+    /**
+    * @return \yii\db\ActiveQuery
+    */
+   public function getComentarios()
+   {
+       return $this->hasMany(Comentarios::className(), ['usuario_id'=>'id'])
+            ->inverseOf('usuario');
+   }
+
 
 }
