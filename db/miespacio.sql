@@ -263,6 +263,28 @@ INSERT INTO favoritos (usuario_id, tablero_id)
 
 
 
+-- Tabla comentarios --
+
+DROP TABLE IF EXISTS comentarios CASCADE;
+
+CREATE TABLE comentarios
+(
+       id         BIGSERIAL    PRIMARY KEY
+    ,  contenido  VARCHAR(255) NOT NULL
+    ,  tarjeta_id BIGINT       NOT NULL REFERENCES tarjetas (id) ON DELETE
+                               CASCADE ON UPDATE CASCADE
+    ,  usuario_id BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
+                               CASCADE ON UPDATE CASCADE
+
+    ,  UNIQUE (contenido, usuario_id)
+
+);
+
+INSERT INTO comentarios (contenido, tarjeta_id, usuario_id)
+    VALUES ('Me gusta el contenido', 1, 1),
+            ('¡A mi no me gusta!', 1, 2),
+            ('Se puede mejorar', 1, 3);
+
 -- Table Actividades --
 /*
 DROP TABLE IF EXISTS actividades CASCADE;

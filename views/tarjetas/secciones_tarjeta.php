@@ -10,14 +10,16 @@ use app\components\MyHelpers;
 
 $items = [
     [
-        'label'=>'Contenido de tarjeta',
+        'label'=> MyHelpers::icon('glyphicon glyphicon-file') .
+            ' ' . '<strong>Adjuntos</strong>',
         'content'=>$this->render('content_tarjeta', [
             'model'=>$model,
             'adjunto'=>$adjunto
         ]),
     ],
     [
-        'label'=>'Comentarios',
+        'label'=>MyHelpers::icon('glyphicon glyphicon-comment') .
+            ' ' . '<strong>Comentarios</strong>',
         'content'=>'pepe',
     ]
 ];
