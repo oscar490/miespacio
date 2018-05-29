@@ -43,14 +43,8 @@ $this->registerCssFile(
                 <div id='bocadillo' class='col-md-9'>
                     <?= Html::encode($model->contenido) ?>
                 </div>
-                <div id='triangulo'>
-                </div>
             </div>
         </div>
-
-
-
     </div>
 </div>
-
-<hr>
+<br>

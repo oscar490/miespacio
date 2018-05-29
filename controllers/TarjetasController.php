@@ -167,6 +167,16 @@ class TarjetasController extends Controller
         return $model->save();
     }
 
+    public function actionListaComentarios($id)
+    {
+        $model = $this->findModel($id);
+
+        return $this->render('lista_completa_comentarios', [
+            'todos_comentarios'=>$model->getComentarios(),
+            'tarjeta'=>$model,
+        ]);
+    }
+
     /**
      * Muestra u oculta una tarjeta, de manera que si está oculta
      * sólo lo ve el propietario del tablero. En caso contrario, lo puede ver

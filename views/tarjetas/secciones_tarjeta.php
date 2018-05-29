@@ -23,7 +23,8 @@ $items = [
     [
         //  Comentarios de tarjeta. Crear comentario.
         'label'=>MyHelpers::icon('glyphicon glyphicon-comment') .
-            ' ' . '<strong>Comentarios</strong>',
+            ' ' . '<strong>Comentarios</strong>'  .
+            ' ' . "<span id='$model->id'class='badge'></span>",
 
         'content'=>$this->render('content_comentarios', [
             'comentarios'=>$model->getComentarios(),

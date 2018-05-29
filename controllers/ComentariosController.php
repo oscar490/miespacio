@@ -69,7 +69,7 @@ class ComentariosController extends Controller
         $model = new Comentarios();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
+            
             return $this->renderAjax('/tarjetas/lista_comentarios', [
                 'comentarios'=>$model->tarjeta->getComentarios(),
                 'nuevo_comentario'=>new Comentarios(),
