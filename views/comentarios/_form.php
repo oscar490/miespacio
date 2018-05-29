@@ -13,11 +13,10 @@ use app\components\MyHelpers;
 
     <?php $form = ActiveForm::begin([
         'action'=>['comentarios/create'],
-        'enableAjaxValidation' => true,
         'id'=>"form_create_comentario_$tarjeta->id",
     ]); ?>
 
-    <?= $form->field($model, 'contenido', ['enableAjaxValidation' => true])
+    <?= $form->field($model, 'contenido')
         ->textarea([
             'rows'=>5,
             'placeholder'=>'Escribe aqui tu comentario...',

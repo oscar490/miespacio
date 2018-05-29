@@ -14,7 +14,7 @@ $items = [
         //  Contenido de la tarjeta.
         'label'=> MyHelpers::icon('glyphicon glyphicon-file') .
             ' ' . '<strong>Adjuntos</strong>',
-            
+
         'content'=>$this->render('content_tarjeta', [
             'model'=>$model,
             'adjunto'=>$adjunto

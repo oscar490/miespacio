@@ -18,3 +18,9 @@ use yii\data\ActiveDataProvider;
     'itemView'=>'/comentarios/view',
     'summary'=>''
 ]) ?>
+
+<!-- Formulario de crear un comentario -->
+<?= $this->render('/comentarios/create', [
+    'model'=>$nuevo_comentario,
+    'tarjeta'=>$tarjeta,
+]) ?>

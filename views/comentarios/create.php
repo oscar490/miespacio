@@ -25,11 +25,9 @@ $js = <<<EOT
         '$url_create',
         'POST',
         function (data) {
-            $('#container_comentarios_$tarjeta->id').html(data);
-            console.log($('#container_comentarios_$tarjeta->id'));
+            $("div#container_comentarios_$tarjeta->id").html(data);
         }
-
-    )
+    );
 EOT;
 
 $this->registerJs($js);

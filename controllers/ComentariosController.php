@@ -68,14 +68,12 @@ class ComentariosController extends Controller
     {
         $model = new Comentarios();
 
-        // if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-        //     Yii::$app->response->format = Response::FORMAT_JSON;
-        //     return ActiveForm::validate($model);
-        // }
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
             return $this->renderAjax('/tarjetas/lista_comentarios', [
                 'comentarios'=>$model->tarjeta->getComentarios(),
+                'nuevo_comentario'=>new Comentarios(),
+                'tarjeta'=>$model->tarjeta,
             ]);
         }
 
