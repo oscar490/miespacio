@@ -1,0 +1,38 @@
+#content_comentario {
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+#img_usuario {
+    width: 47px;
+    height: 42px;
+}
+
+#bocadillo {
+    background-color: white;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+
+@media (max-width: 990px) {
+    #content_comentario {
+        margin-top: 10px;
+        margin-left: 0px;
+    }
+
+    #cuerpo_comentario {
+        margin-left: 10px;
+    }
+
+    #bocadillo {
+        background-color: white;
+        padding: 10px 10px 10px 10px;
+        border-radius: 10px;
+        margin-left: 10px;
+        margin-top: 5px;
+        margin-right: 3px;
+    }
+}

@@ -10,9 +10,9 @@ if (($url = getenv('DATABASE_URL')) !== false) {
     $password = $config['pass'];
     $extra = [
         // Schema cache options (for production environment)
-        //'enableSchemaCache' => true,
-        //'schemaCacheDuration' => 60,
-        //'schemaCache' => 'cache',
+        // 'enableSchemaCache' => true,
+        // 'schemaCacheDuration' => 60,
+        // 'schemaCache' => 'cache',
         'on afterOpen' => function ($event) {
             // $event->sender refers to the DB connection
             $event->sender->createCommand("SET intervalstyle = 'iso_8601'")->execute();
@@ -25,7 +25,11 @@ if (($url = getenv('DATABASE_URL')) !== false) {
     $dbname = 'miespacio';
     $username = 'miespacio';
     $password = 'miespacio';
-    $extra = [];
+    $extra = [
+        'enableSchemaCache' => true,
+        'schemaCacheDuration' => 60,
+        'schemaCache' => 'cache',
+    ];
 }
 
 return [
