@@ -17,10 +17,16 @@
 }
 
 button[id^='btn_delete_comentario'] {
-    margin-left: 70px;
+    margin-left: 80px;
     margin-top: 10px;
+    border-radius: 5px;
 }
 
+button[id^='btn_update_comentario'] {
+    margin-left: -40px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
 
 @media (max-width: 990px) {
     #content_comentario {
@@ -30,6 +36,12 @@ button[id^='btn_delete_comentario'] {
 
     #cuerpo_comentario {
         margin-left: 10px;
+    }
+
+    button[id^='btn_delete_comentario'] {
+        margin-left: 60px;
+        margin-top: 10px;
+        border-radius: 5px;
     }
 
     #bocadillo {

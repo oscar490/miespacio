@@ -9,6 +9,6 @@ function deleteComentario(url_delete, id_comentario, id_tarjeta, elem_btn) {
 
     eliminarElemento(elem_btn, url_delete, function(data) {
         $(`span#${id_tarjeta}`).text(data);
-        $(`div[data-key='${id_comentario}']`).fadeOut();
+        $(`div[data-key='${id_comentario}']`).fadeOut('slow');
     });
 }

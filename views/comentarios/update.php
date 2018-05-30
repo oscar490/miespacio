@@ -5,17 +5,20 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Comentarios */
 
-$this->title = 'Update Comentarios: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Comentarios', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$css = <<<EOT
+    form[id^='form_update_comentario'] > div.field-contenido 
+    {
+        margin-top: 10px;
+        margin-left: 60px;
+    }
+EOT;
+
+$this->registerCss($css);
 ?>
-<div class="comentarios-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
-</div>
+<?= $this->render('_form', [
+    'model' => $model,
+    'tarjeta'=>$tarjeta,
+    'id_form'=>"form_update_comentario_$tarjeta->id",
+    'action'=>['comentarios/validate-comentario', 'id'=>$model->id],
+]) ?>

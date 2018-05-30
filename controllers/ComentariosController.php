@@ -59,6 +59,16 @@ class ComentariosController extends Controller
         ]);
     }
 
+    public function actionValidateComentario($id)
+    {
+        $model = $this->findModel($id);
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+    }
+
     /**
      * Creates a new Comentarios model.
      * If creation is successful, the browser will be redirected to the 'view' page.

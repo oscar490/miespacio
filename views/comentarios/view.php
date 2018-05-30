@@ -8,31 +8,10 @@ use app\components\MyHelpers;
 use yii\helpers\Url;
 
 $datos_usuario = $model->usuario->datosUsuarios;
-$tarjeta = $model->tarjeta;
 
 $this->registerCssFile(
     '/css/comentarios.css'
 );
-
-$this->registerJsFile(
-    '/js/comentario.js',
-    ['depends'=>[\yii\web\JqueryAsset::className()]]
-);
-
-$url_delete = Url::to(['comentarios/delete', 'id'=>$model->id]);
-
-//  ELiminiación de comentario.
-$js = <<<EOT
-    deleteComentario(
-        '$url_delete',
-        '$model->id',
-        '$tarjeta->id',
-        $("#btn_delete_comentario_$model->id")
-    );
-
-EOT;
-
-$this->registerJs($js);
 
 ?>
 
@@ -69,22 +48,27 @@ $this->registerJs($js);
             </div>
         </div>
 
-        <!-- Botón de eliminación de un comentario -->
+
         <?php if ($model->usuario->id === Yii::$app->user->id): ?>
-            <div class='col-md-3'>
-                <?=
-                    Html::button(
-                        MyHelpers::icon('glyphicon glyphicon-remove-circle')
-                            . ' Eliminar',
-                        [
-                            'class'=>'btn btn-sm btn-default',
-                            'id'=>"btn_delete_comentario_$model->id"
-                        ]
-                    )
-                ?>
+
+            <!-- Botón de eliminación y modificación de un comentario -->
+            <div class='row'>
+                <?= $this->render('botones_accion', [
+                    'comentario'=>$model,
+                ]) ?>
+            </div>
+
+            <!-- Formulario de modificación de comentario -->
+            <div class='col-md-6'>
+                <?= $this->render('update', [
+                    'model'=>$model,
+                    'tarjeta'=>$model->tarjeta,
+                ]) ?>
             </div>
 
         <?php endif; ?>
+
+
     </div>
 </div>
 <br>
