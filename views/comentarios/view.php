@@ -3,6 +3,7 @@
 
 /* @var $model app\models\Comentarios */
 use yii\helpers\Html;
+use app\components\MyHelpers;
 
 $datos_usuario = $model->usuario->datosUsuarios;
 
@@ -45,6 +46,22 @@ $this->registerCssFile(
                 </div>
             </div>
         </div>
+
+        <?php if ($model->usuario->id === Yii::$app->user->id): ?>
+            <div class='col-md-3'>
+                <?=
+                    Html::button(
+                        MyHelpers::icon('glyphicon glyphicon-remove-circle')
+                            . ' Eliminar',
+                        [
+                            'class'=>'btn btn-sm btn-default',
+                            'id'=>"btn_delete_comentario_$model->id"
+                        ]
+                    )
+                ?>
+            </div>
+
+        <?php endif; ?>
     </div>
 </div>
 <br>

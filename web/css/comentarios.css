@@ -16,6 +16,11 @@
     margin-top: 5px;
 }
 
+button[id^='btn_delete_comentario'] {
+    margin-left: 70px;
+    margin-top: 10px;
+}
+
 
 @media (max-width: 990px) {
     #content_comentario {
