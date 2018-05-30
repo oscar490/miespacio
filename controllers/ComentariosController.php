@@ -69,7 +69,7 @@ class ComentariosController extends Controller
         $model = new Comentarios();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            
+
             return $this->renderAjax('/tarjetas/lista_comentarios', [
                 'comentarios'=>$model->tarjeta->getComentarios(),
                 'nuevo_comentario'=>new Comentarios(),
@@ -108,9 +108,15 @@ class ComentariosController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $tarjeta = $model->tarjeta;
 
-        return $this->redirect(['index']);
+        $model->delete();
+
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+        return $tarjeta->getComentarios()->count();
+
+
     }
 
     /**

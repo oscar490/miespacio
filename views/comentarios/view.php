@@ -2,15 +2,37 @@
 /* Vista parcial de un comentario */
 
 /* @var $model app\models\Comentarios */
+
 use yii\helpers\Html;
 use app\components\MyHelpers;
+use yii\helpers\Url;
 
 $datos_usuario = $model->usuario->datosUsuarios;
-
+$tarjeta = $model->tarjeta;
 
 $this->registerCssFile(
     '/css/comentarios.css'
 );
+
+$this->registerJsFile(
+    '/js/comentario.js',
+    ['depends'=>[\yii\web\JqueryAsset::className()]]
+);
+
+$url_delete = Url::to(['comentarios/delete', 'id'=>$model->id]);
+
+//  ELiminiación de comentario.
+$js = <<<EOT
+    deleteComentario(
+        '$url_delete',
+        '$model->id',
+        '$tarjeta->id',
+        $("#btn_delete_comentario_$model->id")
+    );
+
+EOT;
+
+$this->registerJs($js);
 
 ?>
 
@@ -47,6 +69,7 @@ $this->registerCssFile(
             </div>
         </div>
 
+        <!-- Botón de eliminación de un comentario -->
         <?php if ($model->usuario->id === Yii::$app->user->id): ?>
             <div class='col-md-3'>
                 <?=
