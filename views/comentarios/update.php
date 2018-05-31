@@ -1,21 +1,39 @@
 <?php
+/* Formulario de modificación de comentario */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Comentarios */
+$url_update = Url::to(['comentarios/update', 'id'=>$model->id]);
 
-$this->title = 'Update Comentarios: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Comentarios', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$css = <<<EOT
+        
+EOT;
+
+$this->registerCss($css);
+
+$js = <<<EOT
+
+    validarForm(
+        $("#form_update_comentario_$model->id"),
+        '$url_update',
+        'POST',
+        function(data) {
+            let content = $(`#container_comentarios_$tarjeta->id`);
+            content.html(data);
+        }
+    );
+EOT;
+$this->registerJs($js);
 ?>
-<div class="comentarios-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
-</div>
+<?= $this->render('_form', [
+    'model' => $model,
+    'tarjeta'=>$tarjeta,
+    'id_form'=>"form_update_comentario_$model->id",
+    'action'=>['comentarios/update', 'id'=>$model->id],
+    'label'=>'Modificar',
+    'id_button'=>"btn_update_comentario_$model->id",
+]) ?>

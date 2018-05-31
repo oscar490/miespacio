@@ -31,6 +31,9 @@ $items = [
             'nuevo_comentario'=>new Comentarios(),
             'tarjeta'=>$model,
         ]),
+        'linkOptions'=>[
+            'id'=>"comentarios_tarjeta_$model->id",
+        ],
     ]
 ];
 

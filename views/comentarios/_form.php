@@ -1,4 +1,5 @@
 <?php
+/* Formulario de creación y modificación de comenario */
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -7,13 +8,21 @@ use app\components\MyHelpers;
 /* @var $this yii\web\View */
 /* @var $model app\models\Comentarios */
 /* @var $form yii\widgets\ActiveForm */
+
+if ($model->isNewRecord) {
+    $class_btn = 'btn btn-success';
+
+} else {
+    $class_btn = 'btn btn-sm btn-success';
+}
+
 ?>
 
 <div class="comentarios-form">
 
     <?php $form = ActiveForm::begin([
-        'action'=>['comentarios/create'],
-        'id'=>"form_create_comentario_$tarjeta->id",
+        'action'=>$action,
+        'id'=>$id_form,
     ]); ?>
 
     <?= $form->field($model, 'contenido')
@@ -27,13 +36,12 @@ use app\components\MyHelpers;
 
     <?= Html::hiddenInput('usuario_id', \Yii::$app->user->id) ?>
 
-
     <?=
         MyHelpers::submit(
-            'Guardar',
+            $label,
             [
-                'class'=>'btn btn-success',
-                'id'=>'btn_add_comentario'
+                'class'=>$class_btn,
+                'id'=>$id_button,
             ]
         );
     ?>

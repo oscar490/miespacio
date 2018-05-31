@@ -2,10 +2,12 @@
 /* Vista parcial de un comentario */
 
 /* @var $model app\models\Comentarios */
+
 use yii\helpers\Html;
+use app\components\MyHelpers;
+use yii\helpers\Url;
 
 $datos_usuario = $model->usuario->datosUsuarios;
-
 
 $this->registerCssFile(
     '/css/comentarios.css'
@@ -45,6 +47,28 @@ $this->registerCssFile(
                 </div>
             </div>
         </div>
+
+
+        <?php if ($model->usuario->id === Yii::$app->user->id): ?>
+
+            <!-- Botón de eliminación y modificación de un comentario -->
+            <div class='row'>
+                <?= $this->render('botones_accion', [
+                    'comentario'=>$model,
+                ]) ?>
+            </div>
+
+            <!-- Formulario de modificación de comentario -->
+            <div id="div_form_update_comentario_<?= $model->id ?>" class='col-md-6'>
+                <?= $this->render('update', [
+                    'model'=>$model,
+                    'tarjeta'=>$model->tarjeta,
+                ]) ?>
+            </div>
+
+        <?php endif; ?>
+
+
     </div>
 </div>
 <br>

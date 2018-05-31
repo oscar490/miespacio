@@ -38,6 +38,10 @@ $this->registerJs($js);
         <?= $this->render('_form', [
             'model' => $model,
             'tarjeta'=>$tarjeta,
+            'id_form'=>"form_create_comentario_$tarjeta->id",
+            'action'=>['comentarios/create'],
+            'label'=>'Guardar',
+            'id_button'=>'btn_add_comentario',
         ]) ?>
     </div>
 </div>
