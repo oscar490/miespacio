@@ -40,6 +40,12 @@ div[id^='div_form_update_comentario'] {
     display: none;
 }
 
+form[id^='form_update_comentario'] > div.field-contenido
+{
+    margin-top: 10px;
+    margin-left: 60px;
+}
+
 @media (max-width: 990px) {
     #content_comentario {
         margin-top: 10px;
@@ -51,7 +57,7 @@ div[id^='div_form_update_comentario'] {
     }
 
     button[id^='btn_delete_comentario'] {
-        margin-left: 60px;
+        margin-left: 70px;
         margin-top: 10px;
         border-radius: 5px;
     }
@@ -63,5 +69,12 @@ div[id^='div_form_update_comentario'] {
         margin-left: 10px;
         margin-top: 5px;
         margin-right: 3px;
+    }
+
+    /* Boton mostrar formulario update */
+    button[id^='btn_update_view'] {
+        margin-left: 70px;
+        margin-top: 10px;
+        border-radius: 5px;
     }
 }

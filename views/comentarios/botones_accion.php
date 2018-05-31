@@ -10,11 +10,12 @@ $this->registerJsFile(
     '/js/comentario.js',
     ['depends'=>[\yii\web\JqueryAsset::className()]]
 );
+$tarjeta = $comentario->tarjeta;
 
 $url_delete = Url::to(['comentarios/delete', 'id'=>$comentario->id]);
+$url_render_comentarios = Url::to(['tarjetas/load-comentarios', 'id'=>$tarjeta->id]);
 
 
-$tarjeta = $comentario->tarjeta;
 
 //  ELiminiación de comentario.
 $js = <<<EOT
@@ -22,7 +23,8 @@ $js = <<<EOT
         '$url_delete',
         '$comentario->id',
         '$tarjeta->id',
-        $("#btn_delete_comentario_$comentario->id")
+        $("#btn_delete_comentario_$comentario->id"),
+        '$url_render_comentarios'
     );
 
     $("#btn_update_view_$comentario->id").on('click', function() {
@@ -36,7 +38,7 @@ $this->registerJs($js);
 ?>
 
 <!-- Botón de eliminación de un comentario -->
-<div class='col-md-3'>
+<div class='col-xs-3 col-md-3'>
     <?=
         Html::button(
             MyHelpers::icon('glyphicon glyphicon-remove-circle')
@@ -50,7 +52,7 @@ $this->registerJs($js);
 </div>
 
 <!-- Botón para mostrar formulario update -->
-<div class='col-md-3'>
+<div class='col-xs-3 col-md-3'>
     <?=
         Html::button(
             MyHelpers::icon('glyphicon glyphicon-edit')

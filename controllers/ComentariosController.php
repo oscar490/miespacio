@@ -119,7 +119,6 @@ class ComentariosController extends Controller
         \Yii::$app->response->format = Response::FORMAT_JSON;
         return $tarjeta->getComentarios()->count();
 
-
     }
 
     /**

@@ -9,11 +9,7 @@ use yii\helpers\Url;
 $url_update = Url::to(['comentarios/update', 'id'=>$model->id]);
 
 $css = <<<EOT
-    form[id^='form_update_comentario'] > div.field-contenido
-    {
-        margin-top: 10px;
-        margin-left: 60px;
-    }
+        
 EOT;
 
 $this->registerCss($css);

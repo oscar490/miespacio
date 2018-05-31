@@ -12,6 +12,7 @@ use yii\web\Response;
 use yii\widgets\ActiveForm;
 use app\models\Adjuntos;
 use yii\db\Expression;
+use app\models\Comentarios;
 
 /**
  * TarjetasController implements the CRUD actions for Tarjetas model.
@@ -167,12 +168,18 @@ class TarjetasController extends Controller
         return $model->save();
     }
 
-    public function actionListaComentarios($id)
+    /**
+     * Carga una lista de los comentarios de una tarjeta.
+     * @param  integer $id ID tarjeta
+     * @return [type]     [description]
+     */
+    public function actionLoadComentarios($id)
     {
         $model = $this->findModel($id);
 
-        return $this->render('lista_completa_comentarios', [
-            'todos_comentarios'=>$model->getComentarios(),
+        return $this->renderAjax('lista_comentarios', [
+            'comentarios'=>$model->getComentarios(),
+            'nuevo_comentario'=> new Comentarios(),
             'tarjeta'=>$model,
         ]);
     }
