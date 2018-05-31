@@ -59,19 +59,10 @@ class ComentariosController extends Controller
         ]);
     }
 
-    public function actionValidateComentario($id)
-    {
-        $model = $this->findModel($id);
-
-        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-    }
 
     /**
-     * Creates a new Comentarios model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Crea un nuevo comentario.
+     *
      * @return mixed
      */
     public function actionCreate()
@@ -90,8 +81,7 @@ class ComentariosController extends Controller
     }
 
     /**
-     * Updates an existing Comentarios model.
-     * If update is successful, the browser will be redirected to the 'view' page.
+     * Modifica un comentario que existe.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -101,12 +91,15 @@ class ComentariosController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+
+            return $this->renderAjax('/tarjetas/lista_comentarios', [
+                'comentarios'=>$model->tarjeta->getComentarios(),
+                'nuevo_comentario'=> new Comentarios(),
+                'tarjeta'=>$model->tarjeta,
+            ]);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+
     }
 
     /**

@@ -12,6 +12,8 @@ $this->registerJsFile(
 );
 
 $url_delete = Url::to(['comentarios/delete', 'id'=>$comentario->id]);
+
+
 $tarjeta = $comentario->tarjeta;
 
 //  ELiminiación de comentario.
@@ -22,6 +24,10 @@ $js = <<<EOT
         '$tarjeta->id',
         $("#btn_delete_comentario_$comentario->id")
     );
+
+    $("#btn_update_view_$comentario->id").on('click', function() {
+        $(this).parent().parent().next().slideToggle();
+    })
 
 EOT;
 
@@ -43,7 +49,7 @@ $this->registerJs($js);
     ?>
 </div>
 
-
+<!-- Botón para mostrar formulario update -->
 <div class='col-md-3'>
     <?=
         Html::button(
@@ -51,7 +57,7 @@ $this->registerJs($js);
                 . ' Modificar',
             [
                 'class'=>'btn btn-sm btn-default',
-                'id'=>"btn_update_comentario_$comentario->id"
+                'id'=>"btn_update_view_$comentario->id"
             ]
         )
     ?>

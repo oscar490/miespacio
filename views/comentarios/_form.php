@@ -9,7 +9,13 @@ use app\components\MyHelpers;
 /* @var $model app\models\Comentarios */
 /* @var $form yii\widgets\ActiveForm */
 
-$enable = !$model->isNewRecord;
+if ($model->isNewRecord) {
+    $class_btn = 'btn btn-success';
+
+} else {
+    $class_btn = 'btn btn-sm btn-success';
+}
+
 ?>
 
 <div class="comentarios-form">
@@ -17,10 +23,9 @@ $enable = !$model->isNewRecord;
     <?php $form = ActiveForm::begin([
         'action'=>$action,
         'id'=>$id_form,
-        'enableAjaxValidation' => $enable,
     ]); ?>
 
-    <?= $form->field($model, 'contenido', ['enableAjaxValidation' => $enable])
+    <?= $form->field($model, 'contenido')
         ->textarea([
             'rows'=>5,
             'placeholder'=>'Escribe aqui tu comentario...',
@@ -31,19 +36,15 @@ $enable = !$model->isNewRecord;
 
     <?= Html::hiddenInput('usuario_id', \Yii::$app->user->id) ?>
 
-
-    <?php if ($model->isNewRecord): ?>
-        <?=
-            MyHelpers::submit(
-                'Guardar',
-                [
-                    'class'=>'btn btn-success',
-                    'id'=>'btn_add_comentario'
-                ]
-            );
-        ?>
-
-    <?php endif; ?>
+    <?=
+        MyHelpers::submit(
+            $label,
+            [
+                'class'=>$class_btn,
+                'id'=>$id_button,
+            ]
+        );
+    ?>
 
     <?php ActiveForm::end(); ?>
 

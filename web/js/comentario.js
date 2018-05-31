@@ -12,3 +12,10 @@ function deleteComentario(url_delete, id_comentario, id_tarjeta, elem_btn) {
         $(`div[data-key='${id_comentario}']`).fadeOut('slow');
     });
 }
+
+function updateComentario(formulario, url_update, id_tarjeta) {
+    // validarForm(formulario, url_update, 'POST', function(data) {
+    //     $(`#container_comentarios_${id_tarjeta}`).html(data);
+    //
+    // });
+}

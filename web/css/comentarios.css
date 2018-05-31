@@ -16,16 +16,28 @@
     margin-top: 5px;
 }
 
+/* Boton delete comentario */
 button[id^='btn_delete_comentario'] {
     margin-left: 80px;
     margin-top: 10px;
     border-radius: 5px;
 }
 
-button[id^='btn_update_comentario'] {
+/* Boton mostrar formulario update */
+button[id^='btn_update_view'] {
     margin-left: -40px;
     margin-top: 10px;
     border-radius: 5px;
+}
+
+/* Botón submit modificar formulario */
+button[id^='btn_update_comentario'] {
+    margin-left: 60px;
+}
+
+/* Contenedor de formulario update comentario */
+div[id^='div_form_update_comentario'] {
+    display: none;
 }
 
 @media (max-width: 990px) {

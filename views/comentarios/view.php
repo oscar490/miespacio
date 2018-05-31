@@ -59,7 +59,7 @@ $this->registerCssFile(
             </div>
 
             <!-- Formulario de modificación de comentario -->
-            <div class='col-md-6'>
+            <div id="div_form_update_comentario_<?= $model->id ?>" class='col-md-6'>
                 <?= $this->render('update', [
                     'model'=>$model,
                     'tarjeta'=>$model->tarjeta,
