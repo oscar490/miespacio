@@ -39,6 +39,7 @@ class Mensajes extends \yii\db\ActiveRecord
             [['emisor', 'receptor'], 'integer'],
             [['created_at', 'view_at'], 'safe'],
             [['asunto'], 'string', 'max' => 20],
+            [['asunto'], 'default', 'value'=>'(Sin asunto)'],
             [['contenido'], 'string', 'max' => 255],
             [['emisor'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['emisor' => 'id']],
             [['receptor'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['receptor' => 'id']],
