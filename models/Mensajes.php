@@ -37,6 +37,11 @@ class Mensajes extends \yii\db\ActiveRecord
             [['contenido', 'emisor', 'receptor'], 'required'],
             [['emisor', 'receptor'], 'default', 'value' => null],
             [['emisor', 'receptor'], 'integer'],
+            [['receptor'], function ($attribute, $params, $validator) {
+                if ($this->emisor === $this->$attribute) {
+                    $this->addError($attribute, 'No puedes enviarte un mensaje a tí mismo');
+                }
+            }],
             [['created_at', 'view_at'], 'safe'],
             [['asunto'], 'string', 'max' => 20],
             [['asunto'], 'default', 'value'=>'(Sin asunto)'],
@@ -62,6 +67,11 @@ class Mensajes extends \yii\db\ActiveRecord
     public function getEsRecibido()
     {
         return $this->receptor0->id === \Yii::$app->user->id;
+    }
+
+    public function formName()
+    {
+        return '';
     }
 
     /**

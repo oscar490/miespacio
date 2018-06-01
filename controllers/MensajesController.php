@@ -8,6 +8,10 @@ use app\models\MensajesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\UsuariosSearch;
+use yii\widgets\ActiveForm;
+use yii\web\Response;
+use app\models\DatosUsuarios;
 
 /**
  * MensajesController implements the CRUD actions for Mensajes model.
@@ -29,6 +33,16 @@ class MensajesController extends Controller
         ];
     }
 
+    public function actionLoadMensajes()
+    {
+        $mensajes = Yii::$app->user->identity
+            ->getMensajes0();
+
+        return $this->renderAjax('lista_mensajes', [
+            'mensajes_recibidos'=>$mensajes,
+        ]);
+    }
+
     /**
      * Muestra todos los mensajes.
      * @return mixed
@@ -44,9 +58,23 @@ class MensajesController extends Controller
             ->getMensajes0()
             ->with('receptor0');
 
+        $nuevo_mensaje = new Mensajes();
+
+        //  Usuarios para enviar mensaje.
+        $datos = DatosUsuarios::find()
+            ->select([
+                "CONCAT(nombre_completo, ' ', apellidos,
+                    ' (', u.nombre, ') ')"
+                ])
+            ->joinWith('usuario u')
+            ->indexBy('usuario_id')
+            ->column();
+
         return $this->render('index', [
             'mensajes_enviados'=>$mensajes_enviados,
             'mensajes_recibidos'=>$mensajes_recibidos,
+            'nuevo_mensaje'=>$nuevo_mensaje,
+            'datos'=>$datos,
         ]);
     }
 
@@ -72,13 +100,21 @@ class MensajesController extends Controller
     {
         $model = new Mensajes();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            Yii::$app->session->setFlash(
+                'success',
+                'Se ha enviado el mensaje correctamente'
+            );
+
+            return $this->redirect(['mensajes/index']);
+        }
+
     }
 
     /**

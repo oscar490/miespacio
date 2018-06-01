@@ -37,7 +37,10 @@ $items = [
         //  Crear mensaje
         'label'=> MyHelpers::icon('glyphicon glyphicon-pencil') .
             ' ' . '<strong>Redactar</strong>',
-        'content'=>'Redactar'
+        'content'=>$this->render('create', [
+            'nuevo_mensaje'=>$nuevo_mensaje,
+            'datos'=>$datos,
+        ])
     ]
 ];
 

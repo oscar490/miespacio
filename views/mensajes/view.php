@@ -41,7 +41,7 @@ EOT;
 <div class='row'>
 
     <!-- Emisor o Receptor -->
-    <div class='col-md-1'>
+    <div class='col-xs-2 col-md-1'>
         <!-- Imágen -->
         <?=
             Html::img(
@@ -54,7 +54,7 @@ EOT;
          ?>
     </div>
     <!-- Nombre de usuario -->
-    <div class='col-md-3'>
+    <div class='col-xs-4 col-md-3'>
         <!-- Nombre completo -->
         <?= Html::encode(
             $usuario->nombre_completo . ' ' .
@@ -73,19 +73,19 @@ EOT;
     </div>
 
     <!-- Asunto -->
-    <div class='col-md-3'>
+    <div class='col-xs-4 col-md-3'>
         <?= Html::encode($model->asunto) ?>
 
     </div>
 
     <!-- Boton de mostrar contenido -->
-    <div class='col-md-2'>
+    <div class='col-xs-2 col-md-2'>
         <?= $this->render('botones_mensaje', [
             'mensaje'=>$model,
         ]) ?>
     </div>
 
-    <div class='col-md-3'>
+    <div class='col-xs-5 col-md-3'>
         <?=
             Yii::$app->formatter->asDateTime($model->created_at);
         ?>
