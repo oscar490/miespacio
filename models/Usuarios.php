@@ -313,6 +313,24 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMensajesEmisor()
+    {
+        return $this->hasMany(Mensajes::className(), ['emisor' => 'id'])
+            ->inverseOf('emisor');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMensajesReceptor()
+    {
+        return $this->hasMany(Mensajes::className(), ['receptor' => 'id'])
+            ->inverseOf('receptor');
+    }
+
+    /**
     * @return \yii\db\ActiveQuery
     */
     public function getFavoritos()

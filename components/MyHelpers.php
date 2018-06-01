@@ -107,6 +107,21 @@ class MyHelpers
     }
 
     /**
+     * Devuelve una etiqueta de tipo badge, de Boostrap,
+     * con un número.
+     * @param  integer $numero Contenido.
+     * @return [type]         [description]
+     */
+    public static function badge($numero)
+    {
+        return Html::tag(
+                'span',
+                $numero,
+                ['class'=>'badge']
+            );
+    }
+
+    /**
      * Renderiza las etiquetas de apertura de un Modal.
      * @param  [type] $header Titulo de cabecera.
      * @param  [type] $label  Nombre del botón.

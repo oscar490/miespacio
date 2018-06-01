@@ -30,17 +30,22 @@ class MensajesController extends Controller
     }
 
     /**
-     * Lists all Mensajes models.
+     * Muestra todos los mensajes.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new MensajesSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $mensajes_enviados = Yii::$app->user->identity
+            ->getMensajesReceptor()
+            ->with('mensajes');
+
+        $mensajes_recibidos = Yii::$app->user->identity
+            ->getMensajesEmisor()
+            ->with('mensajes');
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'mensajes_enviados'=>$mensajes_enviados,
+            'mensajes_recibidos'=>$mensajes_recibidos,
         ]);
     }
 

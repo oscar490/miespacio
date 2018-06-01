@@ -103,6 +103,7 @@ if (Yii::$app->user->isGuest) {
             //  Mensajes.
             'label'=>MyHelpers::icon('glyphicon glyphicon-envelope')
                 . ' Mensajes',
+            'url'=>['mensajes/index'],
             'encode'=>false,
         ];
 

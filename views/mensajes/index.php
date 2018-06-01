@@ -1,39 +1,44 @@
 <?php
+/* Listado completo de mensajes */
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use app\components\MyHelpers;
 
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\MensajesSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $mensajes_enviados yii\db\ActiveRecord */
+/* @var $mensajes_recibidos yii\db\ActiveRecord */
 
 $this->title = 'Mensajes';
 $this->params['breadcrumbs'][] = $this->title;
+
+$num_recibidos = $mensajes_recibidos->count();
+$num_enviados = $mensajes_enviados->count();
+
+$items = [
+    [
+        //  Mensajes Recibidos
+        'label'=> MyHelpers::icon('glyphicon glyphicon-inbox') .
+            ' ' . '<strong>Recibidos</strong>' . ' ' .
+            MyHelpers::badge($num_recibidos),
+        'content'=>'Recibidos'
+    ],
+
+    [
+        //  Mensajes Enviados
+        'label'=> MyHelpers::icon('glyphicon glyphicon-send') .
+            ' ' . '<strong>Enviados</strong>' . ' ' .
+            MyHelpers::badge($num_enviados),
+        'content'=>'enviados'
+    ],
+
+    [
+        //  Crear mensaje
+        'label'=> MyHelpers::icon('glyphicon glyphicon-pencil') .
+            ' ' . '<strong>Redactar</strong>',
+        'content'=>'Redactar'
+    ]
+];
+
+
 ?>
-<div class="mensajes-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Mensajes', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'asunto',
-            'contenido',
-            'emisor',
-            'receptor',
-            //'created_at',
-            //'view_at',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-</div>
+<?= MyHelpers::tabs($items); ?>
