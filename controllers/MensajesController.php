@@ -36,12 +36,13 @@ class MensajesController extends Controller
     public function actionIndex()
     {
         $mensajes_enviados = Yii::$app->user->identity
-            ->getMensajesReceptor()
-            ->with('mensajes');
+            ->getMensajes()
+            ->with('emisor0');
+
 
         $mensajes_recibidos = Yii::$app->user->identity
-            ->getMensajesEmisor()
-            ->with('mensajes');
+            ->getMensajes0()
+            ->with('receptor0');
 
         return $this->render('index', [
             'mensajes_enviados'=>$mensajes_enviados,

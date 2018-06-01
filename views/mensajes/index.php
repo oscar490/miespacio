@@ -19,15 +19,18 @@ $items = [
         'label'=> MyHelpers::icon('glyphicon glyphicon-inbox') .
             ' ' . '<strong>Recibidos</strong>' . ' ' .
             MyHelpers::badge($num_recibidos),
-        'content'=>'Recibidos'
+        'content'=> $this->render('mensajes_recibidos', [
+            'mensajes_recibidos'=>$mensajes_recibidos,
+        ]),
     ],
 
     [
         //  Mensajes Enviados
         'label'=> MyHelpers::icon('glyphicon glyphicon-send') .
-            ' ' . '<strong>Enviados</strong>' . ' ' .
-            MyHelpers::badge($num_enviados),
-        'content'=>'enviados'
+            ' ' . '<strong>Enviados</strong>',
+        'content'=> $this->render('mensajes_enviados', [
+            'mensajes_enviados'=>$mensajes_enviados,
+        ]),
     ],
 
     [

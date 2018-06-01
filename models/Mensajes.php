@@ -46,6 +46,24 @@ class Mensajes extends \yii\db\ActiveRecord
     }
 
     /**
+     * Devuelve true o false si tiene asunto o no.
+     * @return boolean  True o false si tiene asunto o no.
+     */
+    public function getTieneAsunto()
+    {
+        return $this->asunto !== null;
+    }
+
+    /**
+     * Devuelve true o false si el mensaje es recibido o no.
+     * @return [type] [description]
+     */
+    public function getEsRecibido()
+    {
+        return $this->receptor0->id === \Yii::$app->user->id;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function attributeLabels()
@@ -64,7 +82,7 @@ class Mensajes extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEmisor()
+    public function getEmisor0()
     {
         return $this->hasOne(Usuarios::className(), ['id' => 'emisor'])->inverseOf('mensajes');
     }
@@ -72,7 +90,7 @@ class Mensajes extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getReceptor()
+    public function getReceptor0()
     {
         return $this->hasOne(Usuarios::className(), ['id' => 'receptor'])->inverseOf('mensajes0');
     }
