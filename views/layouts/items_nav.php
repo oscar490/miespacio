@@ -46,13 +46,6 @@ EOT;
 $this->registerCss($css);
 }
 
-$items_right[] = [
-    //  Página de inicio.
-    'label'=>MyHelpers::icon('glyphicon glyphicon-home') . ' Inicio',
-    'url'=>['site/index'],
-    'encode'=>false,
-];
-
 if (Yii::$app->user->isGuest) {
 
     // Opciones para usuario invitado.
@@ -82,7 +75,8 @@ if (Yii::$app->user->isGuest) {
     //
     $items_left[] =
         [
-            'label'=>MyHelpers::icon('glyphicon glyphicon-align-justify')
+            //  Búsqueda de tableros
+            'label'=>MyHelpers::icon('glyphicon glyphicon-search')
                 . ' Tableros',
             'encode'=>false,
             'linkOptions'=>[
@@ -106,6 +100,14 @@ if (Yii::$app->user->isGuest) {
 
     $items_right[] =
         [
+            //  Mensajes.
+            'label'=>MyHelpers::icon('glyphicon glyphicon-envelope')
+                . ' Mensajes',
+            'encode'=>false,
+        ];
+
+    $items_right[] =
+        [
             //  Notificaciones.
             'label'=>MyHelpers::icon('glyphicon glyphicon-bell '),
 
@@ -118,7 +120,7 @@ if (Yii::$app->user->isGuest) {
 
     $items_left[] =
         [
-            //  Notificaciones.
+            //  Estilo
             'label'=>MyHelpers::icon('glyphicon glyphicon-tint')
                 . ' Estilo',
             'linkOptions'=>[

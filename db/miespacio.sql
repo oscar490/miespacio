@@ -286,6 +286,31 @@ INSERT INTO comentarios (contenido, tarjeta_id, usuario_id)
             ('¡A mi no me gusta!', 1, 2),
             ('Se puede mejorar', 1, 3);
 
+
+
+-- Tabla mensajes --
+
+DROP TABLE IF EXISTS mensajes;
+
+CREATE TABLE mensajes
+(
+       id         BIGSERIAL    PRIMARY KEY
+    ,  asunto     VARCHAR(20)
+    ,  contenido  VARCHAR(255) NOT NULL
+    ,  emisor     BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
+                               NO ACTION ON UPDATE CASCADE
+    ,  receptor   BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
+                               NO ACTION ON UPDATE CASCADE
+    ,  created_at TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
+    ,  view_at    TIMESTAMP(0)
+
+);
+
+INSERT INTO mensajes (asunto, contenido, emisor, receptor)
+    VALUES ('saludo', '¡Hola! ¿Cómo estas?', 1, 2),
+            ('pregunta', '¿Cómo te llamas? ¿Te conzco?', 2, 1),
+            (null, 'Hola rafa!', 1, 3);
+
 -- Table Actividades --
 /*
 DROP TABLE IF EXISTS actividades CASCADE;
