@@ -169,18 +169,13 @@ class MensajesController extends Controller
 
     public function actionLoadRecibidos()
     {
-        $fecha_hoy = new Expression('current_timestamp');
+        $actual = new Expression('current_timestamp');
 
-        $num_mensajes = Mensajes::find()
-            ->where([
-                'receptor'=>Yii::$app->user->id,
-                "created_at > $fecha_hoy",
-            ])->count();
+        $ultimo_mensaje = Mensajes::find()
+            ->where(['receptor'=>Yii::$app->user->id])
+            ->orderBy(['created_at'=>SORT_DESC])
+            ->one();
 
-        if ($num_mensajes === 0) {
-            return false;
-        }
-        
         $mensajes_recibidos = Yii::$app->user->identity
             ->getMensajes0()
             ->with('receptor0');
