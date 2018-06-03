@@ -3,6 +3,7 @@
 
 use yii\helpers\Html;
 use app\components\MyHelpers;
+use app\models\Mensajes;
 
 /* @var $mensajes_enviados yii\db\ActiveRecord */
 /* @var $mensajes_recibidos yii\db\ActiveRecord */
@@ -10,8 +11,6 @@ use app\components\MyHelpers;
 $this->title = 'Mensajes';
 $this->params['breadcrumbs'][] = $this->title;
 
-$num_recibidos = $mensajes_recibidos->count();
-$num_enviados = $mensajes_enviados->count();
 
 $items = [
     [

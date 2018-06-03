@@ -61,6 +61,15 @@ class Mensajes extends \yii\db\ActiveRecord
     }
 
     /**
+     * Develve true o false si el mensaje ha sido leido o no.
+     * @return boolean true si se ha leido o false si no se ha leido.
+     */
+    public function getEstaLeido()
+    {
+        return $this->view_at !== null;
+    }
+
+    /**
      * Devuelve true o false si el mensaje es recibido o no.
      * @return [type] [description]
      */

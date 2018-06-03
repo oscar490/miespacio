@@ -1,5 +1,5 @@
 <?php
-
+/* Vista de un mensaje */
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\components\MyHelpers;
@@ -27,18 +27,23 @@ $css = <<<EOT
     #name_user {
         color: grey;
     }
+
+
+    .mensaje_sin_leer {
+        font-weight: bold;
+    }
 EOT;
 
 $this->registerCss($css);
 
-$js = <<<EOT
-    cambiarImagen('$usuario->url_imagen', $('#imagen_mensaje_$model->id'));
-EOT;
-// $this->registerJs($js);
+//  Clase que indica si se ha leido el contenido o no.
+$class = ((!$model->estaLeido) && $model->esRecibido)
+    ? 'mensaje_sin_leer' : '';
+
 ?>
 
 
-<div class='row'>
+<div id="mensaje_item_<?= $model->id ?>" class='row <?= $class ?>'>
 
     <!-- Emisor o Receptor -->
     <div class='col-xs-2 col-md-1'>
@@ -85,6 +90,7 @@ EOT;
         ]) ?>
     </div>
 
+    <!-- Fecha de envio de mensaje -->
     <div class='col-xs-5 col-md-3'>
         <?=
             Yii::$app->formatter->asDateTime($model->created_at);

@@ -12,6 +12,7 @@ use app\models\UsuariosSearch;
 use yii\widgets\ActiveForm;
 use yii\web\Response;
 use app\models\DatosUsuarios;
+use yii\db\Expression;
 
 /**
  * MensajesController implements the CRUD actions for Mensajes model.
@@ -58,7 +59,14 @@ class MensajesController extends Controller
             ->getMensajes0()
             ->with('receptor0');
 
-        $nuevo_mensaje = new Mensajes();
+        //  Mensajes reciidos sin leer.
+        $num_recibidos = Mensajes::find()
+            ->where([
+                'view_at'=>null,
+                'receptor'=>Yii::$app->user->id,
+            ])
+            ->count();
+
 
         //  Usuarios para enviar mensaje.
         $datos = DatosUsuarios::find()
@@ -73,7 +81,8 @@ class MensajesController extends Controller
         return $this->render('index', [
             'mensajes_enviados'=>$mensajes_enviados,
             'mensajes_recibidos'=>$mensajes_recibidos,
-            'nuevo_mensaje'=>$nuevo_mensaje,
+            'num_recibidos'=>$num_recibidos,
+            'nuevo_mensaje'=>new Mensajes(),
             'datos'=>$datos,
         ]);
     }
@@ -134,6 +143,50 @@ class MensajesController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+        ]);
+    }
+
+    /**
+     * Lectura de contenido de un mensaje.
+     * @param  integer $id ID de mensaje.
+     * @return integer Número de mensajes sin leer y recibidos.
+     */
+    public function actionReadMensaje($id)
+    {
+        $model = $this->findModel($id);
+
+        $model->view_at = new Expression('current_timestamp');
+        $model->save();
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $num_mensajes = Mensajes::find()
+            ->where([
+                'receptor'=>Yii::$app->user->id,
+                'view_at'=>null,
+            ])->count();
+
+    }
+
+    public function actionLoadRecibidos()
+    {
+        $fecha_hoy = new Expression('current_timestamp');
+
+        $num_mensajes = Mensajes::find()
+            ->where([
+                'receptor'=>Yii::$app->user->id,
+                "created_at > $fecha_hoy",
+            ])->count();
+
+        if ($num_mensajes === 0) {
+            return false;
+        }
+        
+        $mensajes_recibidos = Yii::$app->user->identity
+            ->getMensajes0()
+            ->with('receptor0');
+
+        return $this->renderAjax('lista_mensajes', [
+            'query'=>$mensajes_recibidos,
         ]);
     }
 
