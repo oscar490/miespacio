@@ -4,20 +4,29 @@
 /* @var $mensajes_recibidos yii\db\ActiveRecord */
 
 use yii\helpers\Url;
+use yii\db\Expression;
+use app\models\Mensajes;
 
 $url_load = Url::to(['mensajes/load-recibidos']);
+
+
 
 $js = <<<EOT
     setInterval(function() {
         sendAjax('$url_load', 'GET', {}, function(data) {
-            $('#mensajes_recibidos').html(data);
+            if ($("div.in").length == 1) {
+                $('#mensajes_recibidos').html(data);
+                let num = $('.mensaje_sin_leer').length;
+                $("span.badge").text(num);
+                console.log('render');
+            }
         })
-    }, 3000);
+    }, 5000);
 
-    console.log($('#mensajes_recibidos'));
+
 EOT;
 
-// $this->registerJs($js);
+$this->registerJs($js);
 ?>
 <br>
 
