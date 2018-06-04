@@ -27,7 +27,8 @@
         "kartik-v/yii2-dialog": "*",
         "kartik-v/yii2-widget-fileinput": "@dev",
         "kartik-v/yii2-widget-growl": "*",
-        "kartik-v/yii2-widgets": "*"
+        "kartik-v/yii2-widgets": "*",
+        "yii2mod/yii2-google-maps-markers": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
