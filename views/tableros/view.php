@@ -32,9 +32,7 @@ $this->registerCssFile(
     '/css/tableros_view.css'
 );
 
-//  Mensaje de confirmación de eliminación.
-// echo MyHelpers::confirmacion('Eliminar');
-echo MyHelpers::dialogo();
+
 
 
 $url_tablero = Url::to(['tableros/delete', 'id'=>$model->id]);

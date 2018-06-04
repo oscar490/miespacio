@@ -14,6 +14,8 @@ $this->registerJsFile(
 );
 
 
+
+
 if (!Yii::$app->user->isGuest) {
     $img = $datosUsuario->url_imagen;
     $num_notifi = Yii::$app->user->identity
@@ -22,6 +24,11 @@ if (!Yii::$app->user->isGuest) {
             'view_at'=>null,
             'tablero_id'=>null,
         ])
+        ->count();
+
+    $num_mensajes_nuevos = Yii::$app->user->identity
+        ->getMensajes0()
+        ->where(['view_at'=>null])
         ->count();
 
     $url_observar = Url::to([
@@ -37,6 +44,7 @@ if (!Yii::$app->user->isGuest) {
 
             indicarNotificaciones('$num_notifi', '$url_observar');
             iniciarGestionVentanas(400, 400, 80, '$user_name');
+            indicarMensajes('$num_mensajes_nuevos');
 
         })
     ");

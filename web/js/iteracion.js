@@ -18,6 +18,30 @@ function seleccionarMenuUsuario() {
 }
 
 /**
+ * Se avisa, cambiando el color de fondo de enlace, de que hay mensajes
+ * nuevos.
+ * @param  {[type]} num_mensajes Número de mensajes nuevos.
+ */
+function indicarMensajes(num_mensajes) {
+    let item_mensajes = $('a#index_mensajes').parent();
+
+    if (num_mensajes > 0) {
+        item_mensajes.removeClass('active');
+        item_mensajes.addClass('aviso');
+
+    } else {
+        item_mensajes.removeClass('aviso');
+        let url_search = window.location.search;
+
+        if (url_search == '?r=mensajes%2Findex') {
+            item_mensajes.addClass('active');
+        }
+
+
+    }
+}
+
+/**
  * Realiza una petición AJAX simple.
  * @param  {[type]} url_p  Dirección URL para enviar petición.
  * @param  {[type]} type_p Tipo de petición.

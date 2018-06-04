@@ -1,0 +1,68 @@
+<?php
+/* Botones de acción sobre el mensaje */
+
+/* @var $mensaje app\models\Mensajes */
+
+use yii\helpers\Html;
+use yii\helpers\Url;
+use app\components\MyHelpers;
+
+
+$url_read = Url::to(['mensajes/read-mensaje', 'id'=>$mensaje->id]);
+$url_delete = Url::to(['mensajes/delete', 'id'=>$mensaje->id]);
+
+//  Lectura de mensaje.
+$js = <<<EOT
+    eliminarElemento(
+        $("#btn_delete_mensaje_$mensaje->id"),
+        '$url_delete',
+        function (data) {
+            $("div[data-key='$mensaje->id']").fadeOut();
+        }
+    )
+
+    $("#view_contenido_$mensaje->id").on('shown.bs.modal', function() {
+
+        if ($(`#mensaje_item_$mensaje->id`).hasClass('mensaje_sin_leer')) {
+            sendAjax('$url_read', 'POST', {}, function(data) {
+                $(`#mensaje_item_$mensaje->id`).removeClass('mensaje_sin_leer');
+                $('span.badge').text(data);
+
+                let num_mensajes_sin_leer = $('.mensaje_sin_leer').length;
+                console.log(num_mensajes_sin_leer);
+                indicarMensajes(num_mensajes_sin_leer);
+            })
+        }
+
+    })
+EOT;
+
+$this->registerJs($js);
+
+?>
+
+<!-- Botón de modal de contenido de mensaje -->
+<?php
+    MyHelpers::modal_begin(
+        MyHelpers::icon('glyphicon glyphicon-envelope')
+            . ' ' . '<strong>Mensaje</strong>',
+        MyHelpers::icon('glyphicon glyphicon-new-window'),
+        'btn btn-default',
+        "view_contenido_$mensaje->id"
+    )
+?>
+    <?= $this->render('contenido_mensaje', [
+        'mensaje'=>$mensaje,
+    ]) ?>
+
+<?php MyHelpers::modal_end() ?>
+
+<?=
+    Html::button(
+        MyHelpers::icon('glyphicon glyphicon-remove'),
+        [
+            'class'=>'btn btn-default',
+            'id'=>"btn_delete_mensaje_$mensaje->id"
+        ]
+    )
+?>

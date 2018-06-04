@@ -1,4 +1,9 @@
 
+/**
+ * Indica si hay notificaciones pendientes.
+ * @param  integer num_notificaciones Número de notificaciones.
+ * @param  {[type]} url_send           Direccion URL para enviar peticiíon.
+ */
 function indicarNotificaciones(num_notificaciones, url_send) {
 
     let enlace = $("a[data-target='#modal_notificaciones']");
@@ -19,6 +24,12 @@ function indicarNotificaciones(num_notificaciones, url_send) {
 
 }
 
+/**
+ * Cuando se abre el modal, se envia una petición para marcar como leido
+ * las notificaciones pendientes.
+ * @param  {[type]} url_send [description]
+ * @return {[type]}          [description]
+ */
 function eventoModal(url_send) {
     $('#modal_notificaciones').on('show.bs.modal', function() {
         sendAjax(url_send, 'GET', {}, function(data) {
@@ -27,7 +38,13 @@ function eventoModal(url_send) {
     })
 }
 
-
+/**
+ * Se encarga de iniciar la gestión de ventanas para establecer estilo de web.
+ * @param  {[type]} p_width   Anchura de ventana.
+ * @param  {[type]} p_height  Altura de ventana.
+ * @param  {[type]} p_top     Altura de ventana.
+ * @param  {[type]} user_name Nombre de usuario logueado.
+ */
 function iniciarGestionVentanas(p_width, p_height, p_top, user_name) {
 
     $('#ventana_estilos').on('click', function() {

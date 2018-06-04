@@ -1,0 +1,23 @@
+.logo-mensaje {
+    width: 47px;
+    height: 42px;
+}
+
+#name_user {
+    color: grey;
+}
+
+
+.mensaje_sin_leer {
+    font-weight: bold;
+}
+
+@media (max-width: 990px) {
+    #botones_accion {
+        margin-left: 55px;
+    }
+
+    #div_name_user {
+        margin-bottom: 10px;
+    }
+}

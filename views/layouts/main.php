@@ -38,6 +38,9 @@ $datosUsuario = DatosUsuarios::findOne([
 
 <div class="wrap">
 
+    <!-- Mensaje de confirmación de eliminación y alert -->
+    <?= MyHelpers::dialogo(); ?>
+
     <!-- Secciones de la barra de navegación -->
     <?= $this->render('items_nav', [
         'datosUsuario'=>$datosUsuario
