@@ -78,7 +78,7 @@ class MensajesController extends Controller
             ->indexBy('usuario_id')
             ->column();
 
-        return $this->render('index', [
+        return $this->render('index-mensajes', [
             'mensajes_enviados'=>$mensajes_enviados,
             'mensajes_recibidos'=>$mensajes_recibidos,
             'num_recibidos'=>$num_recibidos,
@@ -196,7 +196,7 @@ class MensajesController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        
     }
 
     /**

@@ -13,28 +13,16 @@ $datos_receptor = $model->receptor0->datosUsuarios;
 //  Comprobación si el mensaje es recibido o enviado.
 if  ($model->esRecibido) {
     $usuario = $datos_emisor;
+    $inicial = 'De: ';
 
 } else {
     $usuario = $datos_receptor;
+    $inicial = 'Para: ';
 }
 
-$css = <<<EOT
-    .logo-mensaje {
-        width: 47px;
-        height: 42px;
-    }
-
-    #name_user {
-        color: grey;
-    }
-
-
-    .mensaje_sin_leer {
-        font-weight: bold;
-    }
-EOT;
-
-$this->registerCss($css);
+$this->registerCssFile(
+    'css/mensaje.css'
+);
 
 //  Clase que indica si se ha leido el contenido o no.
 $class = ((!$model->estaLeido) && $model->esRecibido)
@@ -59,10 +47,10 @@ $class = ((!$model->estaLeido) && $model->esRecibido)
          ?>
     </div>
     <!-- Nombre de usuario -->
-    <div class='col-xs-4 col-md-3'>
+    <div id='div_name_user' class='col-xs-5 col-md-3'>
         <!-- Nombre completo -->
         <?= Html::encode(
-            $usuario->nombre_completo . ' ' .
+            $inicial . $usuario->nombre_completo . ' ' .
             $usuario->apellidos
             )
         ?>
@@ -84,7 +72,7 @@ $class = ((!$model->estaLeido) && $model->esRecibido)
     </div>
 
     <!-- Boton de mostrar contenido -->
-    <div class='col-xs-2 col-md-2'>
+    <div id='botones_accion' class='col-xs-5 col-md-2'>
         <?= $this->render('botones_mensaje', [
             'mensaje'=>$model,
         ]) ?>

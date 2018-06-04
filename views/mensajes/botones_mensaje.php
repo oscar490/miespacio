@@ -9,9 +9,18 @@ use app\components\MyHelpers;
 
 
 $url_read = Url::to(['mensajes/read-mensaje', 'id'=>$mensaje->id]);
+$url_delete = Url::to(['mensajes/delete', 'id'=>$mensaje->id]);
 
 //  Lectura de mensaje.
 $js = <<<EOT
+    eliminarElemento(
+        $("#btn_delete_mensaje_$mensaje->id"),
+        '$url_delete',
+        function (data) {
+            $("div[data-key='$mensaje->id']").fadeOut();
+        }
+    )
+
     $("#view_contenido_$mensaje->id").on('shown.bs.modal', function() {
 
         if ($(`#mensaje_item_$mensaje->id`).hasClass('mensaje_sin_leer')) {
@@ -22,8 +31,6 @@ $js = <<<EOT
                 let num_mensajes_sin_leer = $('.mensaje_sin_leer').length;
                 console.log(num_mensajes_sin_leer);
                 indicarMensajes(num_mensajes_sin_leer);
-
-
             })
         }
 
@@ -49,3 +56,13 @@ $this->registerJs($js);
     ]) ?>
 
 <?php MyHelpers::modal_end() ?>
+
+<?=
+    Html::button(
+        MyHelpers::icon('glyphicon glyphicon-remove'),
+        [
+            'class'=>'btn btn-default',
+            'id'=>"btn_delete_mensaje_$mensaje->id"
+        ]
+    )
+?>

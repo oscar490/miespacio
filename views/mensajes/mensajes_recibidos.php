@@ -30,7 +30,7 @@ $js = <<<EOT
 
 EOT;
 
-$this->registerJs($js);
+// $this->registerJs($js);
 ?>
 <br>
 

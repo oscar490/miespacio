@@ -31,7 +31,13 @@ function indicarMensajes(num_mensajes) {
 
     } else {
         item_mensajes.removeClass('aviso');
-        item_mensajes.addClass('active');
+        let url_search = window.location.search;
+
+        if (url_search == '?r=mensajes%2Findex') {
+            item_mensajes.addClass('active');
+        }
+
+
     }
 }
 
