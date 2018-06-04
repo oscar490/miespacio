@@ -313,6 +313,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Mensajes Enviados.
      * @return \yii\db\ActiveQuery
      */
     public function getMensajes()
@@ -322,6 +323,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Mensajes recibidos.
      * @return \yii\db\ActiveQuery
      */
     public function getMensajes0()

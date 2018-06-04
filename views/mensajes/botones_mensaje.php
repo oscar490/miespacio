@@ -7,6 +7,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use app\components\MyHelpers;
 
+
 $url_read = Url::to(['mensajes/read-mensaje', 'id'=>$mensaje->id]);
 
 //  Lectura de mensaje.
@@ -17,6 +18,12 @@ $js = <<<EOT
             sendAjax('$url_read', 'POST', {}, function(data) {
                 $(`#mensaje_item_$mensaje->id`).removeClass('mensaje_sin_leer');
                 $('span.badge').text(data);
+
+                let num_mensajes_sin_leer = $('.mensaje_sin_leer').length;
+                console.log(num_mensajes_sin_leer);
+                indicarMensajes(num_mensajes_sin_leer);
+
+
             })
         }
 
