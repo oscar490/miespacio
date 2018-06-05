@@ -321,8 +321,8 @@ CREATE TABLE mapas
 (
        id         BIGSERIAL    PRIMARY KEY
     ,  ubicacion  VARCHAR(255) NOT NULL
-    ,  latitud    INTEGER      NOT NULL
-    ,  longitud   INTEGER      NOT NULL
+    ,  latitud    NUMERIC      NOT NULL
+    ,  longitud   NUMERIC      NOT NULL
     ,  tarjeta_id BIGINT       NOT NULL REFERENCES tarjetas (id) ON DELETE
                                CASCADE ON UPDATE CASCADE
 

@@ -13,6 +13,7 @@ use yii\widgets\ActiveForm;
 use app\models\Adjuntos;
 use yii\db\Expression;
 use app\models\Comentarios;
+use app\models\Mapas;
 
 /**
  * TarjetasController implements the CRUD actions for Tarjetas model.
@@ -59,6 +60,17 @@ class TarjetasController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'adjunto'=>new Adjuntos(),
+        ]);
+    }
+
+    public function actionViewMap($id)
+    {
+        $model = $this->findModel($id);
+
+        return $this->render('ubicacion', [
+            'model'=>$model,
+            'mapa'=>new Mapas(),
         ]);
     }
 

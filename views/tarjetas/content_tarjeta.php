@@ -67,3 +67,11 @@ $this->registerJs($js);
         </div>
     </div>
 </div>
+
+<div class='row'>
+    <?= Html::a(
+        'mapas',
+        ['tarjetas/view-mapas', 'id'=>$model->id],
+        ['class'=>'btn btn-default']
+    ) ?>
+</div>

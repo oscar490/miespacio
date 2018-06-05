@@ -34,7 +34,7 @@ $items = [
         'linkOptions'=>[
             'id'=>"comentarios_tarjeta_$model->id",
         ],
-    ]
+    ],
 ];
 
 

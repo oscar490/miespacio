@@ -33,7 +33,8 @@ class Mapas extends \yii\db\ActiveRecord
         return [
             [['ubicacion', 'latitud', 'longitud', 'tarjeta_id'], 'required'],
             [['latitud', 'longitud', 'tarjeta_id'], 'default', 'value' => null],
-            [['latitud', 'longitud', 'tarjeta_id'], 'integer'],
+            [['latitud', 'longitud'], 'number'],
+            [['tarjeta_id'], 'integer'],
             [['ubicacion'], 'string', 'max' => 255],
             [['tarjeta_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tarjetas::className(), 'targetAttribute' => ['tarjeta_id' => 'id']],
         ];
@@ -51,6 +52,11 @@ class Mapas extends \yii\db\ActiveRecord
             'longitud' => 'Longitud',
             'tarjeta_id' => 'Tarjeta ID',
         ];
+    }
+
+    public function formName()
+    {
+        return '';
     }
 
     /**

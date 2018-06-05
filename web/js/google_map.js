@@ -1,6 +1,6 @@
 
 function initMap() {
-    var coordenadas = {lat: 36.7725774, lng: -6.352968899999951};
+    var coordenadas = {lat: -33.8688, lng: 151.2195};
     var map = new google.maps.Map(document.getElementById('map'), {
           center: coordenadas,
           zoom: 13
@@ -43,8 +43,9 @@ function initMap() {
 
              var place = autocomplete.getPlace();
              console.log(place);
-             console.log('latiud: ' + place.geometry.location.lat());
-             console.log('longitud: ' + place.geometry.location.lng());
+        
+             document.getElementById('latitud').value = place.geometry.location.lat();
+             document.getElementById('longitud').value = place.geometry.location.lng();
 
              if (!place.geometry) {
                // User entered the name of a Place that was not suggested and
