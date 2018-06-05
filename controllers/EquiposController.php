@@ -241,6 +241,11 @@ class EquiposController extends Controller
         return $this->redirect(['gestionar-tableros']);
     }
 
+    public function actionMap()
+    {
+        return $this->render('google_map');
+    }
+
     /**
      * Finds the Equipos model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

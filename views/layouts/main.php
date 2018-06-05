@@ -63,6 +63,9 @@ $datosUsuario = DatosUsuarios::findOne([
     </div>
 </div>
 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjc2m2ESE6-DqLNUUvW5tpB70Krjc1qaY&libraries=places&callback=initMap"
+        async defer></script>
+
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; MiEspacio</p>
