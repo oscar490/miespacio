@@ -77,6 +77,8 @@ function initMap() {
              (place.address_components[2] && place.address_components[2].short_name || '')
            ].join(' ');
          }
+         console.log(place.name);
+         console.log(place.address_components);
 
          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
          infowindow.open(map, marker);

@@ -290,7 +290,7 @@ INSERT INTO comentarios (contenido, tarjeta_id, usuario_id)
 
 -- Tabla mensajes --
 
-DROP TABLE IF EXISTS mensajes;
+DROP TABLE IF EXISTS mensajes CASCADE;
 
 CREATE TABLE mensajes
 (
@@ -311,6 +311,22 @@ INSERT INTO mensajes (asunto, contenido, emisor, receptor)
             ('pregunta', '¿Cómo te llamas? ¿Te conzco?', 2, 1),
             (null, 'Hola rafa!', 1, 3);
 
+
+
+-- Tabla mapas --
+
+DROP TABLE IF EXISTS mapas CASCADE;
+
+CREATE TABLE mapas
+(
+       id         BIGSERIAL    PRIMARY KEY
+    ,  ubicacion  VARCHAR(255) NOT NULL
+    ,  latitud    INTEGER      NOT NULL
+    ,  longitud   INTEGER      NOT NULL
+    ,  tarjeta_id BIGINT       NOT NULL REFERENCES tarjetas (id) ON DELETE
+                               CASCADE ON UPDATE CASCADE
+
+);
 -- Table Actividades --
 /*
 DROP TABLE IF EXISTS actividades CASCADE;
