@@ -31,7 +31,7 @@ class Mapas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ubicacion', 'latitud', 'longitud', 'tarjeta_id'], 'required'],
+            [['ubicacion','tarjeta_id'], 'required'],
             [['latitud', 'longitud', 'tarjeta_id'], 'default', 'value' => null],
             [['latitud', 'longitud'], 'number'],
             [['tarjeta_id'], 'integer'],

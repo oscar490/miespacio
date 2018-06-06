@@ -319,12 +319,14 @@ DROP TABLE IF EXISTS mapas CASCADE;
 
 CREATE TABLE mapas
 (
-       id         BIGSERIAL    PRIMARY KEY
+       tarjeta_id BIGINT       NOT NULL REFERENCES tarjetas (id) ON DELETE
+                               CASCADE ON UPDATE CASCADE
     ,  ubicacion  VARCHAR(255) NOT NULL
     ,  latitud    NUMERIC      NOT NULL
     ,  longitud   NUMERIC      NOT NULL
-    ,  tarjeta_id BIGINT       NOT NULL REFERENCES tarjetas (id) ON DELETE
-                               CASCADE ON UPDATE CASCADE
+
+    ,  PRIMARY KEY (tarjeta_id)
+
 
 );
 -- Table Actividades --

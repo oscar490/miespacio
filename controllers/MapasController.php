@@ -67,7 +67,7 @@ class MapasController extends Controller
         $model = new Mapas();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->tarjeta_id]);
         }
 
         return $this->render('create', [
@@ -87,11 +87,17 @@ class MapasController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash(
+                'success',
+                'Se ha guardado la uĺtima modificación'
+            );
+
+            return $this->redirect(['update', 'id' => $model->tarjeta_id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'tarjeta'=>$model->tarjeta,
         ]);
     }
 

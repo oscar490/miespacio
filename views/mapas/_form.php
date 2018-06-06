@@ -11,23 +11,24 @@ use yii\widgets\ActiveForm;
 <div class="mapas-form">
 
     <?php $form = ActiveForm::begin([
-        'action'=>['mapas/create']
+        'action'=>['mapas/update', 'id'=>$model->tarjeta_id],
+        'id'=>'form_map'
     ]); ?>
 
     <?= $form->field($model, 'ubicacion')->textInput([
         'maxlength' => true,
         'id'=>"pac-input",
-        ]) ?>
+        ])->label(false) ?>
 
-    <?= $form->field($model, 'latitud')->textInput() ?>
+    <?= $form->field($model, 'latitud')->textInput()->hiddenInput()
+        ->label(false) ?>
 
-    <?= $form->field($model, 'longitud')->textInput() ?>
+    <?= $form->field($model, 'longitud')->textInput()->hiddenInput()
+        ->label(false) ?>
 
     <?= Html::hiddenInput('tarjeta_id', $tarjeta->id) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-    </div>
+
 
     <?php ActiveForm::end(); ?>
 

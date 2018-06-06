@@ -1,39 +1,55 @@
 <?php
 
-use yii\helpers\Html;
-use yii\widgets\DetailView;
+use yii\helpers\Url;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Mapas */
+// $this->registerJsFile(
+//     'js/google_map.js'
+// );
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Mapas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$css = <<<EOT
+#map {
+    height: 400px;
+    width: 100%;
+   }
+EOT;
+
+$this->registerCss($css);
+
 ?>
-<div class="mapas-view">
+<h1><?= $tarjeta->denominacion ?></h1>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjc2m2ESE6-DqLNUUvW5tpB70Krjc1qaY&libraries=places&callback=initMap"
+        async defer></script>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<script src="js/google_map.js"></script>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'ubicacion',
-            'latitud',
-            'longitud',
-            'tarjeta_id',
-        ],
-    ]) ?>
+<div class='row'>
+    <div class='col-md-4'>
+        <div class='panel panel-primary'>
+            <div class='panel-heading'>
+                Mapa
+            </div>
 
+            <div class='panel-body'>
+                <!-- <input id="pac-input" class="controls" type="text"
+                        placeholder="Enter a location"> -->
+                <?= $this->render('_form', [
+                    'model'=>$model,
+                    'tarjeta'=>$tarjeta,
+                ]) ?>
+            </div>
+        </div>
+    </div>
+
+    <div class='col-md-8'>
+        <div class='panel panel-primary'>
+            <div class='panel-heading'>
+                Mapa
+            </div>
+
+            <div class='panel-body'>
+                    <div id="map"></div>
+            </div>
+        </div>
+    </div>
 </div>

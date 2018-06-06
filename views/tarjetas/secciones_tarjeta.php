@@ -7,6 +7,7 @@
 use yii\helpers\Html;
 use app\components\MyHelpers;
 use app\models\Comentarios;
+use app\models\Mapas;
 
 
 $items = [
@@ -34,7 +35,7 @@ $items = [
         'linkOptions'=>[
             'id'=>"comentarios_tarjeta_$model->id",
         ],
-    ],
+    ]
 ];
 
 

@@ -25,7 +25,7 @@ $css = <<<EOT
     }
 EOT;
 
-$this->registerCss($css);
+// $this->registerCss($css);
 $js = <<<EOT
 
     $("#modal_view_tarjeta_$tarjeta->id").on('shown.bs.modal', function() {
@@ -33,9 +33,23 @@ $js = <<<EOT
             sendAjax('$url_render', 'GET', {}, function(data) {
                 let contenedor = $("#modal_view_tarjeta_$tarjeta->id div.modal-body");
                 contenedor.html(data);
-                contenedor.slideDown();
             });
+    });
+    $("#modal_view_tarjeta_$tarjeta->id").on('hidden.bs.modal', function() {
+        let contenedor = $("#modal_view_tarjeta_$tarjeta->id div.modal-body");
+        contenedor.empty();
+        let imagen = $('<img>');
+        let content = $('<div></div>');
+        content.addClass('centrado');
+
+        imagen.attr('src', 'images/cargando.gif');
+        imagen.addClass('logo-x2');
+        content.append(imagen);
+
+        contenedor.append(content);
     })
+
+
 EOT;
 
 $this->registerJs($js);
@@ -48,11 +62,14 @@ $this->registerJs($js);
         'btn btn-xs btn-default',
         "modal_view_tarjeta_$tarjeta->id"
 ); ?>
-    <?php /**
-    <?= $this->render('/tarjetas/view',[
-        'model' => $tarjeta,
-        'adjunto'=>$adjunto
-    ]) **/?>
+    <div class='centrado'>
+        <?=
+            Html::img(
+                'images/cargando.gif',
+                ['class'=>'logo-x2']
+            );
+        ?>
+    </div>
 
 <?php MyHelpers::modal_end() ?>
 

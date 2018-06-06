@@ -98,6 +98,11 @@ class Tarjetas extends \yii\db\ActiveRecord
         return '';
     }
 
+    public function getContieneMapa()
+    {
+        return $this->mapas !== null;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -140,7 +145,7 @@ class Tarjetas extends \yii\db\ActiveRecord
     }
 
     /**
-     * Crea una notificaciñon al crear o modificar una tarjeta.
+     * Crea una notificación al crear o modificar una tarjeta.
      * @param  [type] $insert            [description]
      * @param  [type] $changedAttributes [description]
      * @return [type]                    [description]
@@ -180,6 +185,15 @@ class Tarjetas extends \yii\db\ActiveRecord
         ]))->save();
 
 
+    }
+    /**
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMapas()
+    {
+          return $this->hasOne(Mapas::className(), ['tarjeta_id' => 'id'])
+            ->inverseOf('tarjeta');
     }
 
 

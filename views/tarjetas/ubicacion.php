@@ -1,10 +1,10 @@
 <?php
 
+use yii\helpers\Url;
 
-
-$this->registerJsFile(
-    'js/google_map.js'
-);
+// $this->registerJsFile(
+//     'js/google_map.js'
+// );
 
 $css = <<<EOT
 #map {
@@ -14,11 +14,13 @@ $css = <<<EOT
 EOT;
 
 $this->registerCss($css);
+
 ?>
 <h1><?= $model->denominacion ?></h1>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjc2m2ESE6-DqLNUUvW5tpB70Krjc1qaY&libraries=places&callback=initMap"
         async defer></script>
 
+<script src="js/google_map.js"></script>
 
 
 <div class='row'>
