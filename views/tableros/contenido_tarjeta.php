@@ -8,6 +8,7 @@
 use app\components\MyHelpers;
 use yii\helpers\Html;
 use app\models\Miembros;
+use yii\helpers\Url;
 
 $miembro = Miembros::find()
     ->where([
@@ -16,6 +17,28 @@ $miembro = Miembros::find()
         'usuario_id'=>Yii::$app->user->id
     ])->one();
 
+$url_render = Url::to(['tarjetas/view', 'id'=>$tarjeta->id]);
+
+$css = <<<EOT
+    div[id^='modal_view_tarjeta'] div.modal-body {
+        display: none;
+    }
+EOT;
+
+$this->registerCss($css);
+$js = <<<EOT
+
+    $("#modal_view_tarjeta_$tarjeta->id").on('shown.bs.modal', function() {
+
+            sendAjax('$url_render', 'GET', {}, function(data) {
+                let contenedor = $("#modal_view_tarjeta_$tarjeta->id div.modal-body");
+                contenedor.html(data);
+                contenedor.slideDown();
+            });
+    })
+EOT;
+
+$this->registerJs($js);
 ?>
 <!-- Modal contenido tarjeta -->
 <?php MyHelpers::modal_begin(
@@ -25,11 +48,11 @@ $miembro = Miembros::find()
         'btn btn-xs btn-default',
         "modal_view_tarjeta_$tarjeta->id"
 ); ?>
-
+    <?php /**
     <?= $this->render('/tarjetas/view',[
         'model' => $tarjeta,
         'adjunto'=>$adjunto
-    ]) ?>
+    ]) **/?>
 
 <?php MyHelpers::modal_end() ?>
 

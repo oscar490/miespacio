@@ -58,9 +58,13 @@ class TarjetasController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        
+        return $this->renderAjax('view', [
             'model' => $this->findModel($id),
-            'adjunto'=>new Adjuntos(),
+            'adjunto'=>new Adjuntos([
+                'scenario'=>Adjuntos::ESCENARIO_FILE,
+            ]),
         ]);
     }
 
