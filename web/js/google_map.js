@@ -1,6 +1,7 @@
 
 function initMap() {
 
+    //  Coordenadas.
     var latitud = parseFloat(document.getElementById('latitud').value);
     var longitud = parseFloat(document.getElementById('longitud').value);
 
@@ -9,21 +10,18 @@ function initMap() {
           center: coordenadas,
           zoom: 10
     });
-
+   //  Entrada de ubicación.
     var input = document.getElementById('pac-input');
-
     var autocomplete = new google.maps.places.Autocomplete(input);
-
     input.addEventListener('click', function() {
         this.value = '';
     });
 
 
-
     autocomplete.bindTo('bounds', map);
-
     var infowindow = new google.maps.InfoWindow();
 
+    //  Creación del marcador.
     var marker = new google.maps.Marker({
       map: map,
       position: coordenadas,
@@ -36,10 +34,10 @@ function initMap() {
 
 
 
-    input.addEventListener('change', function() {
+    input.addEventListener('blur', function() {
         var place = autocomplete.getPlace();
 
-        if (!place.geometry) {
+        if (place.geometry == undefined) {
            growl_error('No existe esa ubicación');
            return;
 
@@ -52,7 +50,7 @@ function initMap() {
         marker.setVisible(false);
 
         var place = autocomplete.getPlace();
-        console.log(autocomplete);
+
 
         if (!place.geometry) {
            growl_error('No existe esa ubicación');
@@ -98,7 +96,11 @@ function initMap() {
 
          var formulario = $("#form_map");
 
-         sendAjax(formulario.attr('action'), 'POST', formulario.serialize());
+         // Modificación de mapa.
+         sendAjax(formulario.attr('action'), 'POST', formulario.serialize(), function (data) {
+             growl_success('Se ha guardado la última modificación');
+             $("div#nombre_ubicacion > strong span#ubicacion_span").text(data);
+         });
 
          infowindow.setContent(ubicacion);
          infowindow.open(map, marker);

@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Tarjetas;
+use yii\filters\AccessControl;
+use app\models\Miembros;
 
 /**
  * MapasController implements the CRUD actions for Mapas model.
@@ -27,6 +29,31 @@ class MapasController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+
+            'access'=> [
+                'class'=>AccessControl::className(),
+                'only'=>['update', 'create'],
+                'rules'=>[
+                    [
+                        'allow'=>true,
+                        'actions'=>['update', 'create'],
+                        'roles'=>['@'],
+                        'matchCallback'=>function($rule, $action) {
+                            $id_tarjeta = Yii::$app->request->get('id_tarjeta');
+                            $tarjeta = Tarjetas::findOne($id_tarjeta);
+                            $equipo = $tarjeta->lista->tablero->equipo;
+                            $miembro = Miembros::find()
+                                ->where([
+                                    'equipo_id'=>$equipo->id,
+                                    'usuario_id'=>Yii::$app->user->id,
+                                ])->one();
+
+                            return $miembro !== null && !$tarjeta->esta_oculta;
+                        }
+                    ]
+                ],
+
+            ]
         ];
     }
 
@@ -70,13 +97,19 @@ class MapasController extends Controller
             'longitud'=>-3.7037901999999576,
         ]);
 
-        $tarjeta = Tarjetas::findOne($id_tarjeta);
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->tarjeta_id]);
+
+            Yii::$app->session->setFlash(
+                'success',
+                'Se ha añadido una nueva ubicación a la tarjeta'
+            );
+
+            return $this->redirect(['update', 'id_tarjeta' => $model->tarjeta_id]);
         }
 
-        return $this->render('create', [
+        $tarjeta = Tarjetas::findOne($id_tarjeta);
+
+        return $this->render('update', [
             'model' => $model,
             'tarjeta'=>$tarjeta,
         ]);
@@ -93,13 +126,10 @@ class MapasController extends Controller
     {
         $model = $this->findModel($id_tarjeta);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash(
-                'success',
-                'Se ha guardado la uĺtima modificación'
-            );
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 
-            return $this->redirect(['update', 'id_tarjeta' => $model->tarjeta_id]);
+            $model->save();
+            return $model->ubicacion;
         }
 
         return $this->render('update', [
