@@ -24,15 +24,6 @@ $items = [
     ],
 
     [
-        //  Mensajes Enviados
-        'label'=> MyHelpers::icon('glyphicon glyphicon-send') .
-            ' ' . '<strong>Enviados</strong>',
-        'content'=> $this->render('mensajes_enviados', [
-            'mensajes_enviados'=>$mensajes_enviados,
-        ]),
-    ],
-
-    [
         //  Crear mensaje
         'label'=> MyHelpers::icon('glyphicon glyphicon-pencil') .
             ' ' . '<strong>Redactar</strong>',

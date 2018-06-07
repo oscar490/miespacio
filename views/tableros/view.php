@@ -47,6 +47,7 @@ $this->registerJS($js);
 
 ?>
 
+
 <!-- Título del tablero -->
 <div class='row'>
     <?= $this->render('titulo_tablero', [

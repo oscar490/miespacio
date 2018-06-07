@@ -8,6 +8,7 @@
 use app\components\MyHelpers;
 use yii\helpers\Html;
 use app\models\Miembros;
+use yii\helpers\Url;
 
 $miembro = Miembros::find()
     ->where([
@@ -16,6 +17,42 @@ $miembro = Miembros::find()
         'usuario_id'=>Yii::$app->user->id
     ])->one();
 
+$url_render = Url::to(['tarjetas/view', 'id'=>$tarjeta->id]);
+
+$css = <<<EOT
+    div[id^='modal_view_tarjeta'] div.modal-body {
+        display: none;
+    }
+EOT;
+
+// $this->registerCss($css);
+$js = <<<EOT
+
+    $("#modal_view_tarjeta_$tarjeta->id").on('shown.bs.modal', function() {
+
+            sendAjax('$url_render', 'GET', {}, function(data) {
+                let contenedor = $("#modal_view_tarjeta_$tarjeta->id div.modal-body");
+                contenedor.html(data);
+            });
+    });
+    $("#modal_view_tarjeta_$tarjeta->id").on('hidden.bs.modal', function() {
+        let contenedor = $("#modal_view_tarjeta_$tarjeta->id div.modal-body");
+        contenedor.empty();
+        let imagen = $('<img>');
+        let content = $('<div></div>');
+        content.addClass('centrado');
+
+        imagen.attr('src', 'images/cargando.gif');
+        imagen.addClass('logo-x2');
+        content.append(imagen);
+
+        contenedor.append(content);
+    })
+
+
+EOT;
+
+$this->registerJs($js);
 ?>
 <!-- Modal contenido tarjeta -->
 <?php MyHelpers::modal_begin(
@@ -25,11 +62,14 @@ $miembro = Miembros::find()
         'btn btn-xs btn-default',
         "modal_view_tarjeta_$tarjeta->id"
 ); ?>
-
-    <?= $this->render('/tarjetas/view',[
-        'model' => $tarjeta,
-        'adjunto'=>$adjunto
-    ]) ?>
+    <div class='centrado'>
+        <?=
+            Html::img(
+                'images/cargando.gif',
+                ['class'=>'logo-x2']
+            );
+        ?>
+    </div>
 
 <?php MyHelpers::modal_end() ?>
 

@@ -6,7 +6,6 @@
 
 use yii\helpers\Html;
 ?>
-
 <?= $this->render('secciones_tarjeta', [
     'model'=>$model,
     'adjunto'=>$adjunto,

@@ -28,6 +28,15 @@ $js = <<<EOT
     })
 EOT;
 $this->registerJs($js);
+
+if ($model->contieneMapa) {
+    $label = 'Ver adjunto de ubicación';
+    $url = ['mapas/update', 'id_tarjeta'=>$model->id];
+
+} else {
+    $label = 'Añadir nuevo adjunto de ubicación';
+    $url = ['mapas/create', 'id_tarjeta'=>$model->id];
+}
 ?>
 
 <!-- Título y descripción de la tarjeta -->
@@ -45,6 +54,20 @@ $this->registerJs($js);
         <?= $this->render('adjuntos_tarjeta',[
             'model'=>$model,
         ]) ?>
+
+        <!-- Adjuntar una ubicación -->
+        <div class='row'>
+            <div class='col-md-6'>
+                <?=
+                    Html::a(
+                        MyHelpers::icon('glyphicon glyphicon-map-marker')
+                            . ' ' . "<strong>$label</strong>",
+                        $url,
+                        ['class'=>'btn btn-default']
+                    )
+                ?>
+            </div>
+        </div>
     </div>
 
     <!-- Formulario de adjuntar -->
