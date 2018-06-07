@@ -16,7 +16,7 @@ EOT;
 $this->registerCss($css);
 
 ?>
-<h1><?= $tarjeta->denominacion ?></h1>
+<h1><?= $model->tarjeta->denominacion ?></h1>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjc2m2ESE6-DqLNUUvW5tpB70Krjc1qaY&libraries=places&callback=initMap"
         async defer></script>
 
@@ -35,7 +35,7 @@ $this->registerCss($css);
                         placeholder="Enter a location"> -->
                 <?= $this->render('_form', [
                     'model'=>$model,
-                    'tarjeta'=>$tarjeta,
+                    'tarjeta'=>$model->tarjeta,
                 ]) ?>
             </div>
         </div>

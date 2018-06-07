@@ -31,11 +31,11 @@ $this->registerJs($js);
 
 if ($model->contieneMapa) {
     $label = 'Ver adjunto de ubicación';
-    $url = ['mapas/update', 'id'=>$model->id];
+    $url = ['mapas/update', 'id_tarjeta'=>$model->id];
 
 } else {
     $label = 'Añadir nuevo adjunto de ubicación';
-    $url = ['mapas/create'];
+    $url = ['mapas/create', 'id_tarjeta'=>$model->id];
 }
 ?>
 
@@ -58,12 +58,14 @@ if ($model->contieneMapa) {
         <!-- Adjuntar una ubicación -->
         <div class='row'>
             <div class='col-md-6'>
-                <?= Html::a(
-                    MyHelpers::icon('glyphicon glyphicon-map-marker')
-                        . ' ' . "<strong>$label</strong>",
-                    $url,
-                    ['class'=>'btn btn-default btn-block']
-                ) ?>
+                <?=
+                    Html::a(
+                        MyHelpers::icon('glyphicon glyphicon-map-marker')
+                            . ' ' . "<strong>$label</strong>",
+                        $url,
+                        ['class'=>'btn btn-default']
+                    )
+                ?>
             </div>
         </div>
     </div>

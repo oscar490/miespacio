@@ -8,6 +8,7 @@ use app\models\MapasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Tarjetas;
 
 /**
  * MapasController implements the CRUD actions for Mapas model.
@@ -62,9 +63,14 @@ class MapasController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id_tarjeta)
     {
-        $model = new Mapas();
+        $model = new Mapas([
+            'latitud'=>40.4167754,
+            'longitud'=>-3.7037901999999576,
+        ]);
+
+        $tarjeta = Tarjetas::findOne($id_tarjeta);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->tarjeta_id]);
@@ -72,6 +78,7 @@ class MapasController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'tarjeta'=>$tarjeta,
         ]);
     }
 
@@ -82,9 +89,9 @@ class MapasController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id_tarjeta)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($id_tarjeta);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash(
@@ -92,7 +99,7 @@ class MapasController extends Controller
                 'Se ha guardado la uĺtima modificación'
             );
 
-            return $this->redirect(['update', 'id' => $model->tarjeta_id]);
+            return $this->redirect(['update', 'id_tarjeta' => $model->tarjeta_id]);
         }
 
         return $this->render('update', [

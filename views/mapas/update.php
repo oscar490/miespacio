@@ -5,10 +5,15 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Mapas */
 
-$this->title = 'Update Mapas: ' . $model->tarjeta_id;
-$this->params['breadcrumbs'][] = ['label' => 'Mapas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->tarjeta_id, 'url' => ['view', 'id' => $model->tarjeta_id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = $model->tarjeta->denominacion . ' | Ubicación';
+$this->params['breadcrumbs'][] = ['label' => 'Tableros | MiEspacio', 'url' => ['equipos/gestionar-tableros']];
+$this->params['breadcrumbs'][] = [
+    'label' => $model->tarjeta->lista->tablero->denominacion,
+    'url' => [
+        'tableros/view', 'id' => $model->tarjeta->lista->tablero->id
+        ]
+    ];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="mapas-update">
 

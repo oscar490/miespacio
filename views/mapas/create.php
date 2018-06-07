@@ -8,7 +8,7 @@ use yii\helpers\Html;
 
 ?>
 
-<?= $this->render('_form', [
-    'model' => $model,
+<?= $this->render('view', [
     'tarjeta'=>$tarjeta,
+    'model'=>$model,
 ]) ?>
