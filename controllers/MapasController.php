@@ -40,6 +40,10 @@ class MapasController extends Controller
                         'roles'=>['@'],
                         'matchCallback'=>function($rule, $action) {
                             $id_tarjeta = Yii::$app->request->get('id_tarjeta');
+                            if (!ctype_digit($id_tarjeta)) {
+                                throw new NotFoundHttpException('Parámetro incorrecto');
+                            }
+                            
                             $tarjeta = Tarjetas::findOne($id_tarjeta);
                             $equipo = $tarjeta->lista->tablero->equipo;
                             $miembro = Miembros::find()
@@ -92,6 +96,10 @@ class MapasController extends Controller
      */
     public function actionCreate($id_tarjeta)
     {
+        if (!ctype_digit($id_tarjeta)) {
+            throw new NotFoundHttpException('Parámetro incorrecto');
+        }
+
         $model = new Mapas([
             'latitud'=>40.4167754,
             'longitud'=>-3.7037901999999576,
@@ -124,6 +132,11 @@ class MapasController extends Controller
      */
     public function actionUpdate($id_tarjeta)
     {
+        if (!ctype_digit($id_tarjeta)) {
+            throw new NotFoundHttpException('Parámetro incorrecto');
+            var_Dump('entra'); die();
+        }
+
         $model = $this->findModel($id_tarjeta);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
