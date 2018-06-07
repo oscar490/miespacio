@@ -1,10 +1,11 @@
 <?php
+/* Vista de renderizado de mapa */
+
+/* @var $tarjeta app\models\Tarjetas */
+/* @var $model app\models\Mapas */
 
 use yii\helpers\Url;
 use app\components\MyHelpers;
-// $this->registerJsFile(
-//     'js/google_map.js'
-// );
 
 $css = <<<EOT
 #map {
@@ -53,6 +54,7 @@ $this->registerCss($css);
             </div>
         </div>
 
+        <!-- Información -->
         <div class='row'>
             <div class='col-md-12'>
                 <div class='panel panel-primary'>
