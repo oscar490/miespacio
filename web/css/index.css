@@ -8,6 +8,19 @@ a:link {
     text-decoration: none;
 }
 
+.transition:hover {
+    color: #337ab7;
+}
+
+.transition {
+    transition: color 0.8s linear 0.2s;
+}
+
+#content_texto {
+
+    margin-top: 20px;
+}
+
 .site-index {
 
 }
@@ -23,6 +36,9 @@ a:link {
 
 .cubo .cara {
     position: absolute;
+    border-color: #337ab7;
+    border-style: solid;
+    border-width: 1px;
 }
 
 .cubo {
@@ -30,34 +46,40 @@ a:link {
 }
 
 .cubo .cara#superior {
-    background-color: orange;
+    background-color: #337ab7;
     transform: rotateX(90deg) translateZ(100px);
 }
 .cubo .cara#frente {
-    background-color: red;
+    background-color: cyan;
     transform: translateZ(100px);
+    color: #337ab7;
 }
 .cubo .cara#atras {
-    background-color: green;
+    background-color: cyan;
     transform: translateZ(-100px);
 }
 .cubo .cara#derecha {
-    background-color: blue;
+    background-color: cyan;
     transform: rotateY(90deg) translateZ(100px);
 }
 .cubo .cara#izquierda {
-    background-color: yellow;
+    background-color: cyan;
     transform: rotateY(-90deg) translateZ(100px);
 }
 .cubo .cara#inferior {
-    background-color: fuchsia;
+    background-color: #337ab7;
     transform: rotateX(-90deg) translateZ(100px);
+    color: white;
 }
 
 .cubo {
     transform-style: preserve-3d;
     transform: perspective(700px) rotateX(-30deg) rotateY(-30deg);
-    animation: rotate 5s infinite linear;
+
+}
+
+.cubo:hover {
+    animation: rotate 8s infinite linear;
 }
 
 @keyframes rotate {

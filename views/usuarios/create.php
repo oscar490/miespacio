@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class='row'>
         <div class='col-md-6 col-md-offset-3'>
             <div class='panel panel-primary'>
-                <div class='panel-heading'>
+                <div class='panel-heading centrado'>
                     <?=
                         Html::tag(
                             'h3',

@@ -10,6 +10,20 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Iniciar sesión';
 $this->params['breadcrumbs'][] = $this->title;
 
+$js = <<<EOT
+    $("#login-form").on('beforeSubmit', function() {
+        $("#btn_login").attr('disabled', 'true');
+
+        let imagen = $("<img>");
+        imagen.attr('src', 'images/cargando.gif');
+        imagen.addClass('logo-nav');
+
+        $("#img_loading > .centrado").append(imagen);
+    })
+EOT;
+
+$this->registerJs($js);
+
 
 ?>
 
@@ -18,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class='row'>
         <div class='col-md-6 col-md-offset-3'>
             <div class='panel panel-primary'>
-                <div class='panel-heading'>
+                <div class='panel-heading centrado'>
                     <?=
                         Html::tag(
                             'h3',
@@ -61,13 +75,20 @@ $this->params['breadcrumbs'][] = $this->title;
                         <!-- Botón de envio de formulario -->
                         <?= Html::submitButton('Iniciar sesión', [
                             'class' => 'btn btn-success btn-block',
-                            'name' => 'login-button'
+                            'name' => 'login-button',
+                            'id'=>'btn_login'
                         ]) ?>
 
 
                     <?php ActiveForm::end(); ?>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div id='img_loading' class='row centrado'>
+        <div class='col-md-5 centrado'>
+
         </div>
     </div>
 
