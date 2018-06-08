@@ -20,7 +20,7 @@ $this->registerCssFile(
 
 <div class="site-index">
     <div class='row'>
-        
+
     </div>
 
     <!-- Contenido de cabecera -->
@@ -69,6 +69,7 @@ $this->registerCssFile(
         </div>
     </div>
 
+    <!-- Cubo 3D -->
     <div class='row centrado'>
         <div class='hidden-xs col-md-6'>
             <div class='cubo'>
@@ -91,6 +92,20 @@ $this->registerCssFile(
                             para trabajar de forma colaborativa
                         </strong>
                     </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class='row centrado'>
+        <div class='col-md-5' >
+            <div class='panel panel-primary'>
+                <div class='panel-heading'>
+                    Método de organización
+                </div>
+
+                <div class='panel-body'>
+                    <video width="100%" src="/videos/organizacion.mp4" autoplay="" loop="" ></video>
                 </div>
             </div>
         </div>
