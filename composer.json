@@ -29,7 +29,8 @@
         "kartik-v/yii2-widget-growl": "*",
         "kartik-v/yii2-widgets": "*",
         "yii2mod/yii2-google-maps-markers": "*",
-        "voime/yii2-google-maps": "*"
+        "voime/yii2-google-maps": "*",
+        "dektrium/yii2-user": "0.9.*@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
