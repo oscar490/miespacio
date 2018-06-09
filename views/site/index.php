@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 use kartik\tabs\TabsX;
 use yii\helpers\Html;
+use app\components\MyHelpers;
 
 
 
@@ -60,7 +61,7 @@ $this->registerCssFile(
                         <strong>
                             Deje a un lado las largas cadenas de correos electrónicos,
                             las hojas de cálculos sin actualizar, las notas rápidas y el
-                            aoftware inadecuado para gestionar tus proyectos. MiEspacio le deja
+                            software inadecuado para gestionar tus proyectos. MiEspacio le deja
                             ver todo sobre su proyecto de un solo vistazo.
                         </strong>
                     </p>
@@ -73,7 +74,14 @@ $this->registerCssFile(
     <div class='row centrado'>
         <div class='hidden-xs col-md-6'>
             <div class='cubo'>
-                <div class='cara' id='superior'></div>
+                <div class='cara' id='superior'>
+                    <h3 align='center'>
+                        <strong>
+                            Añade miembros a tus proyectos
+                            para trabajar de forma colaborativa
+                        </strong>
+                    </h3>
+                </div>
                 <div class='cara' id='frente'>
                     <h3 align='center'>
                         <strong>
@@ -85,14 +93,7 @@ $this->registerCssFile(
                 <div class='cara' id='derecha'></div>
                 <div class='cara' id='izquierda'></div>
                 <div class='cara' id='atras'></div>
-                <div class='cara' id='inferior'>
-                    <h3 align='center'>
-                        <strong>
-                            Añade miembros a tus proyectos
-                            para trabajar de forma colaborativa
-                        </strong>
-                    </h3>
-                </div>
+                <div class='cara' id='inferior'></div>
             </div>
         </div>
     </div>
@@ -101,11 +102,17 @@ $this->registerCssFile(
         <div class='col-md-5' >
             <div class='panel panel-primary'>
                 <div class='panel-heading'>
-                    Método de organización
+                    <strong>
+                        <?=
+                            MyHelpers::icon('glyphicon glyphicon-play-circle')
+                        ?>
+                        &nbsp;
+                        Método de organización
+                    </strong>
                 </div>
 
                 <div class='panel-body'>
-                    <video width="100%" src="/videos/organizacion.mp4" autoplay="" loop="" ></video>
+                    <video width="100%" src="/videos/organizacion.mp4" autoplay="" loop="" muted ></video>
                 </div>
             </div>
         </div>

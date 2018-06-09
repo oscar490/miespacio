@@ -48,6 +48,7 @@ a:link {
 .cubo .cara#superior {
     background-color: #337ab7;
     transform: rotateX(90deg) translateZ(100px);
+    color: white;
 }
 .cubo .cara#frente {
     background-color: cyan;
@@ -69,7 +70,6 @@ a:link {
 .cubo .cara#inferior {
     background-color: #337ab7;
     transform: rotateX(-90deg) translateZ(100px);
-    color: white;
 }
 
 .cubo {
@@ -79,7 +79,7 @@ a:link {
 }
 
 .cubo:hover {
-    animation: rotate 8s infinite linear;
+    animation: rotate 10s infinite linear;
 }
 
 @keyframes rotate {
