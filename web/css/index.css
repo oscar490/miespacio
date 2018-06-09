@@ -1,0 +1,88 @@
+.well {
+    background-color: #0266a0;
+    color: white;
+    font-weight: bold;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.transition:hover {
+    color: #337ab7;
+}
+
+.transition {
+    transition: color 0.8s linear 0.2s;
+}
+
+#content_texto {
+
+    margin-top: 20px;
+}
+
+.site-index {
+
+}
+
+#title_app {
+    margin-left: -18px;
+}
+
+.cubo, .cubo .cara {
+    width: 200px;
+    height: 200px;
+}
+
+.cubo .cara {
+    position: absolute;
+    border-color: #337ab7;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.cubo {
+    margin: 100px auto;
+}
+
+.cubo .cara#superior {
+    background-color: #337ab7;
+    transform: rotateX(90deg) translateZ(100px);
+    color: white;
+}
+.cubo .cara#frente {
+    background-color: cyan;
+    transform: translateZ(100px);
+    color: #337ab7;
+}
+.cubo .cara#atras {
+    background-color: cyan;
+    transform: translateZ(-100px);
+}
+.cubo .cara#derecha {
+    background-color: cyan;
+    transform: rotateY(90deg) translateZ(100px);
+}
+.cubo .cara#izquierda {
+    background-color: cyan;
+    transform: rotateY(-90deg) translateZ(100px);
+}
+.cubo .cara#inferior {
+    background-color: #337ab7;
+    transform: rotateX(-90deg) translateZ(100px);
+}
+
+.cubo {
+    transform-style: preserve-3d;
+    transform: perspective(700px) rotateX(-30deg) rotateY(-30deg);
+
+}
+
+.cubo:hover {
+    animation: rotate 10s infinite linear;
+}
+
+@keyframes rotate {
+    0% { transform: rotateX(   0deg ) rotateY(   0deg ); }
+  100% { transform: rotateX( 360deg ) rotateY( 360deg ); }
+}

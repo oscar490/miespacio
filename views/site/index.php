@@ -3,124 +3,124 @@
 /* @var $this yii\web\View */
 use kartik\tabs\TabsX;
 use yii\helpers\Html;
+use app\components\MyHelpers;
 
-$css = <<<EOT
-    .well {
-        background-color: #0266a0;
-        color: white;
-        font-weight: bold;
-    }
 
-    a:link {
-        text-decoration: none;
-    }
-
-    .site-index {
-        display: none;
-    }
-
-EOT;
 
 $js = <<<EOT
     $('.site-index').fadeIn('slow');
 EOT;
 
-$this->registerCss($css);
-$this->registerJs($js);
+// $this->registerJs($js);
 $this->title = Yii::$app->name;
 
+$this->registerCssFile(
+    'css/index.css'
+);
 ?>
-<br><br>
+
 <div class="site-index">
-    <!-- Contenido de cabecera -->
     <div class='row'>
-        <div class='col-md-4 col-lg-offset-4'>
-            <?=
-                Html::tag(
-                    'h2',
+
+    </div>
+
+    <!-- Contenido de cabecera -->
+    <div class='row centrado'>
+
+        <div class='col-md-5 centrado'>
+            <h1>
+                <?=
                     Html::img(
                         'images/logotipo.png',
-                        ['class'=>'logo-x2', 'alt'=>'logotipo']
-                    ) .
-                    Html::tag(
-                        'strong',
-                        Yii::$app->name
+                        ['class'=>'logo-index']
                     )
-                );
-            ?>
-        </div>
-        <div class='col-xs-7 col-xs-offset-2'>
-            <?=
-                Html::tag(
-                    'strong',
-                    Html::tag(
-                        'p',
-                        'Bienvenidos al la web oficial de MiEspacio, donde
-                        teneis la posibilidad de almacenar todo vuestro
-                        contenido posible, empezando desde texto hasta archivos,
-                        y contenido multimedia.'
-                    )
-                )
-            ?>
+                ?>
+                <strong id='title_app'>
+                    <?=
+                        Html::encode($this->title)
+                    ?>
+                </strong>
+            </h1>
         </div>
     </div>
-    <hr>
-    <br>
-    <div class='row'>
-        <div class='col-md-offset-1'>
-            <div class='col-md-5'>
-                <div class='well well-lg'>
-                    <p>
-                        Se pueden crear espacios de trabajo, que son tableros
-                        digitales. En ellos se puede añadir contenido.
-                    </p>
-                    <p>
-                        Permite tener una organización de tareas a realizar en lo
-                        largo del tiempo.
-                    </p>
-                    <p>
-                        Te ayuda a tener una planificación correcta de forma
-                        cómoda y eficiente.
+    <div class='row centrado'>
+        <div class='col-md-7'>
+            <h3 align='center' class='transition'>
+                <strong>
+                    MiEspacio es la manera gratuita , flexible y visual
+                    de organizarlo todo con cualquiera.
+                </strong>
+            </h3>
+        </div>
+    </div>
+    <div class='row centrado'>
+        <div id='content_texto' class='col-md-7'>
+            <div class='panel panel-primary'>
+                <div class='panel-heading'>
+                    <p align='center'>
+                        <strong>
+                            Deje a un lado las largas cadenas de correos electrónicos,
+                            las hojas de cálculos sin actualizar, las notas rápidas y el
+                            software inadecuado para gestionar tus proyectos. MiEspacio le deja
+                            ver todo sobre su proyecto de un solo vistazo.
+                        </strong>
                     </p>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class='col-md-5'>
-                <div class='well well-lg'>
-                    <p>
-                        Puedes compartir tus descripciones con los demás y
-                        opinar sober ellas.
-                    </p>
-                    <p>
-                        Añade amigos a tus tableros y así poder trabajar
-                        en el mismp espacio.
-                    </p>
-                    <p>
-                        Podrás tener toda la información posible guardada
-                        en tu espacio de trabajo.
-                    </p>
+    <!-- Cubo 3D -->
+    <div class='row centrado'>
+        <div class='hidden-xs col-md-6'>
+            <div class='cubo'>
+                <div class='cara' id='superior'>
+                    <h3 align='center'>
+                        <strong>
+                            Añade miembros a tus proyectos
+                            para trabajar de forma colaborativa
+                        </strong>
+                    </h3>
+                </div>
+                <div class='cara' id='frente'>
+                    <h3 align='center'>
+                        <strong>
+                            Se adapta a su proyecto
+                            de forma cómoda y eficiente
+                        </strong>
+                    </h3>
+                </div>
+                <div class='cara' id='derecha'></div>
+                <div class='cara' id='izquierda'></div>
+                <div class='cara' id='atras'></div>
+                <div class='cara' id='inferior'></div>
+            </div>
+        </div>
+    </div>
+
+    <div class='row centrado'>
+        <div class='col-md-5' >
+            <div class='panel panel-primary'>
+                <div class='panel-heading'>
+                    <strong>
+                        <?=
+                            MyHelpers::icon('glyphicon glyphicon-play-circle')
+                        ?>
+                        &nbsp;
+                        Método de organización
+                    </strong>
+                </div>
+
+                <div class='panel-body'>
+                    <video width="100%" src="/videos/organizacion.mp4" autoplay="" loop="" muted ></video>
                 </div>
             </div>
         </div>
     </div>
-    <br>
-    <div class='row'>
-        <div class='col-md-4 col-md-offset-4'>
-            <?=
-                Html::a(
-                    'Iniciar sesión',
-                    ['site/login'],
-                    ['class'=>'btn-lg btn-success']
-                )
-            ?>
-            &nbsp;
-            <?=
-                Html::a(
-                    'Registrarse',
-                    ['usuarios/create'],
-                    ['class'=>'btn-lg btn-success']
-                )
-            ?>
-        </div>
-    </div>
+
+
+
+
+
+
 </div>
