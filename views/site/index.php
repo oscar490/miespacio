@@ -112,7 +112,7 @@ $this->registerCssFile(
                 </div>
 
                 <div class='panel-body'>
-                    <video width="100%" src="/videos/organizacion.mp4" autoplay="" loop=""></video>
+                    <video width="100%" src="/videos/organizacion.mp4" autoplay="" loop="" muted></video>
                 </div>
             </div>
         </div>
