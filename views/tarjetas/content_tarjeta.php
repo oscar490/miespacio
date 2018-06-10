@@ -68,6 +68,15 @@ if ($model->contieneMapa) {
                 ?>
             </div>
         </div>
+        <br>
+        <!-- Botones de valoración -->
+        <div class='row'>
+            <?= $this->render('botones_valoracion', [
+                'valoraciones_add'=>$valoraciones_add,
+                'tarjeta'=>$model,
+            ]) ?>
+        </div>
+
     </div>
 
     <!-- Formulario de adjuntar -->

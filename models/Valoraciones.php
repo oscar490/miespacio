@@ -35,7 +35,7 @@ class Valoraciones extends \yii\db\ActiveRecord
             [['tipo_id', 'usuario_id', 'tarjeta_id'], 'required'],
             [['tipo_id', 'usuario_id', 'tarjeta_id'], 'default', 'value' => null],
             [['tipo_id', 'usuario_id', 'tarjeta_id'], 'integer'],
-            [['usuario_id', 'tarjeta_id', 'tipo_id'], 'unique', 'targetAttribute' => ['usuario_id', 'tarjeta_id', 'tipo_id']],
+            [['usuario_id', 'tarjeta_id'], 'unique', 'targetAttribute' => ['usuario_id', 'tarjeta_id', 'tipo_id']],
             [['tarjeta_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tarjetas::className(), 'targetAttribute' => ['tarjeta_id' => 'id']],
             [['tipo_id'], 'exist', 'skipOnError' => true, 'targetClass' => TiposValoraciones::className(), 'targetAttribute' => ['tipo_id' => 'id']],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
@@ -53,6 +53,11 @@ class Valoraciones extends \yii\db\ActiveRecord
             'usuario_id' => 'Usuario ID',
             'tarjeta_id' => 'Tarjeta ID',
         ];
+    }
+
+    public function formName()
+    {
+        return '';
     }
 
     /**

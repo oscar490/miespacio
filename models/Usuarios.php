@@ -350,5 +350,14 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
             ->inverseOf('usuario');
    }
 
+   /**
+    * @return \yii\db\ActiveQuery
+    */
+   public function getValoraciones()
+   {
+       return $this->hasMany(Valoraciones::className(), ['usuario_id'=>'id'])
+            ->inverseOf('usuario');
+   }
+
 
 }

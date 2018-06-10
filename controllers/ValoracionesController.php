@@ -62,12 +62,25 @@ class ValoracionesController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionValorar($id_tarjeta)
     {
+        $valoracion = Valoraciones::find()
+            ->where([
+                'usuario_id'=>Yii::$app->user->id,
+                'tarjeta_id'=>$id_tarjeta,
+            ])->one();
+
+        if ($valoracion !== null) {
+            $valoracion->tipo_id = Yii::$app->request->post('tipo_id');
+            $valoracion->save();
+
+            return $valoracion->tipo_id;
+        }
+
         $model = new Valoraciones();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $model->tipo_id;
         }
 
         return $this->render('create', [

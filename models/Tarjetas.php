@@ -196,5 +196,14 @@ class Tarjetas extends \yii\db\ActiveRecord
             ->inverseOf('tarjeta');
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getValoraciones()
+    {
+        return $this->hasMany(Valoraciones::className(), ['tarjeta_id'=>'id'])
+            ->inverseOf('tarjeta');
+    }
+
 
 }

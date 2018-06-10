@@ -14,6 +14,7 @@ use app\models\Adjuntos;
 use yii\db\Expression;
 use app\models\Comentarios;
 use app\models\Mapas;
+use app\models\TiposValoraciones;
 
 /**
  * TarjetasController implements the CRUD actions for Tarjetas model.
@@ -59,9 +60,16 @@ class TarjetasController extends Controller
     public function actionView($id)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        
+        $model = $this->findModel($id);
+
+        $valoraciones_add = TiposValoraciones::find()
+            ->all();
+        $valoraciones = $model->getValoraciones();
+
         return $this->renderAjax('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'valoraciones'=>$valoraciones,
+            'valoraciones_add'=>$valoraciones_add,
             'adjunto'=>new Adjuntos([
                 'scenario'=>Adjuntos::ESCENARIO_FILE,
             ]),

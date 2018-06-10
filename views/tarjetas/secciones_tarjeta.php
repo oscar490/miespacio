@@ -3,6 +3,7 @@
 
 /* @var $model app\models\Tarjetas */
 /* @var $adjunto app\models\Adjuntos */
+/* @var $valoraciones yii\db\ActiveRecord */
 
 use yii\helpers\Html;
 use app\components\MyHelpers;
@@ -18,7 +19,8 @@ $items = [
 
         'content'=>$this->render('content_tarjeta', [
             'model'=>$model,
-            'adjunto'=>$adjunto
+            'adjunto'=>$adjunto,
+            'valoraciones_add'=>$valoraciones_add,
         ]),
     ],
     [
@@ -35,7 +37,16 @@ $items = [
         'linkOptions'=>[
             'id'=>"comentarios_tarjeta_$model->id",
         ],
-    ]
+    ],
+
+    [
+        //  Valoraciones de tarjeta.
+        'label'=>MyHelpers::icon('glyphicon glyphicon-thumbs-up') .
+            ' ' . '<strong>Valoraciones</strong>',
+        'content'=>$this->render('valoraciones', [
+            'valoraciones'=>$valoraciones,
+        ]),
+    ],
 ];
 
 
