@@ -79,13 +79,15 @@ $this->registerJsFile(
                         <!-- Recordar la sesión -->
                         <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
-                        <!-- Botón de envio de formulario -->
+                        <!-- Iniciar sesión con Google -->
                         <div class='row'>
                             <div class='col-md-12 centrado'>
                                 <div class="g-signin2" data-onsuccess="onSignIn"></div>
                             </div>
                         </div>
                         <br>
+                        
+                        <!-- Botón de envio de formulario -->
                         <div class='row'>
                             <div class='col-md-12'>
                                 <?= Html::submitButton('Iniciar sesión', [
@@ -103,7 +105,7 @@ $this->registerJsFile(
         </div>
     </div>
 
-
+    <!-- Cargando login -->
     <div id='img_loading' class='row centrado'>
         <div class='col-md-5 centrado'>
 

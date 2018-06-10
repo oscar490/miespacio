@@ -185,7 +185,7 @@ class MyHelpers
     {
         return Html::tag(
             'span',
-            Html::encode($contenido),
+            $contenido,
             ['class'=>"label label-$class"]
         );
     }

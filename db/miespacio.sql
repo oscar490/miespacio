@@ -329,6 +329,49 @@ CREATE TABLE mapas
 
 
 );
+
+
+-- Tabla tipos_valoraciones --
+
+DROP TABLE IF EXISTS tipos_valoraciones CASCADE;
+
+CREATE TABLE tipos_valoraciones
+(
+       id           BIGSERIAL    PRIMARY KEY
+    ,  denominacion VARCHAR(255) NOT NULL
+    ,  icono        VARCHAR(255) NOT NULL
+
+);
+
+
+INSERT INTO tipos_valoraciones (denominacion, icono)
+    VALUES ('Me gusta', 'glyphicon glyphicon-thumbs-up'),
+            ('No me gusta', 'glyphicon glyphicon-thumbs-down'),
+            ('Me encanta', 'glyphicon glyphicon-heart');
+
+
+
+-- Tabla valoraciones --
+
+DROP TABLE IF EXISTS valoraciones CASCADE;
+
+CREATE TABLE valoraciones
+(
+       id        BIGSERIAL     PRIMARY KEY
+    ,  tipo_id   BIGINT        NOT NULL REFERENCES tipos_valoraciones (id) ON DELETE
+                               CASCADE ON UPDATE CASCADE
+    ,  usuario_id BIGINT       NOT NULL REFERENCES usuarios (id) ON DELETE
+                               CASCADE ON UPDATE CASCADE
+    ,  tarjeta_id BIGINT       NOT NULL REFERENCES tarjetas (id) ON DELETE
+                               CASCADE ON UPDATE CASCADE
+    ,  created_at TIMESTAMP(0) NOT NULL DEFAULT LOCALTIMESTAMP
+
+    ,  UNIQUE (usuario_id, tarjeta_id)
+
+);
+
+INSERT INTO valoraciones (tipo_id, usuario_id, tarjeta_id)
+    VALUES (1, 1, 1), (1, 2, 1);
 -- Table Actividades --
 /*
 DROP TABLE IF EXISTS actividades CASCADE;
