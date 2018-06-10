@@ -9,6 +9,16 @@ use app\components\MyHelpers;
 use yii\helpers\Url;
 use app\models\Valoraciones;
 
+$css = <<<EOT
+    @media (max-width: 990px) {
+        #boton_valoracion {
+            margin-bottom: 10px;
+        }
+    }
+EOT;
+
+$this->registerCss($css);
+
 $url_valorar = Url::to(['valoraciones/valorar', 'id_tarjeta'=>$tarjeta->id]);
 $url_render = Url::to(['tarjetas/render-valoraciones', 'id'=>$tarjeta->id]);
 $usuario_id = Yii::$app->user->id;
@@ -55,7 +65,7 @@ $valoracion_tarjeta = Valoraciones::find()
             ? 'btn btn-primary btn-block' : 'btn btn-default btn-block';
     }
 ?>
-    <div class='col-md-4'>
+    <div id='boton_valoracion' class='col-md-4'>
         <?= Html::button(
             MyHelpers::icon($valoracion->icono)
                 . " " . "<strong>$valoracion->denominacion</strong>",
