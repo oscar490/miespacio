@@ -10,6 +10,7 @@ use yii\helpers\Url;
 use app\models\Valoraciones;
 
 $url_valorar = Url::to(['valoraciones/valorar', 'id_tarjeta'=>$tarjeta->id]);
+$url_render = Url::to(['tarjetas/render-valoraciones', 'id'=>$tarjeta->id]);
 $usuario_id = Yii::$app->user->id;
 $tarjeta_id = $tarjeta->id;
 
@@ -25,9 +26,11 @@ $js = <<<EOT
         sendAjax('$url_valorar', 'POST', datos, function(data) {
             $("button[data-tipo]").attr('class','btn btn-default btn-block');
 
+            boton.attr('class', 'btn btn-primary btn-block');
 
-            console.log(boton);
-            boton.attr('class', 'btn btn-primary btn-block')
+            sendAjax('$url_render', 'GET', {}, function(data) {
+                $("#view_valoraciones_$tarjeta_id").html(data);
+            })
         });
 
     })

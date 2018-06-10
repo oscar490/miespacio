@@ -58,7 +58,7 @@ class ValoracionesController extends Controller
     }
 
     /**
-     * Creates a new Valoraciones model.
+     * Valora una tarjeta añadiendo si le gusta o no.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */

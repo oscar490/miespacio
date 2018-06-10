@@ -6,21 +6,21 @@ use app\components\MyHelpers;
 use yii\widgets\ListView;
 use yii\data\ActiveDataProvider;
 
-$css = <<<EOT
-    #view_valoraciones {
-        height: 400px;
-    }
+
+
+$num_valoraciones = $valoraciones->count();
+
+$js = <<<EOT
+    $("#valoraciones_$tarjeta->id").text('$num_valoraciones')
 EOT;
 
-$this->registerCss($css);
+$this->registerJs($js);
 ?>
 
-<div id='view_valoraciones' class='content-scroll'>
-    <?= ListView::widget([
-        'dataProvider'=>new ActiveDataProvider([
-            'query'=>$valoraciones
-        ]),
-        'itemView'=>'_valoracion',
-        'summary'=>'',
-    ]) ?>
-</div>
+<?= ListView::widget([
+    'dataProvider'=>new ActiveDataProvider([
+        'query'=>$valoraciones
+    ]),
+    'itemView'=>'_valoracion',
+    'summary'=>'',
+]) ?>

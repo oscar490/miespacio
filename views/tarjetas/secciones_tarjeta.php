@@ -42,9 +42,11 @@ $items = [
     [
         //  Valoraciones de tarjeta.
         'label'=>MyHelpers::icon('glyphicon glyphicon-thumbs-up') .
-            ' ' . '<strong>Valoraciones</strong>',
-        'content'=>$this->render('valoraciones', [
+            ' ' . '<strong>Valoraciones</strong>'  .
+            ' ' . "<span id='valoraciones_$model->id'class='badge'>0</span>",
+        'content'=>$this->render('contenido_valoraciones', [
             'valoraciones'=>$valoraciones,
+            'tarjeta'=>$model,
         ]),
     ],
 ];

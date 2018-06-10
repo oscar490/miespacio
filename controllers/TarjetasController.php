@@ -208,6 +208,16 @@ class TarjetasController extends Controller
         ]);
     }
 
+    public function actionRenderValoraciones($id)
+    {
+        $model = $this->findModel($id);
+
+        return $this->renderAjax('valoraciones', [
+            'valoraciones'=>$model->getValoraciones(),
+            'tarjeta'=>$model,
+        ]);
+    }
+
     /**
      * Muestra u oculta una tarjeta, de manera que si está oculta
      * sólo lo ve el propietario del tablero. En caso contrario, lo puede ver
