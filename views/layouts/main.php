@@ -31,7 +31,7 @@ $this->registerJs($js, View::POS_HEAD);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <meta name="google-signin-client_id" content="298114253005-3cn3hadqmp0qig5ua3a5vjdkb37n9rbm.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="298114253005-a0af7etu7qg95lje8e271vu5k7129ch3.apps.googleusercontent.com">
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
