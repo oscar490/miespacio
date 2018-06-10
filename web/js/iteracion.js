@@ -17,6 +17,10 @@ function seleccionarMenuUsuario() {
     }
 }
 
+
+
+
+
 /**
  * Se avisa, cambiando el color de fondo de enlace, de que hay mensajes
  * nuevos.

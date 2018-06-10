@@ -13,6 +13,8 @@ use app\models\Usuarios;
  */
 class LoginForm extends Model
 {
+    const ESCENARIO_GOOGLE_LOGIN = 'google_login';
+
     public $username;
     public $password;
     public $rememberMe = true;
@@ -27,9 +29,14 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['username', 'password'], 'required'],
+            [['username', 'password'], 'required', 'on'=>'default'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
+            [
+                ['username'],
+                'required',
+                'on'=>self::ESCENARIO_GOOGLE_LOGIN,
+            ],
 
             [
                 ['username'],
