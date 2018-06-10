@@ -115,6 +115,43 @@ class SiteController extends Controller
     }
 
     /**
+     * Realiza un inicio de sesión desde la cuenta de correos
+     * de Google. Comprobando que exista el usuario con la Dirección
+     * de correos de Google.
+     * @return boolean  False si no existe ningún usuario con ese correo.
+     */
+    public function actionLoginGoogle()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $usuario = Usuarios::find()
+            ->where([
+                'email'=>Yii::$app->request->post('email')
+            ])->one();
+
+
+        if ($usuario === null) {
+            return false;
+        }
+
+        $model = new LoginForm([
+            'scenario'=>LoginForm::ESCENARIO_GOOGLE_LOGIN,
+            'username'=>$usuario->nombre,
+        ]);
+
+        if ($model->login()) {
+            return $this->redirect(['equipos/gestionar-tableros']);
+        }
+    }
+
+    public function actionGoogle()
+    {
+        return $this->render('google');
+    }
+
+    /**
      * Envía un correo con un enlace para cambiar
      * la contraseña. Mediante un formulario se indica
      * la dirección de correo al que mandar.

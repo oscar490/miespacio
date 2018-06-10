@@ -8,6 +8,9 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use app\components\MyHelpers;
 use yii\helpers\Html;
+use yii\web\View;
+
+
 
 if (!Yii::$app->user->isGuest) {
 
@@ -44,6 +47,12 @@ $css = <<<EOT
 EOT;
 
 $this->registerCss($css);
+
+$this->registerJsFile(
+    'js/google_login.js'
+);
+
+
 }
 
 if (Yii::$app->user->isGuest) {
@@ -177,7 +186,10 @@ if (Yii::$app->user->isGuest) {
                         ['class'=>'glyphicon glyphicon-off ']
                     ) . ' Cerrar sesión',
                     'url'=>['site/logout'],
-                    'linkOptions'=>['data-method'=>'POST'],
+                    'linkOptions'=>[
+                        'data-method'=>'POST',
+                        'id'=>'cerrado_sesion',
+                    ],
                     'encode'=>false,
                 ],
 

@@ -13,6 +13,10 @@ $this->registerJsFile(
     ['depends'=>[\yii\web\JqueryAsset::className()]]
 );
 
+$this->registerJsFile(
+    '/js/google_login.js'
+);
+
 
 
 

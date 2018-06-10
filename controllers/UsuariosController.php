@@ -70,6 +70,10 @@ class UsuariosController extends Controller
      */
     public function actionCreate()
     {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        
         $model = new Usuarios([
             'scenario' => Usuarios::ESCENARIO_CREATE,
         ]);

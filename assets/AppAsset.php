@@ -26,6 +26,7 @@ class AppAsset extends AssetBundle
     public $js = [
         'js/iteracion.js',
         'js/jquery.growl.js',
+        'https://apis.google.com/js/platform.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

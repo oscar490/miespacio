@@ -6,11 +6,13 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\web\View;
 
 $this->title = 'Iniciar sesión';
 $this->params['breadcrumbs'][] = $this->title;
 
 $js = <<<EOT
+
     $("#login-form").on('beforeSubmit', function() {
         $("#btn_login").attr('disabled', 'true');
 
@@ -19,14 +21,19 @@ $js = <<<EOT
         imagen.addClass('logo-nav');
 
         $("#img_loading > .centrado").append(imagen);
+
     })
+
 EOT;
 
 $this->registerJs($js);
 
-
+$this->registerJsFile(
+    'js/google_login.js',
+    ['depends'=>[\yii\web\JqueryAsset::className()]]
+);
 ?>
-
+<br>
 <div class="site-login">
     <!-- Formulario de inicio de sesión -->
     <div class='row'>
@@ -73,11 +80,21 @@ $this->registerJs($js);
                         <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
                         <!-- Botón de envio de formulario -->
-                        <?= Html::submitButton('Iniciar sesión', [
-                            'class' => 'btn btn-success btn-block',
-                            'name' => 'login-button',
-                            'id'=>'btn_login'
-                        ]) ?>
+                        <div class='row'>
+                            <div class='col-md-12 centrado'>
+                                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class='row'>
+                            <div class='col-md-12'>
+                                <?= Html::submitButton('Iniciar sesión', [
+                                    'class' => 'btn btn-success btn-block',
+                                    'name' => 'login-button',
+                                    'id'=>'btn_login'
+                                ]) ?>
+                            </div>
+                        </div>
 
 
                     <?php ActiveForm::end(); ?>
@@ -85,6 +102,7 @@ $this->registerJs($js);
             </div>
         </div>
     </div>
+
 
     <div id='img_loading' class='row centrado'>
         <div class='col-md-5 centrado'>
