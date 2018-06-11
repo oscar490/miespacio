@@ -70,6 +70,11 @@ a:link {
 .cubo .cara#inferior {
     background-color: #337ab7;
     transform: rotateX(-90deg) translateZ(100px);
+    color: white;
+}
+
+.cara#inferior > div#texto {
+    margin-top: 30px;
 }
 
 .cubo {

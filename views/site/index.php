@@ -1,15 +1,13 @@
 <?php
+/* Vista de página principal */
 
 /* @var $this yii\web\View */
+
 use kartik\tabs\TabsX;
 use yii\helpers\Html;
 use app\components\MyHelpers;
 
 
-
-$js = <<<EOT
-    $('.site-index').fadeIn('slow');
-EOT;
 
 // $this->registerJs($js);
 $this->title = Yii::$app->name;
@@ -20,13 +18,11 @@ $this->registerCssFile(
 ?>
 
 <div class="site-index">
-    <div class='row'>
 
-    </div>
-
-    <!-- Contenido de cabecera -->
+    <!-- Cabecera -->
     <div class='row centrado'>
 
+        <!-- MiEspacio -->
         <div class='col-md-5 centrado'>
             <h1>
                 <?=
@@ -43,6 +39,8 @@ $this->registerCssFile(
             </h1>
         </div>
     </div>
+
+    <!-- Característica -->
     <div class='row centrado'>
         <div class='col-md-7'>
             <h3 align='center' class='transition'>
@@ -53,6 +51,8 @@ $this->registerCssFile(
             </h3>
         </div>
     </div>
+
+    <!-- Ver de un solo vistazo -->
     <div class='row centrado'>
         <div id='content_texto' class='col-md-7'>
             <div class='panel panel-primary'>
@@ -69,6 +69,28 @@ $this->registerCssFile(
             </div>
         </div>
     </div>
+
+    <!-- Enlaces de login y registro -->
+    <div class='row centrado'>
+        <div class='col-md-6 centrado'>
+            <?= Html::a(
+                '<strong>Regístrese. ¡Es gratis!</strong>',
+                ['usuarios/create'],
+                ['class'=>'btn btn-lg btn-success']
+            ) ?>
+        </div>
+    </div>
+    <br>
+    <div class='row centrado'>
+        <div clas='col-md-6 centrado'>
+            <?= Html::a(
+                '<strong>Iniciar sesión</strong>',
+                ['site/login'],
+                ['class'=>'btn btn-lg btn-success']
+            ) ?>
+        </div>
+    </div>
+    <br>
 
     <!-- Cubo 3D -->
     <div class='row centrado'>
@@ -93,13 +115,32 @@ $this->registerCssFile(
                 <div class='cara' id='derecha'></div>
                 <div class='cara' id='izquierda'></div>
                 <div class='cara' id='atras'></div>
-                <div class='cara' id='inferior'></div>
+                <div class='cara' id='inferior'>
+                    <div id='texto' class='centrado'>
+                        <h3>
+                            <strong>
+                                MiEspacio
+                            </strong>
+                        </h3>
+                    </div>
+                    <div class='centrado'>
+                        <?=
+                            Html::img(
+                                'images/logotipo.png',
+                                ['class'=>'logo-x2']
+                            )
+                        ?>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
 
+
     <div class='row centrado'>
-        <div class='col-md-5' >
+        <!-- Video -->
+        <div class='col-md-6' >
             <div class='panel panel-primary'>
                 <div class='panel-heading'>
                     <strong>
@@ -112,7 +153,7 @@ $this->registerCssFile(
                 </div>
 
                 <div class='panel-body'>
-                    <video width="100%" src="/videos/organizacion.mp4" autoplay="" loop="" muted></video>
+                    <video width="100%" src="/videos/organizacion.mp4" controls autoplay="" loop="" muted></video>
                 </div>
             </div>
         </div>
