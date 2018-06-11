@@ -2,8 +2,9 @@
 
 ## Diagramas de clases
 
-Incluir.
+![Datos](images/Models.jpg)
 
+![Datos](images/Controllers.jpg)
 ## Diagramas de estructura lógica de datos
 
-Incluir.
+![Datos](images/Datos.jpg)
