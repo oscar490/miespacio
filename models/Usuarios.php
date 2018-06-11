@@ -10,7 +10,7 @@ use Yii;
 use yii\web\IdentityInterface;
 
 /**
- * This is the model class for table "usuarios".
+ * Modelo que representa la tabla de Usuarios.
  *
  * @property int $id
  * @property string $nombre
@@ -185,7 +185,7 @@ class Usuarios extends \yii\db\ActiveRecord implements IdentityInterface
      * Se realiza antes de insertar el usuario en la base de datos. También
      * genera token aleatorio para el cambio de contraseña.
      * @param  bool $insert Confirma si se va a realiar un insert o update.
-     * @return bool
+     * @return bool         Si la inserción o actualización debe continuar o no.
      */
     public function beforeSave($insert)
     {

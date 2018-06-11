@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Implementación de las acciones sobre el sitio.
+ */
 namespace app\controllers;
 
 use app\models\ContactForm;
@@ -92,7 +94,7 @@ class SiteController extends Controller
 
     /**
      * Inicia la sesión de usuario. Se comprueba si tiene la cuenta
-     * activada.
+     * activada, si existe el usuario y si la contraseña es la correcta.
      *
      * @return Response|string
      */

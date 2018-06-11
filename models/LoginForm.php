@@ -7,7 +7,7 @@ use yii\base\Model;
 use app\models\Usuarios;
 
 /**
- * LoginForm is the model behind the login form.
+ * Modelo para validar el formulario de inicio de sesión.
  *
  * @property User|null $user This property is read-only.
  */

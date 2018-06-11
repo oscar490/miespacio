@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Implementación de acciones sobre el Usuario.
+ */
 namespace app\controllers;
 
 use Yii;
@@ -64,8 +66,9 @@ class UsuariosController extends Controller
     }
 
     /**
-     * Creates a new Usuarios model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Crea un nuevo usuario. Si se ha creado correctamente, redirecciona
+     * a la página de login y se envía al usuario un correo de activación
+     * de cuenta.
      * @return mixed
      */
     public function actionCreate()
@@ -73,7 +76,7 @@ class UsuariosController extends Controller
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
-        
+
         $model = new Usuarios([
             'scenario' => Usuarios::ESCENARIO_CREATE,
         ]);

@@ -1,4 +1,5 @@
 <?php
+/* Formulario de inicio de seión */
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
@@ -14,13 +15,17 @@ $this->params['breadcrumbs'][] = $this->title;
 $js = <<<EOT
 
     $("#login-form").on('beforeSubmit', function() {
-        $("#btn_login").attr('disabled', 'true');
+        let div_submit = $("#btn_submit");
+
+        div_submit.empty();
 
         let imagen = $("<img>");
         imagen.attr('src', 'images/cargando.gif');
         imagen.addClass('logo-nav');
 
-        $("#img_loading > .centrado").append(imagen);
+
+        div_submit.append(imagen);
+        div_submit.addClass('centrado');
 
     })
 
@@ -35,7 +40,7 @@ $this->registerJsFile(
 ?>
 <br>
 <div class="site-login">
-    <!-- Formulario de inicio de sesión -->
+
     <div class='row'>
         <div class='col-md-6 col-md-offset-3'>
             <div class='panel panel-primary'>
@@ -86,11 +91,11 @@ $this->registerJsFile(
                             </div>
                         </div>
                         <br>
-                        
+
                         <!-- Botón de envio de formulario -->
                         <div class='row'>
-                            <div class='col-md-12'>
-                                <?= Html::submitButton('Iniciar sesión', [
+                            <div id='btn_submit' class='col-md-12'>
+                                <?= Html::submitButton('<strong>Iniciar sesión</strong>', [
                                     'class' => 'btn btn-success btn-block',
                                     'name' => 'login-button',
                                     'id'=>'btn_login'
@@ -105,11 +110,5 @@ $this->registerJsFile(
         </div>
     </div>
 
-    <!-- Cargando login -->
-    <div id='img_loading' class='row centrado'>
-        <div class='col-md-5 centrado'>
-
-        </div>
-    </div>
-
+    
 </div>
