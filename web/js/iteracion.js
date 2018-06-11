@@ -17,6 +17,13 @@ function seleccionarMenuUsuario() {
     }
 }
 
+function bloquearSubmit(form) {
+
+    form.on('beforeSubmit', function() {
+
+        $(this).find("button[type='submit']").attr('disabled', 'true');
+    })
+}
 
 /**
  * Se avisa, cambiando el color de fondo de enlace, de que hay mensajes

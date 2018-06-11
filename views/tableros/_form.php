@@ -60,4 +60,13 @@ if ($tablero->isNewRecord) {
         ]) ?>
     </div>
 
+    <?php if ($tablero->isNewRecord): ?>
+        <p>
+            <strong>
+                Un tablero es un conjunto de tarjetas ordenadas en listas. Utilícelo
+                para gestionar proyectos u organizar cualquier actividad.
+            </strong>
+        </p>
+    <?php endif; ?>
+
 <?php ActiveForm::end(); ?>

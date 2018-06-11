@@ -11,10 +11,14 @@ if ($equipo->id !== null) {
     $action = ['equipos/update', 'id'=>$equipo->id];
     $label = 'Guardar configuración';
     $mostrar = true;
+    $id = 'update_equipo';
+
+} else {
+    $id = 'create_equipo';
 }
 
 $js = <<<EOT
-    desactivarBotonForm($("#create_equipo"));
+    bloquearSubmit($("#$id"));
 
 EOT;
 
@@ -24,7 +28,7 @@ $this->registerJs($js);
 <?php $form = ActiveForm::begin([
     'action'=>$action,
     'enableAjaxValidation' => true,
-    'id'=>'create_equipo'
+    'id'=>$id,
 ]); ?>
 
     <!-- Denominación  -->
@@ -43,6 +47,7 @@ $this->registerJs($js);
     <!-- Descripción -->
     <?=
         $form->field($equipo, 'descripcion')->textarea([
+            'maxlength'=>true,
             'rows'=>4,
             'placeholder'=>'Descripción (opcional)'
         ])->label(false);

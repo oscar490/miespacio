@@ -16,12 +16,19 @@ if ($model->id === null) {
     $label = 'Guardar configuración';
     $action = ['usuarios/update', 'id'=>$model->id];
 }
+
+$js = <<<EOT
+    bloquearSubmit($("#form_user"));
+EOT;
+
+$this->registerJs($js);
 ?>
 
 <!-- Formulario de registro de usuario nuevo -->
 <?php $form = ActiveForm::begin([
     'action'=>$action,
     'enableAjaxValidation' => true,
+    'id'=>'form_user',
 ]); ?>
 
     <!-- Nombre de usuario -->

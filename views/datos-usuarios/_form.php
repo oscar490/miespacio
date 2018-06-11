@@ -9,12 +9,17 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
 
+$js = <<<EOT
+    bloquearSubmit($("#form_update"));
+EOT;
+$this->registerJs($js);
 ?>
 
 <div class="datos-usuarios-form">
 
     <?php $form = ActiveForm::begin([
         'action'=>['datos-usuarios/update', 'id'=>$model->usuario_id],
+        'id'=>'form_update',
     ]); ?>
         <!-- Nombre completo -->
         <?= $form->field($model, 'nombre_completo')->textInput(['maxlength' => true]) ?>

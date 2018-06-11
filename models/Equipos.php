@@ -44,7 +44,8 @@ class Equipos extends \yii\db\ActiveRecord
             [['denominacion', 'propietario_id'], 'required'],
             [['propietario_id'], 'default', 'value' => null],
             [['propietario_id'], 'integer'],
-            [['denominacion', 'descripcion'], 'string', 'max' => 30],
+            [['denominacion'], 'string', 'max' => 30],
+            [['descripcion'], 'string', 'max'=>50],
             [
                 ['denominacion', 'propietario_id'],
                 'unique',

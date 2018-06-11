@@ -94,6 +94,7 @@ class TablerosController extends Controller
         $equipos = Equipos::find()
             ->select(['denominacion'])
             ->indexBy('id')
+            ->where(['propietario_id'=>Yii::$app->user->id])
             ->column();
 
         return $this->render('view', [
@@ -267,6 +268,12 @@ class TablerosController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            Yii::$app->session->setFlash(
+                'success',
+                'Se han modificado los datos correctamente'
+            );
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
