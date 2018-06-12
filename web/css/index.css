@@ -42,7 +42,9 @@ video {
 }
 
 #title_app {
-    margin-left: -18px;
+    font-size: 36px;
+    margin-top: 20px;
+    margin-left: 1px;
 }
 
 .cubo, .cubo .cara {

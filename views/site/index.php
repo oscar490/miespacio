@@ -30,13 +30,13 @@ $this->registerCssFile(
                     ['class'=>'logo-index']
                 )
             ?>
-            <h1>
-                <strong id='title_app'>
-                    <?=
-                        Html::encode($this->title)
-                    ?>
-                </strong>
-            </h1>
+
+            <strong id='title_app'>
+                <?=
+                    Html::encode($this->title)
+                ?>
+            </strong>
+
         </div>
     </div>
 
