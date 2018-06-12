@@ -38,22 +38,6 @@ class MapasController extends Controller
                         'allow'=>true,
                         'actions'=>['update', 'create'],
                         'roles'=>['@'],
-                        'matchCallback'=>function($rule, $action) {
-                            $id_tarjeta = Yii::$app->request->get('id_tarjeta');
-                            if (!ctype_digit($id_tarjeta)) {
-                                throw new NotFoundHttpException('Parámetro incorrecto');
-                            }
-                            
-                            $tarjeta = Tarjetas::findOne($id_tarjeta);
-                            $equipo = $tarjeta->lista->tablero->equipo;
-                            $miembro = Miembros::find()
-                                ->where([
-                                    'equipo_id'=>$equipo->id,
-                                    'usuario_id'=>Yii::$app->user->id,
-                                ])->one();
-
-                            return $miembro !== null && !$tarjeta->esta_oculta;
-                        }
                     ]
                 ],
 

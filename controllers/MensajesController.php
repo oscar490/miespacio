@@ -13,6 +13,7 @@ use yii\widgets\ActiveForm;
 use yii\web\Response;
 use app\models\DatosUsuarios;
 use yii\db\Expression;
+use yii\filters\AccessControl;
 
 /**
  * MensajesController implements the CRUD actions for Mensajes model.
@@ -31,6 +32,23 @@ class MensajesController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+
+            'access'=>[
+                'class'=>AccessControl::className(),
+                'only'=>['index', 'create'],
+                'rules'=>[
+                    [
+                        'allow'=>true,
+                        'actions'=>['index', 'create'],
+                        'roles'=>['@'],
+                    ],
+                    [
+                        'allow'=>true,
+                        'actions'=>['index', 'create'],
+                        'roles'=>['@'],
+                    ]
+                ],
+            ]
         ];
     }
 
@@ -196,7 +214,7 @@ class MensajesController extends Controller
     {
         $this->findModel($id)->delete();
 
-        
+
     }
 
     /**
