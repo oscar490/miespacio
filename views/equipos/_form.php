@@ -41,6 +41,7 @@ $this->registerJs($js);
         ->textInput([
             'maxlength' => true,
             'placeholder'=>'Nombre del equipo',
+            'id'=>'nombre_equipo'
         ])->label(false);
     ?>
 

@@ -43,7 +43,7 @@ $this->registerCssFile(
     <!-- Característica -->
     <div class='row centrado'>
         <div class='col-md-7'>
-            <h3 align='center' class='transition'>
+            <h3 class='transition'>
                 <strong>
                     MiEspacio es la manera gratuita , flexible y visual
                     de organizarlo todo con cualquiera.
@@ -56,8 +56,8 @@ $this->registerCssFile(
     <div class='row centrado'>
         <div id='content_texto' class='col-md-7'>
             <div class='panel panel-primary'>
-                <div class='panel-heading'>
-                    <p align='center'>
+                <div id='tareas_largas' class='panel-heading'>
+                    <p>
                         <strong>
                             Deje a un lado las largas cadenas de correos electrónicos,
                             las hojas de cálculos sin actualizar, las notas rápidas y el
@@ -82,7 +82,7 @@ $this->registerCssFile(
     </div>
     <br>
     <div class='row centrado'>
-        <div clas='col-md-6 centrado'>
+        <div class='col-md-6 centrado'>
             <?= Html::a(
                 '<strong>Iniciar sesión</strong>',
                 ['site/login'],
@@ -97,7 +97,7 @@ $this->registerCssFile(
         <div class='hidden-xs col-md-6'>
             <div class='cubo'>
                 <div class='cara' id='superior'>
-                    <h3 align='center'>
+                    <h3>
                         <strong>
                             Añade miembros a tus proyectos
                             para trabajar de forma colaborativa
@@ -105,7 +105,7 @@ $this->registerCssFile(
                     </h3>
                 </div>
                 <div class='cara' id='frente'>
-                    <h3 align='center'>
+                    <h3>
                         <strong>
                             Se adapta a su proyecto
                             de forma cómoda y eficiente
@@ -153,7 +153,7 @@ $this->registerCssFile(
                 </div>
 
                 <div class='panel-body'>
-                    <video width="100%" src="/videos/organizacion.mp4" controls autoplay="" loop="" muted></video>
+                    <video  src="/videos/organizacion.mp4" controls autoplay="" loop="" muted></video>
                 </div>
             </div>
         </div>

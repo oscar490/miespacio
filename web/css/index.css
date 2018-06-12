@@ -8,6 +8,10 @@ a:link {
     text-decoration: none;
 }
 
+h3.transition {
+    text-align: center;
+}
+
 .transition:hover {
     color: #337ab7;
 }
@@ -16,9 +20,17 @@ a:link {
     transition: color 0.8s linear 0.2s;
 }
 
+video {
+    width: 100%;
+}
+
 #content_texto {
 
     margin-top: 20px;
+}
+
+#tareas_largas {
+    text-align: center;
 }
 
 .site-index {
@@ -49,11 +61,13 @@ a:link {
     background-color: #337ab7;
     transform: rotateX(90deg) translateZ(100px);
     color: white;
+    text-align: center;
 }
 .cubo .cara#frente {
     background-color: cyan;
     transform: translateZ(100px);
     color: #337ab7;
+    text-align: center;
 }
 .cubo .cara#atras {
     background-color: cyan;
