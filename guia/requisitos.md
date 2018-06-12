@@ -663,7 +663,7 @@ pertenece.          |
 | **R74**     | **Compartir tarjetas desde Whatsapp.**           |
 | --------------: | :------------------- |
 | **Descripción** | Se permitirá poder compartir el contenido de una tarjetas, desde dispositivos que tengan instalado la aplicación de Whatsapp. Como móviles, tablets, etc.             |
-| **Prioridad**   | Importante           |
+| **Prioridad**   | Opcional           |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v3             |
@@ -681,7 +681,7 @@ pertenece.          |
 | **R76**     | **Autenticación desde una cuenta de Google.**           |
 | --------------: | :------------------- |
 | **Descripción** | Se permitirá acceder a nuestra cuenta de usuario con una cuenta de google.             |
-| **Prioridad**   | Opcional           |
+| **Prioridad**   | Importante          |
 | **Tipo**        | Funcional                |
 | **Complejidad** | Media         |
 | **Entrega**     | v3             |
@@ -864,9 +864,9 @@ pertenece.          |
 | (**R71**) Modificar comentarios en tarjeta. | Importante | Funcional | Fácil | v3 | [71](https://github.com/oscar490/miespacio/issues/71) |
 | (**R72**) Mostrar comentarios en tarjeta. | Importante | Funcional | Fácil | v3 | [72](https://github.com/oscar490/miespacio/issues/72) |
 | (**R73**) Añadir en tarjeta un mapa de una ubicación de algún lugar. | Importante | Funcional | Difícil | v3 | [73](https://github.com/oscar490/miespacio/issues/73) |
-| (**R74**) Compartir tarjetas desde Whatsapp. | Importante | Funcional | Media | v3 | [74](https://github.com/oscar490/miespacio/issues/74) |
+| (**R74**) Compartir tarjetas desde Whatsapp. | Opcional | Funcional | Media | v3 | [74](https://github.com/oscar490/miespacio/issues/74) |
 | (**R75**) Adjuntar enlaces de archivos guardados en Dropbox. | Opcional | Funcional | Difícil | v3 | [75](https://github.com/oscar490/miespacio/issues/75) |
-| (**R76**) Autenticación desde una cuenta de Google. | Opcional | Funcional | Media | v3 | [76](https://github.com/oscar490/miespacio/issues/76) |
+| (**R76**) Autenticación desde una cuenta de Google. | Importante | Funcional | Media | v3 | [76](https://github.com/oscar490/miespacio/issues/76) |
 | (**R77**) Compartir contenidos de tarjetas por redes sociales. | Opcional | Funcional | Media | v3 | [77](https://github.com/oscar490/miespacio/issues/77) |
 | (**R78**) Añadir “Me gusta”. | Opcional | Funcional | Media | v3 | [78](https://github.com/oscar490/miespacio/issues/78) |
 | (**R79**) Añadir cita. | Opcional | Funcional | Media | v3 | [79](https://github.com/oscar490/miespacio/issues/79) |
