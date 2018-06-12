@@ -53,6 +53,7 @@ $this->registerJs($js);
     <?= $form->field($model, 'email')->textInput([
         'maxlength' => true,
         'placeholder'=>'p. ej.: manuel@gmail.com',
+        'itemprop'=>'email',
     ]) ?>
 
     <!-- Botón de envio de formulario -->

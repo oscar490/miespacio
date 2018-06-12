@@ -43,12 +43,15 @@ $items = [
 ];
 ?>
 <!-- Nombre de usuario e imagen de perfil -->
-<div class="datos-usuarios-view">
+<div class="datos-usuarios-view" itemscope="http://schema.org/Person">
     <div class='jumbotron'>
         <?=
             Html::img(
                 'images/cargando.gif',
-                ['class'=>'logo-x3 img-circle']
+                [
+                    'class'=>'logo-x3 img-circle',
+                    'itemprop'=>'image'
+                ]
             );
         ?>
         <?=
@@ -59,13 +62,15 @@ $items = [
                 Html::tag(
                     'small',
                     ' (' . $model->usuario->nombre . ') '
-                )
+                ),
+                ['itemprop'=>'name']
             );
         ?>
         <?=
             Html::tag(
                 'span',
-                $model->descripcion
+                $model->descripcion,
+                ['itemprop'=>'description']
             );
         ?>
     </div>
