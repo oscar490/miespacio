@@ -251,3 +251,60 @@ Eliminar un adjunto
 ![eliminar_adjunto_2](images/eliminar_adjunto_2.png)
 
 Al seleccionar el botón de "X", se mostrará un menú preguntándonos si queremos eliminar el adjunto de la tarjeta.
+
+<br>
+
+Añadir y modificar comentarios en la tarjeta
+---
+
+<br>
+
+![comentarios_1](images/comentar_tarjeta.png)
+
+Desde la selección de "Comentarios" podemos añadir un nuevo comentario.
+
+![comentarios_2](images/comentarios_tarjeta.png)
+
+Al añadir un nuevo comentario, podemos ver los comentarios nuestros y de otros usuarios miembros.
+
+![comentarios_3](images/modificar_comentario.png)
+
+Desde la selección "Modificar", podemos modificar un comentario que hayamos añadido anteriormente, siendo nuestro comentario.
+
+<br>
+
+Eliminar un comentario de la tarjeta
+---
+<br>
+![borrar_comentarios](images/eliminar_comenario.png)
+
+Desde la selección de "Eliminar", podemos eliminar los comentarios que nosotos hayamos añadidos. No de otros usuarios.
+
+<br>
+
+Valorar una tarjeta
+---
+
+<br>
+
+![valorar_1](images/valorar_tarjeta.png)
+
+Desde "Adjuntos", podemos añadir una valoracióbn sobre la tarjeta.
+
+
+![valorar_2](images/valorar_tarjeta_2.png)
+
+En "Valoraciones", podemos ver las valoraciones que han realizado los usuarios sobre la tarjeta.
+
+<br>
+
+Ocultar y mostrar una tarjeta
+---
+<br>
+![ocultar_tarjeta](images/ocultar_tarjeta.png)
+
+Desde el contenido de la tarjeta, podemos seleccionar la opción de "Ocultar", para que la tarjeta no se muestre a los usuarios miembros del equipo.
+
+![mostrar_tarjeta](images/mostrar_tarjeta.png)
+
+También podemos seleccionae "Mostrar", si está oculta previamente, para que se vuelva a mostrar a los demás usuarios miembros.
