@@ -94,3 +94,13 @@ Navegadores
 <br><br>
 
 ![opera](images/opera.jpeg)
+
+<hr><br><br><br>
+
+Pruebas
+---
+<br>
+
+Ejecución de pruebas funcionales:
+
+![pruebas](images/pruebas.png)

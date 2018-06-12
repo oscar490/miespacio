@@ -41,14 +41,16 @@ class Tableros extends \yii\db\ActiveRecord
             ],
             [['equipo_id'], 'integer'],
             ['equipo_id', function ($attribute, $params, $validator) {
-                $miembro = Miembros::find()
-                    ->where([
-                        'usuario_id'=>Yii::$app->user->id,
-                        'equipo_id'=>$this->$attribute
-                    ])->one();
+                if (!Yii::$app->user->isGuest) {
+                    $miembro = Miembros::find()
+                        ->where([
+                            'usuario_id'=>Yii::$app->user->id,
+                            'equipo_id'=>$this->$attribute
+                        ])->one();
 
-                if (!$miembro->esPropietario) {
-                    $this->addError($attribute, 'Este equipo está compartido, no tienes permisos para crear tableros en él.');
+                    if (!$miembro->esPropietario) {
+                        $this->addError($attribute, 'Este equipo está compartido, no tienes permisos para crear tableros en él.');
+                    }
                 }
 
             }],
