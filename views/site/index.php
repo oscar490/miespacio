@@ -23,14 +23,14 @@ $this->registerCssFile(
     <div class='row centrado'>
 
         <!-- MiEspacio -->
-        <div class='col-md-5 centrado'>
+        <div id='content_logotipo' class='col-md-5 centrado'>
+            <?=
+                Html::img(
+                    'images/logotipo.png',
+                    ['class'=>'logo-index']
+                )
+            ?>
             <h1>
-                <?=
-                    Html::img(
-                        'images/logotipo.png',
-                        ['class'=>'logo-index']
-                    )
-                ?>
                 <strong id='title_app'>
                     <?=
                         Html::encode($this->title)

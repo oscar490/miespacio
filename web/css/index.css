@@ -8,6 +8,10 @@ a:link {
     text-decoration: none;
 }
 
+#content_logotipo {
+    margin-top: 20px;
+}
+
 h3.transition {
     text-align: center;
 }

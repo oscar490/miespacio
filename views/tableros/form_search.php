@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
     <?=
         $form->field($search, 'denominacion')->textinput([
             'placeholder'=>'Buscar tableros por nombre...'
-        ])->label(false);
+        ])->label('Nombre a búscar: ');
     ?>
 
 <?php ActiveForm::end() ?>

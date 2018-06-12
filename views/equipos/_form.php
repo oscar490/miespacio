@@ -40,9 +40,9 @@ $this->registerJs($js);
         )
         ->textInput([
             'maxlength' => true,
-            'placeholder'=>'Nombre del equipo',
+            'placeholder'=>'Equipo de desarrollo',
             'id'=>'nombre_equipo'
-        ])->label(false);
+        ]);
     ?>
 
     <!-- Descripción -->
@@ -50,8 +50,8 @@ $this->registerJs($js);
         $form->field($equipo, 'descripcion')->textarea([
             'maxlength'=>true,
             'rows'=>4,
-            'placeholder'=>'Descripción (opcional)'
-        ])->label(false);
+            'placeholder'=>'Descripción del equipo ...'
+        ]);
     ?>
 
     <!-- Propietario del equipo -->
