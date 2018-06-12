@@ -51,8 +51,76 @@
         <h1>Instrucciones de instalación y despliegue <span id="instrucciones-de-instalacion-y-despliegue"></span><a href="#instrucciones-de-instalacion-y-despliegue" class="hashlink">&para;</a></h1>
 <div class="toc"><ol><li><a href="#en-local">En local</a></li>
 <li><a href="#en-la-nube">En la nube</a></li></ol></div>
-<h2>En local <span id="en-local"></span><a href="#en-local" class="hashlink">&para;</a></h2><p>Explicar.</p>
-<h2>En la nube <span id="en-la-nube"></span><a href="#en-la-nube" class="hashlink">&para;</a></h2><p>Explicar.</p>
+<h2>En local <span id="en-local"></span><a href="#en-local" class="hashlink">&para;</a></h2><p><strong><em>Requisitos mínimos:</em></strong></p>
+<ul>
+<li>PHP 7.1.0 o superior.</li>
+<li>Composer</li>
+<li>PostgreSQL</li>
+</ul>
+<p><strong><em>Instalación:</em></strong></p>
+<ul>
+<li>Clonamos el reposito:</li>
+</ul>
+<pre><code class="hljs nginx"><span class="hljs-title">bash</span> git clone <span class="hljs-url">https://github.com/oscar490/miespacio.git</span> miespacio
+</code></pre>
+<ul>
+<li>Instalamos los paquetes necesarios:</li>
+</ul>
+<pre><code class="hljs nginx"><span class="hljs-title">bash</span> composer install
+</code></pre>
+<ul>
+<li>Creamos la base de datos e instroducimos los datos en ella.</li>
+</ul>
+<pre><code class="hljs sql">bash ./<span class="hljs-operator"><span class="hljs-keyword">create</span>.sh
+bash ./<span class="hljs-keyword">load</span>.sh
+</span></code></pre>
+<ul>
+<li><p>Creamos el archivo "env" en la raíz del proyecto, con las siguientes variables de entorno:</p>
+<ul>
+<li><p>SMTP_PASS: Clave de aplicación (Email)</p>
+</li>
+<li><p>DROPBOX_TOKEN: Token de activación de Dropbox.</p>
+</li>
+</ul>
+</li>
+<li><p>Accedemos a "miespacio" y ejecutamos el siguiente comando para iniciar el servidor:</p>
+</li>
+</ul>
+<pre><code class="hljs nginx"><span class="hljs-title">make</span> serve
+</code></pre>
+<ul>
+<li>Nos dirigimos al navegador y accedemos mediante <a href="http://localhost:8080">http://localhost:8080</a></li>
+</ul>
+<h2>En la nube <span id="en-la-nube"></span><a href="#en-la-nube" class="hashlink">&para;</a></h2><p><strong><em>Requisitos mínmimos:</em></strong></p>
+<ul>
+<li>HerokuCLi.</li>
+</ul>
+<p><strong><em>Instalación:</em></strong></p>
+<ul>
+<li><p>Creamos una cuenta de Heroku.</p>
+</li>
+<li><p>Creamos una nueva aplicación.</p>
+</li>
+<li><p>En "Resources", añadimos el módulo <strong>Heroku Postgres.</strong></p>
+</li>
+<li><p>En HerokuCLi hacemos login:</p>
+</li>
+</ul>
+<pre><code class="hljs nginx"><span class="hljs-title">bash</span> heroku login
+</code></pre>
+<ul>
+<li>Ejecutamos el siguiente comando para añadir variables de entorno, desde la raíz del proyecto.</li>
+</ul>
+<pre><code class="hljs nginx"><span class="hljs-title">bash</span> heroku git:remote --app nombre_app  heroku config:set YII_ENV=prod
+</code></pre>
+<ul>
+<li>Insertamos las tablas y los datos necesarios en la Base de datos.</li>
+</ul>
+<pre><code class="hljs nginx"><span class="hljs-title">bash</span> heroku psql &lt; db/miespacio.psql
+</code></pre>
+<ul>
+<li>Sincronizaremos con la rama "master" del repositorio, de GitHub, donde está alojado el proyecto, desde "Settings", "Deployment method".</li>
+</ul>
         <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
     </div>
 </div>
@@ -61,7 +129,7 @@
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Tue, 12 Jun 2018 18:37:18 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Tue, 12 Jun 2018 20:02:23 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {

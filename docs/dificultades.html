@@ -48,8 +48,29 @@
 <a class="list-group-item" href="#navigation-104" data-toggle="collapse" data-parent="#navigation">Conclusiones <b class="caret"></b></a><div id="navigation-104" class="submenu panel-collapse collapse"><a class="list-group-item" href="./conclusiones.html">Conclusiones</a></div>
 <a class="list-group-item" href="#navigation-105" data-toggle="collapse" data-parent="#navigation">Anexos <b class="caret"></b></a><div id="navigation-105" class="submenu panel-collapse collapse"><a class="list-group-item" href="./anexos.html">Anexos</a></div></div>    </div>
     <div class="col-md-9 guide-content" role="main">
-        <h1>Dificultades encontradas <span id="dificultades-encontradas"></span><a href="#dificultades-encontradas" class="hashlink">&para;</a></h1><p>Explicar, indicando también las soluciones adoptadas en cada caso.</p>
-<p>Incluir aquí el elemento de innovación que se indicó en la propuesta.</p>
+        <h1>Dificultades encontradas <span id="dificultades-encontradas"></span><a href="#dificultades-encontradas" class="hashlink">&para;</a></h1><p><em><strong>Añadir un mapa con una ubicación:</strong></em></p>
+<ul>
+<li><p>A la hora de crear una ubicación nueva y añadirla a una tarjeta, tuve problemas. De manera que mi intención era de añadir una ubicación en una ventana modal, pero el problema era que a la hora de iterar sobre el mapa, arrastrarel mapa, el modal se bloqueaba y se cerraba sólo.</p>
+</li>
+<li><p>Decidí entonces colocar el mapa en una página concreta, de manera que a la hora de añadir una nueva ubicación, accedíamos a una nueva página.
+<br><br></p>
+</li>
+</ul>
+<p><em><strong>Subir archivos a la aplicación mediante AJAX:</strong></em></p>
+<ul>
+<li><p>A la hora de subir archivos por ajax, tuve problemas, ya que el contenido del mismo archivo no llegaba bién. De manera que al subir un archivo a la aplicación, no se tuviera que recargar la página.</p>
+</li>
+<li><p>Después de investigar, encontré la solución de añanir una serie de cabeceras como parámetros en la función de realizar peticiones AJAX, de manera que se podía enviar archivos por AJAX, y los archivos llegaban correctos.
+<br><br></p>
+</li>
+</ul>
+<p><em><strong>Elementos de innovación</strong></em></p>
+<ul>
+<li><p><strong> Google Maps: </strong> He usado la API de Google Maps para poder añadir un mapa de una ubicación en una tarjeta, de manera que se guarde en la base de datos la latitud y longitud de dicha ubicación.</p>
+</li>
+<li><p><strong> Iniciar sesión con Google: </strong> He usado la API de Google para poder inicar sesión en la aplicación, desde la cuenta de correos de Google.</p>
+</li>
+</ul>
         <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
     </div>
 </div>
@@ -58,7 +79,7 @@
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Tue, 12 Jun 2018 18:37:18 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Tue, 12 Jun 2018 20:02:23 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {
