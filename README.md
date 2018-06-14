@@ -23,4 +23,6 @@ y sus alumnos tienen permiso para observarlas.
 De esta manera, conseguimos que el usuario tenga una planificación de las tareas
 que debe realizar, de manera fácil y cómoda.
 
+Realizado pot Óscar Vega Herrera.
+
 </p>
